@@ -45,17 +45,17 @@ async function loadMessages() {
 }
 
 /* ====== DOCUMENTS ====== */
-const DOCUMENTS = [
-  { id:'d1', clientId:'u1', client:'Jean Martin',    loan:'MP-2025-00147', name:"Offre de prêt signée",    type:'contrat',  size:'245 Ko', date:'28 jan. 2025', status:'verified', ext:'PDF' },
-  { id:'d2', clientId:'u1', client:'Jean Martin',    loan:'MP-2025-00147', name:"Tableau d'amortissement", type:'contrat',  size:'118 Ko', date:'28 jan. 2025', status:'verified', ext:'PDF' },
-  { id:'d3', clientId:'u1', client:'Jean Martin',    loan:'MP-2025-00147', name:"Pièce d'identité",         type:'identite', size:'2,1 Mo', date:'15 jan. 2025', status:'verified', ext:'JPG' },
-  { id:'d4', clientId:'u2', client:'Marie Dupont',   loan:'MP-2025-00148', name:"Compromis de vente",       type:'immo',     size:'1,4 Mo', date:'05 fév. 2025', status:'verified', ext:'PDF' },
-  { id:'d5', clientId:'u2', client:'Marie Dupont',   loan:'MP-2025-00148', name:"Bulletins de salaire (x3)", type:'identite', size:'980 Ko', date:'03 fév. 2025', status:'verified', ext:'PDF' },
-  { id:'d6', clientId:'u3', client:'Ahmed Benali',   loan:'MP-2025-00150', name:"Pièce d'identité",          type:'identite', size:'1,8 Mo', date:'18 fév. 2025', status:'pending',  ext:'JPG' },
-  { id:'d7', clientId:'u3', client:'Ahmed Benali',   loan:'MP-2025-00150', name:"Justificatif de revenus",   type:'identite', size:'450 Ko', date:'18 fév. 2025', status:'pending',  ext:'PDF' },
-  { id:'d8', clientId:'u5', client:'Luc Moreau',     loan:'MP-2025-00152', name:"Acte de propriété",         type:'immo',     size:'2,3 Mo', date:'12 mar. 2025', status:'pending',  ext:'PDF' },
-  { id:'d9', clientId:'u6', client:'Sara Khoury',    loan:'MP-2025-00153', name:"Bulletins de salaire",      type:'identite', size:'720 Ko', date:'15 mar. 2025', status:'pending',  ext:'PDF' },
-];
+async function loadDocuments() {
+  const { data } = await supabase
+    .from('documents')
+    .select(`
+      *,
+      users ( full_name ),
+      loans ( reference )
+    `)
+    .order('created_at', { ascending: false });
+  return data || [];
+}
 
 /* ====== KPIs ====== */
 const KPIS = {
