@@ -1,7 +1,3 @@
-/* =========================================
-   B-MO FINANCIAL — i18n.js v2
-   Allemand intégré — pas de fetch bloquant
-   ========================================= */
 'use strict';
 var I18N = {
   defaultLang:'de',
