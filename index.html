@@ -35,7 +35,7 @@
   </a>
 
   <div class="nav-links">
-    <<button class="nav-link act" onclick="goPage('home')" data-i18n="nav.home">Startseite</button>
+    <button class="nav-link act" onclick="goPage('home')" data-i18n="nav.home">Startseite</button>
     <button class="nav-link" onclick="goPage('prods')" data-i18n="nav.loans">Unsere Kredite</button>
     <button class="nav-link" onclick="goPage('sim')" data-i18n="nav.simulator">Kreditrechner</button>
     <button class="nav-link" onclick="goPage('apply')" data-i18n="nav.apply">Online-Antrag</button>
@@ -91,16 +91,16 @@
       <h1>Financer vos projets,<br><em>à votre rythme</em></h1>
       <p>Particuliers et entreprises : accédez à nos solutions de crédit personnalisées et suivez chaque étape de votre dossier depuis votre espace sécurisé.</p>
       <div class="hero-actions">
-        <button class="btn btn-gold" onclick="goPage('sim')">Simuler mon prêt</button>
-        <button class="btn btn-ghost-light" onclick="goPage('prods')">Découvrir nos offres</button>
+        <button class="btn btn-gold" onclick="goPage('sim')" data-i18n="hero.simulate">Kredit berechnen</button>
+        <button class="btn btn-ghost-light" onclick="goPage('prods')" data-i18n="hero.discover">Unsere Angebote entdecken</button>
       </div>
     </div>
   </div>
 
   <div class="seg-bar">
     <div class="seg-inner">
-      <button class="seg-btn act" id="sg-p" onclick="switchSeg('p')">Particuliers</button>
-      <button class="seg-btn" id="sg-e" onclick="switchSeg('e')">Entreprises &amp; PME</button>
+      <button class="seg-btn act" id="sg-p" onclick="switchSeg('p')" data-i18n="segments.individuals">Privatkunden</button>
+      <button class="seg-btn" id="sg-e" onclick="switchSeg('e')" data-i18n="segments.business">Unternehmen und KMU</button>
     </div>
   </div>
 
