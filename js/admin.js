@@ -478,6 +478,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const msgInp = document.getElementById('admin-msg-input');
   if (msgInp) msgInp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAdminReply(); } });
 
+  try {
+    await loadAllData();
+  } catch(e) {
+    console.error('Erreur chargement:', e);
+  }
+
   updateBadges();
   goPanel('dashboard');
 });
