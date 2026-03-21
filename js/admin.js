@@ -1,5 +1,5 @@
 /* =========================================
-   MERIDIA ADMIN — admin.js
+   B-Mo Financial ADMIN — admin.js
    Navigation · Dashboard · Prêts · Clients
    Messagerie · Documents · Modals · Toasts
    ========================================= */
