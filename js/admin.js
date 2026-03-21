@@ -252,7 +252,16 @@ function activateClient(id) {
   const c = CLIENTS.find(x => x.id === id);
   if (c) { c.status = 'active'; renderClients(); showToast(`Compte de ${c.name} réactivé.`); }
 }
-// 
+//Valider un doccument()
+async function verifyDoc(id) {
+  await supabase
+    .from('documents')
+    .update({ status: 'verified', verified_at: new Date().toISOString() })
+    .eq('id', id);
+  showToast('Document validé.');
+  renderDocuments();
+}
+//Envoyer un message à un client() 
 async function sendAdminReply() {
   const text = document.getElementById('admin-msg-input').value.trim();
   if (!text) return;
