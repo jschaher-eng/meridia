@@ -140,22 +140,7 @@ async function doRegister() {
   var fname    = document.getElementById('reg-fname').value.trim();
   var lname    = document.getElementById('reg-lname').value.trim();
   var errEl    = document.getElementById('reg-error');
-  var confirm = document.getElementById('reg-password-confirm').value;
-if (!email || !password || !fname || !lname) {
-  errEl.textContent = 'Bitte alle Felder ausfullen.';
-  errEl.style.display = 'block';
-  return;
-}
-if (password !== confirm) {
-  errEl.textContent = 'Die Passwoerter stimmen nicht ueberein.';
-  errEl.style.display = 'block';
-  return;
-}
-if (password.length < 8) {
-  errEl.textContent = 'Das Passwort muss mindestens 8 Zeichen haben.';
-  errEl.style.display = 'block';
-  return;
-} errEl.textContent = 'Bitte alle Felder ausfullen.'; errEl.style.display = 'block'; return; }
+  if (!email || !password || !fname || !lname) { errEl.textContent = 'Bitte alle Felder ausfullen.'; errEl.style.display = 'block'; return; }
   var btn = document.getElementById('btn-register');
   btn.textContent = '...'; btn.disabled = true;
   var result = await supabase.auth.signUp({
