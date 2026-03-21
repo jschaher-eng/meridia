@@ -111,4 +111,15 @@ function selectProd(el) {
 /* ---- Initialize on load ---- */
 document.addEventListener('DOMContentLoaded', function() {
   goPage('home');
+   function toggleMobileMenu() {
+  var menu = document.getElementById('mobile-menu');
+  var btn  = document.getElementById('hamburger');
+  if (menu) menu.classList.toggle('open');
+  if (btn)  btn.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+  var menu = document.getElementById('mobile-menu');
+  if (menu) menu.classList.remove('open');
+}
 });
