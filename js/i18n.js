@@ -79,3 +79,4 @@ var I18N = {
   },
   toggleDropdown:function(){var dd=document.getElementById('lang-dropdown');if(!dd)return;dd.style.display=dd.style.display==='block'?'none':'block';}
 };
+Fix i18n
