@@ -256,8 +256,8 @@
 <!-- PAGE : SIMULATEUR -->
 <div id="pg-sim" class="pg">
   <div class="wrap">
-    <div class="sec-h2">Simulateur de prêt</div>
-    <p class="sec-sub">Estimez vos mensualités en temps réel, sans engagement</p>
+    <div class="sec-h2" data-i18n="simulator.title">Kreditrechner</div>
+    <p class="sec-sub" data-i18n="simulator.subtitle">Berechnen Sie Ihre monatliche Rate in Echtzeit, unverbindlich</p>
 
     <div class="prod-tabs">
       <button class="ptab act" onclick="setLoanType(this,'perso')">Prêt personnel</button>
@@ -292,17 +292,17 @@
             <option>Auto-entrepreneur</option>
           </select>
         </div>
-        <button class="btn btn-gold btn-full" style="margin-top:0.25rem" onclick="goPage('apply')">Faire ma demande →</button>
+        <button class="btn btn-gold btn-full" style="margin-top:0.25rem" onclick="goPage('apply')" data-i18n="simulator.apply_btn">Meinen Antrag stellen</button>
       </div>
 
       <div class="res-card">
-        <h3>Mensualité estimée</h3>
+        <h3 data-i18n="simulator.monthly">Geschaetzte Monatsrate</h3>
         <div class="res-amount" id="s-m">444 €</div>
         <div class="res-row"><span class="rl">Capital emprunté</span><span class="rv2" id="s-c">15 000 €</span></div>
         <div class="res-row"><span class="rl">Intérêts totaux</span><span class="rv2" id="s-i">986 €</span></div>
         <div class="res-row"><span class="rl">Total à rembourser</span><span class="rv2" id="s-t">15 986 €</span></div>
         <div class="res-row"><span class="rl">Taux d'endettement</span><span class="rv2" id="s-dt">~18 %</span></div>
-        <p class="res-disclaimer">Simulation indicative sans engagement contractuel. TAEG calculé hors assurance emprunteur.</p>
+        <p class="res-disclaimer" data-i18n="simulator.disclaimer">Unverbindliche Simulation. Effektiver Jahreszins ohne Restschuldversicherung.</p>
       </div>
     </div>
   </div>
