@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meridia Admin — Connexion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0C2340;--navy-mid:#1a3a5c;--gold:#B8963E;--gold-l:#D4AF6A;
+      --white:#ffffff;--gray-100:#F4F4F2;--gray-200:#E8E7E3;
+      --text:#1C1C1A;--text-m:#6B6965;--border:rgba(0,0,0,0.10);--border-md:rgba(0,0,0,0.18);
+      --err-bg:#FCEBEB;--err-txt:#791F1F;--err-bdr:#A32D2D;
+      --ok-bg:#EAF3DE;--ok-txt:#27500A;
+    }
+    body{font-family:'Jost',sans-serif;background:var(--navy);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;}
+    .login-box{background:var(--white);border-radius:12px;padding:2.5rem;width:100%;max-width:400px;}
+    .logo{text-align:center;margin-bottom:2rem;}
+    .logo-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--navy);}
+    .logo-tag{font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:500;display:block;margin-top:4px;}
+    .admin-badge{display:inline-block;background:var(--navy);color:var(--gold-l);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-top:8px;}
+    .fg{margin-bottom:1rem;}
+    .fg label{display:block;font-size:10px;font-weight:500;color:var(--text-m);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;}
+    .fg input{width:100%;padding:10px 12px;border:0.5px solid var(--border-md);border-radius:4px;font-size:13px;font-family:'Jost',sans-serif;outline:none;transition:border .15s;color:var(--text);}
+    .fg input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(12,35,64,.07);}
+    .btn-login{width:100%;padding:11px;background:var(--navy);color:#fff;border:none;border-radius:4px;font-size:13px;font-weight:500;font-family:'Jost',sans-serif;cursor:pointer;transition:background .15s;margin-top:.5rem;}
+    .btn-login:hover{background:var(--navy-mid);}
+    .btn-login:disabled{opacity:.6;cursor:not-allowed;}
+    .error-msg{background:var(--err-bg);border:0.5px solid var(--err-bdr);color:var(--err-txt);padding:10px 12px;border-radius:4px;font-size:12px;margin-bottom:1rem;display:none;line-height:1.5;}
+    .error-msg.show{display:block;}
+    .ok-msg{background:var(--ok-bg);color:var(--ok-txt);padding:10px 12px;border-radius:4px;font-size:12px;margin-bottom:1rem;display:none;line-height:1.5;}
+    .ok-msg.show{display:block;}
+    .divider{border:none;border-top:0.5px solid var(--border);margin:1.25rem 0;}
+    .forgot{text-align:center;font-size:12px;color:var(--text-m);}
+    .forgot a{color:var(--gold);cursor:pointer;}
+    .footer-note{margin-top:1.5rem;text-align:center;font-size:11px;color:rgba(255,255,255,.4);line-height:1.6;}
+    .spinner{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .reset-form{display:none;}
+    .back-link{font-size:12px;color:var(--gold);cursor:pointer;display:block;margin-bottom:1rem;}
+  </style>
+</head>
+<body>
+
+<div class="login-box">
+  <div class="logo">
+    <div class="logo-name">Meridia</div>
+    <span class="logo-tag">Banque &amp; Crédit</span>
+    <div class="admin-badge">Espace Administration</div>
+  </div>
+
+  <!-- Formulaire connexion -->
+  <div id="form-login">
+    <div class="error-msg" id="error-msg"></div>
+    <div class="ok-msg"    id="ok-msg"></div>
+
+    <div class="fg">
+      <label>Adresse email</label>
+      <input type="email" id="email" placeholder="admin@meridia-credit.fr" autocomplete="email">
+    </div>
+    <div class="fg">
+      <label>Mot de passe</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+
+    <button class="btn-login" id="btn-login" onclick="doLogin()">
+      <span id="btn-label">Accéder à l'administration</span>
+      <div class="spinner" id="spinner"></div>
+    </button>
+
+    <div class="divider"></div>
+    <div class="forgot">
+      Mot de passe oublié ? <a onclick="showReset()">Réinitialiser</a>
+    </div>
+  </div>
+
+  <!-- Formulaire reset mot de passe -->
+  <div class="reset-form" id="form-reset">
+    <span class="back-link" onclick="showLogin()">← Retour à la connexion</span>
+    <div class="ok-msg" id="reset-ok"></div>
+    <div class="error-msg" id="reset-error"></div>
+    <div class="fg">
+      <label>Votre email admin</label>
+      <input type="email" id="reset-email" placeholder="admin@meridia-credit.fr">
+    </div>
+    <button class="btn-login" onclick="doReset()">Envoyer le lien de réinitialisation</button>
+  </div>
+</div>
+
+<div class="footer-note">
+  Accès réservé aux administrateurs Meridia.<br>
+  Connexion chiffrée SSL · 2FA disponible
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabase = window.supabase.createClient(
+    'https://optdeymyvokoowliqvnm.supabase.co',
+    'sb_publishable_FBMabC65Upvntx5AMsFIjw_rHkIll9X'
+  );
+
+  /* Vérifier si déjà connecté et admin */
+  (async function() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      const role = session.user.user_metadata?.role;
+      if (role === 'admin') {
+        window.location.href = 'admin.html';
+      }
+    }
+  })();
+
+  /* Connexion */
+  async function doLogin() {
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const errEl    = document.getElementById('error-msg');
+
+    errEl.classList.remove('show');
+
+    if (!email || !password) {
+      errEl.textContent = 'Veuillez remplir tous les champs.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    setLoading(true);
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      errEl.textContent = error.message.includes('Invalid login')
+        ? 'Email ou mot de passe incorrect.'
+        : 'Erreur : ' + error.message;
+      errEl.classList.add('show');
+      setLoading(false);
+      return;
+    }
+
+    const role = data.user.user_metadata?.role;
+    if (role !== 'admin') {
+      await supabase.auth.signOut();
+      errEl.textContent = 'Accès refusé. Ce compte n\'est pas administrateur.';
+      errEl.classList.add('show');
+      setLoading(false);
+      return;
+    }
+
+    window.location.href = 'admin.html';
+  }
+
+  /* Reset mot de passe */
+  async function doReset() {
+    const email   = document.getElementById('reset-email').value.trim();
+    const okEl    = document.getElementById('reset-ok');
+    const errEl   = document.getElementById('reset-error');
+    okEl.classList.remove('show');
+    errEl.classList.remove('show');
+
+    if (!email) {
+      errEl.textContent = 'Veuillez saisir votre email.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + '/admin.html'
+    });
+
+    if (error) {
+      errEl.textContent = 'Erreur : ' + error.message;
+      errEl.classList.add('show');
+    } else {
+      okEl.textContent = 'Email envoyé ! Vérifiez votre boîte mail.';
+      okEl.classList.add('show');
+    }
+  }
+
+  /* Afficher/masquer formulaires */
+  function showReset() {
+    document.getElementById('form-login').style.display = 'none';
+    document.getElementById('form-reset').style.display = 'block';
+  }
+  function showLogin() {
+    document.getElementById('form-reset').style.display = 'none';
+    document.getElementById('form-login').style.display = 'block';
+  }
+
+  /* État chargement */
+  function setLoading(loading) {
+    document.getElementById('btn-login').disabled = loading;
+    document.getElementById('btn-label').style.display  = loading ? 'none' : 'block';
+    document.getElementById('spinner').style.display    = loading ? 'block' : 'none';
+  }
+
+  /* Touche Entrée */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doLogin();
+  });
+</script>
+
+</body>
+</html>
