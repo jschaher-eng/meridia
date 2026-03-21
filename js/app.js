@@ -109,9 +109,7 @@ function selectProd(el) {
 }
 
 /* ---- Initialize on load ---- */
-document.addEventListener('DOMContentLoaded', function() {
-  goPage('home');
-   function toggleMobileMenu() {
+function toggleMobileMenu() {
   var menu = document.getElementById('mobile-menu');
   var btn  = document.getElementById('hamburger');
   if (menu) menu.classList.toggle('open');
@@ -122,4 +120,13 @@ function closeMobileMenu() {
   var menu = document.getElementById('mobile-menu');
   if (menu) menu.classList.remove('open');
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  goPage('home');
+
+  setTimeout(function() {
+    var lsm = document.getElementById('lang-selector-mobile');
+    var ls  = document.getElementById('lang-selector');
+    if (lsm && ls) { lsm.innerHTML = ls.innerHTML; }
+  }, 500);
 });
