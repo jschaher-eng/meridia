@@ -1,0 +1,17 @@
+{
+  "nav": { "home": "Domov", "loans": "Naša posojila", "simulator": "Kalkulator", "apply": "Spletna vloga", "login": "Prijava", "open_account": "Odpri račun", "alerts": "Obvestila" },
+  "topbar": { "text": "B-Mo Financial · Pooblaščen ACPR · Vloge zagotovljene do 100.000 €", "branches": "Podružnice", "client_space": "Območje za stranke", "contact": "Kontakt" },
+  "hero": { "title": "Financirajte svoje projekte,", "title_em": "v svojem tempu", "subtitle": "Posamezniki in podjetja: dostopajte do naših kreditnih rešitev in spremljajte vsak korak iz vašega varnega območja.", "simulate": "Izračunaj posojilo", "discover": "Odkrijte naše ponudbe" },
+  "segments": { "individuals": "Posamezniki", "business": "Podjetja in MSP" },
+  "products": {
+    "individuals_title": "Rešitve za posameznike", "individuals_sub": "Financiranje za vsak življenjski projekt",
+    "personal": { "name": "Osebno posojilo", "desc": "Potovanja, prenova, oprema — brez dokazil.", "rate": "Od 3,90% EOM" },
+    "mortgage": { "name": "Stanovanjsko posojilo", "desc": "Nakup, gradnja ali obnova.", "rate": "Od 3,20% EOM" },
+    "auto": { "name": "Avtomobilsko posojilo", "desc": "Nov ali rabljen avtomobil, bencin ali elektrika.", "rate": "Od 4,50% EOM" },
+    "micro": { "name": "Mikrofinanciranje", "desc": "Majhni zneski brez zapletenih jamstev.", "rate": "Od 5,90% EOM" }
+  },
+  "simulator": { "title": "Kalkulator posojila", "subtitle": "Izračunajte mesečni obrok v realnem času, brez obveznosti", "amount": "Znesek posojila", "duration": "Trajanje", "rate": "Letna obrestna mera", "apply_btn": "Vloži zahtevek →", "monthly": "Ocenjeni mesečni obrok", "capital": "Kapital", "interest": "Skupne obresti", "total": "Skupaj za vračilo", "disclaimer": "Okvirna simulacija brez obveznosti." },
+  "apply": { "title": "Spletna vloga za posojilo", "subtitle": "100% digitalno · Odločitev v 24h", "step1": "1 — Projekt", "step2": "2 — Identiteta", "step3": "3 — Finance", "step4": "4 — Dokumenti", "next": "Naprej →", "back": "← Nazaj", "submit": "Oddaj vlogo", "summary": "Povzetek", "monthly_est": "ocenjeni mesečni obrok" },
+  "auth": { "title": "Območje za stranke B-Mo Financial", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun" },
+  "footer": { "copyright": "© 2025 B-Mo Financial. Vse pravice pridržane." }
+}

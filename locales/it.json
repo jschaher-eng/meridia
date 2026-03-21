@@ -1,0 +1,24 @@
+{
+  "nav": { "home": "Home", "loans": "I nostri prestiti", "simulator": "Simulatore", "apply": "Richiesta online", "login": "Accedi", "open_account": "Apri un conto", "alerts": "Avvisi" },
+  "topbar": { "text": "B-Mo Financial · Autorizzato ACPR · Depositi garantiti fino a 100.000 €", "branches": "Filiali", "client_space": "Area clienti", "contact": "Contatti" },
+  "hero": { "title": "Finanzia i tuoi progetti,", "title_em": "ai tuoi ritmi", "subtitle": "Privati e aziende: accedi alle nostre soluzioni di credito e segui ogni fase dalla tua area sicura.", "simulate": "Calcola il mio prestito", "discover": "Scopri le nostre offerte" },
+  "segments": { "individuals": "Privati", "business": "Aziende e PMI" },
+  "products": {
+    "individuals_title": "Soluzioni per privati", "individuals_sub": "Finanziamenti per ogni progetto di vita",
+    "business_title": "Soluzioni per aziende", "business_sub": "Finanziamenti strutturati per la tua crescita",
+    "personal": { "name": "Prestito personale", "desc": "Viaggi, ristrutturazioni, attrezzature — senza giustificativo.", "rate": "Dal 3,90% TAEG" },
+    "mortgage": { "name": "Mutuo immobiliare", "desc": "Acquisto, costruzione o ristrutturazione.", "rate": "Dal 3,20% TAEG" },
+    "auto": { "name": "Prestito auto", "desc": "Veicolo nuovo o usato, benzina o elettrico.", "rate": "Dal 4,50% TAEG" },
+    "micro": { "name": "Microfinanza", "desc": "Piccoli importi senza garanzie complesse.", "rate": "Dal 5,90% TAEG" },
+    "pro_credit": { "name": "Credito aziendale", "desc": "Attrezzature, liquidità, sviluppo.", "rate": "Dal 4,20% TAEG" },
+    "pro_mortgage": { "name": "Immobiliare aziendale", "desc": "Uffici, capannoni, locali commerciali.", "rate": "Dal 3,50% TAEG" },
+    "micro_sme": { "name": "Microfinanza PMI", "desc": "Fino a 50.000 € per microimprese.", "rate": "Dal 6,50% TAEG" },
+    "treasury": { "name": "Linea di credito", "desc": "Facilitazione di cassa revolving.", "rate": "Dal 5,00% TAEG" }
+  },
+  "figures": { "hours": "24h", "hours_label": "Decisione di principio", "percent": "100%", "percent_label": "Pratica online", "clients": "12.000+", "clients_label": "Clienti assistiti" },
+  "simulator": { "title": "Simulatore di prestito", "subtitle": "Calcola la tua rata mensile in tempo reale, senza impegno", "amount": "Importo del prestito", "duration": "Durata", "rate": "Tasso annuo (TAEG)", "profile": "Profilo richiedente", "apply_btn": "Fai la mia richiesta →", "monthly": "Rata mensile stimata", "capital": "Capitale", "interest": "Interessi totali", "total": "Totale da rimborsare", "debt_ratio": "Rapporto debito/reddito", "disclaimer": "Simulazione indicativa senza impegno. TAEG esclusa assicurazione." },
+  "apply": { "title": "Richiesta di prestito online", "subtitle": "100% digitale · Decisione entro 24h", "step1": "1 — Progetto", "step2": "2 — Identità", "step3": "3 — Finanze", "step4": "4 — Documenti", "next": "Avanti →", "back": "← Indietro", "submit": "Invia richiesta", "summary": "Riepilogo", "monthly_est": "rata mensile stimata" },
+  "auth": { "title": "Area clienti B-Mo Financial", "login_tab": "Accedi", "register_tab": "Crea account", "email": "Indirizzo email", "password": "Password", "remember": "Ricordami", "forgot": "Password dimenticata?", "login_btn": "Accedi alla mia area", "individual": "Privato", "business": "Azienda / PMI", "create_btn": "Crea il mio account" },
+  "dashboard": { "greeting": "Buongiorno,", "updated": "Aggiornato oggi", "new_request": "+ Nuova richiesta", "paid": "Pagato", "upcoming": "In scadenza", "advisor": "Il tuo consulente", "send_message": "Invia messaggio" },
+  "footer": { "copyright": "© 2025 B-Mo Financial. Tutti i diritti riservati." }
+}

@@ -1,0 +1,89 @@
+/* =========================================
+   B-MO FINANCIAL — lang-selector.css
+   Sélecteur de langue
+   ========================================= */
+
+#lang-selector { position: relative; }
+
+.lang-wrapper { position: relative; }
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: none;
+  border: 0.5px solid rgba(255,255,255,0.25);
+  border-radius: 4px;
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+  font-family: 'Jost', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.lang-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* Dans la nav (fond blanc) */
+.main-nav .lang-btn {
+  border-color: var(--border-md);
+  color: var(--text-main);
+}
+.main-nav .lang-btn:hover {
+  background: var(--gray-100);
+}
+
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 200px;
+  background: var(--white, #fff);
+  border: 0.5px solid var(--border-md, rgba(0,0,0,0.18));
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 300;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.lang-group-label {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted, #6B6965);
+  padding: 8px 12px 4px;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-family: 'Jost', sans-serif;
+  color: var(--text-main, #1C1C1A);
+  cursor: pointer;
+  transition: background 0.1s;
+  text-align: left;
+}
+.lang-option:hover {
+  background: var(--gray-100, #F4F4F2);
+}
+.lang-option[data-lang].active {
+  font-weight: 500;
+  color: var(--navy, #0C2340);
+  background: var(--info-bg, #E6F1FB);
+}
+
+/* Masquer la barre Google Translate native */
+.goog-te-banner-frame,
+.skiptranslate { display: none !important; }
+body { top: 0 !important; }

@@ -1,0 +1,24 @@
+{
+  "nav": { "home": "Inicio", "loans": "Nuestros préstamos", "simulator": "Simulador", "apply": "Solicitar online", "login": "Iniciar sesión", "open_account": "Abrir una cuenta", "alerts": "Alertas" },
+  "topbar": { "text": "B-Mo Financial · Autorizado ACPR · Depósitos garantizados hasta 100.000 €", "branches": "Sucursales", "client_space": "Área de cliente", "contact": "Contacto" },
+  "hero": { "title": "Financie sus proyectos,", "title_em": "a su ritmo", "subtitle": "Particulares y empresas: acceda a nuestras soluciones de crédito y siga cada paso desde su área segura.", "simulate": "Calcular mi préstamo", "discover": "Descubrir nuestras ofertas" },
+  "segments": { "individuals": "Particulares", "business": "Empresas y PYMES" },
+  "products": {
+    "individuals_title": "Soluciones para particulares", "individuals_sub": "Financiación adaptada a cada proyecto",
+    "business_title": "Soluciones para empresas", "business_sub": "Financiación estructurada para su crecimiento",
+    "personal": { "name": "Préstamo personal", "desc": "Viajes, obras, equipamiento — sin justificante.", "rate": "Desde 3,90% TAE" },
+    "mortgage": { "name": "Préstamo hipotecario", "desc": "Compra, construcción o renovación.", "rate": "Desde 3,20% TAE" },
+    "auto": { "name": "Préstamo auto", "desc": "Vehículo nuevo o de ocasión, gasolina o eléctrico.", "rate": "Desde 4,50% TAE" },
+    "micro": { "name": "Microfinanzas", "desc": "Pequeñas cantidades sin garantías complejas.", "rate": "Desde 5,90% TAE" },
+    "pro_credit": { "name": "Crédito empresarial", "desc": "Equipamiento, tesorería, desarrollo.", "rate": "Desde 4,20% TAE" },
+    "pro_mortgage": { "name": "Inmobiliario empresarial", "desc": "Locales, oficinas, almacenes.", "rate": "Desde 3,50% TAE" },
+    "micro_sme": { "name": "Microfinanzas PYME", "desc": "Hasta 50.000 € para micropymes.", "rate": "Desde 6,50% TAE" },
+    "treasury": { "name": "Línea de tesorería", "desc": "Facilidad de caja renovable.", "rate": "Desde 5,00% TAE" }
+  },
+  "figures": { "hours": "24h", "hours_label": "Decisión de principio", "percent": "100%", "percent_label": "Solicitud online", "clients": "12.000+", "clients_label": "Clientes acompañados" },
+  "simulator": { "title": "Simulador de préstamo", "subtitle": "Calcule su cuota mensual en tiempo real, sin compromiso", "amount": "Importe del préstamo", "duration": "Plazo", "rate": "Tasa anual (TAE)", "profile": "Perfil del solicitante", "profile_employee": "Particular — asalariado", "profile_freelance": "Particular — autónomo", "profile_business": "Empresa / PYME", "apply_btn": "Hacer mi solicitud →", "monthly": "Cuota mensual estimada", "capital": "Capital prestado", "interest": "Intereses totales", "total": "Total a reembolsar", "debt_ratio": "Tasa de endeudamiento", "disclaimer": "Simulación indicativa sin compromiso. TAE sin seguro." },
+  "apply": { "title": "Solicitud de préstamo online", "subtitle": "100% digital · Decisión en 24h", "step1": "1 — Proyecto", "step2": "2 — Identidad", "step3": "3 — Finanzas", "step4": "4 — Documentos", "project_title": "Su proyecto", "project_sub": "Díganos qué desea financiar", "loan_type": "Tipo de préstamo", "borrower_profile": "Perfil del solicitante", "amount": "Importe (€)", "duration_label": "Plazo deseado", "purpose": "Finalidad", "purpose_placeholder": "Ej: compra de vehículo, obras...", "next": "Siguiente →", "back": "← Atrás", "submit": "Enviar solicitud", "cgu": "Al enviar, acepta nuestros T&C.", "summary": "Resumen", "monthly_est": "cuota mensual estimada" },
+  "auth": { "title": "Área de cliente B-Mo Financial", "login_tab": "Iniciar sesión", "register_tab": "Crear cuenta", "email": "Correo electrónico", "password": "Contraseña", "remember": "Recordarme", "forgot": "¿Olvidó su contraseña?", "login_btn": "Acceder a mi área", "ssl_note": "Conexión segura SSL · 2FA disponible", "individual": "Particular", "business": "Empresa / PYME", "create_btn": "Crear mi cuenta" },
+  "dashboard": { "greeting": "Hola,", "updated": "Actualizado hoy", "new_request": "+ Nueva solicitud", "active_file": "Expediente activo", "in_repayment": "En reembolso", "granted_amount": "Importe concedido", "next_due": "Próximo vencimiento", "progress": "Progreso", "paid": "Pagado", "upcoming": "Próximo", "advisor": "Su asesor/a", "send_message": "Enviar mensaje" },
+  "footer": { "our_loans": "Nuestros préstamos", "business": "Empresas", "info": "Información", "about": "Quiénes somos", "legal": "Aviso legal", "privacy": "Privacidad", "contact": "Contacto", "copyright": "© 2025 B-Mo Financial. Todos los derechos reservados.", "license": "Lic. ACPR n°123456" }
+}
