@@ -252,7 +252,21 @@ function activateClient(id) {
   const c = CLIENTS.find(x => x.id === id);
   if (c) { c.status = 'active'; renderClients(); showToast(`Compte de ${c.name} réactivé.`); }
 }
+// 
+async function sendAdminReply() {
+  const text = document.getElementById('admin-msg-input').value.trim();
+  if (!text) return;
 
+  await supabase.from('messages').insert({
+    from_id:  currentAdminId,
+    to_id:    currentClientId,
+    loan_id:  currentConv.loanId,
+    content:  text,
+    read:     false
+  });
+
+  showToast('Message envoyé.');
+}
 /* ========================================
    MESSAGERIE
    ======================================== */
