@@ -155,8 +155,6 @@ function openLoanDetail(id) {
   openModal('modal-loan');
 }
 
-function validateLoan(id, decision) {
-  // Dans admin.js — remplace la fonction validateLoan()
 async function validateLoan(id, decision) {
   const { error } = await supabase
     .from('loans')
