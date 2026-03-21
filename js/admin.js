@@ -481,3 +481,16 @@ document.addEventListener('DOMContentLoaded', () => {
   updateBadges();
   goPanel('dashboard');
 });
+// S'abonner aux nouveaux messages en temps réel
+const channel = supabase
+  .channel('admin-messages')
+  .on(
+    'postgres_changes',
+    { event: 'INSERT', schema: 'public', table: 'messages' },
+    (payload) => {
+      console.log('Nouveau message:', payload.new);
+      updateBadges();
+      if (currentPanel === 'messaging') renderMessaging();
+    }
+  )
+  .subscribe();
