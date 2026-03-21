@@ -209,7 +209,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 B-Mo Financial Assurances &amp; Crédit. Tous droits réservés.</span>
+      <span data-i18n="footer.copyright">2025 B-Mo Financial. Alle Rechte vorbehalten.</span>
       <span>Agréé ACPR n°123456 · Membre ORIAS</span>
     </div>
   </footer>
@@ -315,10 +315,10 @@
     <p class="sec-sub">Dossier 100% numérique · Décision de principe sous 24h · Sans engagement</p>
 
     <div class="step-bar">
-      <div class="si act" id="ap1">1 — Projet</div>
-      <div class="si" id="ap2">2 — Identité</div>
-      <div class="si" id="ap3">3 — Finances</div>
-      <div class="si" id="ap4">4 — Documents</div>
+      <div class="si act" id="ap1" data-i18n="apply.step1">1 — Vorhaben</div>
+      <div class="si" id="ap2" data-i18n="apply.step2">2 — Identitaet</div>
+      <div class="si" id="ap3" data-i18n="apply.step3">3 — Finanzen</div>
+      <div class="si" id="ap4" data-i18n="apply.step4">4 — Dokumente</div>
     </div>
 
     <div class="apply-layout">
@@ -341,7 +341,7 @@
             </div>
           </div>
           <div class="fg"><label>Objet détaillé du financement</label><input type="text" placeholder="Ex. : achat véhicule neuf, travaux cuisine, fonds de commerce..."></div>
-          <button class="btn btn-primary btn-full" style="padding:10px" onclick="applyStep(2)">Étape suivante →</button>
+          <button class="btn btn-primary btn-full" style="padding:10px" onclick="applyStep(2)" data-i18n="apply.next">Weiter</button>
         </div>
 
         <!-- Étape 2 : Identité -->
@@ -363,7 +363,7 @@
             <div class="fg"><label>Ville</label><input type="text" placeholder="Paris"></div>
           </div>
           <div style="display:flex;gap:8px">
-            <button class="btn btn-outline" style="flex:1;padding:9px" onclick="applyStep(1)">← Retour</button>
+            <button class="btn btn-outline" style="flex:1;padding:9px" onclick="applyStep(1)" data-i18n="apply.back">Zurueck</button>
             <button class="btn btn-primary" style="flex:2;padding:9px" onclick="applyStep(3)">Étape suivante →</button>
           </div>
         </div>
@@ -413,7 +413,7 @@
           </div>
           <div style="display:flex;gap:8px">
             <button class="btn btn-outline" style="flex:1;padding:9px" onclick="applyStep(3)">← Retour</button>
-            <button class="btn btn-gold" style="flex:2;padding:9px" onclick="goPage('dash')">Soumettre le dossier</button>
+            <button class="btn btn-gold" style="flex:2;padding:9px" onclick="goPage('dash')" data-i18n="apply.submit">Antrag einreichen</button>
           </div>
         </div>
 
@@ -421,7 +421,7 @@
 
       <!-- Summary panel -->
       <div class="sum-card">
-        <h3>Récapitulatif</h3>
+        <h3 data-i18n="apply.summary">Zusammenfassung</h3>
         <div class="sr"><span class="sl">Type</span><span class="sv">Prêt personnel</span></div>
         <div class="sr"><span class="sl">Profil</span><span class="sv">Particulier</span></div>
         <div class="sr"><span class="sl">Montant</span><span class="sv">15 000 €</span></div>
@@ -429,7 +429,7 @@
         <div class="sr"><span class="sl">TAEG indicatif</span><span class="sv">3,90 %</span></div>
         <div class="sum-total">
           <div class="sa">444 €</div>
-          <div class="slab">mensualité estimée</div>
+          <div class="slab" data-i18n="apply.monthly_est">geschaetzte Monatsrate</div>
         </div>
         <div class="mt-2">
           <div class="trust-i"><div class="trust-d"></div>Données chiffrées et sécurisées</div>
@@ -448,8 +448,8 @@
     <div class="sec-h2 text-center mb-3">Espace client B-Mo</div>
     <div class="auth-card">
       <div class="step-bar">
-        <button class="si act" id="at-c" onclick="authTab('c')">Connexion</button>
-        <button class="si" id="at-n" onclick="authTab('n')">Créer un compte</button>
+        <button class="si act" id="at-c" onclick="authTab('c')" data-i18n="auth.login_tab">Anmelden</button>
+        <button class="si" id="at-n" onclick="authTab('n')" data-i18n="auth.register_tab">Konto erstellen</button>
       </div>
 
       <!-- Connexion -->
@@ -458,9 +458,9 @@
         <div class="fg"><label>Mot de passe</label><input type="password" placeholder="••••••••"></div>
         <div class="remember-row">
           <label><input type="checkbox"> Se souvenir de moi</label>
-          <span class="forgot-link">Mot de passe oublié ?</span>
+          <span class="forgot-link" data-i18n="auth.forgot">Passwort vergessen?</span>
         </div>
-        <button class="btn btn-primary btn-full" style="padding:10px;margin-bottom:8px" onclick="goPage('dash')">Accéder à mon espace</button>
+        <button class="btn btn-primary btn-full" style="padding:10px;margin-bottom:8px" onclick="goPage('dash')" data-i18n="auth.login_btn">Zu meinem Bereich</button>
         <p class="auth-footer">Connexion sécurisée SSL · Double authentification disponible</p>
       </div>
 
@@ -480,7 +480,7 @@
           <input type="checkbox">
           <span>J'accepte les <a href="#" style="color:var(--gold)">conditions générales</a> et la <a href="#" style="color:var(--gold)">politique de confidentialité</a> de B-Mo Financial &amp; Crédit.</span>
         </div>
-        <button class="btn btn-gold btn-full" style="padding:10px" onclick="goPage('dash')">Créer mon compte</button>
+        <button class="btn btn-gold btn-full" style="padding:10px" onclick="goPage('dash')" data-i18n="auth.create_btn">Konto erstellen</button>
       </div>
     </div>
   </div>
@@ -544,10 +544,10 @@
       <div id="dp-vue" class="dpanel act">
         <div class="dash-header">
           <div><h2>Bonjour, Jean</h2><p>Tableau de bord · mis à jour aujourd'hui</p></div>
-          <button class="btn btn-gold" onclick="goPage('apply')">+ Nouvelle demande</button>
+          <button class="btn btn-gold btn-sm" onclick="goPage('apply')" data-i18n="dashboard.new_request">+ Neuer Antrag</button>
         </div>
         <div class="met-row">
-          <div class="met"><div class="ml">Dossier actif</div><div class="mv">1</div><div class="ms">En remboursement</div></div>
+          <div class="met"><div class="ml">Dossier actif</div><div class="mv">1</div><div class="ms" data-i18n="dashboard.in_repayment">In Rueckzahlung</div></div>
           <div class="met"><div class="ml">Montant accordé</div><div class="mv">15 000 €</div><div class="ms">Prêt personnel</div></div>
           <div class="met"><div class="ml">Prochaine échéance</div><div class="mv">444 €</div><div class="ms">1er avril 2025</div></div>
           <div class="met"><div class="ml">Progression</div><div class="mv">33 %</div><div class="ms">12 / 36 mensualités</div></div>
@@ -593,7 +593,7 @@
                 <div style="width:38px;height:38px;border-radius:50%;background:var(--info-bg);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--info-txt)">SB</div>
                 <div><div class="ln">Sophie Bernard</div><div class="lm">Chargée de clientèle</div></div>
               </div>
-              <button class="btn btn-outline btn-full btn-sm" onclick="dashTab('messages')">Envoyer un message</button>
+              <button class="btn btn-outline btn-full btn-sm" onclick="dashTab('messages')" data-i18n="dashboard.send_message">Nachricht senden</button>
             </div>
           </div>
         </div>
