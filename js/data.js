@@ -32,41 +32,17 @@ async function loadLoans() {
 }
 
 /* ====== MESSAGES ====== */
-const MSG_CONVERSATIONS = {
-  c1: {
-    id:'c1', clientName:'Jean Martin', clientAvatar:'JM', clientColor:'navy',
-    loanRef:'MP-2025-00147', unread:0, lastTime:'10h15',
-    messages:[
-      { recv:false, by:'Jean Martin',    at:'10h00', text:"Bonjour, j'ai une question sur mon tableau d'amortissement." },
-      { recv:true,  by:'Sophie Bernard', at:'10h05', text:"Bonjour Jean, je vous l'explique volontiers. Votre capital restant dû est de 10 672 €, avec 24 mensualités de 444 € restantes." },
-      { recv:false, by:'Jean Martin',    at:'10h10', text:"Merci beaucoup, c'est très clair !" },
-      { recv:true,  by:'Sophie Bernard', at:'10h15', text:"De rien, n'hésitez pas si vous avez d'autres questions." },
-    ]
-  },
-  c2: {
-    id:'c2', clientName:'Ahmed Benali', clientAvatar:'AB', clientColor:'gold',
-    loanRef:'MP-2025-00150', unread:2, lastTime:'Hier',
-    messages:[
-      { recv:false, by:'Ahmed Benali',   at:'14h30', text:"Bonjour, où en est mon dossier de microfinance ? Ça fait 3 semaines." },
-      { recv:false, by:'Ahmed Benali',   at:'09h00', text:"Bonjour, toujours sans réponse. C'est urgent pour moi." },
-    ]
-  },
-  c3: {
-    id:'c3', clientName:'Luc Moreau', clientAvatar:'LM', clientColor:'navy',
-    loanRef:'MP-2025-00152', unread:1, lastTime:'21 mar.',
-    messages:[
-      { recv:false, by:'Luc Moreau', at:'11h00', text:"Bonjour, pouvez-vous me confirmer le taux fixe pour mon prêt immobilier ?" },
-    ]
-  },
-  c4: {
-    id:'c4', clientName:'Marie Dupont', clientAvatar:'MD', clientColor:'green',
-    loanRef:'MP-2025-00148', unread:0, lastTime:'18 mar.',
-    messages:[
-      { recv:true,  by:'Sophie Bernard', at:'09h00', text:"Bonjour Marie, votre dossier immobilier est bien avancé. Il vous reste à signer l'offre." },
-      { recv:false, by:'Marie Dupont',   at:'09h30', text:"Merci Sophie, je vais le faire aujourd'hui." },
-    ]
-  },
-};
+async function loadMessages() {
+  const { data } = await supabase
+    .from('messages')
+    .select(`
+      *,
+      from:users!from_id ( full_name, avatar ),
+      to:users!to_id ( full_name )
+    `)
+    .order('created_at', { ascending: false });
+  return data || [];
+}
 
 /* ====== DOCUMENTS ====== */
 const DOCUMENTS = [
