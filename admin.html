@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meridia — Administration</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ===================== TOPBAR ===================== -->
+<header class="topbar">
+  <div class="flex-c gap-1">
+    <span class="topbar-logo">Meridia<span>.</span></span>
+    <span class="topbar-tag">Admin</span>
+  </div>
+  <div class="topbar-right">
+    <span style="font-size:11px;color:rgba(255,255,255,.5)">Sophie Bernard</span>
+    <div class="admin-avatar">SB</div>
+    <button class="topbar-btn" onclick="location.href='index.html'">← Retour au site</button>
+  </div>
+</header>
+
+<!-- ===================== APP LAYOUT ===================== -->
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-section">
+      <div class="sb-label">Vue générale</div>
+      <div class="sb-link act" id="sb-dashboard" onclick="goPanel('dashboard')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Tableau de bord
+      </div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Gestion</div>
+      <div class="sb-link" id="sb-loans" onclick="goPanel('loans')">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Dossiers de prêt
+        <span class="sb-badge gold" id="sb-badge-loans">3</span>
+      </div>
+      <div class="sb-link" id="sb-clients" onclick="goPanel('clients')">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Clients
+      </div>
+      <div class="sb-link" id="sb-messaging" onclick="goPanel('messaging')">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Messagerie
+        <span class="sb-badge red" id="sb-badge-msgs">3</span>
+      </div>
+      <div class="sb-link" id="sb-documents" onclick="goPanel('documents')">
+        <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Documents
+        <span class="sb-badge" id="sb-badge-docs">4</span>
+      </div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Paramètres</div>
+      <div class="sb-link" onclick="showToast('Module en cours de développement.')">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+        Équipe admin
+      </div>
+      <div class="sb-link" onclick="showToast('Module en cours de développement.')">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        Paramètres
+      </div>
+    </div>
+    <div class="sb-footer">
+      <div style="font-weight:500;margin-bottom:2px">Meridia Admin v1.0</div>
+      <div>Connecté en tant qu'administrateur</div>
+    </div>
+  </aside>
+
+  <!-- MAIN PANELS -->
+  <main class="main">
+
+    <!-- ==================== DASHBOARD ==================== -->
+    <div class="panel act" id="panel-dashboard">
+      <div class="ph">
+        <div><h1>Tableau de bord</h1><p>Mis à jour aujourd'hui · 21 mars 2025</p></div>
+        <div class="ph-actions">
+          <button class="btn btn-ghost" onclick="renderDashboard()">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Actualiser
+          </button>
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi"><div class="kl">Clients actifs</div><div class="kv" id="kpi-clients">—</div><div class="ks">↑ +2 ce mois</div></div>
+        <div class="kpi"><div class="kl">Prêts actifs</div><div class="kv" id="kpi-active">—</div><div class="ks">En remboursement</div></div>
+        <div class="kpi"><div class="kl">En attente</div><div class="kv" id="kpi-pending">—</div><div class="ks">À traiter</div></div>
+        <div class="kpi"><div class="kl">Encours total</div><div class="kv" id="kpi-encours">—</div><div class="ks">Portefeuille actif</div></div>
+        <div class="kpi"><div class="kl">Messages non lus</div><div class="kv" id="kpi-msgs">—</div><div class="ks">Répondre rapidement</div></div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="card">
+            <div class="card-h">Dossiers en attente de validation</div>
+            <table class="data-table">
+              <thead>
+                <tr><th>Référence</th><th>Client</th><th>Montant</th><th>Durée</th><th>Mensualité</th><th>Statut</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="dash-pending-body">
+                <tr><td colspan="7" class="text-m text-s" style="padding:1rem">Chargement…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div class="card mb-2">
+            <div class="card-h">Messages non lus</div>
+            <div id="dash-messages-list">Chargement…</div>
+            <button class="btn btn-ghost btn-full btn-sm mt-1" onclick="goPanel('messaging')">Voir tous les messages</button>
+          </div>
+          <div class="card">
+            <div class="card-h">Documents à vérifier</div>
+            <div id="dash-docs-list">Chargement…</div>
+            <button class="btn btn-ghost btn-full btn-sm mt-1" onclick="goPanel('documents')">Voir tous les documents</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== DOSSIERS DE PRÊT ==================== -->
+    <div class="panel" id="panel-loans">
+      <div class="ph">
+        <div><h1>Dossiers de prêt</h1><p id="loans-count">Chargement…</p></div>
+        <div class="ph-actions">
+          <button class="btn btn-ghost btn-sm" onclick="renderLoans()">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Actualiser
+          </button>
+        </div>
+      </div>
+
+      <div class="search-row">
+        <input type="text" id="loan-search" placeholder="Rechercher par nom, référence, type…">
+        <select id="loan-filter-status">
+          <option value="all">Tous les statuts</option>
+          <option value="pending">En attente</option>
+          <option value="active">En cours</option>
+          <option value="rejected">Refusés</option>
+        </select>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr><th>Référence</th><th>Client</th><th>Type</th><th>Montant</th><th>Durée</th><th>Taux</th><th>Mensualité</th><th>Statut</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="loans-body">
+            <tr><td colspan="9" class="text-m text-s" style="padding:1.5rem">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==================== CLIENTS ==================== -->
+    <div class="panel" id="panel-clients">
+      <div class="ph">
+        <div><h1>Clients</h1><p id="clients-count">Chargement…</p></div>
+        <div class="ph-actions">
+          <button class="btn btn-navy btn-sm" onclick="showToast('Création de compte — connectez Supabase Auth.')">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nouveau client
+          </button>
+        </div>
+      </div>
+
+      <div class="search-row">
+        <input type="text" id="client-search" placeholder="Rechercher par nom ou email…">
+        <select id="client-filter-status">
+          <option value="all">Tous les statuts</option>
+          <option value="active">Actifs</option>
+          <option value="pending">En attente</option>
+          <option value="suspended">Suspendus</option>
+        </select>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr><th>Client</th><th>Ville</th><th>Revenus/mois</th><th>Score crédit</th><th>Dossiers</th><th>Statut</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="clients-body">
+            <tr><td colspan="7" class="text-m text-s" style="padding:1.5rem">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==================== MESSAGERIE ==================== -->
+    <div class="panel" id="panel-messaging">
+      <div class="ph">
+        <div><h1>Messagerie sécurisée</h1><p>Répondez aux clients directement depuis l'administration</p></div>
+      </div>
+
+      <div class="msg-layout">
+        <!-- Liste conversations -->
+        <div class="msg-list">
+          <div class="msg-list-hd">
+            <span class="title">Conversations</span>
+            <span class="count" id="msg-unread-count">3 non lus</span>
+          </div>
+          <div id="msg-conv-list"></div>
+        </div>
+
+        <!-- Vue conversation -->
+        <div class="msg-view">
+          <div class="msg-view-hd">
+            <div class="av av-md av-navy" id="mv-avatar">JM</div>
+            <div class="mv-info">
+              <div class="mv-name" id="mv-name">Jean Martin</div>
+              <div class="mv-sub" id="mv-sub">Réf. MP-2025-00147</div>
+            </div>
+            <div style="display:flex;gap:6px;margin-left:auto">
+              <button class="btn btn-ghost btn-sm" onclick="goPanel('clients')">Fiche client</button>
+              <button class="btn btn-ghost btn-sm" onclick="goPanel('loans')">Voir dossier</button>
+            </div>
+          </div>
+          <div class="msg-body" id="msg-body-admin"></div>
+          <div class="msg-compose">
+            <input type="text" id="admin-msg-input" placeholder="Écrivez votre réponse… (Entrée pour envoyer)">
+            <button onclick="sendAdminReply()">Envoyer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== DOCUMENTS ==================== -->
+    <div class="panel" id="panel-documents">
+      <div class="ph">
+        <div><h1>Documents</h1><p id="docs-count">Chargement…</p></div>
+        <div class="ph-actions">
+          <button class="btn btn-ghost btn-sm" onclick="renderDocuments()">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Actualiser
+          </button>
+        </div>
+      </div>
+
+      <div class="search-row">
+        <input type="text" id="doc-search" placeholder="Rechercher par client ou nom de fichier…">
+        <select id="doc-filter-cat">
+          <option value="all">Toutes les catégories</option>
+          <option value="contrat">Contrats</option>
+          <option value="identite">Justificatifs</option>
+          <option value="immo">Immobilier</option>
+        </select>
+        <select id="doc-filter-status">
+          <option value="all">Tous les statuts</option>
+          <option value="pending">À vérifier</option>
+          <option value="verified">Vérifiés</option>
+        </select>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="data-table">
+          <thead>
+            <tr><th>Document</th><th>Client</th><th>Dossier</th><th>Date</th><th>Statut</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="docs-body">
+            <tr><td colspan="6" class="text-m text-s" style="padding:1.5rem">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ===================== MODAL : DOSSIER ===================== -->
+<div class="modal-overlay" id="modal-loan">
+  <div class="modal">
+    <h3>Détail du dossier</h3>
+    <p id="ml-ref" style="color:var(--gold);font-size:11px;font-weight:500;letter-spacing:.3px;margin-bottom:1rem"></p>
+
+    <div class="fg-row mb-2">
+      <div>
+        <div class="card-h">Informations prêt</div>
+        <div class="prow"><span class="pl">Client</span><span class="pv" id="ml-client"></span></div>
+        <div class="prow"><span class="pl">Type</span><span class="pv" id="ml-type"></span></div>
+        <div class="prow"><span class="pl">Montant</span><span class="pv" id="ml-amount"></span></div>
+        <div class="prow"><span class="pl">Durée</span><span class="pv" id="ml-duration"></span></div>
+        <div class="prow"><span class="pl">Taux</span><span class="pv" id="ml-rate"></span></div>
+        <div class="prow"><span class="pl">Mensualité</span><span class="pv" id="ml-monthly"></span></div>
+      </div>
+      <div>
+        <div class="card-h">Traitement</div>
+        <div class="prow"><span class="pl">Statut</span><span class="pv" id="ml-status"></span></div>
+        <div class="prow"><span class="pl">Soumis le</span><span class="pv" id="ml-created"></span></div>
+        <div class="prow"><span class="pl">Traité le</span><span class="pv" id="ml-reviewed"></span></div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div id="ml-actions" style="display:flex;gap:8px"></div>
+      <button class="btn btn-ghost" onclick="closeModal('modal-loan')">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MODAL : CLIENT ===================== -->
+<div class="modal-overlay" id="modal-client">
+  <div class="modal">
+    <h3>Fiche client</h3>
+
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem">
+      <div class="av av-lg av-navy" id="mc-avatar">JM</div>
+      <div>
+        <div style="font-size:16px;font-weight:500" id="mc-name"></div>
+        <div style="font-size:12px;color:var(--text-m)" id="mc-email"></div>
+      </div>
+    </div>
+
+    <div class="fg-row mb-2">
+      <div>
+        <div class="card-h">Coordonnées</div>
+        <div class="prow"><span class="pl">Téléphone</span><span class="pv" id="mc-phone"></span></div>
+        <div class="prow"><span class="pl">Ville</span><span class="pv" id="mc-city"></span></div>
+        <div class="prow"><span class="pl">Client depuis</span><span class="pv" id="mc-created"></span></div>
+      </div>
+      <div>
+        <div class="card-h">Finances</div>
+        <div class="prow"><span class="pl">Revenus/mois</span><span class="pv" id="mc-income"></span></div>
+        <div class="prow"><span class="pl">Score crédit</span><span class="pv" id="mc-score"></span></div>
+        <div class="prow"><span class="pl">Statut</span><span class="pv" id="mc-status"></span></div>
+        <div class="prow"><span class="pl">Dossiers</span><span class="pv" id="mc-loans"></span></div>
+      </div>
+    </div>
+
+    <div class="card-h">Historique des prêts</div>
+    <div id="mc-loans-list" style="margin-bottom:1rem"></div>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('modal-client')">Fermer</button>
+      <button class="btn btn-navy btn-sm" onclick="closeModal('modal-client');goPanel('messaging')">Envoyer un message</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Scripts -->
+<script src="js/data.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>
