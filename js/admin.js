@@ -156,16 +156,26 @@ function openLoanDetail(id) {
 }
 
 function validateLoan(id, decision) {
-  const l = LOANS.find(x => x.id === id);
-  if (!l) return;
-  l.status = decision;
-  l.reviewed = 'Aujourd\'hui';
-  KPIS.pendingLoans = LOANS.filter(x => x.status === 'pending').length;
-  KPIS.activeLoans  = LOANS.filter(x => x.status === 'active').length;
-  showToast(decision === 'active' ? `Dossier ${l.ref} validé.` : `Dossier ${l.ref} refusé.`);
-  if (currentPanel === 'loans') renderLoans();
-  if (currentPanel === 'dashboard') renderDashboard();
-  updateBadges();
+  // Dans admin.js — remplace la fonction validateLoan()
+async function validateLoan(id, decision) {
+  const { error } = await supabase
+    .from('loans')
+    .update({
+      status:      decision,
+      reviewed_at: new Date().toISOString(),
+      reviewed_by: currentAdminId
+    })
+    .eq('id', id);
+
+  if (error) { showToast('Erreur : ' + error.message); return; }
+
+  // Envoyer une notification email au client
+  await supabase.functions.invoke('notify-client', {
+    body: { loanId: id, decision }
+  });
+
+  showToast(decision === 'active' ? 'Dossier validé.' : 'Dossier refusé.');
+  renderLoans();
 }
 
 /* ========================================
