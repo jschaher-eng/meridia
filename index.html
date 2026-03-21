@@ -890,9 +890,13 @@
 <script src="js/dashboard.js"></script>
   
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    I18N.init();
-  });
+  window.onload = function() {
+    if (typeof I18N !== 'undefined') {
+      I18N.init();
+    } else {
+      console.error('I18N non chargé');
+    }
+  };
 </script>
   
 </body>
