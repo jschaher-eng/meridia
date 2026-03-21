@@ -121,6 +121,43 @@ function closeMobileMenu() {
   if (menu) menu.classList.remove('open');
 }
 
+async function doLogin() {
+  var email    = document.getElementById('login-email').value.trim();
+  var password = document.getElementById('login-password').value;
+  var errEl    = document.getElementById('login-error');
+  if (!email || !password) { errEl.textContent = 'Bitte alle Felder ausfullen.'; errEl.style.display = 'block'; return; }
+  var btn = document.getElementById('btn-login');
+  btn.textContent = '...'; btn.disabled = true;
+  var result = await supabase.auth.signInWithPassword({ email: email, password: password });
+  if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
+  errEl.style.display = 'none';
+  goPage('dash');
+}
+
+async function doRegister() {
+  var email    = document.getElementById('reg-email').value.trim();
+  var password = document.getElementById('reg-password').value;
+  var fname    = document.getElementById('reg-fname').value.trim();
+  var lname    = document.getElementById('reg-lname').value.trim();
+  var errEl    = document.getElementById('reg-error');
+  if (!email || !password || !fname || !lname) { errEl.textContent = 'Bitte alle Felder ausfullen.'; errEl.style.display = 'block'; return; }
+  var btn = document.getElementById('btn-register');
+  btn.textContent = '...'; btn.disabled = true;
+  var result = await supabase.auth.signUp({
+    email: email, password: password,
+    options: { data: { full_name: fname + ' ' + lname, role: 'client' } }
+  });
+  if (result.error) { errEl.textContent = 'Fehler: ' + result.error.message; errEl.style.display = 'block'; btn.textContent = 'Konto erstellen'; btn.disabled = false; return; }
+  errEl.style.background = '#EAF3DE'; errEl.style.color = '#27500A'; errEl.style.borderColor = '#3B6D11';
+  errEl.textContent = 'Bestaetigen Sie Ihre E-Mail. Bitte pruefen Sie Ihr Postfach.';
+  errEl.style.display = 'block'; btn.textContent = 'Konto erstellen'; btn.disabled = false;
+}
+
+async function doLogout() {
+  await supabase.auth.signOut();
+  goPage('home');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   goPage('home');
 
