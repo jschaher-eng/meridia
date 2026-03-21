@@ -1,5 +1,5 @@
 /* =========================================
-   MERIDIA ADMIN — data.js
+   B-Mo Financial ADMIN — data.js
    Données de démonstration (à remplacer
    par des appels Supabase en production)
    ========================================= */
