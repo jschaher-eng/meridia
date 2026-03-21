@@ -242,7 +242,18 @@
 .mobile-menu button:last-child { border-bottom: none; }
 
 @media (max-width: 768px) {
-  .hamburger { display: flex; }
-  .nav-links  { display: none; }
+  .hamburger    { display: flex; }
+  .nav-links    { display: none; }
   #lang-selector { display: none; }
+  .notif-btn    { display: none; }
+  .btn-outline  { display: none; }
+  .nav-actions  { gap: 4px; }
+  .main-nav     { padding: 0 1rem; }
+  .logo-name    { font-size: 18px; }
+  .logo-tag     { display: none; }
+  .topbar       { display: none; }
+  .btn-primary.btn-sm {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
 }
