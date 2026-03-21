@@ -35,21 +35,20 @@
   </a>
 
   <div class="nav-links">
-    <button class="nav-link act" onclick="goPage('home')" data-i18n="nav.home">Startseite</button>
-    <button class="nav-link" onclick="goPage('prods')" data-i18n="nav.loans">Unsere Kredite</button>
-    <button class="nav-link" onclick="goPage('sim')" data-i18n="nav.simulator">Kreditrechner</button>
-    <button class="nav-link" onclick="goPage('apply')" data-i18n="nav.apply">Online-Antrag</button>
+    <button class="nav-link act" onclick="goPage('home')">Accueil</button>
+    <button class="nav-link" onclick="goPage('prods')">Nos prêts</button>
+    <button class="nav-link" onclick="goPage('sim')">Simulateur</button>
+    <button class="nav-link" onclick="goPage('apply')">Demande en ligne</button>
   </div>
 
   <div class="nav-actions">
-    <div id="lang-selector"></div>
     <button class="notif-btn" id="nbell" onclick="toggleNotif()">
       <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       Alertes
       <span class="notif-dot"></span>
     </button>
-    <button class="btn btn-outline btn-sm" onclick="goPage('auth')" data-i18n="nav.login">Anmelden</button>
-    <button class="btn btn-primary btn-sm" onclick="goPage('auth')" data-i18n="nav.open_account">Konto eröffnen</button>
+    <button class="btn btn-outline btn-sm" onclick="goPage('auth')">Connexion</button>
+    <button class="btn btn-primary btn-sm" onclick="goPage('auth')">Ouvrir un compte</button>
   </div>
 
   <!-- Notification dropdown -->
@@ -88,50 +87,51 @@
 
   <div class="hero">
     <div class="hero-inner">
-      <h1 data-i18n="hero.title">Finanzieren Sie Ihre Projekte,<br><em data-i18n="hero.title_em">in Ihrem Tempo</em></h1>
-<p data-i18n="hero.subtitle">Privatkunden und Unternehmen: Nutzen Sie unsere maßgeschneiderten Kreditlösungen und verfolgen Sie jeden Schritt Ihres Antrags in Ihrem gesicherten Bereich.</p>
-<button class="btn btn-gold" onclick="goPage('sim')" data-i18n="hero.simulate">Kredit berechnen</button>
-<button class="btn btn-ghost-light" onclick="goPage('prods')" data-i18n="hero.discover">Unsere Angebote entdecken</button>
+      <h1>Financer vos projets,<br><em>à votre rythme</em></h1>
+      <p>Particuliers et entreprises : accédez à nos solutions de crédit personnalisées et suivez chaque étape de votre dossier depuis votre espace sécurisé.</p>
+      <div class="hero-actions">
+        <button class="btn btn-gold" onclick="goPage('sim')">Simuler mon prêt</button>
+        <button class="btn btn-ghost-light" onclick="goPage('prods')">Découvrir nos offres</button>
       </div>
     </div>
   </div>
 
   <div class="seg-bar">
     <div class="seg-inner">
-      <button class="seg-btn act" id="sg-p" onclick="switchSeg('p')" data-i18n="segments.individuals">Privatkunden</button>
-      <button class="seg-btn" id="sg-e" onclick="switchSeg('e')" data-i18n="segments.business">Unternehmen &amp; KMU</button>
+      <button class="seg-btn act" id="sg-p" onclick="switchSeg('p')">Particuliers</button>
+      <button class="seg-btn" id="sg-e" onclick="switchSeg('e')">Entreprises &amp; PME</button>
     </div>
   </div>
 
   <!-- Particuliers -->
   <div id="ct-p">
     <div class="wrap">
-      <div class="sec-h2" data-i18n="products.individuals_title">Lösungen für Privatkunden</div>
-      <p class="sec-sub" data-i18n="products.individuals_sub">Finanzierungen für jeden Lebensabschnitt</p>
+      <div class="sec-h2">Solutions pour particuliers</div>
+      <p class="sec-sub">Des financements adaptés à chaque projet de vie</p>
       <div class="grid-auto pgrid">
         <div class="prod-card" onclick="selectProd(this)">
           <div class="prod-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-          <h3 data-i18n="products.personal.name">Privatkredit</h3>
-<p data-i18n="products.personal.desc">Reisen, Renovierung, Ausstattung — ohne Verwendungsnachweis.</p>
-<div class="prod-rate" data-i18n="products.personal.rate">Ab 3,90 % effektiver Jahreszins</div>
+          <h3>Prêt personnel</h3>
+          <p>Voyages, travaux, équipement — financez vos projets sans justificatif d'affectation.</p>
+          <div class="prod-rate">À partir de 3,90 % TAEG</div>
         </div>
         <div class="prod-card" onclick="selectProd(this)">
           <div class="prod-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-          <h3 data-i18n="products.mortgage.name">Immobilienkredit</h3>
-<p data-i18n="products.mortgage.desc">Kauf, Bau oder Renovierung — realisieren Sie Ihr Immobilienprojekt.</p>
-<div class="prod-rate" data-i18n="products.mortgage.rate">Ab 3,20 % effektiver Jahreszins</div>
+          <h3>Prêt immobilier</h3>
+          <p>Achat, construction ou rénovation — concrétisez votre projet immobilier.</p>
+          <div class="prod-rate">À partir de 3,20 % TAEG</div>
         </div>
         <div class="prod-card" onclick="selectProd(this)">
           <div class="prod-icon"><svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
-          <h3 data-i18n="products.auto.name">Autokredit</h3>
-          <p data-i18n="products.auto.desc">Neu- oder Gebrauchtfahrzeug, Benzin oder Elektro.</p>
-          <div class="prod-rate" data-i18n="products.auto.rate">Ab 4,50 % effektiver Jahreszins</div>
+          <h3>Prêt auto</h3>
+          <p>Véhicule neuf ou d'occasion, motorisation thermique ou électrique.</p>
+          <div class="prod-rate">À partir de 4,50 % TAEG</div>
         </div>
         <div class="prod-card" onclick="selectProd(this)">
           <div class="prod-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <h3 data-i18n="products.micro.name">Mikrofinanzierung</h3>
-          <p data-i18n="products.micro.desc">Kleine Beträge ohne komplexe Sicherheiten.</p>
-          <div class="prod-rate" data-i18n="products.micro.rate">Ab 5,90 % effektiver Jahreszins</div>
+          <h3>Microfinance / Tontine</h3>
+          <p>Petits montants sans garantie complexe. Idéal pour démarrer ou faire face à l'urgence.</p>
+          <div class="prod-rate">À partir de 5,90 % TAEG</div>
         </div>
       </div>
 
@@ -146,32 +146,32 @@
   <!-- Entreprises -->
   <div id="ct-e" style="display:none">
     <div class="wrap">
-      <div class="sec-h2" data-i18n="products.business_title">Lösungen für Unternehmen</div>
-<p class="sec-sub" data-i18n="products.business_sub">Strukturierte Finanzierungen für Ihr Wachstum</p>
+      <div class="sec-h2">Solutions pour entreprises</div>
+      <p class="sec-sub">Des financements structurés pour accélérer votre croissance</p>
       <div class="grid-auto pgrid">
         <div class="prod-card" onclick="selectProd(this)">
           <div class="prod-icon amber"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-          <h3 data-i18n="products.pro_credit.name">Betriebskredit</h3>
-          <p data-i18n="products.pro_credit.desc">Finanzierung von Ausrüstung, Betriebsmitteln, Wachstum.</p>
-          <div class="prod-rate" style="color:#854F0B" data-i18n="products.pro_credit.rate">Ab 4,20 % effektiver Jahreszins</div>
+          <h3>Crédit professionnel</h3>
+          <p>Financement d'équipements, de trésorerie ou de développement commercial.</p>
+          <div class="prod-rate" style="color:#854F0B">À partir de 4,20 % TAEG</div>
         </div>
         <div class="prod-card" onclick="selectProd(this)">
           <div class="prod-icon amber"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-          <h3 data-i18n="products.pro_mortgage.name">Gewerbeimmobilien</h3>
-          <p data-i18n="products.pro_mortgage.desc">Kauf von Büros, Lagerhallen, Geschäftsräumen.</p>
-          <div class="prod-rate" style="color:#854F0B" data-i18n="products.pro_mortgage.rate">Ab 3,50 % effektiver Jahreszins</div>
+          <h3>Immobilier professionnel</h3>
+          <p>Acquisition de locaux, bureaux ou entrepôts pour votre activité.</p>
+          <div class="prod-rate" style="color:#854F0B">À partir de 3,50 % TAEG</div>
         </div>
         <div class="prod-card" onclick="selectProd(this)">
           <div class="prod-icon amber"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <h3 data-i18n="products.micro_sme.name">Mikrofinanzierung KMU</h3>
-          <p data-i18n="products.micro_sme.desc">Bis zu 50.000 € für Kleinstunternehmen.</p>
-          <div class="prod-rate" style="color:#854F0B" data-i18n="products.micro_sme.rate">Ab 6,50 % effektiver Jahreszins</div>
+          <h3>Microfinance PME</h3>
+          <p>Jusqu'à 50 000 € pour les très petites entreprises et auto-entrepreneurs.</p>
+          <div class="prod-rate" style="color:#854F0B">À partir de 6,50 % TAEG</div>
         </div>
         <div class="prod-card" onclick="selectProd(this)">
           <div class="prod-icon amber"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-          <h3 data-i18n="products.treasury.name">Kreditlinie</h3>
-          <p data-i18n="products.treasury.desc">Revolvierende Betriebsmittellinie.</p>
-          <div class="prod-rate" style="color:#854F0B" data-i18n="products.treasury.rate">Ab 5,00 % effektiver Jahreszins</div>
+          <h3>Ligne de trésorerie</h3>
+          <p>Facilité de caisse renouvelable pour gérer vos décalages de trésorerie.</p>
+          <div class="prod-rate" style="color:#854F0B">À partir de 5,00 % TAEG</div>
         </div>
       </div>
     </div>
@@ -255,8 +255,8 @@
 <!-- PAGE : SIMULATEUR -->
 <div id="pg-sim" class="pg">
   <div class="wrap">
-    <div class="sec-h2" data-i18n="simulator.title">Kreditrechner</div>
-    <p class="sec-sub" data-i18n="simulator.subtitle">Berechnen Sie Ihre monatliche Rate in Echtzeit, unverbindlich</p>
+    <div class="sec-h2">Simulateur de prêt</div>
+    <p class="sec-sub">Estimez vos mensualités en temps réel, sans engagement</p>
 
     <div class="prod-tabs">
       <button class="ptab act" onclick="setLoanType(this,'perso')">Prêt personnel</button>
@@ -268,22 +268,22 @@
     <div class="sim-layout">
       <div class="sim-box">
         <div class="rg">
-          <label data-i18n="simulator.amount">Kreditbetrag</label>
+          <label>Montant emprunté</label>
           <div class="rv" id="s-ad">15 000 €</div>
           <input type="range" id="s-a" min="1000" max="75000" step="500" value="15000">
         </div>
         <div class="rg">
-          <label data-i18n="simulator.duration">Laufzeit</label>
+          <label>Durée de remboursement</label>
           <div class="rv" id="s-dd">36 mois</div>
           <input type="range" id="s-d" min="6" max="84" step="6" value="36">
         </div>
         <div class="rg">
-          <label data-i18n="simulator.rate">Jahreszins (eff.)</label>
+          <label>Taux annuel (TAEG)</label>
           <div class="rv" id="s-rd">3,90 %</div>
           <input type="range" id="s-r" min="1" max="15" step="0.1" value="3.9">
         </div>
         <div class="fg">
-          <label data-i18n="simulator.profile">Kreditnehmerprofil</label>
+          <label>Profil emprunteur</label>
           <select>
             <option>Particulier — salarié</option>
             <option>Particulier — indépendant</option>
@@ -291,17 +291,17 @@
             <option>Auto-entrepreneur</option>
           </select>
         </div>
-        <button class="btn btn-gold btn-full" style="margin-top:0.25rem" onclick="goPage('apply')" data-i18n="simulator.apply_btn">Meinen Antrag stellen →</button>
+        <button class="btn btn-gold btn-full" style="margin-top:0.25rem" onclick="goPage('apply')">Faire ma demande →</button>
       </div>
 
       <div class="res-card">
-        <h3 data-i18n="simulator.monthly">Geschätzte Monatsrate</h3>
+        <h3>Mensualité estimée</h3>
         <div class="res-amount" id="s-m">444 €</div>
-        <div class="res-row"><span class="rl" data-i18n="simulator.capital">Kreditbetrag</span><span class="rv2" id="s-c">15 000 €</span></div>
-        <div class="res-row"><span class="rl" data-i18n="simulator.interest">Gesamtzinsen</span><span class="rv2" id="s-i">986 €</span></div>
-        <div class="res-row"><span class="rl" data-i18n="simulator.total">Gesamtrückzahlung</span><span class="rv2" id="s-t">15 986 €</span></div>
-        <div class="res-row"><span class="rl" data-i18n="simulator.debt_ratio">Verschuldungsgrad</span><span class="rv2" id="s-dt">~18 %</span></div>
-        <p class="res-disclaimer" data-i18n="simulator.disclaimer">Unverbindliche Simulation. Effektiver Jahreszins ohne Restschuldversicherung.</p>
+        <div class="res-row"><span class="rl">Capital emprunté</span><span class="rv2" id="s-c">15 000 €</span></div>
+        <div class="res-row"><span class="rl">Intérêts totaux</span><span class="rv2" id="s-i">986 €</span></div>
+        <div class="res-row"><span class="rl">Total à rembourser</span><span class="rv2" id="s-t">15 986 €</span></div>
+        <div class="res-row"><span class="rl">Taux d'endettement</span><span class="rv2" id="s-dt">~18 %</span></div>
+        <p class="res-disclaimer">Simulation indicative sans engagement contractuel. TAEG calculé hors assurance emprunteur.</p>
       </div>
     </div>
   </div>
@@ -883,21 +883,10 @@
 <!-- End pages -->
 
 <!-- JavaScript -->
-<script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 <script src="js/simulator.js"></script>
 <script src="js/messaging.js"></script>
 <script src="js/dashboard.js"></script>
-  
-<script>
-  window.onload = function() {
-    if (typeof I18N !== 'undefined') {
-      I18N.init();
-    } else {
-      console.error('I18N non chargé');
-    }
-  };
-</script>
-  
+
 </body>
 </html>
