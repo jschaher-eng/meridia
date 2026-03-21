@@ -17,15 +17,19 @@ const CLIENTS = [
 ];
 
 /* ====== DOSSIERS DE PRÊT ====== */
-const LOANS = [
-  { id:'l1', ref:'MP-2025-00147', client:'Jean Martin',    clientId:'u1', type:'Prêt personnel',  amount:15000, duration:36, rate:3.9,  status:'active',   monthly:444,  created:'15 jan. 2025', reviewed:'21 jan. 2025' },
-  { id:'l2', ref:'MP-2025-00148', client:'Marie Dupont',   clientId:'u2', type:'Prêt immobilier', amount:185000,duration:240,rate:3.2,  status:'active',   monthly:1048, created:'02 fév. 2025', reviewed:'10 fév. 2025' },
-  { id:'l3', ref:'MP-2025-00149', client:'Marie Dupont',   clientId:'u2', type:'Prêt auto',       amount:22000, duration:60, rate:4.5,  status:'active',   monthly:408,  created:'02 fév. 2025', reviewed:'10 fév. 2025' },
-  { id:'l4', ref:'MP-2025-00150', client:'Ahmed Benali',   clientId:'u3', type:'Microfinance',    amount:5000,  duration:24, rate:5.9,  status:'pending',  monthly:222,  created:'18 fév. 2025', reviewed:null },
-  { id:'l5', ref:'MP-2025-00151', client:'Clara Fontaine', clientId:'u4', type:'Prêt personnel',  amount:8000,  duration:48, rate:6.2,  status:'rejected', monthly:189,  created:'01 mar. 2025', reviewed:'05 mar. 2025' },
-  { id:'l6', ref:'MP-2025-00152', client:'Luc Moreau',     clientId:'u5', type:'Prêt immobilier', amount:320000,duration:300,rate:3.15, status:'pending',  monthly:1524, created:'10 mar. 2025', reviewed:null },
-  { id:'l7', ref:'MP-2025-00153', client:'Sara Khoury',    clientId:'u6', type:'Prêt personnel',  amount:12000, duration:36, rate:3.9,  status:'pending',  monthly:354,  created:'15 mar. 2025', reviewed:null },
-];
+// Remplace : const LOANS = [...];
+async function loadLoans() {
+  const { data, error } = await supabase
+    .from('loans')
+    .select(`
+      *,
+      users ( full_name, email, city )
+    `)
+    .order('created_at', { ascending: false });
+
+  if (error) { console.error(error); return []; }
+  return data;
+}
 
 /* ====== MESSAGES ====== */
 const MSG_CONVERSATIONS = {
