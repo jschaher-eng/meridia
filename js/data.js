@@ -7,14 +7,14 @@
 'use strict';
 
 /* ====== CLIENTS ====== */
-const CLIENTS = [
-  { id:'u1', name:'Jean Martin',    email:'jean.martin@email.com',    phone:'+33 6 12 34 56 78', city:'Paris',     role:'client', status:'active',    score:782, income:2800, created:'15 jan. 2025', loans:1, avatar:'JM', color:'navy' },
-  { id:'u2', name:'Marie Dupont',   email:'marie.dupont@email.com',   phone:'+33 6 98 76 54 32', city:'Lyon',      role:'client', status:'active',    score:641, income:3400, created:'02 fév. 2025', loans:2, avatar:'MD', color:'green' },
-  { id:'u3', name:'Ahmed Benali',   email:'ahmed.benali@email.com',   phone:'+33 7 12 34 56 00', city:'Marseille', role:'client', status:'pending',   score:510, income:1900, created:'18 fév. 2025', loans:1, avatar:'AB', color:'gold' },
-  { id:'u4', name:'Clara Fontaine', email:'clara.fontaine@email.com', phone:'+33 6 55 44 33 22', city:'Bordeaux',  role:'client', status:'suspended', score:290, income:2100, created:'01 mar. 2025', loans:0, avatar:'CF', color:'red' },
-  { id:'u5', name:'Luc Moreau',     email:'luc.moreau@email.com',     phone:'+33 6 77 88 99 00', city:'Nantes',    role:'client', status:'active',    score:715, income:4200, created:'10 mar. 2025', loans:1, avatar:'LM', color:'navy' },
-  { id:'u6', name:'Sara Khoury',    email:'sara.khoury@email.com',    phone:'+33 6 11 22 33 44', city:'Strasbourg',role:'client', status:'active',    score:688, income:3100, created:'15 mar. 2025', loans:1, avatar:'SK', color:'green' },
-];
+async function loadClients() {
+  const { data } = await supabase
+    .from('users')
+    .select('*')
+    .eq('role', 'client')
+    .order('created_at', { ascending: false });
+  return data || [];
+}
 
 /* ====== DOSSIERS DE PRÊT ====== */
 // Remplace : const LOANS = [...];
