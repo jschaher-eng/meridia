@@ -131,6 +131,15 @@ async function doLogin() {
   var result = await _supabase.auth.signInWithPassword({ email: email, password: password });
   if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
   errEl.style.display = 'none';
+  var user = result.data.user;
+  var name = user.user_metadata.full_name || user.email;
+  var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
+  var el = document.getElementById('sb-name');
+  var av = document.getElementById('sb-avatar');
+  var gr = document.getElementById('dash-greeting');
+  if (el) el.textContent = name;
+  if (av) av.textContent = initials;
+  if (gr) gr.textContent = name.split(' ')[0] + ',';
   goPage('dash');
 }
 
