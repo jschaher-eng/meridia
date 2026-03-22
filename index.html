@@ -531,8 +531,8 @@
   <div class="dash-layout">
     <aside class="sidebar">
       <div class="sb-user">
-        <div class="sb-avatar">JM</div>
-        <div class="sb-name">Jean Martin</div>
+        <div class="sb-avatar" id="sb-avatar">JM</div>
+        <div class="sb-name" id="sb-name">Jean Martin</div>
         <div class="sb-type" data-i18n="dash.client_since">Privatperson - Kunde seit 2023</div>
       </div>
       <nav class="sb-menu">
@@ -583,7 +583,7 @@
       <!-- Vue ensemble -->
       <div id="dp-vue" class="dpanel act">
         <div class="dash-header">
-          <div><h2><span data-i18n="dashboard.greeting">Guten Tag,</span> Jean</h2><p data-i18n="dashboard.updated">Aktualisiert heute</p></div>
+          <div><h2><span data-i18n="dashboard.greeting">Guten Tag,</span> <span id="dash-greeting">Jean,</span></h2><p data-i18n="dashboard.updated">Aktualisiert heute</p></div>
           <button class="btn btn-gold btn-sm" onclick="goPage('apply')" data-i18n="dashboard.new_request">+ Neuer Antrag</button>
         </div>
         <div class="met-row">
