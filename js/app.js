@@ -142,7 +142,7 @@ async function doLogin() {
     if (el) el.textContent = name;
     if (av) av.textContent = initials;
     if (gr) gr.textContent = name.split(' ')[0] + ',';
-  }, 100);
+  }, 500);
 }
 
 async function doRegister() {
