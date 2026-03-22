@@ -345,8 +345,10 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   var monthly = r === 0 ? a/d : a*r*Math.pow(1+r,d)/(Math.pow(1+r,d)-1);
   var paid = payments ? payments.filter(function(p) { return p.status === 'paid'; }).length : 0;
   var paidAmount = payments ? payments.filter(function(p) { return p.status === 'paid'; }).reduce(function(s,p) { return s + p.amount; }, 0) : 0;
-  var remaining = Math.round((a || 0) - (paidAmount || 0));
-  var progress = a > 0 ? Math.round((paidAmount / a) * 100) : 0;
+  var paidAmountSafe = isNaN(paidAmount) ? 0 : (paidAmount || 0);
+  var aSafe = isNaN(a) ? 0 : (a || 0);
+  var remaining = Math.round(aSafe - paidAmountSafe);
+  var progress = aSafe > 0 ? Math.round((paidAmountSafe / aSafe) * 100) : 0;
 
  var el2;
   el2 = document.getElementById('vue-active');       if (el2) el2.textContent = loans.length;
