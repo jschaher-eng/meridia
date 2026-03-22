@@ -165,7 +165,7 @@ async function doLogin() {
   if (!email || !password) { errEl.textContent = 'Bitte alle Felder ausfullen.'; errEl.style.display = 'block'; return; }
   var btn = document.getElementById('btn-login');
   btn.textContent = '...'; btn.disabled = true;
-  var result = await supabase.auth.signInWithPassword({ email: email, password: password });
+  var result = await _supabase.auth.signInWithPassword({ email: email, password: password });
   if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
   errEl.style.display = 'none';
   goPage('dash');
