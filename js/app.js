@@ -267,26 +267,59 @@ async function loadDashboard() {
     .order('created_at', { ascending: false });
 
   if (!loans || loans.length === 0) return;
-
   var loan = loans[0];
 
-  var typeEl = document.querySelector('.met:nth-child(2) .mv');
-  var amountEl = document.querySelector('.met:nth-child(2) .ms');
-  var activeEl = document.querySelector('.met:nth-child(1) .mv');
+  var { data: payments } = await _supabase
+    .from('payments')
+    .select('*')
+    .eq('loan_id', loan.id)
+    .order('due_date', { ascending: false });
 
- var r = (loan.rate || 3.9) / 100 / 12;
+  var r = (loan.rate || 3.9) / 100 / 12;
   var d = loan.duration || 36;
   var a = loan.amount || 0;
-  var monthly = r === 0 ? a / d : a * r * Math.pow(1+r,d) / (Math.pow(1+r,d)-1);
+  var monthly = r === 0 ? a/d : a*r*Math.pow(1+r,d)/(Math.pow(1+r,d)-1);
+  var paid = payments ? payments.filter(function(p) { return p.status === 'paid'; }).length : 0;
+  var paidAmount = payments ? payments.filter(function(p) { return p.status === 'paid'; }).reduce(function(s,p) { return s + p.amount; }, 0) : 0;
+  var remaining = Math.round(a - paidAmount);
+  var progress = a > 0 ? Math.round((paidAmount / a) * 100) : 0;
 
-  if (activeEl) activeEl.textContent = loans.length;
-  if (typeEl)   typeEl.textContent   = Math.round(a).toLocaleString('de-DE') + ' EUR';
-  if (amountEl) amountEl.textContent = loan.type;
+  var activeEl     = document.querySelector('.met:nth-child(1) .mv');
+  var typeEl       = document.querySelector('.met:nth-child(2) .mv');
+  var amountEl     = document.querySelector('.met:nth-child(2) .ms');
+  var monthlyEl    = document.querySelector('.met:nth-child(3) .mv');
+  var progressEl   = document.querySelector('.met:nth-child(4) .mv');
+  var progressSubEl= document.querySelector('.met:nth-child(4) .ms');
 
-  var monthlyEl = document.querySelector('.met:nth-child(3) .mv');
-  var monthlySubEl = document.querySelector('.met:nth-child(3) .ms');
-  if (monthlyEl) monthlyEl.textContent = Math.round(monthly).toLocaleString('de-DE') + ' EUR';
-  if (monthlySubEl) monthlySubEl.textContent = loan.type;
+  if (activeEl)      activeEl.textContent      = loans.length;
+  if (typeEl)        typeEl.textContent         = Math.round(a).toLocaleString('de-DE') + ' EUR';
+  if (amountEl)      amountEl.textContent       = loan.type;
+  if (monthlyEl)     monthlyEl.textContent      = Math.round(monthly).toLocaleString('de-DE') + ' EUR';
+  if (progressEl)    progressEl.textContent     = progress + ' %';
+  if (progressSubEl) progressSubEl.textContent  = paid + ' / ' + d + ' Raten';
+
+  var progFill = document.querySelector('.prog-fill');
+  if (progFill) progFill.style.width = progress + '%';
+
+  var repaidEl    = document.querySelector('.prog-bar + div span:first-child');
+  var remainingEl = document.querySelector('.prog-bar + div span:last-child');
+  if (repaidEl)    repaidEl.textContent    = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR zurueckgezahlt';
+  if (remainingEl) remainingEl.textContent = remaining.toLocaleString('de-DE') + ' EUR verbleibend';
+
+  if (payments && payments.length > 0) {
+    var tbody = document.querySelector('#dp-vue .dbox:nth-child(2)');
+    if (tbody) {
+      var html = '<div class="dbox-h" data-i18n="dash.last_dues">Letzte Faelligkeiten</div>';
+      payments.slice(0, 4).forEach(function(p) {
+        var date = p.due_date ? new Date(p.due_date).toLocaleDateString('de-DE', {day:'numeric', month:'long', year:'numeric'}) : '—';
+        var badge = p.status === 'paid'
+          ? '<span class="badge badge-ok">Bezahlt</span>'
+          : '<span class="badge badge-warn">Bevorstehend</span>';
+        html += '<div class="lr"><div><div class="ln">Rate ' + date + '</div><div class="lm">Kapital ' + Math.round(p.capital||0) + ' EUR - Zinsen ' + Math.round(p.interest||0) + ' EUR</div></div>' + badge + '</div>';
+      });
+      tbody.innerHTML = html;
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
