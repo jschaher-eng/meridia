@@ -20,11 +20,23 @@ function goPage(id) {
   // If going to dash, reset to overview panel
   if (id === 'dash') {
     document.querySelectorAll('.dpanel').forEach(d => d.classList.remove('act'));
-    const ov = document.getElementById('dp-vue');
+    var ov = document.getElementById('dp-vue');
     if (ov) ov.classList.add('act');
     document.querySelectorAll('.sb-menu a').forEach(a => a.classList.remove('act'));
     var sm = document.getElementById('sm-vue');
     if (sm) sm.classList.add('act');
+    _supabase.auth.getUser().then(function(r) {
+      if (!r.data.user) return;
+      var user = r.data.user;
+      var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
+      var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
+      var el = document.getElementById('sb-name');
+      var av = document.getElementById('sb-avatar');
+      var gr = document.getElementById('dash-greeting');
+      if (el) el.textContent = name;
+      if (av) av.textContent = initials;
+      if (gr) gr.textContent = name.split(' ')[0] + ',';
+    });
   }
 
   closeNotif();
