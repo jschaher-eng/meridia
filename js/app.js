@@ -336,6 +336,20 @@ async function loadDashboard() {
       }
     } else {
       nextDueEl.textContent = '—';
+   }
+  }
+
+  var nextDueAmountEl = document.getElementById('next-due-amount');
+  if (nextDueAmountEl) {
+    if (payments && payments.length > 0) {
+      var upcomingAmt = payments.find(function(p) { return p.status !== 'paid'; });
+      if (upcomingAmt) {
+        nextDueAmountEl.textContent = Math.round(upcomingAmt.amount).toLocaleString('de-DE') + ' EUR';
+      } else {
+        nextDueAmountEl.textContent = '—';
+      }
+    } else {
+      nextDueAmountEl.textContent = '—';
     }
   }
 }
