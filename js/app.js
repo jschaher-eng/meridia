@@ -321,6 +321,21 @@ async function loadDashboard() {
         html += '<div class="lr"><div><div class="ln">Rate ' + date + '</div><div class="lm">Kapital ' + Math.round(p.capital||0) + ' EUR - Zinsen ' + Math.round(p.interest||0) + ' EUR</div></div>' + badge + '</div>';
       });
       tbody.innerHTML = html;
+ }
+  }
+
+  var nextDueEl = document.getElementById('next-due-date');
+  if (nextDueEl) {
+    if (payments && payments.length > 0) {
+      var upcoming = payments.find(function(p) { return p.status !== 'paid'; });
+      if (upcoming && upcoming.due_date) {
+        var d = new Date(upcoming.due_date);
+        nextDueEl.textContent = d.toLocaleDateString('de-DE', {day:'numeric', month:'long', year:'numeric'});
+      } else {
+        nextDueEl.textContent = '—';
+      }
+    } else {
+      nextDueEl.textContent = '—';
     }
   }
 }
