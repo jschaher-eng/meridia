@@ -49,14 +49,17 @@ function goPage(id) {
 
 /* ---- Dashboard tab router ---- */
 function dashTab(t) {
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
+  var pg = document.getElementById('pg-dash');
+  if (pg) pg.classList.add('act');
   document.querySelectorAll('.dpanel').forEach(d => d.classList.remove('act'));
   var el = document.getElementById('dp-' + t);
   if (el) el.classList.add('act');
   document.querySelectorAll('.sb-menu a').forEach(a => a.classList.remove('act'));
   var sm = document.getElementById('sm-' + t);
   if (sm) sm.classList.add('act');
-  goPage('dash');
   if (t === 'dossier') { loadDashboard(); }
+  window.scrollTo(0, 0);
 }
 
 /* ---- Home segment switcher ---- */
