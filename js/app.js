@@ -354,6 +354,12 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   el2 = document.getElementById('vue-type');         if (el2) el2.textContent = loan.type;
   el2 = document.getElementById('vue-progress');     if (el2) el2.textContent = progress + ' %';
   el2 = document.getElementById('vue-installments'); if (el2) el2.textContent = paid + ' / ' + d + ' Raten';
+  el2 = document.getElementById('vue-progress-label'); if (el2) el2.textContent = paid + ' Raten von ' + d;
+  el2 = document.getElementById('vue-repaid');    if (el2) el2.firstChild.textContent = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR ';
+  el2 = document.getElementById('vue-remaining'); if (el2) el2.firstChild.textContent = remaining.toLocaleString('de-DE') + ' EUR ';
+
+  var vueProg = document.querySelector('#dp-vue .prog-fill');
+  if (vueProg) vueProg.style.width = progress + '%';
 
   var monthlyEl = document.querySelector('.met:nth-child(3) .mv');
   if (monthlyEl) monthlyEl.textContent = Math.round(monthly).toLocaleString('de-DE') + ' EUR';
