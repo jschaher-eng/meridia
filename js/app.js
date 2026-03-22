@@ -258,6 +258,37 @@ async function submitLoan() {
   goPage('dash');
 }
 
+function renderTimeline(status) {
+  var steps = [
+    { key:'pending',   label:'Antrag eingereicht' },
+    { key:'reviewing', label:'Dokumentenpruefung' },
+    { key:'analysis',  label:'Aktenanalyse' },
+    { key:'approved',  label:'Grundsatzentscheidung' },
+    { key:'fees',      label:'Gebuehrenzahlung' },
+    { key:'signed',    label:'Vertragsunterzeichnung' },
+    { key:'funded',    label:'Auszahlung der Mittel' },
+    { key:'active',    label:'Rueckzahlung' },
+  ];
+
+  var order = ['pending','reviewing','analysis','approved','fees','signed','funded','active'];
+  var currentIndex = order.indexOf(status);
+  if (currentIndex === -1) currentIndex = 0;
+
+  var html = '<div class="tl">';
+  steps.forEach(function(step, i) {
+    var dotClass = i < currentIndex ? 'done' : (i === currentIndex ? 'now' : 'wait');
+    var lblClass = i === currentIndex ? 'active-step' : (i < currentIndex ? '' : 'pending-step');
+    html += '<div class="tl-it">';
+    html += '<div class="tl-dot ' + dotClass + '"></div>';
+    html += '<div class="tl-lb ' + lblClass + '">' + step.label + '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  var container = document.getElementById('loan-timeline');
+  if (container) container.innerHTML = html;
+}
+
 async function loadDashboard() {
   var userResult = await _supabase.auth.getUser();
   if (!userResult.data.user) return;
