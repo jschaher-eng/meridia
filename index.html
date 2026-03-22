@@ -654,12 +654,12 @@
               <div style="margin-top:1.25rem;padding-top:1rem;border-top:0.5px solid var(--border)">
                 <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px">
                   <span style="color:var(--text-muted)" data-i18n="dash.capital_repaid">Zurueckgezahltes Kapital</span>
-                  <span style="font-weight:500;color:var(--navy)">33 %</span>
+                  <span style="font-weight:500;color:var(--navy)" id="d-progress-pct">0 %</span>
                 </div>
-                <div class="prog-bar"><div class="prog-fill" style="width:33%"></div></div>
+                <div class="prog-bar"><div class="prog-fill" id="d-progress-bar" style="width:0%"></div></div>
                 <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-top:4px">
-                  <span data-i18n="dash.repaid">5.328 EUR zurueckgezahlt</span>
-                  <span data-i18n="dash.remaining">10.672 EUR verbleibend</span>
+                  <span id="d-repaid">0 EUR <span data-i18n="dash.repaid">zurueckgezahlt</span></span>
+                  <span id="d-remaining">— EUR <span data-i18n="dash.remaining">verbleibend</span></span>
                 </div>
               </div>
             </div>
