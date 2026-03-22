@@ -19,11 +19,11 @@ async function loadClients() {
 }
 
 async function loadLoans() {
-  const { data, error } = await supabase.from('loans').select('*, users ( full_name, email )').order('created_at', { ascending: false });
+  const { data, error } = await supabase.from('loans').select('*').order('created_at', { ascending: false });
   if (error) { console.error('loadLoans:', error.message); return; }
-  LOANS = (data || []).map(l => ({
+ LOANS = (data || []).map(l => ({
     id: l.id, ref: l.reference || ('BM-' + l.id.slice(0,8).toUpperCase()),
-    client: l.users?.full_name || l.users?.email || '—', clientId: l.user_id,
+    client: l.user_id || '—', clientId: l.user_id,
     type: l.type || 'Privatkredit', amount: l.amount || 0,
     duration: l.duration || 36, rate: l.rate || 3.9, status: l.status || 'pending',
     monthly: l.monthly_payment || calcMonthly(l.amount, l.duration, l.rate),
