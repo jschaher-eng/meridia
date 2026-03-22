@@ -274,9 +274,19 @@ async function loadDashboard() {
   var amountEl = document.querySelector('.met:nth-child(2) .ms');
   var activeEl = document.querySelector('.met:nth-child(1) .mv');
 
+ var r = (loan.rate || 3.9) / 100 / 12;
+  var d = loan.duration || 36;
+  var a = loan.amount || 0;
+  var monthly = r === 0 ? a / d : a * r * Math.pow(1+r,d) / (Math.pow(1+r,d)-1);
+
   if (activeEl) activeEl.textContent = loans.length;
-  if (typeEl)   typeEl.textContent   = Math.round(loan.amount).toLocaleString('de-DE') + ' EUR';
+  if (typeEl)   typeEl.textContent   = Math.round(a).toLocaleString('de-DE') + ' EUR';
   if (amountEl) amountEl.textContent = loan.type;
+
+  var monthlyEl = document.querySelector('.met:nth-child(3) .mv');
+  var monthlySubEl = document.querySelector('.met:nth-child(3) .ms');
+  if (monthlyEl) monthlyEl.textContent = Math.round(monthly).toLocaleString('de-DE') + ' EUR';
+  if (monthlySubEl) monthlySubEl.textContent = loan.type;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
