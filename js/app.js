@@ -328,8 +328,8 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
 
   el = document.getElementById('d-progress-pct'); if (el) el.textContent = progress + ' %';
   el = document.getElementById('d-progress-bar'); if (el) el.style.width = progress + '%';
-  el = document.getElementById('d-repaid');       if (el) el.firstChild.textContent = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR ';
-  el = document.getElementById('d-remaining');    if (el) el.firstChild.textContent = remaining.toLocaleString('de-DE') + ' EUR ';
+  el = document.getElementById('d-repaid');       if (el && el.firstChild) el.firstChild.textContent = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR ';
+  el = document.getElementById('d-remaining');    if (el && el.firstChild) el.firstChild.textContent = remaining.toLocaleString('de-DE') + ' EUR ';
    
   var dossierRef = document.getElementById('dossier-ref');
   if (dossierRef) dossierRef.textContent = (loan.type || '—') + ' - ' + Math.round(a2).toLocaleString('de-DE') + ' EUR - Ref. ' + (loan.reference || '—');
@@ -345,7 +345,7 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   var monthly = r === 0 ? a/d : a*r*Math.pow(1+r,d)/(Math.pow(1+r,d)-1);
   var paid = payments ? payments.filter(function(p) { return p.status === 'paid'; }).length : 0;
   var paidAmount = payments ? payments.filter(function(p) { return p.status === 'paid'; }).reduce(function(s,p) { return s + p.amount; }, 0) : 0;
-  var remaining = Math.round(a - paidAmount);
+  var remaining = Math.round((a || 0) - (paidAmount || 0));
   var progress = a > 0 ? Math.round((paidAmount / a) * 100) : 0;
 
  var el2;
@@ -355,8 +355,8 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   el2 = document.getElementById('vue-progress');     if (el2) el2.textContent = progress + ' %';
   el2 = document.getElementById('vue-installments'); if (el2) el2.textContent = paid + ' / ' + d + ' Raten';
   el2 = document.getElementById('vue-progress-label'); if (el2) el2.textContent = paid + ' Raten von ' + d;
-  el2 = document.getElementById('vue-repaid');    if (el2) el2.firstChild.textContent = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR ';
-  el2 = document.getElementById('vue-remaining'); if (el2) el2.firstChild.textContent = remaining.toLocaleString('de-DE') + ' EUR ';
+  el2 = document.getElementById('vue-repaid');    if (el2 && el2.firstChild) el2.firstChild.textContent = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR ';
+  el2 = document.getElementById('vue-remaining'); if (el2 && el2.firstChild) el2.firstChild.textContent = remaining.toLocaleString('de-DE') + ' EUR ';
 
   var vueProg = document.querySelector('#dp-vue .prog-fill');
   if (vueProg) vueProg.style.width = progress + '%';
