@@ -643,8 +643,8 @@
       <!-- Mon dossier -->
       <div id="dp-dossier" class="dpanel">
         <div class="dash-header">
-          <div><h2 data-i18n="dash.my_file">Meine Akte</h2><p data-i18n="dash.file_detail">Privatkredit - 15.000 EUR - Ref. BM-2025-00147</p></div>
-          <span class="badge badge-ok" style="padding:5px 14px;font-size:11px" data-i18n="dashboard.in_repayment">In Rueckzahlung</span>
+          <div><h2 data-i18n="dash.my_file">Meine Akte</h2><p id="dossier-ref">—</p></div>
+          <span class="badge badge-ok" style="padding:5px 14px;font-size:11px" id="dossier-status">—</span>
         </div>
         <div class="two-col">
           <div>
@@ -667,13 +667,13 @@
           <div>
             <div class="dbox mb-2">
               <div class="dbox-h" data-i18n="dash.loan_details">Kreditdetails</div>
-              <div class="prow"><span class="plbl" data-i18n="dash.reference">Referenz</span><span class="pval">BM-2025-00147</span></div>
-              <div class="prow"><span class="plbl" data-i18n="dash.type">Art</span><span class="pval" data-i18n="products.personal_name">Privatkredit</span></div>
-              <div class="prow"><span class="plbl" data-i18n="dashboard.granted_amount">Bewilligter Betrag</span><span class="pval">15.000 EUR</span></div>
-              <div class="prow"><span class="plbl" data-i18n="simulator.rate">Jahreszins</span><span class="pval">3,90 %</span></div>
-              <div class="prow"><span class="plbl" data-i18n="simulator.duration">Laufzeit</span><span class="pval">36 Monate</span></div>
-              <div class="prow"><span class="plbl" data-i18n="apply.monthly_est">Monatsrate</span><span class="pval">—</span></div>
-              <div class="prow"><span class="plbl" data-i18n="dash.total_cost">Gesamtkosten</span><span class="pval">986 EUR</span></div>
+              <div class="prow"><span class="plbl" data-i18n="dash.reference">Referenz</span><span class="pval" id="d-ref">—</span></div>
+              <div class="prow"><span class="plbl" data-i18n="apply.sum_type">Art</span><span class="pval" id="d-type">—</span></div>
+              <div class="prow"><span class="plbl" data-i18n="dashboard.granted_amount">Bewilligter Betrag</span><span class="pval" id="d-amount">—</span></div>
+              <div class="prow"><span class="plbl" data-i18n="simulator.rate">Jahreszins</span><span class="pval" id="d-rate">—</span></div>
+              <div class="prow"><span class="plbl" data-i18n="simulator.duration">Laufzeit</span><span class="pval" id="d-duration">—</span></div>
+              <div class="prow"><span class="plbl" data-i18n="dash.monthly">Monatsrate</span><span class="pval" id="d-monthly">—</span></div>
+              <div class="prow"><span class="plbl" data-i18n="dash.total_cost">Gesamtkosten</span><span class="pval" id="d-total">—</span></div>
             </div>
             <div class="dbox">
               <div class="dbox-h" data-i18n="dash.quick_actions">Schnellaktionen</div>
