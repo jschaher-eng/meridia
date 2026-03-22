@@ -348,19 +348,15 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   var remaining = Math.round(a - paidAmount);
   var progress = a > 0 ? Math.round((paidAmount / a) * 100) : 0;
 
-  var activeEl     = document.querySelector('.met:nth-child(1) .mv');
-  var typeEl       = document.querySelector('.met:nth-child(2) .mv');
-  var amountEl     = document.querySelector('.met:nth-child(2) .ms');
-  var monthlyEl    = document.querySelector('.met:nth-child(3) .mv');
-  var progressEl   = document.querySelector('.met:nth-child(4) .mv');
-  var progressSubEl= document.querySelector('.met:nth-child(4) .ms');
+ var el2;
+  el2 = document.getElementById('vue-active');       if (el2) el2.textContent = loans.length;
+  el2 = document.getElementById('vue-amount');       if (el2) el2.textContent = Math.round(a).toLocaleString('de-DE') + ' EUR';
+  el2 = document.getElementById('vue-type');         if (el2) el2.textContent = loan.type;
+  el2 = document.getElementById('vue-progress');     if (el2) el2.textContent = progress + ' %';
+  el2 = document.getElementById('vue-installments'); if (el2) el2.textContent = paid + ' / ' + d + ' Raten';
 
-  if (activeEl)      activeEl.textContent      = loans.length;
-  if (typeEl)        typeEl.textContent         = Math.round(a).toLocaleString('de-DE') + ' EUR';
-  if (amountEl)      amountEl.textContent       = loan.type;
-  if (monthlyEl)     monthlyEl.textContent      = Math.round(monthly).toLocaleString('de-DE') + ' EUR';
-  if (progressEl)    progressEl.textContent     = progress + ' %';
-  if (progressSubEl) progressSubEl.textContent  = paid + ' / ' + d + ' Raten';
+  var monthlyEl = document.querySelector('.met:nth-child(3) .mv');
+  if (monthlyEl) monthlyEl.textContent = Math.round(monthly).toLocaleString('de-DE') + ' EUR';
 
   var progFill = document.querySelector('.prog-fill');
   if (progFill) progFill.style.width = progress + '%';
