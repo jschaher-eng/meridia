@@ -306,6 +306,28 @@ async function loadDashboard() {
   var loan = loans[0];
   renderTimeline(loan.status || 'pending');
 
+var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung', analysis:'Aktenanalyse', approved:'Grundsatzentscheidung', fees:'Gebuehrenzahlung', signed:'Vertragsunterzeichnung', funded:'Auszahlung der Mittel', active:'In Rueckzahlung', rejected:'Abgelehnt' };
+  var statusLabel = statusLabels[loan.status] || 'Antrag eingereicht';
+
+  var r2 = (loan.rate || 3.9) / 100 / 12;
+  var d2 = loan.duration || 36;
+  var a2 = loan.amount || 0;
+  var monthly2 = r2 === 0 ? a2/d2 : a2*r2*Math.pow(1+r2,d2)/(Math.pow(1+r2,d2)-1);
+  var interest2 = monthly2 * d2 - a2;
+
+  var el;
+  el = document.getElementById('dossier-ref'); if (el) el.textContent = loan.reference || '—';
+  el = document.getElementById('dossier-status'); if (el) el.textContent = statusLabel;
+  el = document.getElementById('d-ref');      if (el) el.textContent = loan.reference || '—';
+  el = document.getElementById('d-type');     if (el) el.textContent = loan.type || '—';
+  el = document.getElementById('d-amount');   if (el) el.textContent = Math.round(a2).toLocaleString('de-DE') + ' EUR';
+  el = document.getElementById('d-rate');     if (el) el.textContent = (loan.rate || 3.9) + ' %';
+  el = document.getElementById('d-duration'); if (el) el.textContent = d2 + ' Monate';
+  el = document.getElementById('d-monthly');  if (el) el.textContent = Math.round(monthly2).toLocaleString('de-DE') + ' EUR';
+  el = document.getElementById('d-total');    if (el) el.textContent = Math.round(interest2).toLocaleString('de-DE') + ' EUR';
+
+  var dossierRef = document.getElementById('dossier-ref');
+  if (dossierRef) dossierRef.textContent = (loan.type || '—') + ' - ' + Math.round(a2).toLocaleString('de-DE') + ' EUR - Ref. ' + (loan.reference || '—');
   var { data: payments } = await _supabase
     .from('payments')
     .select('*')
