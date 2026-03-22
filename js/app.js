@@ -302,6 +302,7 @@ async function loadDashboard() {
 
   if (!loans || loans.length === 0) return;
   var loan = loans[0];
+  renderTimeline(loan.status || 'pending');
 
   var { data: payments } = await _supabase
     .from('payments')
