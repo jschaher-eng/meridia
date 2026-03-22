@@ -23,7 +23,7 @@ function goPage(id) {
     const ov = document.getElementById('dp-vue');
     if (ov) ov.classList.add('act');
     document.querySelectorAll('.sb-menu a').forEach(a => a.classList.remove('act'));
-    const sm = document.getElementById('sm-vue');
+    var sm = document.getElementById('sm-vue');
     if (sm) sm.classList.add('act');
   }
 
