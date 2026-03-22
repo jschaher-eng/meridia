@@ -352,6 +352,21 @@ async function loadDashboard() {
       nextDueAmountEl.textContent = '—';
     }
   }
+
+  var dueNotif = document.getElementById('due-amount-notif');
+  if (dueNotif) {
+    if (payments && payments.length > 0) {
+      var next = payments.find(function(p) { return p.status !== 'paid'; });
+      if (next) {
+        var nd = new Date(next.due_date);
+        dueNotif.textContent = Math.round(next.amount).toLocaleString('de-DE') + ' EUR am ' + nd.toLocaleDateString('de-DE', {day:'numeric', month:'long'});
+      } else {
+        dueNotif.textContent = '—';
+      }
+    } else {
+      dueNotif.textContent = '—';
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
