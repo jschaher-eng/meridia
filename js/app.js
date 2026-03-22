@@ -413,6 +413,11 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
     }
   }
 
+   el = document.getElementById('d-progress-pct'); if (el) el.textContent = progress + ' %';
+   el = document.getElementById('d-progress-bar'); if (el) el.style.width = progress + '%';
+   el = document.getElementById('d-repaid');       if (el && el.firstChild) el.firstChild.textContent = Math.round(paidAmountSafe).toLocaleString('de-DE') + ' EUR ';
+   el = document.getElementById('d-remaining');    if (el && el.firstChild) el.firstChild.textContent = remaining.toLocaleString('de-DE') + ' EUR ';
+
   var dueNotif = document.getElementById('due-amount-notif');
   if (dueNotif) {
     if (payments && payments.length > 0) {
