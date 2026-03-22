@@ -160,21 +160,31 @@ async function validateLoan(id, decision) {
   const { error } = await supabase
     .from('loans')
     .update({
-      status:      decision,
+      status: decision,
       reviewed_at: new Date().toISOString(),
-      reviewed_by: currentAdminId
     })
     .eq('id', id);
 
   if (error) { showToast('Erreur : ' + error.message); return; }
 
-  // Envoyer une notification email au client
-  await supabase.functions.invoke('notify-client', {
-    body: { loanId: id, decision }
-  });
+  var labels = {
+    pending:   'Antrag eingereicht',
+    reviewing: 'Dokumentenpruefung',
+    analysis:  'Aktenanalyse',
+    approved:  'Grundsatzentscheidung',
+    fees:      'Gebuehrenzahlung',
+    signed:    'Vertragsunterzeichnung',
+    funded:    'Auszahlung der Mittel',
+    active:    'In Rueckzahlung',
+    rejected:  'Abgelehnt'
+  };
 
-  showToast(decision === 'active' ? 'Dossier validé.' : 'Dossier refusé.');
-  renderLoans();
+  showToast('Statut mis à jour : ' + (labels[decision] || decision));
+  await loadLoans();
+  await updateKPIs();
+  if (currentPanel === 'loans')     renderLoans();
+  if (currentPanel === 'dashboard') renderDashboard();
+  updateBadges();
 }
 
 /* ========================================
