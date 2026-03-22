@@ -36,6 +36,9 @@ function goPage(id) {
       if (el) el.textContent = name;
       if (av) av.textContent = initials;
       if (gr) gr.textContent = name.split(' ')[0] + ',';
+      var since = new Date(user.created_at).getFullYear();
+      var sinceEl = document.querySelector('.sb-type');
+      if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
       loadDashboard();
     });
   }
