@@ -325,11 +325,6 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   el = document.getElementById('d-duration'); if (el) el.textContent = d2 + ' Monate';
   el = document.getElementById('d-monthly');  if (el) el.textContent = Math.round(monthly2).toLocaleString('de-DE') + ' EUR';
   el = document.getElementById('d-total');    if (el) el.textContent = Math.round(interest2).toLocaleString('de-DE') + ' EUR';
-
-  el = document.getElementById('d-progress-pct'); if (el) el.textContent = progress + ' %';
-  el = document.getElementById('d-progress-bar'); if (el) el.style.width = progress + '%';
-  el = document.getElementById('d-repaid');       if (el && el.firstChild) el.firstChild.textContent = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR ';
-  el = document.getElementById('d-remaining');    if (el && el.firstChild) el.firstChild.textContent = remaining.toLocaleString('de-DE') + ' EUR ';
    
   var dossierRef = document.getElementById('dossier-ref');
   if (dossierRef) dossierRef.textContent = (loan.type || '—') + ' - ' + Math.round(a2).toLocaleString('de-DE') + ' EUR - Ref. ' + (loan.reference || '—');
