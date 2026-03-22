@@ -128,7 +128,7 @@ async function doLogin() {
   if (!email || !password) { errEl.textContent = 'Bitte alle Felder ausfullen.'; errEl.style.display = 'block'; return; }
   var btn = document.getElementById('btn-login');
   btn.textContent = '...'; btn.disabled = true;
-  var result = await supabase.auth.signInWithPassword({ email: email, password: password });
+  var result = await _supabase.auth.signInWithPassword({ email: email, password: password });
   if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
   errEl.style.display = 'none';
   goPage('dash');
@@ -143,7 +143,7 @@ async function doRegister() {
   if (!email || !password || !fname || !lname) { errEl.textContent = 'Bitte alle Felder ausfullen.'; errEl.style.display = 'block'; return; }
   var btn = document.getElementById('btn-register');
   btn.textContent = '...'; btn.disabled = true;
-  var result = await supabase.auth.signUp({
+  var result = await _supabase.auth.signUp({
     email: email, password: password,
     options: { data: { full_name: fname + ' ' + lname, role: 'client' } }
   });
@@ -154,7 +154,7 @@ async function doRegister() {
 }
 
 async function doLogout() {
-  await supabase.auth.signOut();
+  await _supabase.auth.signOut();
   goPage('home');
 }
 
@@ -184,7 +184,7 @@ async function doRegister() {
   if (password.length < 8) { errEl.style.background='#FCEBEB'; errEl.style.color='#791F1F'; errEl.textContent = 'Das Passwort muss mindestens 8 Zeichen haben.'; errEl.style.display = 'block'; return; }
   var btn = document.getElementById('btn-register');
   btn.textContent = '...'; btn.disabled = true;
-  var result = await supabase.auth.signUp({ email: email, password: password, options: { data: { full_name: fname + ' ' + lname, role: 'client' } } });
+  var result = await _supabase.auth.signUp({ email: email, password: password, options: { data: { full_name: fname + ' ' + lname, role: 'client' } } });
   if (result.error) { errEl.style.background='#FCEBEB'; errEl.style.color='#791F1F'; errEl.textContent = 'Fehler: ' + result.error.message; errEl.style.display = 'block'; btn.textContent = 'Konto erstellen'; btn.disabled = false; return; }
   errEl.style.background = '#EAF3DE'; errEl.style.color = '#27500A'; errEl.style.borderColor = '#3B6D11';
   errEl.textContent = 'Konto erstellt! Bitte bestaetigen Sie Ihre E-Mail-Adresse.';
@@ -192,7 +192,7 @@ async function doRegister() {
 }
 
 async function doLogout() {
-  await supabase.auth.signOut();
+  await _supabase.auth.signOut();
   goPage('home');
 }
 
