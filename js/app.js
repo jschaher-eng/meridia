@@ -36,6 +36,7 @@ function goPage(id) {
       if (el) el.textContent = name;
       if (av) av.textContent = initials;
       if (gr) gr.textContent = name.split(' ')[0] + ',';
+      loadDashboard();
     });
   }
 
@@ -252,6 +253,30 @@ async function submitLoan() {
   btn.textContent = 'Antrag einreichen';
   btn.disabled = false;
   goPage('dash');
+}
+
+async function loadDashboard() {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var { data: loans } = await _supabase
+    .from('loans')
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false });
+
+  if (!loans || loans.length === 0) return;
+
+  var loan = loans[0];
+
+  var typeEl = document.querySelector('.met:nth-child(2) .mv');
+  var amountEl = document.querySelector('.met:nth-child(2) .ms');
+  var activeEl = document.querySelector('.met:nth-child(1) .mv');
+
+  if (activeEl) activeEl.textContent = loans.length;
+  if (typeEl)   typeEl.textContent   = Math.round(loan.amount).toLocaleString('de-DE') + ' EUR';
+  if (amountEl) amountEl.textContent = loan.type;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
