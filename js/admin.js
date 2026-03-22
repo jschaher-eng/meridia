@@ -500,13 +500,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (msgInp) msgInp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAdminReply(); } });
 
   try {
-    await loadAllData();
+    loadAllData().then(function() {
+      updateBadges();
+      goPanel('dashboard');
+    });
   } catch(e) {
     console.error('Erreur chargement:', e);
   }
 
-  updateBadges();
-  goPanel('dashboard');
 });
 // S'abonner aux nouveaux messages en temps réel
 const channel = supabase
