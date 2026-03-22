@@ -219,6 +219,41 @@ async function doLogout() {
   goPage('home');
 }
 
+async function submitLoan() {
+  var user = await _supabase.auth.getUser();
+  if (!user.data.user) { goPage('auth'); return; }
+
+  var type     = document.querySelector('#af1 select').value;
+  var amount   = document.querySelector('#af1 input[type="number"]').value;
+  var duration = document.querySelectorAll('#af1 select')[1].value;
+  var purpose  = document.querySelector('#af1 input[type="text"]').value;
+
+  var btn = document.querySelector('#af4 .btn-gold');
+  btn.textContent = '...'; btn.disabled = true;
+
+  var ref = 'BM-' + Date.now().toString().slice(-8);
+
+  var result = await _supabase.from('loans').insert({
+    user_id:   user.data.user.id,
+    reference: ref,
+    type:      type,
+    amount:    parseFloat(amount) || 0,
+    duration:  parseInt(duration) || 36,
+    status:    'pending'
+  });
+
+  if (result.error) {
+    alert('Fehler: ' + result.error.message);
+    btn.textContent = 'Antrag einreichen';
+    btn.disabled = false;
+    return;
+  }
+
+  btn.textContent = 'Antrag einreichen';
+  btn.disabled = false;
+  goPage('dash');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   goPage('home');
 
