@@ -68,13 +68,30 @@ const KPIS = {
 };
 
 /* ====== Helpers ====== */
-const STATUS_LABEL = {
-  active: 'En cours', pending: 'En attente', rejected: 'Refusé', suspended: 'Suspendu'
+const STATUS_LABEL = { 
+  pending:'Antrag eingereicht', 
+  reviewing:'Dokumentenpruefung', 
+  analysis:'Aktenanalyse', 
+  approved:'Grundsatzentscheidung', 
+  fees:'Gebuehrenzahlung', 
+  signed:'Vertragsunterzeichnung', 
+  funded:'Auszahlung der Mittel', 
+  active:'In Rueckzahlung', 
+  rejected:'Abgelehnt', 
+  suspended:'Suspendu' 
 };
-const STATUS_BADGE = {
-  active:    'b-ok',   pending:  'b-warn',
-  rejected:  'b-err',  suspended:'b-err',
-  verified:  'b-ok',
+
+const STATUS_BADGE = { 
+  pending:'b-warn', 
+  reviewing:'b-info', 
+  analysis:'b-info', 
+  approved:'b-ok', 
+  fees:'b-warn', 
+  signed:'b-ok', 
+  funded:'b-ok', 
+  active:'b-ok', 
+  rejected:'b-err', 
+  suspended:'b-err' 
 };
 const TYPE_ICONS = {
   contrat:'#185FA5', immo:'#0F6E56', identite:'#854F0B'
