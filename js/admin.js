@@ -119,9 +119,20 @@ function renderLoans(filter) {
       <td>${fmt(l.monthly)}</td>
       <td><span class="badge ${STATUS_BADGE[l.status]}">${STATUS_LABEL[l.status]}</span></td>
       <td>
-        <div style="display:flex;gap:5px">
+        <div style="display:flex;gap:5px;align-items:center">
           <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();openLoanDetail('${l.id}')">Détail</button>
-          ${l.status==='pending' ? `<button class="btn btn-ok btn-sm" onclick="event.stopPropagation();validateLoan('${l.id}','active')">Valider</button>` : ''}
+          <select class="btn btn-ghost btn-sm" style="cursor:pointer;font-size:11px" onchange="event.stopPropagation();validateLoan('${l.id}',this.value);this.value=''" onclick="event.stopPropagation()">
+            <option value="">Statut...</option>
+            <option value="pending">Antrag eingereicht</option>
+            <option value="reviewing">Dokumentenpruefung</option>
+            <option value="analysis">Aktenanalyse</option>
+            <option value="approved">Grundsatzentscheidung</option>
+            <option value="fees">Gebuehrenzahlung</option>
+            <option value="signed">Vertragsunterzeichnung</option>
+            <option value="funded">Auszahlung der Mittel</option>
+            <option value="active">In Rueckzahlung</option>
+            <option value="rejected">Abgelehnt</option>
+          </select>
         </div>
       </td>
     </tr>`).join('');
