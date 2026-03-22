@@ -50,14 +50,13 @@ function goPage(id) {
 /* ---- Dashboard tab router ---- */
 function dashTab(t) {
   document.querySelectorAll('.dpanel').forEach(d => d.classList.remove('act'));
-  const el = document.getElementById('dp-' + t);
+  var el = document.getElementById('dp-' + t);
   if (el) el.classList.add('act');
-
   document.querySelectorAll('.sb-menu a').forEach(a => a.classList.remove('act'));
-  const sm = document.getElementById('sm-' + t);
+  var sm = document.getElementById('sm-' + t);
   if (sm) sm.classList.add('act');
-
   goPage('dash');
+  if (t === 'dossier') { loadDashboard(); }
 }
 
 /* ---- Home segment switcher ---- */
