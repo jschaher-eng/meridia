@@ -57,16 +57,6 @@ async function loadDocuments() {
   return data || [];
 }
 
-/* ====== KPIs ====== */
-const KPIS = {
-  totalClients:    CLIENTS.length,
-  activeLoans:     LOANS.filter(l => l.status === 'active').length,
-  pendingLoans:    LOANS.filter(l => l.status === 'pending').length,
-  totalEncours:    LOANS.filter(l => l.status === 'active').reduce((s,l) => s + l.amount, 0),
-  unreadMessages:  Object.values(MSG_CONVERSATIONS).reduce((s,c) => s + c.unread, 0),
-  pendingDocs:     DOCUMENTS.filter(d => d.status === 'pending').length,
-};
-
 /* ====== Helpers ====== */
 const STATUS_LABEL = { 
   pending:'Antrag eingereicht', 
