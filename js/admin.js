@@ -520,10 +520,13 @@ const channel = supabase
   .on(
     'postgres_changes',
     { event: 'INSERT', schema: 'public', table: 'messages' },
-    (payload) => {
+   async (payload) => {
       console.log('Nouveau message:', payload.new);
+      await loadMessages();
+      await updateKPIs();
       updateBadges();
       if (currentPanel === 'messaging') renderMessaging();
+      showToast('Nouveau message recu.');
     }
   )
   .subscribe();
