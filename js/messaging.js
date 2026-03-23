@@ -193,6 +193,33 @@ function updateUnreadBadge() {
   }
 }
 
+async function loadMessages() {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var { data, error } = await _supabase
+    .from('messages')
+    .select('*')
+    .or('from_id.eq.' + userId + ',to_id.eq.' + userId)
+    .order('created_at', { ascending: true });
+
+  if (error || !data || data.length === 0) return;
+
+  var body = document.getElementById('msg-body');
+  if (!body) return;
+  body.innerHTML = '';
+
+  data.forEach(function(m) {
+    var isMe = m.from_id === userId;
+    var d = new Date(m.created_at);
+    var meta = (isMe ? 'Sie' : 'Berater') + ' - ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    appendBubble(body, !isMe, m.content, meta, false);
+  });
+
+  body.scrollTop = body.scrollHeight;
+}
+
 /* ---- Enter key sends message ---- */
 document.addEventListener('DOMContentLoaded', function() {
   const inp = document.getElementById('msg-input');
