@@ -508,6 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadAllData().then(function() {
       updateBadges();
       goPanel('dashboard');
+      if (currentPanel === 'messaging') renderMessaging();
     });
   } catch(e) {
     console.error('Erreur chargement:', e);
