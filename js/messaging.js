@@ -139,36 +139,38 @@ function selectMsg(el, id) {
 }
 
 /* ---- Send a reply ---- */
-function sendReply() {
-  const inp = document.getElementById('msg-input');
-  if (!inp) return;
-  const txt = inp.value.trim();
-  if (!txt) return;
+async function sendReply() {
+  var inp = document.getElementById('msg-input');
+  if (!inp || !inp.value.trim()) return;
+  var text = inp.value.trim();
 
-  const body = document.getElementById('msg-body');
-  if (!body) return;
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
 
-  const now  = new Date();
-  const meta = 'Vous · ' + now.getHours() + 'h' + String(now.getMinutes()).padStart(2, '0');
+  var { data: loans } = await _supabase
+    .from('loans')
+    .select('id')
+    .eq('user_id', userId)
+    .limit(1);
 
-  // Add to data
-  if (CONVERSATIONS[currentConvId]) {
-    CONVERSATIONS[currentConvId].messages.push({ recv: false, by: 'Vous', at: meta.replace('Vous · ', ''), text: txt });
-  }
+  var loanId = loans && loans.length > 0 ? loans[0].id : null;
 
-  appendBubble(body, false, txt, meta, true);
+  var { error } = await _supabase.from('messages').insert({
+    from_id:  userId,
+    content:  text,
+    loan_id:  loanId,
+    read:     false,
+  });
+
+  if (error) { showToast('Fehler: ' + error.message); return; }
+
+  var body = document.getElementById('msg-body');
+  var now = new Date();
+  var meta = 'Sie - ' + now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0');
+  appendBubble(body, false, text, meta, true);
   inp.value = '';
   body.scrollTop = body.scrollHeight;
-
-  // Simulate reply after 2s for demo
-  if (currentConvId === 'm1') {
-    setTimeout(() => {
-      const replyText = "Merci pour votre message. Je reviendrai vers vous dans les meilleurs délais.";
-      const at = now.getHours() + 'h' + String(now.getMinutes() + 1).padStart(2, '0');
-      appendBubble(body, true, replyText, 'Sophie Bernard · ' + at, true);
-      body.scrollTop = body.scrollHeight;
-    }, 2000);
-  }
 }
 
 /* ---- New conversation modal stub ---- */
