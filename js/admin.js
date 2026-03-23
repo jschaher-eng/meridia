@@ -288,7 +288,7 @@ async function sendAdminReply() {
   if (!text) return;
 
   await supabase.from('messages').insert({
-    from_id:  currentAdminId,
+    from_id:  '2be14e9a-3a8c-447f-91d2-1f0889a3b12d',,
     to_id:    currentClientId,
     loan_id:  currentConv.loanId,
     content:  text,
