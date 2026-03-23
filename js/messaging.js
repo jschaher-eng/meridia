@@ -66,7 +66,7 @@ async function sendReply() {
 
   var { error } = await _supabase.from('messages').insert({
     from_id:  userId,
-    to_id:    '1ac56567-795b-48de-b547-c025ed8c7b8d',
+    to_id:    '2be14e9a-3a8c-447f-91d2-1f0889a3b12d',
     content:  text,
     loan_id:  loanId,
     read:     false,
