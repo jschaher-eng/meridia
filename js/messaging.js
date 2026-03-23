@@ -193,7 +193,7 @@ function updateUnreadBadge() {
   }
 }
 
-async function loadMessages() {
+async function loadClientMessages() {
   var userResult = await _supabase.auth.getUser();
   if (!userResult.data.user) return;
   var userId = userResult.data.user.id;
