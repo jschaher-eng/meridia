@@ -360,21 +360,26 @@ function appendBubble(container, isRecv, text, meta) {
   container.appendChild(wrap);
 }
 
-function sendAdminReply() {
-  const inp = document.getElementById('admin-msg-input');
+async function sendAdminReply() {
+  var inp = document.getElementById('admin-msg-input');
   if (!inp || !inp.value.trim()) return;
-  const text = inp.value.trim();
-  const conv = MSG_CONVERSATIONS[currentConv];
+  var text = inp.value.trim();
+  var conv = Object.values(MSG_CONVERSATIONS)[0];
   if (!conv) return;
-  const now  = new Date();
-  const at   = now.getHours() + 'h' + String(now.getMinutes()).padStart(2,'0');
-  conv.messages.push({ recv: true, by: 'Sophie Bernard', at, text });
-  conv.lastTime = 'À l\'instant';
+
+  var { error } = await supabase.from('messages').insert({
+    from_id:  '1ac56567-795b-48de-b547-c025ed8c7b8d',
+    to_id:    conv.clientId,
+    content:  text,
+    read:     false,
+  });
+
+  if (error) { showToast('Erreur: ' + error.message); return; }
+
   inp.value = '';
-  const body = document.getElementById('msg-body-admin');
-  if (body) { appendBubble(body, true, text, 'Vous · ' + at); body.scrollTop = body.scrollHeight; }
+  showToast('Message envoyé.');
+  await loadMessages();
   renderConvList();
-  showToast('Message envoyé à ' + conv.clientName + '.');
 }
 
 /* ========================================
