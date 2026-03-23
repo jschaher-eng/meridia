@@ -31,7 +31,37 @@ async function loadLoans() {
 }
 
 async function loadMessages() {
-  MSG_CONVERSATIONS = {};
+  const { data, error } = await supabase
+    .from('messages')
+    .select('*')
+    .order('created_at', { ascending: true });
+  
+  if (error) { console.error('loadMessages:', error.message); return; }
+  
+  const convMap = {};
+  (data || []).forEach(m => {
+    const key = m.from_id + '_' + (m.loan_id || 'no_loan');
+    if (!convMap[key]) {
+      convMap[key] = {
+        id: key,
+        clientId: m.from_id,
+        clientName: m.from_id,
+        clientAvatar: '?',
+        loanRef: m.loan_id || '—',
+        unread: 0,
+        lastTime: formatTime(m.created_at),
+        messages: []
+      };
+    }
+    if (!m.read) convMap[key].unread++;
+    convMap[key].messages.push({
+      recv: m.from_id !== '1ac56567-795b-48de-b547-c025ed8c7b8d',
+      by: m.from_id,
+      at: formatTime(m.created_at),
+      text: m.content || ''
+    });
+  });
+  MSG_CONVERSATIONS = convMap;
 }
 
 async function loadDocuments() {
