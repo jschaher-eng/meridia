@@ -59,7 +59,7 @@ function dashTab(t) {
   var sm = document.getElementById('sm-' + t);
   if (sm) sm.classList.add('act');
   if (t === 'dossier') { loadDashboard(); }
-  if (t === 'messages') { loadMessages(); }
+  if (t === 'messages') { loadClientMessages(); }
   window.scrollTo(0, 0);
 }
 
