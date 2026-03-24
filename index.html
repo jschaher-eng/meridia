@@ -547,7 +547,7 @@
         <a id="sm-messages" onclick="dashTab('messages')">
           <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <span data-i18n="dash.messaging">Nachrichten</span>
-          <span class="sb-badge">3</span>
+          <span class="sb-badge" id="msg-badge" style="display:none">0</span>
         </a>
         <a id="sm-docs" onclick="dashTab('docs')">
           <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
@@ -556,7 +556,7 @@
         <a id="sm-alertes" onclick="dashTab('alertes')">
           <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           <span data-i18n="dash.alerts">Benachrichtigungen</span>
-          <span class="sb-badge danger">2</span>
+          <span class="sb-badge danger" id="alert-badge" style="display:none">0</span>
         </a>
         <a id="sm-profil" onclick="dashTab('profil')">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -688,7 +688,7 @@
       <!-- Messagerie -->
       <div id="dp-messages" class="dpanel">
         <div class="dash-header">
-          <div><h2 data-i18n="dash.secure_messaging">Sichere Nachrichten</h2><p data-i18n="dash.unread_msgs">3 ungelesene Nachrichten - Ende-zu-Ende-Verschluesselung</p></div>
+          <div><h2 data-i18n="dash.secure_messaging">Sichere Nachrichten</h2><p <p id="unread-count-header"></p>>3 ungelesene Nachrichten - Ende-zu-Ende-Verschluesselung</p></div>
           <button class="btn btn-primary btn-sm" onclick="newMessage()" data-i18n="dash.new_message">+ Neue Nachricht</button>
         </div>
         <div class="msg-layout">
