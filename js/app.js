@@ -96,7 +96,6 @@ function applyStep(n) {
     var display = document.getElementById('apply-email-display');
     if (emailInput && display) display.textContent = emailInput.value || '—';
   }
-}
   // Update summary panel
   updateSummary(n);
 }
