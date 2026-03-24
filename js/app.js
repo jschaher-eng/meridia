@@ -106,7 +106,6 @@ function applyStep(n) {
   }
 
   for (var i = 1; i <= 4; i++) {
-  for (var i = 1; i <= 4; i++) {
     var f  = document.getElementById('af' + i);
     var sp = document.getElementById('ap' + i);
     if (f)  f.classList.toggle('act', i === n);
