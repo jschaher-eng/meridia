@@ -106,6 +106,7 @@ async function loadClientMessages() {
   var userResult = await _supabase.auth.getUser();
   if (!userResult.data.user) return;
   var userId = userResult.data.user.id;
+  var ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
 
   var { data, error } = await _supabase
     .from('messages')
@@ -121,9 +122,12 @@ async function loadClientMessages() {
 
   data.forEach(function(m) {
     var isMe = m.from_id === userId;
+    var isAdmin = m.from_id === ADMIN_ID;
     var d = new Date(m.created_at);
-    var meta = (isMe ? 'Sie' : 'Berater') + ' - ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
-    appendBubble(body, !isMe, m.content, meta, false);
+    var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    var meta = isAdmin ? 'B-Mo Financial · ' + time : 'Sie · ' + time;
+    /* recv=true = message recu = affiché à gauche = message de l'admin */
+    appendBubble(body, isAdmin, m.content, meta, false);
   });
 
   body.scrollTop = body.scrollHeight;
