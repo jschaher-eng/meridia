@@ -258,9 +258,9 @@ async function doLogout() {
 async function submitLoanWithAccount() {
   var password = document.getElementById('apply-password').value;
   var confirm  = document.getElementById('apply-password-confirm').value;
-  var email    = document.querySelector('#af2 input[type="email"]').value.trim();
-  var fname    = document.querySelectorAll('#af2 .fg-row input')[0]?.value.trim() || '';
-  var lname    = document.querySelectorAll('#af2 .fg-row input')[1]?.value.trim() || '';
+  var email = applyData.email;
+  var fname = applyData.fname;
+  var lname = applyData.lname;
   var errEl    = document.getElementById('apply-account-error');
   var btn      = document.getElementById('btn-submit-apply');
 
@@ -294,9 +294,11 @@ async function submitLoanWithAccount() {
     id:        userId,
     full_name: fname + ' ' + lname,
     email:     email,
-    phone:     document.querySelector('#af2 input[type="tel"]')?.value || null,
-    city:      document.querySelector('#af2 input[placeholder="Paris"]')?.value || null,
-    postal_code: document.querySelector('#af2 input[maxlength="5"]')?.value || null,
+    phone:       applyData.phone || null,
+    city:        applyData.city || null,
+    postal_code: applyData.postal_code || null,
+    monthly_income:  applyData.income || null,
+    monthly_charges: applyData.charges || null,
   });
 
   /* 3. Sauvegarder la demande */
@@ -308,9 +310,9 @@ async function submitLoanWithAccount() {
   await _supabase.from('loans').insert({
     user_id:   userId,
     reference: ref,
-    type:      type,
-    amount:    parseFloat(amount) || 0,
-    duration:  parseInt(duration) || 36,
+    type:      applyData.type,
+    amount:    applyData.amount,
+    duration:  applyData.duration,
     status:    'pending'
   });
 
