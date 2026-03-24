@@ -67,6 +67,19 @@ async function loadMessages() {
       text: m.content || ''
     });
   });
+for (const key of Object.keys(convMap)) {
+    const clientId = convMap[key].clientId;
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('full_name, email')
+      .eq('id', clientId)
+      .single();
+    if (profile) {
+      const name = profile.full_name || profile.email || clientId;
+      convMap[key].clientName = name;
+      convMap[key].clientAvatar = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+    }
+  }
 
   MSG_CONVERSATIONS = convMap;
 }
