@@ -435,12 +435,30 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  goPage('home');
+document.addEventListener('DOMContentLoaded', async function() {
+
+  var { data: { session } } = await _supabase.auth.getSession();
+  if (session) {
+    var user = session.user;
+    var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
+    var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
+    var el = document.getElementById('sb-name');
+    var av = document.getElementById('sb-avatar');
+    if (el) el.textContent = name;
+    if (av) av.textContent = initials;
+    var since = new Date(user.created_at).getFullYear();
+    var sinceEl = document.querySelector('.sb-type');
+    if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
+    goPage('dash');
+    loadDashboard();
+  } else {
+    goPage('home');
+  }
 
   setTimeout(function() {
     var lsm = document.getElementById('lang-selector-mobile');
     var ls  = document.getElementById('lang-selector');
     if (lsm && ls) { lsm.innerHTML = ls.innerHTML; }
   }, 500);
+
 });
