@@ -119,7 +119,7 @@ async function loadClientMessages() {
   var body = document.getElementById('msg-body');
   if (!body) return;
   body.innerHTML = '';
-  markMessagesAsRead();
+  await markMessagesAsRead();
 
   data.forEach(function(m) {
     var isMe = m.from_id === userId;
@@ -132,7 +132,7 @@ async function loadClientMessages() {
   });
 
   body.scrollTop = body.scrollHeight;
-  updateMessageBadge();
+  await updateMessageBadge();
 }
 
 function initRealtimeMessages() {
