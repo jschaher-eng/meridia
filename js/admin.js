@@ -371,28 +371,6 @@ function appendBubble(container, isRecv, text, meta) {
   container.appendChild(wrap);
 }
 
-async function sendAdminReply() {
-  var inp = document.getElementById('admin-msg-input');
-  if (!inp || !inp.value.trim()) return;
-  var text = inp.value.trim();
-  var conv = Object.values(MSG_CONVERSATIONS)[0];
-  if (!conv) return;
-
-  var { error } = await supabase.from('messages').insert({
-    from_id:  '1ac56567-795b-48de-b547-c025ed8c7b8d',
-    to_id:    conv.clientId,
-    content:  text,
-    read:     false,
-  });
-
-  if (error) { showToast('Erreur: ' + error.message); return; }
-
-  inp.value = '';
-  showToast('Message envoyé.');
-  await loadMessages();
-  renderConvList();
-}
-
 /* ========================================
    DOCUMENTS
    ======================================== */
