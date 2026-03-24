@@ -85,7 +85,6 @@ function authTab(t) {
 
 /* ---- Apply multi-step form ---- */
 function applyStep(n) {
-   function applyStep(n) {
   // Sauvegarder les données de l'étape courante
   if (document.getElementById('af1') && document.getElementById('af1').classList.contains('act')) {
     applyData.type     = document.querySelector('#af1 select')?.value || '';
