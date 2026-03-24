@@ -4,6 +4,10 @@
    ========================================= */
 
 'use strict';
+var applyData = {
+  email: '', fname: '', lname: '', phone: '', city: '', postal_code: '',
+  type: '', amount: 0, duration: 36, income: 0, charges: 0
+};
 
 /* ---- Page router ---- */
 function goPage(id) {
@@ -81,6 +85,27 @@ function authTab(t) {
 
 /* ---- Apply multi-step form ---- */
 function applyStep(n) {
+   function applyStep(n) {
+  // Sauvegarder les données de l'étape courante
+  if (document.getElementById('af1') && document.getElementById('af1').classList.contains('act')) {
+    applyData.type     = document.querySelector('#af1 select')?.value || '';
+    applyData.amount   = parseFloat(document.querySelector('#af1 input[type="number"]')?.value) || 0;
+    applyData.duration = parseInt(document.querySelectorAll('#af1 select')[1]?.value) || 36;
+  }
+  if (document.getElementById('af2') && document.getElementById('af2').classList.contains('act')) {
+    applyData.fname       = document.querySelectorAll('#af2 .fg-row input')[0]?.value.trim() || '';
+    applyData.lname       = document.querySelectorAll('#af2 .fg-row input')[1]?.value.trim() || '';
+    applyData.email       = document.querySelector('#af2 input[type="email"]')?.value.trim() || '';
+    applyData.phone       = document.querySelector('#af2 input[type="tel"]')?.value || '';
+    applyData.city        = document.querySelectorAll('#af2 input[type="text"]')[1]?.value || '';
+    applyData.postal_code = document.querySelector('#af2 input[maxlength="5"]')?.value || '';
+  }
+  if (document.getElementById('af3') && document.getElementById('af3').classList.contains('act')) {
+    applyData.income   = parseFloat(document.querySelectorAll('#af3 input[type="number"]')[0]?.value) || 0;
+    applyData.charges  = parseFloat(document.querySelectorAll('#af3 input[type="number"]')[2]?.value) || 0;
+  }
+
+  for (var i = 1; i <= 4; i++) {
   for (var i = 1; i <= 4; i++) {
     var f  = document.getElementById('af' + i);
     var sp = document.getElementById('ap' + i);
