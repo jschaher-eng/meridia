@@ -235,8 +235,8 @@ async function submitLoanWithAccount() {
   var password = document.getElementById('apply-password').value;
   var confirm  = document.getElementById('apply-password-confirm').value;
   var email    = document.querySelector('#af2 input[type="email"]').value.trim();
-  var fname    = document.querySelector('#af2 input[placeholder="Jean"]').value.trim();
-  var lname    = document.querySelector('#af2 input[placeholder="Martin"]').value.trim();
+  var fname    = document.querySelectorAll('#af2 .fg-row input')[0]?.value.trim() || '';
+  var lname    = document.querySelectorAll('#af2 .fg-row input')[1]?.value.trim() || '';
   var errEl    = document.getElementById('apply-account-error');
   var btn      = document.getElementById('btn-submit-apply');
 
