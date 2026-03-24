@@ -291,6 +291,7 @@ async function sendAdminReply() {
   const text = inp.value.trim();
   if (!text) return;
 
+  console.log('Envoi depuis:', currentAdminId, 'vers:', currentClientId);
   const { error } = await supabase.from('messages').insert({
     from_id: currentAdminId,
     to_id:   currentClientId,
