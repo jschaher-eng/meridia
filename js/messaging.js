@@ -131,6 +131,7 @@ async function loadClientMessages() {
   });
 
   body.scrollTop = body.scrollHeight;
+  updateMessageBadge();
 }
 
 function initRealtimeMessages() {
@@ -148,6 +149,7 @@ function initRealtimeMessages() {
         var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
         var meta = isAdmin ? 'B-Mo Financial · ' + time : 'Sie · ' + time;
         appendBubble(body, isAdmin, m.content, meta, true);
+        updateMessageBadge();
         body.scrollTop = body.scrollHeight;
       }
     )
@@ -168,3 +170,26 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load first conversation by default
   renderConversation('m1');
 });
+
+async function updateMessageBadge() {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var { data } = await _supabase
+    .from('messages')
+    .select('id')
+    .eq('to_id', userId)
+    .eq('read', false);
+
+  var count = data ? data.length : 0;
+  var badge = document.getElementById('msg-badge');
+  if (badge) {
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'inline-block' : 'none';
+  }
+  var header = document.getElementById('unread-count-header');
+  if (header) {
+    header.textContent = count > 0 ? count + ' ungelesene Nachrichten' : 'Keine ungelesenen Nachrichten';
+  }
+}
