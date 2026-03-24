@@ -297,6 +297,21 @@ async function loadDashboard() {
   if (!userResult.data.user) return;
   var userId = userResult.data.user.id;
 
+  var profileResult = await _supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', userId)
+    .single();
+
+  if (profileResult.data) {
+    var p = profileResult.data;
+    var el;
+    el = document.querySelector('#dp-profil .prow:nth-child(1) .pval'); if (el) el.textContent = p.full_name || '—';
+    el = document.querySelector('#dp-profil .prow:nth-child(2) .pval'); if (el) el.textContent = p.birthdate || '—';
+    el = document.querySelector('#dp-profil .prow:nth-child(3) .pval'); if (el) el.textContent = p.nationality || '—';
+    el = document.querySelector('#dp-profil .prow:nth-child(4) .pval'); if (el) el.textContent = p.situation || '—';
+    el = document.querySelector('#dp-profil .prow:nth-child(5) .pval'); if (el) el.textContent = p.profession || '—';
+  }
   var { data: loans } = await _supabase
     .from('loans')
     .select('*')
