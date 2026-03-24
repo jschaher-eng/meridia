@@ -133,6 +133,27 @@ async function loadClientMessages() {
   body.scrollTop = body.scrollHeight;
 }
 
+function initRealtimeMessages() {
+  _supabase
+    .channel('client-messages')
+    .on('postgres_changes',
+      { event: 'INSERT', schema: 'public', table: 'messages' },
+      function(payload) {
+        var body = document.getElementById('msg-body');
+        if (!body) return;
+        var m = payload.new;
+        var ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
+        var isAdmin = m.from_id === ADMIN_ID;
+        var d = new Date(m.created_at);
+        var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+        var meta = isAdmin ? 'B-Mo Financial · ' + time : 'Sie · ' + time;
+        appendBubble(body, isAdmin, m.content, meta, true);
+        body.scrollTop = body.scrollHeight;
+      }
+    )
+    .subscribe();
+}
+
 /* ---- Enter key sends message ---- */
 document.addEventListener('DOMContentLoaded', function() {
   const inp = document.getElementById('msg-input');
