@@ -10,7 +10,9 @@ let currentPanel = 'dashboard';
 let currentConv   = 'c1';
 let currentLoan   = null;
 let currentClient = null;
-
+const ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
+let currentAdminId = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
+let currentClientId = null;
 /* ========================================
    NAVIGATION
    ======================================== */
@@ -325,6 +327,7 @@ function renderConvList() {
 function selectConv(id) {
   currentConv = id;
   const conv = MSG_CONVERSATIONS[id];
+  currentClientId = conv.clientId;
   if (!conv) return;
   conv.unread = 0;
 
