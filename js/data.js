@@ -35,17 +35,21 @@ async function loadMessages() {
     .from('messages')
     .select('*')
     .order('created_at', { ascending: true });
-  
+
   if (error) { console.error('loadMessages:', error.message); return; }
-  
+
+  const ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
   const convMap = {};
+
   (data || []).forEach(m => {
-    const key = m.from_id + '_' + (m.loan_id || 'no_loan');
+    const clientId = m.from_id === ADMIN_ID ? m.to_id : m.from_id;
+    const key = clientId + '_' + (m.loan_id || 'no_loan');
+
     if (!convMap[key]) {
       convMap[key] = {
         id: key,
-        clientId: m.from_id,
-        clientName: m.from_id,
+        clientId: clientId,
+        clientName: clientId,
         clientAvatar: '?',
         loanRef: m.loan_id || '—',
         unread: 0,
@@ -53,14 +57,17 @@ async function loadMessages() {
         messages: []
       };
     }
-    if (!m.read) convMap[key].unread++;
+
+    if (!m.read && m.from_id !== ADMIN_ID) convMap[key].unread++;
+    convMap[key].lastTime = formatTime(m.created_at);
     convMap[key].messages.push({
-      recv: m.from_id !== '1ac56567-795b-48de-b547-c025ed8c7b8d',
-      by: m.from_id,
+      recv: m.from_id !== ADMIN_ID,
+      by: m.from_id === ADMIN_ID ? 'Admin' : 'Client',
       at: formatTime(m.created_at),
       text: m.content || ''
     });
   });
+
   MSG_CONVERSATIONS = convMap;
 }
 
