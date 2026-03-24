@@ -7,7 +7,7 @@
 'use strict';
 
 let currentPanel = 'dashboard';
-let currentConv   = 'c1';
+let currentConv = null;
 let currentLoan   = null;
 let currentClient = null;
 const ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
@@ -304,7 +304,8 @@ async function sendAdminReply() {
    ======================================== */
 function renderMessaging() {
   renderConvList();
-  selectConv(currentConv);
+  const firstKey = Object.keys(MSG_CONVERSATIONS)[0];
+  if (firstKey) selectConv(firstKey);
 }
 
 function renderConvList() {
