@@ -360,7 +360,10 @@ function selectConv(id) {
 
 function appendBubble(container, isRecv, text, meta) {
   const wrap = document.createElement('div');
-  const bub  = document.createElement('div');
+  wrap.style.display = 'flex';
+  wrap.style.flexDirection = 'column';
+  wrap.style.alignItems = isRecv ? 'flex-start' : 'flex-end';
+  const bub = document.createElement('div');
   bub.className = 'bubble ' + (isRecv ? 'recv' : 'sent');
   bub.textContent = text;
   const t = document.createElement('div');
