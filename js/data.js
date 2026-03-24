@@ -43,7 +43,7 @@ async function loadMessages() {
 
   (data || []).forEach(m => {
     const clientId = m.from_id === ADMIN_ID ? m.to_id : m.from_id;
-    const key = clientId + '_' + (m.loan_id || 'no_loan');
+    const key = clientId;
 
     if (!convMap[key]) {
       convMap[key] = {
