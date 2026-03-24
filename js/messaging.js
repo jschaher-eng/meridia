@@ -119,6 +119,7 @@ async function loadClientMessages() {
   var body = document.getElementById('msg-body');
   if (!body) return;
   body.innerHTML = '';
+  markMessagesAsRead();
 
   data.forEach(function(m) {
     var isMe = m.from_id === userId;
@@ -180,7 +181,8 @@ async function updateMessageBadge() {
     .from('messages')
     .select('id')
     .eq('to_id', userId)
-    .eq('read', false);
+    .eq('read', false)
+    .neq('from_id', userId);
 
   var count = data ? data.length : 0;
   var badge = document.getElementById('msg-badge');
@@ -192,4 +194,16 @@ async function updateMessageBadge() {
   if (header) {
     header.textContent = count > 0 ? count + ' ungelesene Nachrichten' : 'Keine ungelesenen Nachrichten';
   }
+}
+
+async function markMessagesAsRead() {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  await _supabase
+    .from('messages')
+    .update({ read: true })
+    .eq('to_id', userId)
+    .eq('read', false);
 }
