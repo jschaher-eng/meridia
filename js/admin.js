@@ -286,18 +286,24 @@ async function verifyDoc(id) {
 }
 //Envoyer un message à un client() 
 async function sendAdminReply() {
-  const text = document.getElementById('admin-msg-input').value.trim();
+  const inp = document.getElementById('admin-msg-input');
+  if (!inp) return;
+  const text = inp.value.trim();
   if (!text) return;
 
-  await supabase.from('messages').insert({
-    from_id:  currentAdminId,
-    to_id:    currentClientId,
-    loan_id:  currentConv.loanId,
-    content:  text,
-    read:     false
+  const { error } = await supabase.from('messages').insert({
+    from_id: currentAdminId,
+    to_id:   currentClientId,
+    content: text,
+    read:    false
   });
 
+  if (error) { showToast('Erreur: ' + error.message); return; }
+
+  inp.value = '';
   showToast('Message envoyé.');
+  await loadMessages();
+  renderMessaging();
 }
 /* ========================================
    MESSAGERIE
