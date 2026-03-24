@@ -303,14 +303,15 @@ async function loadDashboard() {
     .eq('id', userId)
     .single();
 
-  if (profileResult.data) {
+ if (profileResult.data) {
     var p = profileResult.data;
-    var el;
-    el = document.querySelector('#dp-profil .prow:nth-child(1) .pval'); if (el) el.textContent = p.full_name || '—';
-    el = document.querySelector('#dp-profil .prow:nth-child(2) .pval'); if (el) el.textContent = p.birthdate || '—';
-    el = document.querySelector('#dp-profil .prow:nth-child(3) .pval'); if (el) el.textContent = p.nationality || '—';
-    el = document.querySelector('#dp-profil .prow:nth-child(4) .pval'); if (el) el.textContent = p.situation || '—';
-    el = document.querySelector('#dp-profil .prow:nth-child(5) .pval'); if (el) el.textContent = p.profession || '—';
+    var pel;
+    pel = document.getElementById('prof-name');  if (pel) pel.textContent = p.full_name || '—';
+    pel = document.getElementById('prof-email'); if (pel) pel.textContent = p.email || '—';
+    pel = document.getElementById('prof-phone'); if (pel) pel.textContent = p.phone || '—';
+    pel = document.getElementById('prof-city');  if (pel) pel.textContent = (p.postal_code ? p.postal_code + ' ' : '') + (p.city || '—');
+    pel = document.getElementById('prof-income'); if (pel) pel.textContent = p.monthly_income ? Math.round(p.monthly_income).toLocaleString('de-DE') + ' EUR' : '—';
+    pel = document.getElementById('prof-charges'); if (pel) pel.textContent = p.monthly_charges ? Math.round(p.monthly_charges).toLocaleString('de-DE') + ' EUR' : '—';
   }
   var { data: loans } = await _supabase
     .from('loans')
