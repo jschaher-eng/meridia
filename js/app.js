@@ -81,16 +81,22 @@ function authTab(t) {
 
 /* ---- Apply multi-step form ---- */
 function applyStep(n) {
-  for (let i = 1; i <= 4; i++) {
-    const f  = document.getElementById('af' + i);
-    const sp = document.getElementById('ap' + i);
+  for (var i = 1; i <= 4; i++) {
+    var f  = document.getElementById('af' + i);
+    var sp = document.getElementById('ap' + i);
     if (f)  f.classList.toggle('act', i === n);
     if (sp) {
       sp.classList.remove('act', 'done');
-      if (i < n) sp.classList.add('done');
+      if (i < n)       sp.classList.add('done');
       else if (i === n) sp.classList.add('act');
     }
   }
+  if (n === 4) {
+    var emailInput = document.querySelector('#af2 input[type="email"]');
+    var display = document.getElementById('apply-email-display');
+    if (emailInput && display) display.textContent = emailInput.value || '—';
+  }
+}
   // Update summary panel
   updateSummary(n);
 }
@@ -226,22 +232,58 @@ async function doLogout() {
   goPage('home');
 }
 
-async function submitLoan() {
-  var user = await _supabase.auth.getUser();
-  if (!user.data.user) { goPage('auth'); return; }
+async function submitLoanWithAccount() {
+  var password = document.getElementById('apply-password').value;
+  var confirm  = document.getElementById('apply-password-confirm').value;
+  var email    = document.querySelector('#af2 input[type="email"]').value.trim();
+  var fname    = document.querySelector('#af2 input[placeholder="Jean"]').value.trim();
+  var lname    = document.querySelector('#af2 input[placeholder="Martin"]').value.trim();
+  var errEl    = document.getElementById('apply-account-error');
+  var btn      = document.getElementById('btn-submit-apply');
 
+  errEl.style.display = 'none';
+
+  if (!password) { errEl.textContent = 'Bitte geben Sie ein Passwort ein.'; errEl.style.display = 'block'; return; }
+  if (password.length < 8) { errEl.textContent = 'Mindestens 8 Zeichen erforderlich.'; errEl.style.display = 'block'; return; }
+  if (password !== confirm) { errEl.textContent = 'Passwoerter stimmen nicht ueberein.'; errEl.style.display = 'block'; return; }
+
+  btn.textContent = '...'; btn.disabled = true;
+
+  /* 1. Creer le compte */
+  var signUpResult = await _supabase.auth.signUp({
+    email: email,
+    password: password,
+    options: { data: { full_name: fname + ' ' + lname, role: 'client' } }
+  });
+
+  if (signUpResult.error) {
+    errEl.textContent = 'Fehler: ' + signUpResult.error.message;
+    errEl.style.display = 'block';
+    btn.textContent = 'Antrag einreichen';
+    btn.disabled = false;
+    return;
+  }
+
+  var userId = signUpResult.data.user.id;
+
+  /* 2. Sauvegarder le profil */
+  await _supabase.from('profiles').upsert({
+    id:        userId,
+    full_name: fname + ' ' + lname,
+    email:     email,
+    phone:     document.querySelector('#af2 input[type="tel"]')?.value || null,
+    city:      document.querySelector('#af2 input[placeholder="Paris"]')?.value || null,
+    postal_code: document.querySelector('#af2 input[maxlength="5"]')?.value || null,
+  });
+
+  /* 3. Sauvegarder la demande */
   var type     = document.querySelector('#af1 select').value;
   var amount   = document.querySelector('#af1 input[type="number"]').value;
   var duration = document.querySelectorAll('#af1 select')[1].value;
-  var purpose  = document.querySelector('#af1 input[type="text"]').value;
+  var ref      = 'BM-' + Date.now().toString().slice(-8);
 
-  var btn = document.querySelector('#af4 .btn-gold');
-  btn.textContent = '...'; btn.disabled = true;
-
-  var ref = 'BM-' + Date.now().toString().slice(-8);
-
-  var result = await _supabase.from('loans').insert({
-    user_id:   user.data.user.id,
+  await _supabase.from('loans').insert({
+    user_id:   userId,
     reference: ref,
     type:      type,
     amount:    parseFloat(amount) || 0,
@@ -249,16 +291,15 @@ async function submitLoan() {
     status:    'pending'
   });
 
-  if (result.error) {
-    alert('Fehler: ' + result.error.message);
-    btn.textContent = 'Antrag einreichen';
-    btn.disabled = false;
-    return;
-  }
+  /* 4. Connecter automatiquement */
+  await _supabase.auth.signInWithPassword({ email: email, password: password });
 
   btn.textContent = 'Antrag einreichen';
   btn.disabled = false;
+
+  /* 5. Rediriger vers le dashboard */
   goPage('dash');
+  loadDashboard();
 }
 
 function renderTimeline(status) {
