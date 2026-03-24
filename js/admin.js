@@ -27,7 +27,7 @@ function goPanel(id) {
   if (id === 'dashboard')  renderDashboard();
   if (id === 'loans')      renderLoans();
   if (id === 'clients')    renderClients();
-  if (id === 'messaging')  renderMessaging();
+  if (id === 'messaging')  { loadMessages().then(function() { renderMessaging(); }); }
   if (id === 'documents')  renderDocuments();
 }
 
