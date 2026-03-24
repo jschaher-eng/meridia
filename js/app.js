@@ -451,6 +451,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
     goPage('dash');
     loadDashboard();
+    initRealtimeMessages();
   } else {
     goPage('home');
   }
