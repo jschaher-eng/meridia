@@ -323,7 +323,7 @@
       <div class="si act" id="ap1" data-i18n="apply.step1">1 - Vorhaben</div>
       <div class="si" id="ap2" data-i18n="apply.step2">2 - Identitaet</div>
       <div class="si" id="ap3" data-i18n="apply.step3">3 - Finanzen</div>
-      <div class="si" id="ap4" data-i18n="apply.step4">4 - Dokumente</div>
+      <div class="si" id="ap4">4 - Konto</div>
     </div>
     <div class="apply-layout">
       <div class="apply-card">
@@ -429,25 +429,34 @@
         </div>
         <!-- Etape 4 -->
         <div id="af4" class="tf">
-          <div class="form-title" data-i18n="apply.docs_title">Nachweise</div>
-          <p class="form-sub" data-i18n="apply.docs_sub">Laden Sie Ihre Unterlagen hoch</p>
-          <div class="upload-zone">
-            <span data-i18n="apply.doc_id">Personalausweis (Vorder- und Rueckseite)</span><br>
-            <span data-i18n="apply.doc_id_format">JPG, PNG oder PDF - Max. 5 MB</span>
-          </div>
-          <div class="upload-zone">
-            <span data-i18n="apply.doc_salary">Letzte 3 Gehaltsabrechnungen oder Bilanzen</span><br>
-            <span data-i18n="apply.doc_salary_format">PDF - Max. 10 MB</span>
-          </div>
-          <div class="upload-zone">
-            <span data-i18n="apply.doc_bank">Letzte 3 Kontoauszuege</span><br>
-            <span data-i18n="apply.doc_bank_format">PDF - Max. 10 MB</span>
-          </div>
-          <div class="cgu-note" data-i18n="apply.cgu">Mit der Einreichung akzeptieren Sie unsere AGB und ermaaechtigen B-Mo Financial, Ihre Kredithistorie einzusehen.</div>
-          <div style="display:flex;gap:8px">
-            <button class="btn btn-outline" style="flex:1;padding:9px" onclick="applyStep(3)" data-i18n="apply.back">Zurueck</button>
-            <button class="btn btn-gold" style="flex:2;padding:9px" onclick="submitLoan()" data-i18n="apply.submit">Antrag einreichen</button>
-          </div>
+  <div class="form-title">Ihr Konto erstellen</div>
+  <p class="form-sub">Definieren Sie ein Passwort, um Ihren Antrag zu verfolgen</p>
+
+  <div class="auth-note" style="margin-bottom:1rem">
+    Ihr Konto wird mit der E-Mail-Adresse <strong id="apply-email-display">—</strong> erstellt.
+  </div>
+
+  <div class="fg">
+    <label>Passwort</label>
+    <input type="password" id="apply-password" placeholder="Mindestens 8 Zeichen">
+  </div>
+  <div class="fg">
+    <label>Passwort bestaetigen</label>
+    <input type="password" id="apply-password-confirm" placeholder="Passwort wiederholen">
+  </div>
+
+  <div id="apply-account-error" style="display:none;background:#FCEBEB;color:#791F1F;padding:10px 12px;border-radius:4px;font-size:12px;margin-bottom:1rem;border-left:3px solid #A32D2D"></div>
+
+  <div style="display:flex;gap:8px">
+    <button class="btn btn-outline" style="flex:1;padding:9px" onclick="applyStep(3)" data-i18n="apply.back">Zurueck</button>
+    <button id="btn-submit-apply" class="btn btn-gold" style="flex:2;padding:9px" onclick="submitLoanWithAccount()">Antrag einreichen</button>
+  </div>
+
+  <div style="margin-top:1rem;text-align:center;font-size:12px;color:var(--text-muted)">
+    <span>Bereits ein Konto? </span>
+    <span style="color:var(--gold);cursor:pointer" onclick="goPage('auth')">Anmelden</span>
+  </div>
+</div>
         </div>
       </div>
       <div class="sum-card">
