@@ -570,3 +570,19 @@ const channel = supabase
     }
   )
   .subscribe();
+
+async function populateClientSelect() {
+  var select = document.getElementById('doc-client-select');
+  if (!select) return;
+
+  var { data, error } = await supabase
+    .from('profiles')
+    .select('id, full_name, email');
+
+  if (error || !data) return;
+
+  select.innerHTML = '<option value="">Client auswählen...</option>' +
+    data.map(function(c) {
+      return '<option value="' + c.id + '">' + (c.full_name || c.email) + '</option>';
+    }).join('');
+}
