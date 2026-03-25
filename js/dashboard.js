@@ -294,3 +294,21 @@ async function markNotifRead(id, el) {
     alertBadge.style.display = count > 0 ? 'inline-block' : 'none';
   }
 }
+
+async function loadSecurityInfo() {
+  var { data: { session } } = await _supabase.auth.getSession();
+  if (!session) return;
+
+  var deviceEl = document.getElementById('current-session-device');
+  var timeEl   = document.getElementById('current-session-time');
+
+  var ua = navigator.userAgent;
+  var browser = ua.includes('Chrome') ? 'Chrome' : ua.includes('Firefox') ? 'Firefox' : ua.includes('Safari') ? 'Safari' : 'Browser';
+  var os = ua.includes('Windows') ? 'Windows' : ua.includes('Mac') ? 'Mac' : ua.includes('iPhone') ? 'iPhone' : ua.includes('Android') ? 'Android' : 'Geraet';
+
+  if (deviceEl) deviceEl.textContent = browser + ' - ' + os;
+  if (timeEl) {
+    var d = new Date(session.created_at || Date.now());
+    timeEl.textContent = d.toLocaleDateString('de-DE', {day:'numeric', month:'long', year:'numeric'}) + ' - ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+  }
+}
