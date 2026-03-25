@@ -516,6 +516,7 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
       dueNotif.textContent = '—';
     }
   }
+   loadLastMessages();
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
