@@ -174,3 +174,24 @@ function toggle2FA() {
   badge.textContent = isOn ? 'Inactif' : 'Activé';
   showToast('Double authentification ' + (isOn ? 'désactivée' : 'activée') + '.');
 }
+
+async function loadDocuments() {
+  const { data, error } = await supabase
+    .from('documents')
+    .select('*, loans ( reference )')
+    .order('created_at', { ascending: false });
+  if (error) { console.error('loadDocuments:', error.message); return; }
+  DOCUMENTS = (data || []).map(d => ({
+    id:       d.id,
+    clientId: d.user_id,
+    client:   d.user_id,
+    loan:     d.loans?.reference || '—',
+    name:     d.name || 'Document',
+    type:     d.type || 'autre',
+    size:     d.size || '—',
+    date:     formatDate(d.created_at),
+    status:   d.status || 'pending',
+    ext:      d.ext || 'PDF',
+    path:     d.path || null,
+  }));
+}
