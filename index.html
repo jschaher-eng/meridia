@@ -763,45 +763,14 @@
       <!-- Alertes -->
       <div id="dp-alertes" class="dpanel">
         <div class="dash-header">
-          <div><h2 data-i18n="dash.alerts">Benachrichtigungen</h2><p data-i18n="dash.alerts_sub">Verwalten Sie Ihre Benachrichtigungseinstellungen</p></div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 280px;gap:1rem;align-items:start">
-          <div>
-            <div class="dbox mb-2">
-              <div class="dbox-h" data-i18n="dash.active_alerts">Aktive Benachrichtigungen</div>
-              <div class="alert-item danger">
-                <div class="al-icon" style="background:var(--danger-bg)"><svg viewBox="0 0 24 24" stroke="var(--danger-bdr)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <div><div class="al-title" style="color:var(--danger-bdr)" data-i18n="dash.alert_device_title">Anmeldung von neuem Geraet</div><div class="al-sub" data-i18n="dash.alert_device_sub">Paris - Chrome - Windows - 10:42 Uhr</div><div class="al-time"><span data-i18n="dash.today">Heute</span> - <span style="color:var(--gold);cursor:pointer" onclick="dashTab('securite')" data-i18n="dash.manage_security">Sicherheit verwalten</span></div></div>
-              </div>
-              <div class="alert-item warn">
-                <div class="al-icon" style="background:var(--warn-bg)"><svg viewBox="0 0 24 24" stroke="var(--warn-bdr)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-                <div><div class="al-title" style="color:var(--warn-txt)" data-i18n="dash.alert_due_title">Faelligkeit in 10 Tagen</div><div class="al-sub" data-i18n="dash.alert_due_sub">— werden am 1. April 2025 abgebucht</div><div class="al-time" data-i18n="dash.today">Heute</div></div>
-              </div>
-              <div class="alert-item info">
-                <div class="al-icon" style="background:var(--info-bg)"><svg viewBox="0 0 24 24" stroke="var(--info-bdr)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                <div><div class="al-title" style="color:var(--info-txt)" data-i18n="dash.alert_msg_title">Neue Nachricht von Sophie Bernard</div><div class="al-sub" data-i18n="dash.alert_msg_sub">Ihre Akte wurde validiert - Kreditangebot unterzeichnet</div><div class="al-time" data-i18n="dash.today_time">Heute - 10:15</div></div>
-              </div>
-              <div class="alert-item ok">
-                <div class="al-icon" style="background:var(--success-bg)"><svg viewBox="0 0 24 24" stroke="var(--success-bdr)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
-                <div><div class="al-title" style="color:var(--success-txt)" data-i18n="dash.alert_doc_title">Jahresauszug 2024 verfuegbar</div><div class="al-sub" data-i18n="dash.alert_doc_sub">Ihr Dokument steht im Dokumentenbereich zum Download bereit</div><div class="al-time" data-i18n="dash.yesterday">Gestern</div></div>
-              </div>
-            </div>
-          </div>
-          <div class="dbox">
-            <div class="dbox-h" data-i18n="dash.alert_settings">Benachrichtigungseinstellungen</div>
-            <p style="font-size:12px;color:var(--text-muted);margin-bottom:1rem" data-i18n="dash.alert_settings_sub">Waehlen Sie, wie Sie benachrichtigt werden moechten</p>
-            <div class="alert-param"><span data-i18n="dash.alert_dues">Bevorstehende Faelligkeiten</span><input type="checkbox" checked></div>
-            <div class="alert-param"><span data-i18n="dash.alert_msgs">Neue Nachrichten</span><input type="checkbox" checked></div>
-            <div class="alert-param"><span data-i18n="dash.alert_suspicious">Verdaechtige Anmeldungen</span><input type="checkbox" checked></div>
-            <div class="alert-param"><span data-i18n="dash.alert_docs">Neue Dokumente</span><input type="checkbox" checked></div>
-            <div class="alert-param"><span data-i18n="dash.alert_offers">Personalisierte Angebote</span><input type="checkbox"></div>
-            <div class="alert-param"><span data-i18n="dash.alert_email">E-Mail-Benachrichtigungen</span><input type="checkbox" checked></div>
-            <div class="alert-param"><span data-i18n="dash.alert_sms">SMS-Benachrichtigungen</span><input type="checkbox"></div>
-            <button class="btn btn-primary btn-full btn-sm mt-3" onclick="showToast('Einstellungen gespeichert.')" data-i18n="dash.save">Speichern</button>
-          </div>
-        </div>
-      </div>
-
+          <div class="dbox mb-2">
+  <div class="dbox-h" data-i18n="dash.active_alerts">Aktive Benachrichtigungen</div>
+  <div id="alerts-container">
+    <p style="font-size:12px;color:var(--text-muted);padding:1rem">Keine Benachrichtigungen.</p>
+  </div>
+</div>
+</div>
+</div>
       <!-- Profil -->
       <div id="dp-profil" class="dpanel">
         <div class="dash-header">
