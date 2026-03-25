@@ -388,6 +388,16 @@ async function loadDashboard() {
 
   if (!loans || loans.length === 0) return;
   var loan = loans[0];
+  var advisorName   = loan.advisor_name   || 'B-Mo Financial';
+  var advisorAvatar = loan.advisor_avatar || 'BM';
+
+  var advName = document.querySelector('#dp-vue .ln');
+  var advAv   = document.querySelector('#dp-vue .dbox:last-child .sb-type');
+
+  var advEl = document.getElementById('advisor-name');
+  var avEl  = document.getElementById('advisor-avatar');
+  if (advEl) advEl.textContent = advisorName;
+  if (avEl)  avEl.textContent  = advisorAvatar;
   renderTimeline(loan.status || 'pending');
 
 var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung', analysis:'Aktenanalyse', approved:'Grundsatzentscheidung', fees:'Gebuehrenzahlung', signed:'Vertragsunterzeichnung', funded:'Auszahlung der Mittel', active:'In Rueckzahlung', rejected:'Abgelehnt' };
