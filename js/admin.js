@@ -34,9 +34,7 @@ function goPanel(id) {
     renderDocuments();
     populateClientSelect();
   }
-      select.innerHTML = '<option value="">Sélectionner un client...</option>' +
-        CLIENTS.map(function(c) { return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
-    }
+
 /* ========================================
    DASHBOARD
    ======================================== */
