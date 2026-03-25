@@ -30,9 +30,14 @@ function goPanel(id) {
   if (id === 'loans')      renderLoans();
   if (id === 'clients')    renderClients();
   if (id === 'messaging')  { loadMessages().then(function() { renderMessaging(); }); }
-  if (id === 'documents')  renderDocuments();
-}
-
+  if (id === 'documents') {
+    renderDocuments();
+    var select = document.getElementById('doc-client-select');
+    if (select && CLIENTS.length > 0) {
+      select.innerHTML = '<option value="">Sélectionner un client...</option>' +
+        CLIENTS.map(function(c) { return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
+    }
+  }
 /* ========================================
    DASHBOARD
    ======================================== */
@@ -484,7 +489,50 @@ function setEl(id, val) {
   const el = document.getElementById(id);
   if (el) el.textContent = val;
 }
+/* ========================================
+    TELECHARGER DOCUMENTS
+   ======================================== */
+async function uploadDocument() {
+  var fileInput = document.getElementById('doc-file-input');
+  var clientId  = document.getElementById('doc-client-select').value;
+  var docType   = document.getElementById('doc-type-select').value;
+  var statusEl  = document.getElementById('upload-status');
 
+  if (!fileInput.files[0]) return;
+  if (!clientId) { statusEl.textContent = 'Veuillez sélectionner un client.'; statusEl.style.color = 'red'; return; }
+
+  var file = fileInput.files[0];
+  var fileName = clientId + '/' + Date.now() + '_' + file.name;
+
+  statusEl.textContent = 'Upload en cours...';
+  statusEl.style.color = 'var(--text-m)';
+
+  var { error: uploadError } = await supabase.storage
+    .from('documents')
+    .upload(fileName, file);
+
+  if (uploadError) { statusEl.textContent = 'Erreur upload: ' + uploadError.message; statusEl.style.color = 'red'; return; }
+
+  var { error: dbError } = await supabase.from('documents').insert({
+    user_id: clientId,
+    name:    file.name,
+    type:    docType,
+    size:    Math.round(file.size / 1024) + ' Ko',
+    ext:     file.name.split('.').pop().toUpperCase(),
+    path:    fileName,
+    status:  'verified'
+  });
+
+  if (dbError) { statusEl.textContent = 'Erreur DB: ' + dbError.message; statusEl.style.color = 'red'; return; }
+
+  statusEl.textContent = 'Document uploadé avec succès !';
+  statusEl.style.color = 'green';
+  fileInput.value = '';
+
+  await loadDocuments();
+  renderDocuments();
+  showToast('Document déposé pour le client.');
+}
 /* ========================================
    INIT
    ======================================== */
