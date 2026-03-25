@@ -603,3 +603,19 @@ async function createNotification(userId, type, title, message) {
     read:    false
   });
 }
+
+async function saveClientScore() {
+  var score = document.getElementById('mc-score-input').value;
+  var label = document.getElementById('mc-score-label').value;
+  if (!score || !currentClient) return;
+
+  var { error } = await supabase.from('profiles').update({
+    credit_score:       parseInt(score),
+    credit_score_label: label
+  }).eq('id', currentClient.id);
+
+  if (error) { showToast('Erreur: ' + error.message); return; }
+  
+  document.getElementById('mc-score').textContent = score + ' / 850';
+  showToast('Score mis à jour.');
+}
