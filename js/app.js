@@ -64,6 +64,7 @@ function dashTab(t) {
   if (sm) sm.classList.add('act');
   if (t === 'dossier') { loadDashboard(); }
   if (t === 'messages') { loadClientMessages(); }
+  if (t === 'docs') { loadClientDocuments(); }
   window.scrollTo(0, 0);
 }
 
