@@ -195,3 +195,44 @@ async function loadDocuments() {
     path:     d.path || null,
   }));
 }
+
+async function loadClientDocuments() {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var { data, error } = await _supabase
+    .from('documents')
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false });
+
+  var grid = document.getElementById('client-doc-grid');
+  if (!grid) return;
+
+  if (error || !data || data.length === 0) {
+    grid.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:1rem">Keine Dokumente verfuegbar.</p>';
+    return;
+  }
+
+  grid.innerHTML = data.map(function(d) {
+    return '<div class="doc-card" data-cat="' + (d.type || 'autre') + '">' +
+      '<div class="doc-icon" style="background:var(--info-bg)"><svg viewBox="0 0 24 24" stroke="var(--info-bdr)" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>' +
+      '<div class="doc-name">' + d.name + '</div>' +
+      '<div class="doc-meta">' + (d.ext || 'PDF') + ' - ' + (d.size || '') + ' - ' + new Date(d.created_at).toLocaleDateString('de-DE') + '</div>' +
+      '<span class="badge ' + (d.status === 'verified' ? 'badge-ok' : 'badge-warn') + '" style="width:fit-content">' + (d.status === 'verified' ? 'Geprueft' : 'In Bearbeitung') + '</span>' +
+      '<button class="doc-dl" onclick="downloadDocument(\'' + d.path + '\', \'' + d.name + '\')">Herunterladen</button>' +
+      '</div>';
+  }).join('');
+}
+
+async function downloadDocument(path, name) {
+  var result = await _supabase.storage.from('documents').download(path);
+  if (result.error) { showToast('Fehler: ' + result.error.message); return; }
+  var url = URL.createObjectURL(result.data);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(url);
+}
