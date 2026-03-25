@@ -179,7 +179,13 @@ async function validateLoan(id, decision) {
       reviewed_at: new Date().toISOString(),
     })
     .eq('id', id);
-
+ var clientId = LOANS.find(function(l) { return l.id === id; })?.clientId;
+  if (clientId) {
+    await createNotification(clientId, 'status',
+      'Statusaenderung Ihrer Akte',
+      'Ihr Dossier wurde aktualisiert: ' + (STATUS_LABEL[decision] || decision)
+    );
+  }
   if (error) { showToast('Erreur : ' + error.message); return; }
 
   var labels = {
@@ -529,6 +535,11 @@ async function uploadDocument() {
 
   await loadDocuments();
   renderDocuments();
+  var clientId = document.getElementById('doc-client-select').value;
+  await createNotification(clientId, 'document',
+    'Neues Dokument verfuegbar',
+    'Ein neues Dokument wurde in Ihrem Bereich hinterlegt: ' + file.name
+  );
   showToast('Document déposé pour le client.');
 }
 /* ========================================
@@ -581,4 +592,14 @@ async function populateClientSelect() {
     data.map(function(c) {
       return '<option value="' + c.id + '">' + (c.full_name || c.email) + '</option>';
     }).join('');
+}
+
+async function createNotification(userId, type, title, message) {
+  await supabase.from('notifications').insert({
+    user_id: userId,
+    type:    type,
+    title:   title,
+    message: message,
+    read:    false
+  });
 }
