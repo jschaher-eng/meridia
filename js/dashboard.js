@@ -66,18 +66,16 @@ function blockDevice(btn) {
 }
 
 /* ---- Security: update password ---- */
-function updatePassword() {
-  const input = document.querySelector('#dp-securite input[type="password"]');
-  if (!input || !input.value) {
-    showToast('Veuillez saisir un nouveau mot de passe.');
-    return;
-  }
-  if (input.value.length < 8) {
-    showToast('Le mot de passe doit comporter au moins 8 caractères.');
-    return;
-  }
-  input.value = '';
-  showToast('Mot de passe mis à jour avec succès.');
+async function updatePassword() {
+  var inp = document.querySelector('#dp-securite input[type="password"]');
+  if (!inp || !inp.value) { showToast('Bitte geben Sie ein neues Passwort ein.'); return; }
+  if (inp.value.length < 8) { showToast('Mindestens 8 Zeichen erforderlich.'); return; }
+
+  var { error } = await _supabase.auth.updateUser({ password: inp.value });
+
+  if (error) { showToast('Fehler: ' + error.message); return; }
+  inp.value = '';
+  showToast('Passwort erfolgreich geaendert.');
 }
 
 /* ---- Profile: edit mode toggle ---- */
