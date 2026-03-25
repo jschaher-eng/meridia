@@ -89,7 +89,7 @@ function applyStep(n) {
   if (document.getElementById('af1') && document.getElementById('af1').classList.contains('act')) {
     applyData.type     = document.querySelector('#af1 select')?.value || '';
     applyData.amount   = parseFloat(document.querySelector('#af1 input[type="number"]')?.value) || 0;
-    applyData.duration = parseInt(document.querySelectorAll('#af1 select')[1]?.value) || 36;
+    applyData.duration = parseInt(document.querySelectorAll('#af1 select')[2]?.value) || 36;
   }
   if (document.getElementById('af2') && document.getElementById('af2').classList.contains('act')) {
     applyData.fname       = document.querySelectorAll('#af2 .fg-row input')[0]?.value.trim() || '';
