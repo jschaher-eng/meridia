@@ -81,7 +81,6 @@ function updatePassword() {
 }
 
 /* ---- Profile: edit mode toggle ---- */
-let editMode = false;
 var editMode = false;
 
 function toggleEditProfile() {
