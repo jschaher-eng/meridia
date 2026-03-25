@@ -82,20 +82,56 @@ function updatePassword() {
 
 /* ---- Profile: edit mode toggle ---- */
 let editMode = false;
+var editMode = false;
+
 function toggleEditProfile() {
   editMode = !editMode;
-  document.querySelectorAll('.prow .pval').forEach(cell => {
-    if (editMode) {
-      const val = cell.textContent;
-      cell.innerHTML = '<input type="text" value="' + val + '" style="width:100%;border:0.5px solid var(--border-md);border-radius:3px;padding:3px 6px;font-size:12px;font-family:var(--font-sans);">';
-    } else {
-      const inp = cell.querySelector('input');
-      if (inp) cell.textContent = inp.value;
-    }
-  });
-  const btn = document.querySelector('[onclick="toggleEditProfile()"]');
-  if (btn) btn.textContent = editMode ? 'Enregistrer' : 'Modifier';
-  if (!editMode) showToast('Profil mis à jour avec succès.');
+  var btn = document.querySelector('[onclick="toggleEditProfile()"]');
+
+  if (editMode) {
+    document.querySelectorAll('#dp-profil .pval').forEach(function(cell) {
+      var val = cell.textContent === '—' ? '' : cell.textContent;
+      cell.innerHTML = '<input type="text" value="' + val + '" style="width:100%;border:0.5px solid var(--border-md);border-radius:3px;padding:4px 8px;font-size:12px;font-family:var(--font-sans);">';
+    });
+    if (btn) btn.textContent = 'Speichern';
+  } else {
+    var ids = ['prof-name','prof-birthdate','prof-nationality','prof-situation','prof-profession','prof-email','prof-phone','prof-address','prof-city','prof-income','prof-charges'];
+    var values = {};
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        var inp = el.querySelector('input');
+        if (inp) {
+          values[id] = inp.value;
+          el.textContent = inp.value || '—';
+        }
+      }
+    });
+    saveProfile(values);
+    if (btn) btn.textContent = 'Bearbeiten';
+  }
+}
+
+async function saveProfile(values) {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var { error } = await _supabase.from('profiles').update({
+    full_name:       values['prof-name']        || null,
+    email:           values['prof-email']       || null,
+    phone:           values['prof-phone']       || null,
+    city:            values['prof-city']        || null,
+    birthdate:       values['prof-birthdate']   || null,
+    nationality:     values['prof-nationality'] || null,
+    situation:       values['prof-situation']   || null,
+    profession:      values['prof-profession']  || null,
+    monthly_income:  parseFloat(values['prof-income'])   || null,
+    monthly_charges: parseFloat(values['prof-charges'])  || null,
+  }).eq('id', userId);
+
+  if (error) { showToast('Fehler: ' + error.message); return; }
+  showToast('Profil gespeichert.');
 }
 
 /* ---- Toast notification ---- */
