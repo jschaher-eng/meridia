@@ -85,16 +85,24 @@ for (const key of Object.keys(convMap)) {
 }
 
 async function loadDocuments() {
-  DOCUMENTS = [];
-}
-
-async function updateKPIs() {
-  KPIS.totalClients   = CLIENTS.length;
-  KPIS.activeLoans    = LOANS.filter(l => l.status === 'active').length;
-  KPIS.pendingLoans   = LOANS.filter(l => l.status === 'pending').length;
-  KPIS.totalEncours   = LOANS.filter(l => l.status === 'active').reduce((s,l) => s + l.amount, 0);
-  KPIS.unreadMessages = 0;
-  KPIS.pendingDocs    = 0;
+  const { data, error } = await supabase
+    .from('documents')
+    .select('*, loans ( reference )')
+    .order('created_at', { ascending: false });
+  if (error) { console.error('loadDocuments:', error.message); return; }
+  DOCUMENTS = (data || []).map(d => ({
+    id:       d.id,
+    clientId: d.user_id,
+    client:   d.user_id,
+    loan:     d.loans?.reference || '—',
+    name:     d.name || 'Document',
+    type:     d.type || 'autre',
+    size:     d.size || '—',
+    date:     formatDate(d.created_at),
+    status:   d.status || 'pending',
+    ext:      d.ext || 'PDF',
+    path:     d.path || null,
+  }));
 }
 
 async function loadAllData() {
