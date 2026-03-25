@@ -11,53 +11,65 @@ var applyData = {
 
 /* ---- Page router ---- */
 function goPage(id) {
-  document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
-  const el = document.getElementById('pg-' + id);
-  if (el) el.classList.add('act');
+  /* Fade out pages actives */
+  document.querySelectorAll('.pg.act').forEach(function(p) {
+    p.style.opacity = '0';
+  });
 
-  // Update nav active state
-  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('act'));
-  const map = { home: 0, prods: 1, sim: 2, apply: 3 };
-  const btns = document.querySelectorAll('.nav-link');
-  if (map[id] !== undefined && btns[map[id]]) btns[map[id]].classList.add('act');
+  setTimeout(function() {
+    document.querySelectorAll('.pg').forEach(function(p) { p.classList.remove('act'); });
+    var el = document.getElementById('pg-' + id);
+    if (el) {
+      el.classList.add('act');
+      setTimeout(function() { el.style.opacity = '1'; }, 10);
+    }
 
-  // If going to dash, reset to overview panel
-  if (id === 'dash') {
-    document.querySelectorAll('.dpanel').forEach(d => d.classList.remove('act'));
-    var ov = document.getElementById('dp-vue');
-    if (ov) ov.classList.add('act');
-    document.querySelectorAll('.sb-menu a').forEach(a => a.classList.remove('act'));
-    var sm = document.getElementById('sm-vue');
-    if (sm) sm.classList.add('act');
-    _supabase.auth.getUser().then(function(r) {
-      if (!r.data.user) return;
-      var user = r.data.user;
-      var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
-      var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
-      var el = document.getElementById('sb-name');
-      var av = document.getElementById('sb-avatar');
-      var gr = document.getElementById('dash-greeting');
-      if (el) el.textContent = name;
-      if (av) av.textContent = initials;
-      if (gr) gr.textContent = name.split(' ')[0] + ',';
-      var since = new Date(user.created_at).getFullYear();
-      var sinceEl = document.querySelector('.sb-type');
-      if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
-      loadDashboard();
-    });
-     /* Masquer les boutons connexion/inscription */
-    var btnLogin   = document.querySelector('.btn-outline.btn-sm[onclick*="auth"]');
-    var btnRegister = document.querySelector('.btn-primary.btn-sm[onclick*="auth"]');
-    var notifBtn   = document.querySelector('.notif-btn');
-    if (btnLogin)    btnLogin.style.display    = 'none';
-    if (btnRegister) btnRegister.style.display = 'none';
-    if (notifBtn)    notifBtn.style.display    = 'flex';
-  }
+    document.querySelectorAll('.nav-link').forEach(function(b) { b.classList.remove('act'); });
+    var map = { home:0, prods:1, sim:2, apply:3 };
+    var btns = document.querySelectorAll('.nav-link');
+    if (map[id] !== undefined && btns[map[id]]) btns[map[id]].classList.add('act');
 
-  closeNotif();
-  window.scrollTo(0, 0);
+    if (id === 'dash') {
+      document.querySelectorAll('.dpanel').forEach(function(d) { d.classList.remove('act'); });
+      var ov = document.getElementById('dp-vue');
+      if (ov) ov.classList.add('act');
+      document.querySelectorAll('.sb-menu a').forEach(function(a) { a.classList.remove('act'); });
+      var sm = document.getElementById('sm-vue');
+      if (sm) sm.classList.add('act');
+
+      _supabase.auth.getUser().then(function(r) {
+        if (!r.data.user) return;
+        var user = r.data.user;
+        var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
+        var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
+        var elName = document.getElementById('sb-name');
+        var av = document.getElementById('sb-avatar');
+        var gr = document.getElementById('dash-greeting');
+        if (elName) elName.textContent = name;
+        if (av)     av.textContent     = initials;
+        if (gr)     gr.textContent     = name.split(' ')[0] + ',';
+        var since = new Date(user.created_at).getFullYear();
+        var sinceEl = document.querySelector('.sb-type');
+        if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
+        loadDashboard();
+        loadLastMessages();
+      });
+
+      var btnLogin    = document.querySelector('.btn-outline.btn-sm[onclick*="auth"]');
+      var btnRegister = document.querySelector('.btn-primary.btn-sm[onclick*="auth"]');
+      if (btnLogin)    btnLogin.style.display    = 'none';
+      if (btnRegister) btnRegister.style.display = 'none';
+    }
+
+    closeNotif();
+    window.scrollTo(0, 0);
+  }, 150);
 }
 
+function showLoader(show) {
+  var loader = document.getElementById('page-loader');
+  if (loader) loader.style.display = show ? 'flex' : 'none';
+}
 /* ---- Dashboard tab router ---- */
 function dashTab(t) {
   document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
