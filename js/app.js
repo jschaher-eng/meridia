@@ -45,6 +45,13 @@ function goPage(id) {
       if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
       loadDashboard();
     });
+     /* Masquer les boutons connexion/inscription */
+    var btnLogin   = document.querySelector('.btn-outline.btn-sm[onclick*="auth"]');
+    var btnRegister = document.querySelector('.btn-primary.btn-sm[onclick*="auth"]');
+    var notifBtn   = document.querySelector('.notif-btn');
+    if (btnLogin)    btnLogin.style.display    = 'none';
+    if (btnRegister) btnRegister.style.display = 'none';
+    if (notifBtn)    notifBtn.style.display    = 'flex';
   }
 
   closeNotif();
@@ -217,6 +224,11 @@ async function doRegister() {
 
 async function doLogout() {
   await _supabase.auth.signOut();
+  /* Réafficher les boutons */
+  var btnLogin    = document.querySelector('.btn-outline.btn-sm[onclick*="auth"]');
+  var btnRegister = document.querySelector('.btn-primary.btn-sm[onclick*="auth"]');
+  if (btnLogin)    btnLogin.style.display    = '';
+  if (btnRegister) btnRegister.style.display = '';
   goPage('home');
 }
 
