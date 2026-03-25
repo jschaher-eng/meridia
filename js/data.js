@@ -105,10 +105,21 @@ async function loadDocuments() {
   }));
 }
 
+async function updateKPIs() {
+  KPIS.totalClients   = CLIENTS.length;
+  KPIS.activeLoans    = LOANS.filter(l => l.status === 'active').length;
+  KPIS.pendingLoans   = LOANS.filter(l => l.status === 'pending').length;
+  KPIS.totalEncours   = LOANS.filter(l => l.status === 'active').reduce((s,l) => s + l.amount, 0);
+  KPIS.unreadMessages = Object.values(MSG_CONVERSATIONS).reduce((s,c) => s + c.unread, 0);
+  KPIS.pendingDocs    = DOCUMENTS.filter(d => d.status === 'pending').length;
+}
+
 async function loadAllData() {
   showLoadingState(true);
   try {
     await loadLoans();
+    await loadMessages();
+    await loadDocuments();
     await updateKPIs();
   } catch(err) {
     console.error('Erreur chargement:', err);
