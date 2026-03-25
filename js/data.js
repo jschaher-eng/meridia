@@ -18,7 +18,7 @@ async function loadLoans() {
   LOANS = (data || []).map(l => ({
     id: l.id,
     ref: l.reference || ('BM-' + l.id.slice(0,8).toUpperCase()),
-    client: l.user_id || '—',
+    client:   l.user_id,
     clientId: l.user_id,
     type: l.type || 'Privatkredit',
     amount: l.amount || 0,
@@ -28,6 +28,15 @@ async function loadLoans() {
     monthly: calcMonthly(l.amount, l.duration, l.rate),
     created: formatDate(l.created_at),
   }));
+
+  LOANS.forEach(function(loan) {
+    var profile = CLIENTS.find(function(c) { return c.id === loan.clientId; });
+    if (profile) loan.client = profile.name;
+  });
+
+  CLIENTS.forEach(function(c) { 
+    c.loans = LOANS.filter(function(l) { return l.clientId === c.id; }).length; 
+  });
 }
 
 async function loadMessages() {
@@ -117,6 +126,7 @@ async function updateKPIs() {
 async function loadAllData() {
   showLoadingState(true);
   try {
+    await loadClients();
     await loadLoans();
     await loadMessages();
     await loadDocuments();
