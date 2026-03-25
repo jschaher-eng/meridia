@@ -96,8 +96,8 @@ function applyStep(n) {
     applyData.lname       = document.querySelectorAll('#af2 .fg-row input')[1]?.value.trim() || '';
     applyData.email       = document.querySelector('#af2 input[type="email"]')?.value.trim() || '';
     applyData.phone       = document.querySelector('#af2 input[type="tel"]')?.value || '';
-    applyData.city        = document.querySelectorAll('#af2 input[type="text"]')[1]?.value || '';
-    applyData.postal_code = document.querySelector('#af2 input[maxlength="5"]')?.value || '';
+    applyData.city        = document.querySelectorAll('#af2 input[type="text"]')[3]?.value || '';
+    applyData.postal_code = document.querySelectorAll('#af2 input[type="text"]')[2]?.value || '';
   }
   if (document.getElementById('af3') && document.getElementById('af3').classList.contains('act')) {
     applyData.income   = parseFloat(document.querySelectorAll('#af3 input[type="number"]')[0]?.value) || 0;
