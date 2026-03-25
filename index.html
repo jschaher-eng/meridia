@@ -611,16 +611,11 @@
           <div>
             <div class="dbox">
               <div class="dbox-h" data-i18n="dash.last_messages">Letzte Nachrichten</div>
-              <div class="lr" style="cursor:pointer;align-items:flex-start;gap:10px" onclick="dashTab('messages')">
-                <div style="width:30px;height:30px;border-radius:50%;background:var(--info-bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--info-txt);flex-shrink:0">SB</div>
-                <div><div class="ln" style="color:var(--navy)">Sophie Bernard <span class="badge badge-info" style="font-size:9px" data-i18n="dash.unread">Ungelesen</span></div><div class="lm" data-i18n="dash.msg1_prev">Ihre Akte wurde validiert - Kreditangebot unterzeichnet!</div><div class="lm" style="margin-top:2px" data-i18n="dash.msg1_time">Vor 2 Stunden</div></div>
-              </div>
-              <div class="lr" style="cursor:pointer;align-items:flex-start;gap:10px" onclick="dashTab('messages')">
-                <div style="width:30px;height:30px;border-radius:50%;background:var(--info-bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--info-txt);flex-shrink:0">SB</div>
-                <div><div class="ln">Sophie Bernard</div><div class="lm" data-i18n="dash.msg2_prev">Zuegern Sie nicht, mich bei Fragen zu kontaktieren...</div><div class="lm" style="margin-top:2px" data-i18n="dash.yesterday">Gestern</div></div>
-              </div>
-              <div class="mt-2"><button class="btn btn-outline btn-sm" onclick="dashTab('messages')" data-i18n="dash.see_all_msgs">Alle Nachrichten anzeigen</button></div>
+               <div id="last-messages-preview">
+               <p style="font-size:12px;color:var(--text-muted);padding:8px 0">Keine Nachrichten.</p>
             </div>
+         <div class="mt-2"><button class="btn btn-outline btn-sm" onclick="dashTab('messages')" data-i18n="dash.see_all_messages">Alle Nachrichten anzeigen</button></div>
+         </div>
             <div class="dbox">
               <div class="dbox-h" data-i18n="dash.last_dues">Letzte Faelligkeiten</div>
               <div id="payments-list"></div>
@@ -645,12 +640,12 @@
             </div>
             <div class="dbox">
               <div class="dbox-h" data-i18n="dashboard.advisor">Ihre Beraterin</div>
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-                <div style="width:38px;height:38px;border-radius:50%;background:var(--info-bg);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--info-txt)">SB</div>
-                <div><div class="ln">Sophie Bernard</div><div class="lm" data-i18n="dash.advisor_role">Kundenbetreuerin</div></div>
-              </div>
-              <button class="btn btn-outline btn-full btn-sm" onclick="dashTab('messages')" data-i18n="dashboard.send_message">Nachricht senden</button>
-            </div>
+               <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div style="width:38px;height:38px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#fff">BM</div>
+                 <div><div class="ln">B-Mo Financial</div><div class="lm" data-i18n="dash.advisor_role">Kundenbetreuerin</div></div>
+             </div>
+  <button class="btn btn-outline btn-full btn-sm" onclick="dashTab('messages')" data-i18n="dashboard.send_message">Nachricht senden</button>
+</div>
           </div>
         </div>
       </div>
