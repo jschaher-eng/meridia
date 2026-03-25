@@ -355,7 +355,21 @@
       <div>
         <div class="card-h">Finances</div>
         <div class="prow"><span class="pl">Revenus/mois</span><span class="pv" id="mc-income"></span></div>
-        <div class="prow"><span class="pl">Score crédit</span><span class="pv" id="mc-score"></span></div>
+        <div class="prow">
+        <span class="pl">Score crédit</span>
+        <span class="pv" style="display:flex;align-items:center;gap:8px">
+        <span id="mc-score"></span>
+        <input type="number" id="mc-score-input" min="0" max="850" placeholder="Score" style="width:70px;padding:3px 6px;border:0.5px solid var(--border-md);border-radius:3px;font-size:11px;font-family:var(--font-sans)">
+        <select id="mc-score-label" style="padding:3px 6px;border:0.5px solid var(--border-md);border-radius:3px;font-size:11px;font-family:var(--font-sans)">
+      <option value="Ausgezeichnet">Ausgezeichnet</option>
+      <option value="Sehr gut">Sehr gut</option>
+      <option value="Gut">Gut</option>
+      <option value="Befriedigend">Befriedigend</option>
+      <option value="Ausreichend">Ausreichend</option>
+    </select>
+    <button class="btn btn-sm btn-navy" style="padding:3px 10px;font-size:11px" onclick="saveClientScore()">OK</button>
+  </span>
+</div>
         <div class="prow"><span class="pl">Statut</span><span class="pv" id="mc-status"></span></div>
         <div class="prow"><span class="pl">Dossiers</span><span class="pv" id="mc-loans"></span></div>
       </div>
