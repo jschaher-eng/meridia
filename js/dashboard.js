@@ -236,3 +236,63 @@ async function downloadDocument(path, name) {
   a.click();
   URL.revokeObjectURL(url);
 }
+
+async function loadNotifications() {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var { data, error } = await _supabase
+    .from('notifications')
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(20);
+
+  if (error) return;
+
+  var container = document.getElementById('alerts-container');
+  if (!container) return;
+
+  if (!data || data.length === 0) {
+    container.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:1rem">Keine Benachrichtigungen.</p>';
+    return;
+  }
+
+  var typeConfig = {
+    message:  { color: 'info',   icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' },
+    status:   { color: 'ok',     icon: 'M22 11.08V12a10 10 0 1 1-5.93-9.14' },
+    document: { color: 'info',   icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' },
+    security: { color: 'danger', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    payment:  { color: 'warn',   icon: 'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6' },
+  };
+
+  container.innerHTML = data.map(function(n) {
+    var cfg = typeConfig[n.type] || typeConfig.message;
+    var d = new Date(n.created_at);
+    var time = d.toLocaleDateString('de-DE', {day:'numeric', month:'short'}) + ' ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    return '<div class="alert-item ' + cfg.color + '" style="cursor:pointer" onclick="markNotifRead(\'' + n.id + '\', this)">' +
+      '<div class="al-icon" style="background:var(--' + cfg.color + '-bg)">' +
+      '<svg viewBox="0 0 24 24" stroke="var(--' + cfg.color + '-bdr)" fill="none" stroke-width="2"><path d="' + cfg.icon + '"/></svg></div>' +
+      '<div><div class="al-title" style="color:var(--' + cfg.color + '-bdr)">' + n.title + (n.read ? '' : ' <span style="background:var(--navy);color:#fff;font-size:9px;padding:1px 6px;border-radius:10px">Neu</span>') + '</div>' +
+      '<div class="al-sub">' + (n.message || '') + '</div>' +
+      '<div class="al-time">' + time + '</div></div></div>';
+  }).join('');
+
+  /* Mettre à jour le badge */
+  var unread = data.filter(function(n) { return !n.read; }).length;
+  var badge = document.getElementById('alert-badge');
+  if (badge) { badge.textContent = unread; badge.style.display = unread > 0 ? 'inline-block' : 'none'; }
+}
+
+async function markNotifRead(id, el) {
+  await _supabase.from('notifications').update({ read: true }).eq('id', id);
+  var badge = el.querySelector('.al-title span');
+  if (badge) badge.remove();
+  var alertBadge = document.getElementById('alert-badge');
+  if (alertBadge) {
+    var count = parseInt(alertBadge.textContent) - 1;
+    alertBadge.textContent = count;
+    alertBadge.style.display = count > 0 ? 'inline-block' : 'none';
+  }
+}
