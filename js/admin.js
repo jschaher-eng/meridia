@@ -34,7 +34,7 @@ function goPanel(id) {
     renderDocuments();
     populateClientSelect();
   }
-
+}
 /* ========================================
    DASHBOARD
    ======================================== */
