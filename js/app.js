@@ -66,6 +66,7 @@ function dashTab(t) {
   if (t === 'messages') { loadClientMessages(); }
   if (t === 'docs') { loadClientDocuments(); }
   if (t === 'alertes') { loadNotifications(); }
+  if (t === 'profil') { loadDashboard(); }
   window.scrollTo(0, 0);
 }
 
