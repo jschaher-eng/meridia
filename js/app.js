@@ -392,6 +392,13 @@ async function loadDashboard() {
     if (scoreNumEl) scoreNumEl.textContent = score;
     if (scoreLblEl) scoreLblEl.textContent = scoreLabel;
     if (scoreBarEl) scoreBarEl.style.width = Math.round((score / 850) * 100) + '%';
+    var scoreDate = document.getElementById('score-updated-date');
+    if (scoreDate && p.credit_score) {
+      var today = new Date();
+      scoreDate.textContent = 'Score aktualisiert am ' + today.toLocaleDateString('de-DE', {day:'numeric', month:'long', year:'numeric'});
+    } else if (scoreDate) {
+      scoreDate.textContent = 'Score noch nicht berechnet';
+    }
   }
   var { data: loans } = await _supabase
     .from('loans')
