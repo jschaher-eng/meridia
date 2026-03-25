@@ -835,21 +835,18 @@
             </div>
           </div>
           <div class="dbox">
-            <div class="dbox-h" data-i18n="dash.recent_logins">Letzte Anmeldungen</div>
-            <div class="device-row">
-              <div><div class="device-name" style="color:var(--danger-bdr)" data-i18n="dash.unknown_device_name">Chrome - Windows - Paris</div><div class="device-meta" data-i18n="dash.unknown_device_meta">Unbekanntes Geraet - Heute 10:42 Uhr</div></div>
-              <button class="badge badge-err" style="cursor:pointer;border:none" onclick="blockDevice(this)" data-i18n="dash.block">Blockieren</button>
-            </div>
-            <div class="device-row">
-              <div><div class="device-name" data-i18n="dash.device_iphone">Safari - iPhone - Paris</div><div class="device-meta" data-i18n="dash.device_iphone_meta">20. Maerz 2025 - 09:22 Uhr - Ihr gewohntes Geraet</div></div>
-              <span class="badge badge-ok" data-i18n="dash.approved">Genehmigt</span>
-            </div>
-            <div class="device-row">
-              <div><div class="device-name" data-i18n="dash.device_mac">Chrome - Mac - Paris</div><div class="device-meta" data-i18n="dash.device_mac_meta">19. Maerz 2025 - 14:05 Uhr</div></div>
-              <span class="badge badge-ok" data-i18n="dash.approved">Genehmigt</span>
-            </div>
-            <div class="security-note" data-i18n="dash.security_note">Alle Verbindungen sind SSL/TLS 256-Bit-verschluesselt. Bei verdaechtigen Aktivitaeten wird Ihr Konto automatisch gesichert.</div>
-          </div>
+           <div class="dbox-h" data-i18n="dash.recent_connections">Letzte Anmeldungen</div>
+           <div id="security-sessions">
+          <div class="device-row">
+          <div>
+          <div class="device-name" id="current-session-device">Aktuelle Sitzung</div>
+          <div class="device-meta" id="current-session-time">—</div>
+        </div>
+         <span class="badge badge-ok" data-i18n="dash.approved">Genehmigt</span>
+       </div>
+     </div>
+  <div class="security-note" data-i18n="dash.security_note">Alle Verbindungen sind SSL/TLS 256-Bit-verschluesselt.</div>
+</div>
         </div>
       </div>
 
