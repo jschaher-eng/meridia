@@ -38,6 +38,7 @@ function goPanel(id) {
         CLIENTS.map(function(c) { return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
     }
   }
+}
 /* ========================================
    DASHBOARD
    ======================================== */
