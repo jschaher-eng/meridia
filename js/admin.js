@@ -32,13 +32,11 @@ function goPanel(id) {
   if (id === 'messaging')  { loadMessages().then(function() { renderMessaging(); }); }
   if (id === 'documents') {
     renderDocuments();
-    var select = document.getElementById('doc-client-select');
-    if (select && CLIENTS.length > 0) {
+    populateClientSelect();
+  }
       select.innerHTML = '<option value="">Sélectionner un client...</option>' +
         CLIENTS.map(function(c) { return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
     }
-  }
-}
 /* ========================================
    DASHBOARD
    ======================================== */
