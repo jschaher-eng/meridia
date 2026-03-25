@@ -67,6 +67,7 @@ function dashTab(t) {
   if (t === 'docs') { loadClientDocuments(); }
   if (t === 'alertes') { loadNotifications(); }
   if (t === 'profil') { loadDashboard(); }
+  if (t === 'securite') { loadSecurityInfo(); }
   window.scrollTo(0, 0);
 }
 
