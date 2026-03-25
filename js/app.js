@@ -63,7 +63,7 @@ function goPage(id) {
 
     closeNotif();
     window.scrollTo(0, 0);
-  }, 150);
+  }, 200);
 }
 
 function showLoader(show) {
