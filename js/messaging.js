@@ -217,3 +217,36 @@ async function markMessagesAsRead() {
     .eq('to_id', userId)
     .eq('read', false);
 }
+
+async function loadLastMessages() {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var { data } = await _supabase
+    .from('messages')
+    .select('*')
+    .or('from_id.eq.' + userId + ',to_id.eq.' + userId)
+    .order('created_at', { ascending: false })
+    .limit(2);
+
+  var container = document.getElementById('last-messages-preview');
+  if (!container) return;
+
+  if (!data || data.length === 0) {
+    container.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:8px 0">Keine Nachrichten.</p>';
+    return;
+  }
+
+  var ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
+  container.innerHTML = data.map(function(m) {
+    var isAdmin = m.from_id === ADMIN_ID;
+    var d = new Date(m.created_at);
+    var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    return '<div class="lr" style="cursor:pointer;align-items:flex-start;gap:10px" onclick="dashTab(\'messages\')">' +
+      '<div style="width:30px;height:30px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#fff;flex-shrink:0">' + (isAdmin ? 'BM' : 'Sie') + '</div>' +
+      '<div><div class="ln">' + (isAdmin ? 'B-Mo Financial' : 'Sie') + '</div>' +
+      '<div class="lm">' + m.content.slice(0, 50) + '</div>' +
+      '<div class="lm" style="margin-top:2px">' + time + '</div></div></div>';
+  }).join('');
+}
