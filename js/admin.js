@@ -501,7 +501,8 @@ async function uploadDocument() {
   if (!clientId) { statusEl.textContent = 'Veuillez sélectionner un client.'; statusEl.style.color = 'red'; return; }
 
   var file = fileInput.files[0];
-  var fileName = clientId + '/' + Date.now() + '_' + file.name;
+  var cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+  var fileName = clientId + '/' + Date.now() + '_' + cleanName;
 
   statusEl.textContent = 'Upload en cours...';
   statusEl.style.color = 'var(--text-m)';
@@ -572,16 +573,13 @@ const channel = supabase
   .subscribe();
 
 async function populateClientSelect() {
-  var select = document.getElementById('doc-client-select');
-  if (!select) return;
-
+  var clientSelect = document.getElementById('doc-client-select');
+  if (!clientSelect) return;
   var { data, error } = await supabase
     .from('profiles')
     .select('id, full_name, email');
-
   if (error || !data) return;
-
-  select.innerHTML = '<option value="">Client auswählen...</option>' +
+  clientSelect.innerHTML = '<option value="">Client auswählen...</option>' +
     data.map(function(c) {
       return '<option value="' + c.id + '">' + (c.full_name || c.email) + '</option>';
     }).join('');
