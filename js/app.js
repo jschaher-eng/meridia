@@ -199,6 +199,7 @@ async function doLogin() {
   var btn = document.getElementById('btn-login');
   btn.textContent = '...'; btn.disabled = true;
   var result = await _supabase.auth.signInWithPassword({ email: email, password: password });
+  showLoader(false);
   if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
   errEl.style.display = 'none';
   goPage('dash');
@@ -235,7 +236,9 @@ async function doRegister() {
 }
 
 async function doLogout() {
+  showLoader(false);
   await _supabase.auth.signOut();
+  showLoader(false);
   /* Réafficher les boutons */
   var btnLogin    = document.querySelector('.btn-outline.btn-sm[onclick*="auth"]');
   var btnRegister = document.querySelector('.btn-primary.btn-sm[onclick*="auth"]');
