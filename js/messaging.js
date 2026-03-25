@@ -136,6 +136,11 @@ async function loadClientMessages() {
 }
 
 function initRealtimeMessages() {
+  var userId = null;
+  _supabase.auth.getUser().then(function(r) {
+    if (r.data.user) userId = r.data.user.id;
+  });
+
   _supabase
     .channel('client-messages')
     .on('postgres_changes',
@@ -146,10 +151,15 @@ function initRealtimeMessages() {
         var m = payload.new;
         var ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
         var isAdmin = m.from_id === ADMIN_ID;
+        
+        /* Ne pas afficher les messages envoyés par le client lui-même 
+           car déjà affichés par sendReply() */
+        if (!isAdmin) return;
+        
         var d = new Date(m.created_at);
         var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
-        var meta = isAdmin ? 'B-Mo Financial · ' + time : 'Sie · ' + time;
-        appendBubble(body, isAdmin, m.content, meta, true);
+        var meta = 'B-Mo Financial · ' + time;
+        appendBubble(body, true, m.content, meta, true);
         updateMessageBadge();
         body.scrollTop = body.scrollHeight;
       }
