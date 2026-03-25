@@ -7,9 +7,22 @@ var MSG_CONVERSATIONS = {};
 var KPIS = { totalClients:0, activeLoans:0, pendingLoans:0, totalEncours:0, unreadMessages:0, pendingDocs:0 };
 
 async function loadClients() {
-  const { data, error } = await supabase.from('loans').select('*').order('created_at', { ascending: false });
+  const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
   if (error) { console.error('loadClients:', error.message); return; }
-  CLIENTS = [];
+  CLIENTS = (data || []).map(u => ({
+    id:      u.id,
+    name:    u.full_name || u.email || '—',
+    email:   u.email || '—',
+    phone:   u.phone || '—',
+    city:    u.city || '—',
+    status:  'active',
+    score:   u.credit_score || 0,
+    income:  u.monthly_income || 0,
+    created: formatDate(u.created_at),
+    loans:   0,
+    avatar:  initials(u.full_name || u.email || '?'),
+    color:   'navy',
+  }));
 }
 
 async function loadLoans() {
