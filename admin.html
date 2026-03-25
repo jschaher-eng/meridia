@@ -232,6 +232,35 @@
 
     <!-- ==================== DOCUMENTS ==================== -->
     <div class="panel" id="panel-documents">
+    <div class="dbox mb-2">
+  <div class="dbox-h">Déposer un document pour un client</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end">
+    <div class="fg" style="margin:0">
+      <label>Client</label>
+      <select id="doc-client-select">
+        <option value="">Sélectionner un client...</option>
+      </select>
+    </div>
+    <div class="fg" style="margin:0">
+      <label>Type de document</label>
+      <select id="doc-type-select">
+        <option value="contrat">Contrat</option>
+        <option value="releve">Relevé</option>
+        <option value="offre">Offre de prêt</option>
+        <option value="tableau">Tableau d'amortissement</option>
+        <option value="attestation">Attestation</option>
+        <option value="autre">Autre</option>
+      </select>
+    </div>
+    <div>
+      <input type="file" id="doc-file-input" style="display:none" onchange="uploadDocument()">
+      <button class="btn btn-navy btn-sm" onclick="document.getElementById('doc-file-input').click()">
+        + Uploader un document
+      </button>
+    </div>
+  </div>
+  <div id="upload-status" style="margin-top:8px;font-size:12px"></div>
+</div>
       <div class="ph">
         <div><h1>Documents</h1><p id="docs-count">Chargement…</p></div>
         <div class="ph-actions">
