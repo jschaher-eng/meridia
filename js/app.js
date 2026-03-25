@@ -379,6 +379,19 @@ async function loadDashboard() {
     pel = document.getElementById('prof-city');  if (pel) pel.textContent = (p.postal_code ? p.postal_code + ' ' : '') + (p.city || '—');
     pel = document.getElementById('prof-income'); if (pel) pel.textContent = p.monthly_income ? Math.round(p.monthly_income).toLocaleString('de-DE') + ' EUR' : '—';
     pel = document.getElementById('prof-charges'); if (pel) pel.textContent = p.monthly_charges ? Math.round(p.monthly_charges).toLocaleString('de-DE') + ' EUR' : '—';
+
+    /* Score de crédit */
+    var score = p.credit_score || 0;
+    var scoreLabel = p.credit_score_label || '—';
+    var scoreEl = document.querySelector('.score-n');
+    var scoreLabelEl = document.querySelector('.score-l + div .fw-500, #dp-profil .score-excellent');
+    var scoreNumEl = document.querySelector('#dp-profil .score-n');
+    var scoreLblEl = document.querySelector('#dp-profil .score-excellent, #dp-profil [data-i18n="dash.score_excellent"]');
+    var scoreBarEl = document.querySelector('#dp-profil .prog-fill');
+
+    if (scoreNumEl) scoreNumEl.textContent = score;
+    if (scoreLblEl) scoreLblEl.textContent = scoreLabel;
+    if (scoreBarEl) scoreBarEl.style.width = Math.round((score / 850) * 100) + '%';
   }
   var { data: loans } = await _supabase
     .from('loans')
