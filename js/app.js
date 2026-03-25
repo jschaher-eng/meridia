@@ -65,6 +65,7 @@ function dashTab(t) {
   if (t === 'dossier') { loadDashboard(); }
   if (t === 'messages') { loadClientMessages(); }
   if (t === 'docs') { loadClientDocuments(); }
+  if (t === 'alertes') { loadNotifications(); }
   window.scrollTo(0, 0);
 }
 
