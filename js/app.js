@@ -147,11 +147,30 @@ function applyStep(n) {
 }
 
 function updateSummary(step) {
-  const stepNames = ['', 'Projet', 'Identité', 'Finances', 'Documents'];
-  const prog = document.getElementById('apply-progress');
-  if (prog) prog.textContent = 'Étape ' + step + ' / 4 — ' + stepNames[step];
-}
+  var type     = document.querySelector('#af1 select')?.value || '—';
+  var amount   = document.querySelector('#af1 input[type="number"]')?.value || '—';
+  var duration = document.querySelectorAll('#af1 select')[2]?.value || '—';
+  var profile  = document.querySelectorAll('#af1 select')[1]?.value || '—';
 
+  var sumType     = document.getElementById('sum-type');
+  var sumProfile  = document.getElementById('sum-profile');
+  var sumAmount   = document.getElementById('sum-amount');
+  var sumDuration = document.getElementById('sum-duration');
+  var sumMonthly  = document.querySelector('.sa');
+
+  if (sumType)     sumType.textContent     = type;
+  if (sumProfile)  sumProfile.textContent  = profile;
+  if (sumAmount)   sumAmount.textContent   = amount ? parseInt(amount).toLocaleString('de-DE') + ' EUR' : '—';
+  if (sumDuration) sumDuration.textContent = duration;
+
+  if (sumMonthly && amount && duration) {
+    var r = 3.9 / 100 / 12;
+    var d = parseInt(duration) || 36;
+    var a = parseFloat(amount) || 0;
+    var monthly = r === 0 ? a/d : a*r*Math.pow(1+r,d)/(Math.pow(1+r,d)-1);
+    sumMonthly.textContent = Math.round(monthly).toLocaleString('de-DE') + ' EUR';
+  }
+}
 /* ---- Notification panel ---- */
 function toggleNotif() {
   document.getElementById('notif-panel').classList.toggle('open');
