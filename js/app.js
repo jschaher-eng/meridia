@@ -64,6 +64,9 @@ function goPage(id) {
     closeNotif();
     window.scrollTo(0, 0);
   }, 200);
+   if (window.location.hash !== '#' + id) {
+    history.pushState({ page: id }, '', '#' + id);
+  }
 }
 
 function showLoader(show) {
@@ -72,35 +75,40 @@ function showLoader(show) {
 }
 /* ---- Dashboard tab router ---- */
 function dashTab(t) {
-  document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
+  document.querySelectorAll('.pg').forEach(function(p) { p.classList.remove('act'); });
   var pg = document.getElementById('pg-dash');
   if (pg) pg.classList.add('act');
-  document.querySelectorAll('.dpanel').forEach(d => d.classList.remove('act'));
+  document.querySelectorAll('.dpanel').forEach(function(d) { d.classList.remove('act'); });
   var el = document.getElementById('dp-' + t);
   if (el) el.classList.add('act');
-  document.querySelectorAll('.sb-menu a').forEach(a => a.classList.remove('act'));
+  document.querySelectorAll('.sb-menu a').forEach(function(a) { a.classList.remove('act'); });
   var sm = document.getElementById('sm-' + t);
   if (sm) sm.classList.add('act');
-  if (t === 'dossier') { loadDashboard(); }
-  if (t === 'messages') { loadClientMessages(); }
-  if (t === 'docs') { loadClientDocuments(); }
-  if (t === 'alertes') { loadNotifications(); }
-  if (t === 'profil') { loadDashboard(); }
-  if (t === 'securite') { loadSecurityInfo(); }
-  window.scrollTo(0, 0);
-/* Mettre à jour la grille mobile */
+
+  /* Mettre à jour la grille mobile */
   document.querySelectorAll('.dmn-item').forEach(function(d) { d.classList.remove('act'); });
   var dmn = document.getElementById('dmn-' + t);
   if (dmn) dmn.classList.add('act');
-/* Sur mobile — cacher/montrer la nav */
+
+  /* Gérer l'historique du navigateur */
+  var newHash = '#dash/' + t;
+  if (window.location.hash !== newHash) {
+    history.pushState({ panel: t }, '', newHash);
+  }
+
+  /* Cacher/montrer la nav mobile */
   var mobileNav = document.getElementById('dash-mobile-nav');
   if (mobileNav) {
-    if (t === 'vue') {
-      mobileNav.classList.remove('panel-open');
-    } else {
-      mobileNav.classList.add('panel-open');
-    }
+    mobileNav.style.display = t === 'vue' ? '' : 'none';
   }
+
+  if (t === 'dossier')  { loadDashboard(); }
+  if (t === 'messages') { loadClientMessages(); }
+  if (t === 'docs')     { loadClientDocuments(); }
+  if (t === 'alertes')  { loadNotifications(); }
+  if (t === 'profil')   { loadDashboard(); }
+  if (t === 'securite') { loadSecurityInfo(); }
+  window.scrollTo(0, 0);
 }
 
 /* ---- Home segment switcher ---- */
@@ -643,4 +651,25 @@ document.addEventListener('DOMContentLoaded', async function() {
     el.addEventListener('input', function() { updateSummary(1); });
   });
   updateSummary(1);
+
+/* Gérer l'URL au chargement */
+  if (window.location.hash.startsWith('#dash/')) {
+    var panel = window.location.hash.replace('#dash/', '');
+    if (session) { goPage('dash'); dashTab(panel); }
+  } else if (window.location.hash === '#dash') {
+    if (session) { goPage('dash'); }
+  }
+});
+
+window.addEventListener('popstate', function(e) {
+  if (e.state && e.state.panel) {
+    dashTab(e.state.panel);
+  } else if (window.location.hash.startsWith('#dash/')) {
+    var panel = window.location.hash.replace('#dash/', '');
+    dashTab(panel);
+  } else if (window.location.hash === '#dash') {
+    dashTab('vue');
+  } else {
+    goPage('home');
+  }
 });
