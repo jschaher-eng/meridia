@@ -96,10 +96,12 @@ function dashTab(t) {
     history.pushState({ panel: t }, '', newHash);
   }
 
-  /* Cacher/montrer la nav mobile */
-  var mobileNav = document.getElementById('dash-mobile-nav');
-  if (mobileNav) {
-    mobileNav.style.display = t === 'vue' ? '' : 'none';
+  /* Cacher/montrer la nav mobile - seulement sur mobile */
+  if (window.innerWidth <= 768) {
+    var mobileNav = document.getElementById('dash-mobile-nav');
+    if (mobileNav) {
+      mobileNav.style.display = t === 'vue' ? '' : 'none';
+    }
   }
 
   if (t === 'dossier')  { loadDashboard(); }
