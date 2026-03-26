@@ -352,6 +352,34 @@
     min-width: 0 !important;
     border-right: none !important;
     border-bottom: 1px solid var(--border) !important;
+  .dash-main {
+    padding: 0 !important;
+  }
+  .dpanel {
+    padding: 0.75rem !important;
+    min-height: 100vh !important;
+  }
+  .dbox {
+    border-radius: 8px !important;
+    margin-bottom: 10px !important;
+  }
+  .dash-content {
+    padding: 0 !important;
+  }
+  .dash-mobile-nav.panel-open {
+    display: none !important;
+  }
+/* Panel plein écran sur mobile */
+  .dash-content {
+    padding: 0 !important;
+  }
+  .dpanel {
+    min-height: 100vh !important;
+  }
+  /* Cacher la grille nav quand un panel est ouvert */
+  .dash-mobile-nav.panel-open {
+    display: none !important;
+  }
   }
   .sb-menu {
     display: flex !important;
