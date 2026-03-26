@@ -341,3 +341,56 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+@media (max-width: 768px) {
+  /* Sidebar mobile */
+  .dash-layout {
+    flex-direction: column !important;
+  }
+  .dash-sidebar {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+  .sb-menu {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    padding: 8px !important;
+  }
+  .sb-menu a {
+    font-size: 11px !important;
+    padding: 6px 10px !important;
+    border-radius: 20px !important;
+    border-left: none !important;
+    background: var(--gray-100) !important;
+  }
+  .sb-menu a.act {
+    background: var(--navy) !important;
+    color: #fff !important;
+  }
+  .sb-user {
+    display: none !important;
+  }
+
+  /* Dashboard header */
+  .dash-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  /* Métriques */
+  .met-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .met .mv {
+    font-size: 18px !important;
+  }
+
+  /* Panels */
+  .dpanel {
+    padding: 1rem !important;
+  }
+}
