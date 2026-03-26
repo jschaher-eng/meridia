@@ -917,48 +917,39 @@
       </div>
 
       <!-- Messagerie -->
-      <div id="dp-messages" class="dpanel">
-        <div class="dash-header">
-          <div><h2 data-i18n="dash.secure_messaging">Sichere Nachrichten</h2><p <p id="unread-count-header"></p>3 ungelesene Nachrichten - Ende-zu-Ende-Verschluesselung</p></div>
-          <button class="btn btn-primary btn-sm" onclick="newMessage()" data-i18n="dash.new_message">+ Neue Nachricht</button>
-        </div>
-        <div class="msg-layout">
-          <div class="msg-list">
-     <div class="msg-list-header">
-  <span class="title" data-i18n="dash.conversations">Gespraeche</span>
-</div>
-<div id="msg-list-items">
-  <div style="padding:1rem;font-size:12px;color:var(--text-muted);text-align:center">Keine Nachrichten</div>
-</div>
-</div>
-<div class="msg-view">
-  <div class="msg-view-header">
-    <div class="mv-avatar" id="mv-avatar">B</div>
+<div id="dp-messages" class="dpanel">
+  <div class="dash-header">
     <div>
-      <div class="mv-name" id="mv-name">B-Mo Financial</div>
-      <div class="mv-role" data-i18n="dash.advisor_role">Kundenbetreuerin</div>
+      <h2 data-i18n="dash.secure_messaging">Sichere Nachrichten</h2>
+      <p id="unread-count-header"></p>
     </div>
+    <button class="btn btn-primary btn-sm" onclick="newMessage()" data-i18n="dash.new_message">+ Neue Nachricht</button>
   </div>
-  <div class="msg-body" id="msg-body"></div>
-  <div class="msg-compose">
-    <input type="text" id="msg-input" data-i18n="dash.msg_placeholder" placeholder="Schreiben Sie Ihre Nachricht... (Enter zum Senden)">
-    <button onclick="sendReply()" data-i18n="dash.send">Senden</button>
-  </div>
-          </div>
-          <div class="msg-view">
-            <div class="msg-view-header">
-              <div class="mv-avatar">SB</div>
-              <div><div class="mv-name">Sophie Bernard</div><div class="mv-role" data-i18n="dash.advisor_role_detail">Kundenbetreuerin - Ref. BM-2025-00147</div></div>
-              <div class="mv-time" data-i18n="dash.today_time">Heute, 10:15</div>
-            </div>
-            <div class="msg-body" id="msg-body"></div>
-            <div class="msg-compose">
-              <input type="text" id="msg-input" data-i18n="dash.msg_placeholder" placeholder="Schreiben Sie Ihre sichere Nachricht... (Enter zum Senden)">
-              <button onclick="sendReply()" data-i18n="dash.send">Senden</button>
-            </div>
-          </div>
+  <div class="msg-layout">
+    <div class="msg-list">
+      <div class="msg-list-header">
+        <span class="title" data-i18n="dash.conversations">Gespraeche</span>
+      </div>
+      <div id="msg-list-items">
+        <div style="padding:1rem;font-size:12px;color:var(--text-muted);text-align:center">Keine Nachrichten</div>
+      </div>
+    </div>
+    <div class="msg-view">
+      <div class="msg-view-header">
+        <div class="mv-avatar" id="mv-avatar">B</div>
+        <div>
+          <div class="mv-name" id="mv-name">B-Mo Financial</div>
+          <div class="mv-role" data-i18n="dash.advisor_role">Kundenbetreuerin</div>
         </div>
       </div>
+      <div class="msg-body" id="msg-body"></div>
+      <div class="msg-compose">
+        <input type="text" id="msg-input" data-i18n="dash.msg_placeholder" placeholder="Schreiben Sie Ihre Nachricht... (Enter zum Senden)">
+        <button onclick="sendReply()" data-i18n="dash.send">Senden</button>
+      </div>
+    </div>
+  </div>
+</div>
 
       <!-- Documents -->
       <div id="dp-docs" class="dpanel">
