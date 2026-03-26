@@ -330,3 +330,28 @@ h4 { font-size: 20px; }
   font-family: var(--font-sans);
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+  .grid-4 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-inner h1 {
+    font-size: 28px !important;
+  }
+  .sec-h2 {
+    font-size: 22px !important;
+  }
+  .wrap {
+    padding: 0 1rem !important;
+  }
+}
