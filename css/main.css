@@ -271,14 +271,17 @@ h4 { font-size: 16px; }
 /* --- Section headers --- */
 .sec-h2 {
   font-family: var(--font-serif);
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 600;
   margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 .sec-sub {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-muted);
   margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
 /* --- Responsive helpers --- */
