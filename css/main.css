@@ -43,8 +43,8 @@
   --radius-xl:   12px;
   --shadow-card: 0 1px 4px rgba(0,0,0,0.06);
   --transition:  all 0.15s ease;
-  --font-serif:  'Cormorant Garamond', Georgia, serif;
-  --font-sans:   'Jost', system-ui, sans-serif;
+  --font-serif:  'Poppins', Georgia, serif;
+  --font-sans:   'Inter', system-ui, sans-serif;
 }
 
 /* --- Reset --- */
