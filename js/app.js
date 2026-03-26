@@ -624,4 +624,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (lsm && ls) { lsm.innerHTML = ls.innerHTML; }
   }, 500);
 
+// Mise à jour du récapitulatif en temps réel
+  document.querySelectorAll('#af1 select, #af1 input').forEach(function(el) {
+    el.addEventListener('change', function() { updateSummary(1); });
+    el.addEventListener('input', function() { updateSummary(1); });
+  });
+  updateSummary(1);
 });
