@@ -49,7 +49,14 @@
   --text-sm:   16px;
   --text-lg:   20px;
 }
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
 
+* {
+  box-sizing: border-box;
+}
 /* --- Reset --- */
 *, *::before, *::after {
   box-sizing: border-box;
