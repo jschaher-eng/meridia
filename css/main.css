@@ -348,6 +348,15 @@ h4 { font-size: 20px; }
   }
   .grid-4 {
     grid-template-columns: 1fr 1fr !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+  .grid-4 > * {
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .team-card {
+    padding: 1.25rem 0.75rem !important;
   }
   .grid-2 {
     grid-template-columns: 1fr !important;
