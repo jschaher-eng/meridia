@@ -45,9 +45,9 @@
   --transition:  all 0.15s ease;
   --font-serif:  'Poppins', serif;
   --font-sans:   'Inter', sans-serif;
-  --text-base: 14px;
-  --text-sm:   12px;
-  --text-lg:   16px;
+  --text-base: 16px;
+  --text-sm:   14px;
+  --text-lg:   18px;
 }
 
 /* --- Reset --- */
