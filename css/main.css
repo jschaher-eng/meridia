@@ -361,4 +361,14 @@ h4 { font-size: 20px; }
   .wrap {
     padding: 0 1rem !important;
   }
+  .footer-inner {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .figures {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  section, div[style*="display:grid"] {
+    max-width: 100% !important;
+  }
 }
