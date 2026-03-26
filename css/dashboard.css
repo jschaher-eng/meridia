@@ -468,3 +468,7 @@
     display: none !important;
   }
 }
+/* Cacher l'ancienne navigation pills */
+  .sb-menu {
+    display: none !important;
+  }
