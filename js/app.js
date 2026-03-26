@@ -88,6 +88,10 @@ function dashTab(t) {
   if (t === 'profil') { loadDashboard(); }
   if (t === 'securite') { loadSecurityInfo(); }
   window.scrollTo(0, 0);
+/* Mettre à jour la grille mobile */
+  document.querySelectorAll('.dmn-item').forEach(function(d) { d.classList.remove('act'); });
+  var dmn = document.getElementById('dmn-' + t);
+  if (dmn) dmn.classList.add('act');
 }
 
 /* ---- Home segment switcher ---- */
