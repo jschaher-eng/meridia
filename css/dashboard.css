@@ -366,9 +366,7 @@
   .dash-content {
     padding: 0 !important;
   }
-  .dash-mobile-nav.panel-open {
-    display: none !important;
-  }
+     
 /* Panel plein écran sur mobile */
   .dash-content {
     padding: 0 !important;
