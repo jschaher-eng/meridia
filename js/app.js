@@ -92,6 +92,15 @@ function dashTab(t) {
   document.querySelectorAll('.dmn-item').forEach(function(d) { d.classList.remove('act'); });
   var dmn = document.getElementById('dmn-' + t);
   if (dmn) dmn.classList.add('act');
+/* Sur mobile — cacher/montrer la nav */
+  var mobileNav = document.getElementById('dash-mobile-nav');
+  if (mobileNav) {
+    if (t === 'vue') {
+      mobileNav.classList.remove('panel-open');
+    } else {
+      mobileNav.classList.add('panel-open');
+    }
+  }
 }
 
 /* ---- Home segment switcher ---- */
