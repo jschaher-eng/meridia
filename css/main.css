@@ -91,9 +91,9 @@ h1, h2, h3, h4 {
 }
 
 h1 { font-size: 78px; }
-h2 { font-size: 34px; }
-h3 { font-size: 24px; }
-h4 { font-size: 20px; }
+h2 { font-size: 40px; }
+h3 { font-size: 32px; }
+h4 { font-size: 28px; }
 
 .serif { font-family: var(--font-serif); }
 .muted { color: var(--text-muted); }
