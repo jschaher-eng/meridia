@@ -618,6 +618,29 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
     }
   }
    loadLastMessages();
+
+   /* Charger les notifications dans la vue d'ensemble */
+  var { data: notifs } = await _supabase
+    .from('notifications')
+    .select('*')
+    .eq('user_id', userId)
+    .eq('read', false)
+    .order('created_at', { ascending: false })
+    .limit(3);
+
+  var notifContainer = document.getElementById('vue-notifications-preview');
+  if (notifContainer) {
+    if (!notifs || notifs.length === 0) {
+      notifContainer.innerHTML = '<p style="font-size:12px;color:var(--text-muted)">Keine Benachrichtigungen.</p>';
+    } else {
+      notifContainer.innerHTML = notifs.map(function(n) {
+        return '<div style="padding:8px 0;border-bottom:0.5px solid var(--border)">' +
+          '<div style="font-size:12px;font-weight:500;color:var(--danger)">' + n.title + '</div>' +
+          '<div style="font-size:11px;color:var(--text-muted);margin-top:2px">' + (n.message || '') + '</div>' +
+          '</div>';
+      }).join('');
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
