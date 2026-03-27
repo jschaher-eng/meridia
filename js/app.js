@@ -737,19 +737,3 @@ window.addEventListener('popstate', function(e) {
 window.addEventListener('beforeunload', function(e) {
   // Ne rien faire — laisser le navigateur gérer
 });
-
-window.addEventListener('popstate', function(e) {
-  _supabase.auth.getSession().then(function(r) {
-    if (r.data.session) {
-      if (e.state && e.state.panel) {
-        dashTab(e.state.panel);
-      } else {
-        /* Toujours rester dans le dashboard si connecté */
-        history.pushState({ panel: 'vue' }, '', '#dash/vue');
-        dashTab('vue');
-      }
-    } else {
-      goPage('home');
-    }
-  });
-});
