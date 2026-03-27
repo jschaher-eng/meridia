@@ -39,7 +39,7 @@
   color: var(--info-txt);
   margin-bottom: 0.6rem;
 }
-.sb-name { font-size: 15px; font-weight: 500; }
+.sb-name { font-size: 18px; font-weight: 500; }
 .sb-type { font-size: 13px; color: var(--text-muted); }
 
 .sb-menu { padding: 0; }
