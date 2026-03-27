@@ -29,7 +29,15 @@ function goPanel(id) {
   if (id === 'dashboard')  renderDashboard();
   if (id === 'loans')      renderLoans();
   if (id === 'clients')    renderClients();
-  if (id === 'messaging')  { loadMessages().then(function() { renderMessaging(); }); }
+  if (id === 'messaging') { 
+    loadMessages().then(function() { 
+      if (!currentClientId) {
+        renderMessaging(); 
+      } else {
+        renderConvList();
+      }
+    }); 
+  }
   if (id === 'documents') {
     renderDocuments();
     populateClientSelect();
@@ -623,24 +631,23 @@ async function saveClientScore() {
 async function startConversationWithClient() {
   if (!currentClient) return;
   closeModal('modal-client');
-  
-  /* Définir le client actuel pour la messagerie */
   currentClientId = currentClient.id;
-  
-  /* Ouvrir le panel messagerie */
-  await goPanel('messaging');
-  
-  /* Sélectionner la conversation de ce client si elle existe */
-  var convKey = currentClient.id;
-  if (MSG_CONVERSATIONS[convKey]) {
-    selectConv(convKey);
-  } else {
-    /* Pas encore de conversation — préparer l'interface */
+
+  /* Charger les messages puis ouvrir le panel */
+  await loadMessages();
+  goPanel('messaging');
+
+  setTimeout(function() {
+    var convKey = currentClient.id;
     setEl('mv-name', currentClient.name);
-    setEl('mv-sub', currentClient.email);
+    setEl('mv-sub', currentClient.email || '');
     var av = document.getElementById('mv-avatar');
-    if (av) { av.textContent = currentClient.avatar; av.className = 'av av-md av-navy'; }
+    if (av) { av.textContent = currentClient.avatar || '?'; av.className = 'av av-md av-navy'; }
     var body = document.getElementById('msg-body-admin');
-    if (body) body.innerHTML = '<p style="text-align:center;color:var(--text-m);font-size:12px;padding:2rem">Noch keine Nachrichten. Schreiben Sie die erste Nachricht.</p>';
-  }
+    if (MSG_CONVERSATIONS[convKey]) {
+      selectConv(convKey);
+    } else {
+      if (body) body.innerHTML = '<p style="text-align:center;color:var(--text-m);font-size:12px;padding:2rem">Noch keine Nachrichten.</p>';
+    }
+  }, 200);
 }
