@@ -371,9 +371,7 @@
   .dash-content {
     padding: 0 !important;
   }
-  .dpanel {
-    min-height: 100vh !important;
-  }
+  
   /* Cacher la grille nav quand un panel est ouvert */
   .dash-mobile-nav.panel-open {
     display: none !important;
