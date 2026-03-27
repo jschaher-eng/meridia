@@ -647,7 +647,6 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-
   var { data: { session } } = await _supabase.auth.getSession();
   if (session) {
     var user = session.user;
@@ -660,20 +659,17 @@ document.addEventListener('DOMContentLoaded', async function() {
     var since = new Date(user.created_at).getFullYear();
     var sinceEl = document.querySelector('.sb-type');
     if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
+    var savedPanel = window.location.hash.startsWith('#dash/') 
+      ? window.location.hash.replace('#dash/', '') 
+      : 'vue';
     goPage('dash');
     initRealtimeMessages();
-    /* Restaurer le panel depuis l'URL */
-    if (window.location.hash.startsWith('#dash/')) {
-      var panel = window.location.hash.replace('#dash/', '');
-      dashTab(panel);
-    } else {
-      dashTab('vue');
-      loadDashboard();
-    }
+    setTimeout(function() {
+      dashTab(savedPanel);
+    }, 100);
   } else {
     goPage('home');
   }
-
   setTimeout(function() {
     var lsm = document.getElementById('lang-selector-mobile');
     var ls  = document.getElementById('lang-selector');
