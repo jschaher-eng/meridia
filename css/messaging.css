@@ -184,3 +184,12 @@
   .msg-layout { grid-template-columns: 1fr; }
   .msg-list { max-height: 240px; overflow-y: auto; border-right: none; border-bottom: 0.5px solid var(--border); }
 }
+
+@media (max-width: 768px) {
+  .msg-list {
+    display: none !important;
+  }
+  .msg-view-header .mv-role {
+    display: none !important;
+  }
+}
