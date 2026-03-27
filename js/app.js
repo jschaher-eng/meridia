@@ -658,15 +658,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     var sinceEl = document.querySelector('.sb-type');
     if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
     goPage('dash');
-   /* Restaurer le panel depuis l'URL */
+    initRealtimeMessages();
+    /* Restaurer le panel depuis l'URL */
     if (window.location.hash.startsWith('#dash/')) {
       var panel = window.location.hash.replace('#dash/', '');
       dashTab(panel);
     } else {
       dashTab('vue');
+      loadDashboard();
     }
-    loadDashboard();
-    initRealtimeMessages();
   } else {
     goPage('home');
   }
