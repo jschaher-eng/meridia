@@ -218,6 +218,16 @@ function applyStep(n) {
     var emailInput = document.querySelector('#af2 input[type="email"]');
     var display = document.getElementById('apply-email-display');
     if (emailInput && display) display.textContent = emailInput.value || '—';
+    
+    /* Soumettre la demande automatiquement */
+    submitLoanRequest().then(function(ref) {
+      if (ref) {
+        applyData.currentRef = ref;
+        /* Mettre à jour la page de confirmation */
+        var confirmRef = document.getElementById('confirm-ref');
+        if (confirmRef) confirmRef.textContent = ref;
+      }
+    });
   }
   // Update summary panel
   updateSummary(n);
@@ -401,12 +411,34 @@ async function doLogout() {
   goPage('home');
 }
 
+/* Étape 4 — Soumettre la demande SANS compte (au chargement de l'étape 4) */
+async function submitLoanRequest() {
+  var ref = 'BM-' + Date.now().toString().slice(-8);
+
+  var { error } = await _supabase.from('loan_requests').insert({
+    reference:   ref,
+    type:        applyData.type,
+    amount:      applyData.amount,
+    duration:    applyData.duration,
+    fname:       applyData.fname,
+    lname:       applyData.lname,
+    email:       applyData.email,
+    phone:       applyData.phone,
+    city:        applyData.city,
+    postal_code: applyData.postal_code,
+    income:      applyData.income,
+    charges:     applyData.charges,
+    status:      'pending'
+  });
+
+  if (error) { console.error('Erreur demande:', error.message); return null; }
+  return ref;
+}
+
+/* Étape 4 — Créer le compte (optionnel) */
 async function submitLoanWithAccount() {
   var password = document.getElementById('apply-password').value;
   var confirm  = document.getElementById('apply-password-confirm').value;
-  var email = applyData.email;
-  var fname = applyData.fname;
-  var lname = applyData.lname;
   var errEl    = document.getElementById('apply-account-error');
   var btn      = document.getElementById('btn-submit-apply');
 
@@ -418,71 +450,51 @@ async function submitLoanWithAccount() {
 
   btn.textContent = '...'; btn.disabled = true;
 
-  /* 1. Creer le compte */
   var signUpResult = await _supabase.auth.signUp({
-    email: email,
+    email: applyData.email,
     password: password,
-    options: { data: { full_name: fname + ' ' + lname, role: 'client' } }
+    options: { data: { full_name: applyData.fname + ' ' + applyData.lname, role: 'client' } }
   });
 
   if (signUpResult.error) {
     errEl.textContent = 'Fehler: ' + signUpResult.error.message;
     errEl.style.display = 'block';
-    btn.textContent = 'Antrag einreichen';
+    btn.textContent = 'Konto erstellen & Antrag verfolgen';
     btn.disabled = false;
     return;
   }
 
   var userId = signUpResult.data.user.id;
 
-  /* 2. Sauvegarder le profil */
   await _supabase.from('profiles').upsert({
-    id:        userId,
-    full_name: fname + ' ' + lname,
-    email:     email,
-    phone:       applyData.phone || null,
-    city:        applyData.city || null,
-    postal_code: applyData.postal_code || null,
+    id:              userId,
+    full_name:       applyData.fname + ' ' + applyData.lname,
+    email:           applyData.email,
+    phone:           applyData.phone || null,
+    city:            applyData.city || null,
+    postal_code:     applyData.postal_code || null,
     monthly_income:  applyData.income || null,
     monthly_charges: applyData.charges || null,
   });
 
-  /* 3. Sauvegarder la demande */
-  var type     = document.querySelector('#af1 select').value;
-  var amount   = document.querySelector('#af1 input[type="number"]').value;
-  var duration = document.querySelectorAll('#af1 select')[1].value;
-  var ref      = 'BM-' + Date.now().toString().slice(-8);
-
   await _supabase.from('loans').insert({
     user_id:   userId,
-    reference: ref,
+    reference: applyData.currentRef || ('BM-' + Date.now().toString().slice(-8)),
     type:      applyData.type,
     amount:    applyData.amount,
     duration:  applyData.duration,
     status:    'pending'
   });
 
-  /* 4. Connecter automatiquement */
-  await _supabase.auth.signInWithPassword({ email: email, password: password });
+  await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
+    .eq('reference', applyData.currentRef);
 
-  /* Afficher la page de confirmation */
-  var confirmRef      = document.getElementById('confirm-ref');
-  var confirmType     = document.getElementById('confirm-type');
-  var confirmAmount   = document.getElementById('confirm-amount');
-  var confirmDuration = document.getElementById('confirm-duration');
-  var confirmEmail    = document.getElementById('confirm-email');
+  await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
 
-  if (confirmRef)      confirmRef.textContent      = ref;
-  if (confirmType)     confirmType.textContent     = applyData.type;
-  if (confirmAmount)   confirmAmount.textContent   = Math.round(applyData.amount).toLocaleString('de-DE') + ' EUR';
-  if (confirmDuration) confirmDuration.textContent = applyData.duration + ' Monate';
-  if (confirmEmail)    confirmEmail.textContent    = applyData.email;
-   
-  btn.textContent = 'Antrag einreichen';
+  btn.textContent = 'Konto erstellen & Antrag verfolgen';
   btn.disabled = false;
-
-  /* 5. Rediriger vers le dashboard */
-  goPage('confirm');
+  goPage('dash');
+  loadDashboard();
 }
 
 function renderTimeline(status) {
