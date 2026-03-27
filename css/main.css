@@ -347,7 +347,7 @@ h4 { font-size: 28px; }
     grid-template-columns: 1fr !important;
   }
   .grid-4 {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1fr !important;
     width: 100% !important;
     overflow: hidden !important;
   }
