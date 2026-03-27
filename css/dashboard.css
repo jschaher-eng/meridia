@@ -415,4 +415,25 @@
     background: var(--white);
     margin: 0;
   }
+   #pg-dash {
+    background: var(--gray-100);
+  }
+  .dpanel {
+    background: var(--gray-100) !important;
+    padding: 0 !important;
+  }
+  .dbox {
+    background: var(--white);
+    margin: 0 0 8px 0 !important;
+    border-radius: 0 !important;
+    padding: 16px !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+  .dash-header {
+    background: var(--white);
+    padding: 16px !important;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
 }
