@@ -436,6 +436,10 @@
     margin-bottom: 8px;
     border-bottom: 1px solid var(--border);
   }
+   
+  #unread-count-header {
+    display: none !important;
+  }
 }
 
 #pg-dash {
