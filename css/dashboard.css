@@ -342,97 +342,24 @@
   transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-  /* Sidebar mobile */
-  .dash-layout {
-    flex-direction: column !important;
-  }
-  .dash-sidebar {
-    width: 100% !important;
-    min-width: 0 !important;
-    border-right: none !important;
-    border-bottom: 1px solid var(--border) !important;
-  .dash-main {
-    padding: 0 !important;
-  }
-  .dpanel {
-    padding: 0.75rem !important;
-    min-height: 100vh !important;
-  }
-  .dbox {
-    border-radius: 8px !important;
-    margin-bottom: 10px !important;
-  }
-  .dash-content {
-    padding: 0 !important;
-  }
-     
-/* Panel plein écran sur mobile */
-  .dash-content {
-    padding: 0 !important;
-  }
-  
-  /* Cacher la grille nav quand un panel est ouvert */
-  .dash-mobile-nav.panel-open {
-    display: none !important;
-  }
-  }
-  .sb-menu {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 4px !important;
-    padding: 8px !important;
-  }
-  .sb-menu a {
-    font-size: 11px !important;
-    padding: 6px 10px !important;
-    border-radius: 20px !important;
-    border-left: none !important;
-    background: var(--gray-100) !important;
-  }
-  .sb-menu a.act {
-    background: var(--navy) !important;
-    color: #fff !important;
-  }
-  .sb-user {
-    display: none !important;
-  }
-
-  /* Dashboard header */
-  .dash-header-row {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-  }
-
-  /* Métriques */
-  .met-grid {
-    grid-template-columns: 1fr 1fr !important;
-  }
-  .met .mv {
-    font-size: 16px !important;
-    word-break: break-word !important;
-  }
-  .met .ml {
-    font-size: 9px !important;
-    letter-spacing: 0.03em !important;
-  }
-  .met {
-    padding: 0.75rem !important;
-  }
-
-  /* Panels */
-  .dpanel {
-    padding: 1rem !important;
-  }
-}
-
 /* Navigation mobile grille */
-.dash-mobile-nav {
-  display: none;
-}
+.dash-mobile-nav { display: none; }
+.mobile-back { display: none; }
+.sb-menu { display: block; }
 
 @media (max-width: 768px) {
+  .dash-layout { flex-direction: column !important; }
+  .dash-sidebar { display: none !important; }
+  .dash-main { padding: 0 !important; }
+  .dash-content { padding: 0 !important; }
+  .dpanel { padding: 0.75rem !important; min-height: auto !important; }
+  .dbox { border-radius: 8px !important; margin-bottom: 10px !important; }
+  .met { padding: 0.75rem !important; }
+  .met .mv { font-size: 16px !important; word-break: break-word !important; }
+  .met .ml { font-size: 9px !important; letter-spacing: 0.03em !important; }
+  .sb-menu { display: none !important; }
+  .sb-user { display: none !important; }
+  .sb-bottom { display: none !important; }
   .dash-mobile-nav {
     display: block;
     background: var(--white);
@@ -456,59 +383,25 @@
     transition: background 0.15s ease;
     background: var(--gray-100);
   }
-  .dmn-item:active {
-    background: var(--gray-200);
-  }
-  .dmn-item.act {
-    background: var(--navy);
-    color: white;
-  }
-  .dmn-item svg {
-    width: 22px;
-    height: 22px;
-    stroke: var(--text-muted);
-  }
-  .dmn-item.act svg {
-    stroke: white;
-  }
-  .dmn-item span {
-    font-size: 10px;
-    color: var(--text-muted);
-    font-weight: 500;
-    text-align: center;
-  }
-  .dmn-item.act span {
-    color: white;
-  }
+  .dmn-item:active { background: var(--gray-200); }
+  .dmn-item.act { background: var(--navy); color: white; }
+  .dmn-item svg { width: 22px; height: 22px; stroke: var(--text-muted); }
+  .dmn-item.act svg { stroke: white; }
+  .dmn-item span { font-size: 10px; color: var(--text-muted); font-weight: 500; text-align: center; }
+  .dmn-item.act span { color: white; }
   .dmn-badge {
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: 6px; right: 6px;
     background: #e53e3e;
     color: white;
     font-size: 9px;
-    width: 16px;
-    height: 16px;
+    width: 16px; height: 16px;
     border-radius: 50%;
     display: flex !important;
     align-items: center;
     justify-content: center;
     font-weight: 600;
   }
-  /* Cacher la sidebar normale sur mobile */
-  .dash-sidebar {
-    display: none !important;
-  }
-}
-/* Cacher l'ancienne navigation pills */
-  .sb-menu {
-    display: none !important;
-  }
-
-.mobile-back {
-  display: none;
-}
-@media (max-width: 768px) {
   .mobile-back {
     display: flex;
     align-items: center;
