@@ -142,6 +142,49 @@ function authTab(t) {
 
 /* ---- Apply multi-step form ---- */
 function applyStep(n) {
+  /* Validation de l'étape courante */
+  var currentStep = null;
+  for (var i = 1; i <= 4; i++) {
+    var f = document.getElementById('af' + i);
+    if (f && f.classList.contains('act')) { currentStep = i; break; }
+  }
+
+  if (currentStep && n > currentStep) {
+    var errors = [];
+
+    if (currentStep === 1) {
+      var type = document.querySelector('#af1 select')?.value;
+      var amount = document.querySelector('#af1 input[type="number"]')?.value;
+      var duration = document.querySelectorAll('#af1 select')[2]?.value;
+      if (!type) errors.push('Bitte wählen Sie einen Kredittyp.');
+      if (!amount || amount <= 0) errors.push('Bitte geben Sie einen Betrag ein.');
+      if (!duration) errors.push('Bitte wählen Sie eine Laufzeit.');
+    }
+
+    if (currentStep === 2) {
+      var fname = document.querySelectorAll('#af2 .fg-row input')[0]?.value.trim();
+      var lname = document.querySelectorAll('#af2 .fg-row input')[1]?.value.trim();
+      var email = document.querySelector('#af2 input[type="email"]')?.value.trim();
+      var phone = document.querySelector('#af2 input[type="tel"]')?.value.trim();
+      if (!fname) errors.push('Bitte geben Sie Ihren Vornamen ein.');
+      if (!lname) errors.push('Bitte geben Sie Ihren Nachnamen ein.');
+      if (!email) errors.push('Bitte geben Sie Ihre E-Mail-Adresse ein.');
+      if (!phone) errors.push('Bitte geben Sie Ihre Telefonnummer ein.');
+    }
+
+    if (currentStep === 3) {
+      var income = document.querySelectorAll('#af3 input[type="number"]')[0]?.value;
+      if (!income || income <= 0) errors.push('Bitte geben Sie Ihr monatliches Einkommen ein.');
+    }
+
+    if (errors.length > 0) {
+      showToast(errors[0]);
+      /* Mettre en évidence les champs vides */
+      highlightEmptyFields(currentStep);
+      return;
+    }
+  }
+
   // Sauvegarder les données de l'étape courante
   if (document.getElementById('af1') && document.getElementById('af1').classList.contains('act')) {
     applyData.type     = document.querySelector('#af1 select')?.value || '';
@@ -178,6 +221,21 @@ function applyStep(n) {
   }
   // Update summary panel
   updateSummary(n);
+}
+
+function highlightEmptyFields(step) {
+  var panel = document.getElementById('af' + step);
+  if (!panel) return;
+  panel.querySelectorAll('input, select').forEach(function(el) {
+    if (!el.value || el.value.trim() === '') {
+      el.style.borderColor = '#A32D2D';
+      el.style.background = '#FCEBEB';
+      el.addEventListener('input', function() {
+        el.style.borderColor = '';
+        el.style.background = '';
+      }, { once: true });
+    }
+  });
 }
 
 function updateSummary(step) {
