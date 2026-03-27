@@ -643,35 +643,37 @@
         </div>
         <!-- Etape 4 -->
         <div id="af4" class="tf">
-  <div class="form-title">Ihr Konto erstellen</div>
-  <p class="form-sub">Definieren Sie ein Passwort, um Ihren Antrag zu verfolgen</p>
+  <div style="background:var(--success-bg);border:1px solid var(--success-bdr);border-radius:var(--r-lg);padding:1rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--success-bdr)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span style="font-size:13px;color:var(--success-txt)">Ihr Antrag wurde erfolgreich eingereicht! Referenz: <strong id="apply-ref-display">—</strong></span>
+  </div>
 
-  <div class="auth-note" style="margin-bottom:1rem">
-    Ihr Konto wird mit der E-Mail-Adresse <strong id="apply-email-display">—</strong> erstellt.
+  <div style="font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:0.5rem">Konto erstellen (optional)</div>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:1.5rem">Erstellen Sie ein Konto, um Ihren Antrag in Echtzeit zu verfolgen und mit uns zu kommunizieren.</p>
+
+  <div style="font-size:12px;color:var(--text-muted);margin-bottom:1rem">
+    Konto wird erstellt für: <strong id="apply-email-display">—</strong>
   </div>
 
   <div class="fg">
     <label>Passwort</label>
     <input type="password" id="apply-password" placeholder="Mindestens 8 Zeichen">
   </div>
-  <div class="fg">
+      <div class="fg">
     <label>Passwort bestaetigen</label>
     <input type="password" id="apply-password-confirm" placeholder="Passwort wiederholen">
-  </div>
+       </div>
 
-  <div id="apply-account-error" style="display:none;background:#FCEBEB;color:#791F1F;padding:10px 12px;border-radius:4px;font-size:12px;margin-bottom:1rem;border-left:3px solid #A32D2D"></div>
+       <div id="apply-account-error" style="display:none;background:#FCEBEB;color:#791F1F;padding:10px 12px;border-radius:4px;font-size:12px;margin-bottom:1rem;border-left:3px solid #A32D2D"></div>
 
-  <div style="display:flex;gap:8px">
-    <button class="btn btn-outline" style="flex:1;padding:9px" onclick="applyStep(3)" data-i18n="apply.back">Zurueck</button>
-    <button id="btn-submit-apply" class="btn btn-gold" style="flex:2;padding:9px" onclick="submitLoanWithAccount()">Antrag einreichen</button>
+       <button id="btn-submit-apply" class="btn btn-gold btn-full" style="margin-bottom:0.75rem" onclick="submitLoanWithAccount()">
+    Konto erstellen &amp; Antrag verfolgen
+       </button>
+       <button class="btn btn-outline btn-full" onclick="goPage('confirm')">
+    Ohne Konto fortfahren
+      </button>
+    </div>
   </div>
-
-  <div style="margin-top:1rem;text-align:center;font-size:12px;color:var(--text-muted)">
-    <span>Bereits ein Konto? </span>
-    <span style="color:var(--gold);cursor:pointer" onclick="goPage('auth')">Anmelden</span>
-  </div>
-</div>
-        </div>
       </div>
       <div class="sum-card">
         <h3 data-i18n="apply.summary">Zusammenfassung</h3>
