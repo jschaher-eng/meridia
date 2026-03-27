@@ -26,29 +26,62 @@ async function loadClients() {
 }
 
 async function loadLoans() {
-  const { data, error } = await supabase.from('loans').select('*').order('created_at', { ascending: false });
-  if (error) { console.error('loadLoans:', error.message); return; }
-  LOANS = (data || []).map(l => ({
-    id: l.id,
-    ref: l.reference || ('BM-' + l.id.slice(0,8).toUpperCase()),
-    client:   l.user_id,
-    clientId: l.user_id,
-    type: l.type || 'Privatkredit',
-    amount: l.amount || 0,
-    duration: l.duration || 36,
-    rate: l.rate || 3.9,
-    status: l.status || 'pending',
-    monthly: calcMonthly(l.amount, l.duration, l.rate),
-    created: formatDate(l.created_at),
-  }));
+  /* Charger les dossiers avec compte */
+  const { data: loans, error: err1 } = await supabase
+    .from('loans')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (err1) { console.error('loadLoans:', err1.message); }
+
+  /* Charger les demandes sans compte */
+  const { data: requests, error: err2 } = await supabase
+    .from('loan_requests')
+    .select('*')
+    .eq('converted', false)
+    .order('created_at', { ascending: false });
+  if (err2) { console.error('loadRequests:', err2.message); }
+
+  var allLoans = [
+    ...(loans || []).map(l => ({
+      id: l.id,
+      ref: l.reference || ('BM-' + l.id.slice(0,8).toUpperCase()),
+      client: l.user_id,
+      clientId: l.user_id,
+      type: l.type || 'Privatkredit',
+      amount: l.amount || 0,
+      duration: l.duration || 36,
+      rate: l.rate || 3.9,
+      status: l.status || 'pending',
+      monthly: calcMonthly(l.amount, l.duration, l.rate),
+      created: formatDate(l.created_at),
+      isRequest: false,
+    })),
+    ...(requests || []).map(r => ({
+      id: r.id,
+      ref: r.reference || ('BM-' + r.id.slice(0,8).toUpperCase()),
+      client: (r.fname || '') + ' ' + (r.lname || ''),
+      clientId: null,
+      email: r.email,
+      type: r.type || 'Privatkredit',
+      amount: r.amount || 0,
+      duration: r.duration || 36,
+      rate: 3.9,
+      status: r.status || 'pending',
+      monthly: calcMonthly(r.amount, r.duration, 3.9),
+      created: formatDate(r.created_at),
+      isRequest: true,
+    }))
+  ];
+
+  LOANS = allLoans;
 
   LOANS.forEach(function(loan) {
     var profile = CLIENTS.find(function(c) { return c.id === loan.clientId; });
     if (profile) loan.client = profile.name;
   });
 
-  CLIENTS.forEach(function(c) { 
-    c.loans = LOANS.filter(function(l) { return l.clientId === c.id; }).length; 
+  CLIENTS.forEach(function(c) {
+    c.loans = LOANS.filter(function(l) { return l.clientId === c.id; }).length;
   });
 }
 
