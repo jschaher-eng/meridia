@@ -30,9 +30,12 @@ function goPage(id) {
     if (map[id] !== undefined && btns[map[id]]) btns[map[id]].classList.add('act');
 
     if (id === 'dash') {
-      document.querySelectorAll('.dpanel').forEach(function(d) { d.classList.remove('act'); });
-      var ov = document.getElementById('dp-vue');
-      if (ov) ov.classList.add('act');
+      /* Ne réinitialiser que si pas de hash panel */
+      if (!window.location.hash.startsWith('#dash/')) {
+        document.querySelectorAll('.dpanel').forEach(function(d) { d.classList.remove('act'); });
+        var ov = document.getElementById('dp-vue');
+        if (ov) ov.classList.add('act');
+      }
       document.querySelectorAll('.sb-menu a').forEach(function(a) { a.classList.remove('act'); });
       var sm = document.getElementById('sm-vue');
       if (sm) sm.classList.add('act');
