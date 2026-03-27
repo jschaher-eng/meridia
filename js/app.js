@@ -675,13 +675,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     var savedPanel = window.location.hash.startsWith('#dash/') 
       ? window.location.hash.replace('#dash/', '') 
       : 'vue';
+
     goPage('dash');
     initRealtimeMessages();
-    if (!window.location.hash.startsWith('#dash/')) {
-      history.replaceState({ panel: 'vue' }, '', '#dash/vue');
-    }
-     
+
     setTimeout(function() {
+      /* Ajouter d'abord une entrée vue d'ensemble dans l'historique */
+      if (savedPanel !== 'vue') {
+        history.replaceState({ panel: 'vue' }, '', '#dash/vue');
+        history.pushState({ panel: savedPanel }, '', '#dash/' + savedPanel);
+      } else {
+        history.replaceState({ panel: 'vue' }, '', '#dash/vue');
+      }
       dashTab(savedPanel);
     }, 100);
   } else {
