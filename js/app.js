@@ -714,6 +714,21 @@ document.addEventListener('DOMContentLoaded', async function() {
   }
 });
 
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) {
+    /* Page restaurée depuis le cache mobile */
+    _supabase.auth.getSession().then(function(r) {
+      if (r.data.session) {
+        var savedPanel = window.location.hash.startsWith('#dash/') 
+          ? window.location.hash.replace('#dash/', '') 
+          : 'vue';
+        goPage('dash');
+        setTimeout(function() { dashTab(savedPanel); }, 100);
+      }
+    });
+  }
+});
+
 window.addEventListener('popstate', function(e) {
   _supabase.auth.getSession().then(function(r) {
     var session = r.data.session;
