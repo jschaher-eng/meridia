@@ -36,9 +36,11 @@ function goPage(id) {
         var ov = document.getElementById('dp-vue');
         if (ov) ov.classList.add('act');
       }
-      document.querySelectorAll('.sb-menu a').forEach(function(a) { a.classList.remove('act'); });
-      var sm = document.getElementById('sm-vue');
-      if (sm) sm.classList.add('act');
+      if (!window.location.hash.startsWith('#dash/')) {
+        document.querySelectorAll('.sb-menu a').forEach(function(a) { a.classList.remove('act'); });
+        var sm = document.getElementById('sm-vue');
+        if (sm) sm.classList.add('act');
+      }
 
       _supabase.auth.getUser().then(function(r) {
         if (!r.data.user) return;
@@ -664,6 +666,10 @@ document.addEventListener('DOMContentLoaded', async function() {
       : 'vue';
     goPage('dash');
     initRealtimeMessages();
+    if (!window.location.hash.startsWith('#dash/')) {
+      history.replaceState({ panel: 'vue' }, '', '#dash/vue');
+    }
+     
     setTimeout(function() {
       dashTab(savedPanel);
     }, 100);
