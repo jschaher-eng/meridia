@@ -619,3 +619,28 @@ async function saveClientScore() {
   document.getElementById('mc-score').textContent = score + ' / 850';
   showToast('Score mis à jour.');
 }
+
+async function startConversationWithClient() {
+  if (!currentClient) return;
+  closeModal('modal-client');
+  
+  /* Définir le client actuel pour la messagerie */
+  currentClientId = currentClient.id;
+  
+  /* Ouvrir le panel messagerie */
+  await goPanel('messaging');
+  
+  /* Sélectionner la conversation de ce client si elle existe */
+  var convKey = currentClient.id;
+  if (MSG_CONVERSATIONS[convKey]) {
+    selectConv(convKey);
+  } else {
+    /* Pas encore de conversation — préparer l'interface */
+    setEl('mv-name', currentClient.name);
+    setEl('mv-sub', currentClient.email);
+    var av = document.getElementById('mv-avatar');
+    if (av) { av.textContent = currentClient.avatar; av.className = 'av av-md av-navy'; }
+    var body = document.getElementById('msg-body-admin');
+    if (body) body.innerHTML = '<p style="text-align:center;color:var(--text-m);font-size:12px;padding:2rem">Noch keine Nachrichten. Schreiben Sie die erste Nachricht.</p>';
+  }
+}
