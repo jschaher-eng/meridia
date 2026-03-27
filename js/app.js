@@ -710,21 +710,14 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 window.addEventListener('popstate', function(e) {
-  _supabase.auth.getSession().then(function(r) {
-    var session = r.data.session;
-    if (session) {
-      /* Connecté — rester dans le dashboard */
-      if (e.state && e.state.panel) {
-        dashTab(e.state.panel);
-      } else if (window.location.hash.startsWith('#dash/')) {
-        var panel = window.location.hash.replace('#dash/', '');
-        dashTab(panel);
-      } else {
-        dashTab('vue');
-      }
-    } else {
-      /* Déconnecté — retourner au site */
-      goPage('home');
-    }
-  });
+  if (e.state && e.state.panel) {
+    dashTab(e.state.panel);
+  } else if (window.location.hash.startsWith('#dash/')) {
+    var panel = window.location.hash.replace('#dash/', '');
+    dashTab(panel);
+  } else if (window.location.hash === '#dash') {
+    dashTab('vue');
+  } else {
+    goPage('home');
+  }
 });
