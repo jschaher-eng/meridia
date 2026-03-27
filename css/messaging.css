@@ -44,11 +44,11 @@
   align-items: center;
   margin-bottom: 3px;
 }
-.msg-item .mi-name { font-size: 12px; color: var(--text-main); }
+.msg-item .mi-name { font-size: 14px; color: var(--text-main); }
 .msg-item.unread .mi-name { font-weight: 500; color: var(--navy); }
 .msg-item .mi-time { font-size: 10px; color: var(--text-muted); }
 .msg-item .mi-prev {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
@@ -111,7 +111,7 @@
   max-width: 72%;
   padding: 0.7rem 1rem;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.65;
 }
 .bubble.recv {
@@ -127,7 +127,7 @@
   border-bottom-right-radius: 2px;
 }
 .bubble-time {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-light);
   margin-top: 4px;
 }
