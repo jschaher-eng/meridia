@@ -344,7 +344,7 @@
 
 /* Navigation mobile grille */
 .dash-mobile-nav { display: none; }
-.mobile-back { display: none; }
+.mobile-back { display: none !important; }
 .sb-menu { display: block; }
 
 @media (max-width: 768px) {
