@@ -465,12 +465,24 @@ async function submitLoanWithAccount() {
   /* 4. Connecter automatiquement */
   await _supabase.auth.signInWithPassword({ email: email, password: password });
 
+  /* Afficher la page de confirmation */
+  var confirmRef      = document.getElementById('confirm-ref');
+  var confirmType     = document.getElementById('confirm-type');
+  var confirmAmount   = document.getElementById('confirm-amount');
+  var confirmDuration = document.getElementById('confirm-duration');
+  var confirmEmail    = document.getElementById('confirm-email');
+
+  if (confirmRef)      confirmRef.textContent      = ref;
+  if (confirmType)     confirmType.textContent     = applyData.type;
+  if (confirmAmount)   confirmAmount.textContent   = Math.round(applyData.amount).toLocaleString('de-DE') + ' EUR';
+  if (confirmDuration) confirmDuration.textContent = applyData.duration + ' Monate';
+  if (confirmEmail)    confirmEmail.textContent    = applyData.email;
+   
   btn.textContent = 'Antrag einreichen';
   btn.disabled = false;
 
   /* 5. Rediriger vers le dashboard */
-  goPage('dash');
-  loadDashboard();
+  goPage('confirm');
 }
 
 function renderTimeline(status) {
