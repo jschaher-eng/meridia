@@ -65,7 +65,7 @@ html, body {
 }
 
 html {
-  font-size: 20px;
+  font-size: 18px;
   scroll-behavior: smooth;
 }
 
@@ -120,7 +120,7 @@ h4 { font-size: 28px; }
 /* --- Cards --- */
 .card {
   background: var(--white);
-  border: 0.5px solid var(--border);
+  border: 0.8px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 1.25rem;
 }
