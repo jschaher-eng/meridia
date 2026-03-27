@@ -60,10 +60,16 @@ function goPage(id) {
         loadLastMessages();
       });
 
-      var btnLogin    = document.querySelector('.btn-outline.btn-sm[onclick*="auth"]');
-      var btnRegister = document.querySelector('.btn-primary.btn-sm[onclick*="auth"]');
-      if (btnLogin)    btnLogin.style.display    = 'none';
-      if (btnRegister) btnRegister.style.display = 'none';
+      /* Cacher toute la navigation quand connecté */
+      var mainNav = document.querySelector('.main-nav');
+      var topBar  = document.querySelector('.topbar');
+      if (mainNav) mainNav.style.display = 'none';
+      if (topBar)  topBar.style.display  = 'none';
+      document.querySelectorAll('.mobile-menu button').forEach(function(btn) {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes('auth')) {
+          btn.style.display = 'none';
+        }
+      });
     }
 
     closeNotif();
@@ -292,6 +298,11 @@ async function doLogout() {
   if (btnLogin)    btnLogin.style.display    = '';
   if (btnRegister) btnRegister.style.display = '';
   goPage('home');
+   /* Réafficher la navigation */
+      var mainNav = document.querySelector('.main-nav');
+      var topBar  = document.querySelector('.topbar');
+      if (mainNav) mainNav.style.display = '';
+      if (topBar)  topBar.style.display  = '';
 }
 
 async function doLogin() {
