@@ -226,6 +226,16 @@ function applyStep(n) {
         /* Mettre à jour la page de confirmation */
         var confirmRef = document.getElementById('confirm-ref');
         if (confirmRef) confirmRef.textContent = ref;
+        var refDisplay = document.getElementById('apply-ref-display');
+        if (refDisplay) refDisplay.textContent = ref;
+        var confirmType = document.getElementById('confirm-type');
+        if (confirmType) confirmType.textContent = applyData.type;
+        var confirmAmount = document.getElementById('confirm-amount');
+        if (confirmAmount) confirmAmount.textContent = Math.round(applyData.amount).toLocaleString('de-DE') + ' EUR';
+        var confirmDuration = document.getElementById('confirm-duration');
+        if (confirmDuration) confirmDuration.textContent = applyData.duration + ' Monate';
+        var confirmEmail = document.getElementById('confirm-email');
+        if (confirmEmail) confirmEmail.textContent = applyData.email;
       }
     });
   }
