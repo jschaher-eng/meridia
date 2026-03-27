@@ -503,6 +503,8 @@ async function submitLoanWithAccount() {
 
   btn.textContent = 'Konto erstellen & Antrag verfolgen';
   btn.disabled = false;
+  var btnConfirm = document.getElementById('btn-confirm-account');
+  if (btnConfirm) btnConfirm.style.display = 'block';
   goPage('dash');
   loadDashboard();
 }
