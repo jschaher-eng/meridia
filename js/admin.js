@@ -193,6 +193,45 @@ async function validateLoan(id, decision) {
       'Statusaenderung Ihrer Akte',
       'Ihr Dossier wurde aktualisiert: ' + (STATUS_LABEL[decision] || decision)
     );
+   /* Récupérer l'email du client */
+  var clientProfile = CLIENTS.find(function(c) { return c.id === clientId; });
+  if (clientProfile && clientProfile.email) {
+    var statusLabelsEmail = {
+      pending:   'Antrag eingereicht',
+      reviewing: 'Dokumentenpruefung laeuft',
+      analysis:  'Aktenanalyse',
+      approved:  'Grundsatzentscheidung getroffen',
+      fees:      'Gebuehrenzahlung',
+      signed:    'Vertragsunterzeichnung',
+      funded:    'Auszahlung der Mittel',
+      active:    'In Rueckzahlung',
+      rejected:  'Antrag abgelehnt'
+    };
+    
+    sendNotificationEmail(
+      clientProfile.email,
+      'B-Mo Financial — Aktualisierung Ihrer Akte',
+      `
+      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+        <div style="background:#0C2340;padding:24px;text-align:center">
+          <h1 style="color:#fff;font-size:22px;margin:0">B-Mo Financial</h1>
+        </div>
+        <div style="padding:32px;background:#f9f9f9">
+          <h2 style="color:#0C2340;font-size:18px">Guten Tag ${clientProfile.name},</h2>
+          <p style="color:#555;line-height:1.6">Der Status Ihrer Akte wurde aktualisiert:</p>
+          <div style="background:#fff;border-left:4px solid #B8963E;padding:16px;margin:20px 0;border-radius:4px">
+            <strong style="color:#0C2340;font-size:16px">${statusLabelsEmail[decision] || decision}</strong>
+          </div>
+          <p style="color:#555;line-height:1.6">Melden Sie sich in Ihrem Kundenbereich an, um alle Details zu sehen.</p>
+          <a href="https://bmofinancial.de" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;margin-top:16px">Mein Konto aufrufen</a>
+        </div>
+        <div style="padding:16px;text-align:center;color:#999;font-size:12px">
+          B-Mo Financial · Friedrichstrasse 100 · 10117 Berlin
+        </div>
+      </div>
+      `
+    );
+  }
   }
   if (error) { showToast('Erreur : ' + error.message); return; }
 
@@ -650,4 +689,21 @@ async function startConversationWithClient() {
       if (body) body.innerHTML = '<p style="text-align:center;color:var(--text-m);font-size:12px;padding:2rem">Noch keine Nachrichten.</p>';
     }
   }, 200);
+}
+
+async function sendNotificationEmail(to, subject, html) {
+  try {
+    const res = await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/send-notification-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer sb_publishable_FBMabC65Upvntx5AMsFIjw_rHkIll9X'
+      },
+      body: JSON.stringify({ to, subject, html })
+    });
+    const data = await res.json();
+    console.log('Email envoyé:', data);
+  } catch(e) {
+    console.error('Erreur email:', e);
+  }
 }
