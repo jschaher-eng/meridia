@@ -79,8 +79,8 @@
   --transition:  all 0.2s ease;
 
   /* Polices */
-  --font-serif:  'Poppins', sans-serif;
-  --font-sans:   'Inter', sans-serif;
+  --font-serif:  'Barlow', sans-serif;
+  --font-sans:   'Montserrat', sans-serif;
 }
 
 /* --- Reset --- */
