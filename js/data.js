@@ -22,6 +22,9 @@ async function loadClients() {
     loans:   0,
     avatar:  initials(u.full_name || u.email || '?'),
     color:   'navy',
+    charges:    u.monthly_charges || 0,
+    postal_code: u.postal_code || '',
+    scoreLabel: u.credit_score_label || '—',
   }));
 }
 
