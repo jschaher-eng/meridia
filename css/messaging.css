@@ -1,0 +1,252 @@
+/* =========================================
+   B-MO FINANCIAL — messaging.css
+   Style messagerie sécurisée
+   ========================================= */
+
+.msg-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 520px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* --- Liste conversations --- */
+.msg-list {
+  background: #F5F7FA;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.msg-list-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--white);
+}
+.msg-list-header .title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0B1F3A;
+}
+.msg-list-header .unread-count {
+  font-size: 11px;
+  color: #F59E0B;
+  font-weight: 500;
+}
+
+.msg-item {
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  background: var(--white);
+}
+.msg-item:last-child { border-bottom: none; }
+.msg-item:hover { background: #F5F7FA; }
+.msg-item.act {
+  background: #DBEAFE;
+  border-left: 3px solid #3B82F6;
+}
+
+.msg-item .mi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.msg-item .mi-name {
+  font-size: 14px;
+  color: #1F2937;
+  font-weight: 500;
+}
+.msg-item.unread .mi-name {
+  font-weight: 700;
+  color: #0B1F3A;
+}
+.msg-item .mi-time {
+  font-size: 11px;
+  color: var(--text-light);
+}
+.msg-item .mi-prev {
+  font-size: 13px;
+  color: var(--text-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+.unread-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #3B82F6;
+  flex-shrink: 0;
+}
+
+/* --- Vue message --- */
+.msg-view {
+  background: #ECE5DD;
+  display: flex;
+  flex-direction: column;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4c9bc' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.msg-view-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #0B1F3A;
+}
+.mv-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(245,158,11,0.2);
+  border: 2px solid rgba(245,158,11,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #F59E0B;
+  flex-shrink: 0;
+}
+.mv-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.mv-role {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 1px;
+}
+.mv-time {
+  margin-left: auto;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* --- Bulles messages --- */
+.msg-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+}
+
+.bubble {
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+/* Message reçu (gauche) */
+.bubble.recv {
+  background: #ffffff;
+  color: #1F2937;
+  align-self: flex-start;
+  border-bottom-left-radius: 3px;
+}
+
+/* Message envoyé (droite) */
+.bubble.sent {
+  background: #DCF8C6;
+  color: #1F2937;
+  align-self: flex-end;
+  border-bottom-right-radius: 3px;
+}
+
+.bubble-time {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+.bubble-time.r { text-align: right; }
+.bubble-time.right { text-align: right; }
+
+/* Empty state */
+.msg-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-light);
+  padding: 2rem;
+  text-align: center;
+}
+
+/* --- Barre de composition --- */
+.msg-compose {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #F5F7FA;
+}
+
+.msg-compose input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  font-size: 14px;
+  font-family: var(--font-sans);
+  background: var(--white);
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.msg-compose input:focus {
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+
+.msg-compose button {
+  background: #0B1F3A;
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.msg-compose button:hover {
+  background: #1E3A5F;
+  transform: translateY(-1px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .msg-layout { grid-template-columns: 1fr; }
+  .msg-list { display: none !important; }
+  .msg-view-header .mv-role { display: none !important; }
+  .bubble-wrap { max-width: 85%; }
+}
