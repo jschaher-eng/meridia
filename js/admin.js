@@ -709,3 +709,51 @@ async function sendNotificationEmail(to, subject, html) {
     console.error('Erreur email:', e);
   }
 }
+
+async function requestDocument() {
+  var clientId  = document.getElementById('req-client-select')?.value;
+  var docType   = document.getElementById('req-doc-type')?.value;
+  var message   = document.getElementById('req-doc-message')?.value || '';
+  var statusEl  = document.getElementById('request-status');
+
+  if (!clientId) { statusEl.textContent = 'Veuillez sélectionner un client.'; statusEl.style.color = 'red'; return; }
+
+  /* Trouver le loan_id du client */
+  var loan = LOANS.find(function(l) { return l.clientId === clientId; });
+  var loanId = loan ? loan.id : null;
+
+  var typeLabels = {
+    identite: 'Personalausweis',
+    revenus:  'Einkommensnachweis',
+    domicile: 'Wohnsitznachweis',
+    bancaire: 'Kontoauszug',
+    autre:    'Dokument'
+  };
+
+  var { error } = await supabase.from('documents').insert({
+    user_id:         clientId,
+    loan_id:         loanId,
+    name:            typeLabels[docType] || 'Dokument',
+    type:            docType,
+    status:          'requested',
+    requested:       true,
+    request_message: message || null,
+    ext:             '—',
+    size:            '—'
+  });
+
+  if (error) { statusEl.textContent = 'Erreur: ' + error.message; statusEl.style.color = 'red'; return; }
+
+  /* Envoyer une notification au client */
+  await createNotification(clientId, 'document',
+    'Dokument angefordert',
+    'B-Mo Financial bittet Sie, ein Dokument hochzuladen: ' + (typeLabels[docType] || docType)
+  );
+
+  statusEl.textContent = 'Demande envoyée au client !';
+  statusEl.style.color = 'green';
+  document.getElementById('req-doc-message').value = '';
+
+  await loadDocuments();
+  renderDocuments();
+}
