@@ -321,13 +321,16 @@ function openClientDetail(id) {
   setEl('mc-created', c.created);
   setEl('mc-loans',   c.loans + ' dossier' + (c.loans > 1 ? 's' : ''));
   setEl('mc-charges', c.charges ? Math.round(c.charges).toLocaleString('fr-FR') + ' €' : '—');
-  setEl('mc-address', (c.postal_code ? c.postal_code + ' ' : '') + (c.city || '—'));
+  setEl('mc-address', c.postal_code || '—');
+  setEl('mc-city', c.city || '—');
+  var scoreInput = document.getElementById('mc-score-input');
+  if (scoreInput) scoreInput.value = c.score || '';
   var scoreDisplay = document.getElementById('mc-score-display');
-var scoreBar = document.getElementById('mc-score-bar');
-var scoreLabelDisplay = document.getElementById('mc-score-label-display');
-if (scoreDisplay) scoreDisplay.textContent = c.score || 0;
-if (scoreBar) scoreBar.style.width = Math.round(((c.score || 0) / 850) * 100) + '%';
-if (scoreLabelDisplay) scoreLabelDisplay.textContent = c.scoreLabel || '—';
+  var scoreBar = document.getElementById('mc-score-bar');
+  var scoreLabelDisplay = document.getElementById('mc-score-label-display');
+  if (scoreDisplay) scoreDisplay.textContent = c.score || 0;
+  if (scoreBar) scoreBar.style.width = Math.round(((c.score || 0) / 850) * 100) + '%';
+  if (scoreLabelDisplay) scoreLabelDisplay.textContent = c.scoreLabel || '—';
   setEl('mc-status',  STATUS_LABEL[c.status] || c.status);
   const clientLoans = LOANS.filter(l => l.clientId === c.id);
   const loansList = document.getElementById('mc-loans-list');
@@ -689,8 +692,21 @@ async function saveClientScore() {
   }).eq('id', currentClient.id);
 
   if (error) { showToast('Erreur: ' + error.message); return; }
-  
-  document.getElementById('mc-score').textContent = score + ' / 850';
+
+  /* Mettre à jour l'affichage */
+  var scoreDisplay = document.getElementById('mc-score-display');
+  var scoreBar = document.getElementById('mc-score-bar');
+  var scoreLabelDisplay = document.getElementById('mc-score-label-display');
+  if (scoreDisplay) scoreDisplay.textContent = score;
+  if (scoreBar) scoreBar.style.width = Math.round((parseInt(score) / 850) * 100) + '%';
+  if (scoreLabelDisplay) scoreLabelDisplay.textContent = label;
+
+  /* Mettre à jour dans CLIENTS */
+  if (currentClient) {
+    currentClient.score = parseInt(score);
+    currentClient.scoreLabel = label;
+  }
+
   showToast('Score mis à jour.');
 }
 
