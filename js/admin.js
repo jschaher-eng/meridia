@@ -482,16 +482,22 @@ function renderDocuments(filter) {
   setEl('docs-count', data.length + ' document' + (data.length > 1 ? 's' : ''));
 }
 
-function verifyDoc(id) {
+async function verifyDoc(id) {
+  const { error } = await supabase
+    .from('documents')
+    .update({ status: 'verified' })
+    .eq('id', id);
+
+  if (error) { showToast('Erreur: ' + error.message); return; }
+
   const d = DOCUMENTS.find(x => x.id === id);
-  if (d) {
-    d.status = 'verified';
-    KPIS.pendingDocs = DOCUMENTS.filter(x => x.status === 'pending').length;
-    showToast(`Document "${d.name}" validé.`);
-    if (currentPanel === 'documents') renderDocuments();
-    if (currentPanel === 'dashboard') renderDashboard();
-    updateBadges();
-  }
+  if (d) d.status = 'verified';
+
+  KPIS.pendingDocs = DOCUMENTS.filter(x => x.status === 'pending').length;
+  showToast('Document validé.');
+  if (currentPanel === 'documents') renderDocuments();
+  if (currentPanel === 'dashboard') renderDashboard();
+  updateBadges();
 }
 
 /* ========================================
