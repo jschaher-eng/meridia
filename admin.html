@@ -232,6 +232,37 @@
 
     <!-- ==================== DOCUMENTS ==================== -->
     <div class="panel" id="panel-documents">
+
+  <div class="dbox mb-2">
+  <div class="dbox-h">Demander un document au client</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end">
+    <div class="fg" style="margin:0">
+      <label>Client</label>
+      <select id="req-client-select">
+        <option value="">Sélectionner un client...</option>
+      </select>
+    </div>
+    <div class="fg" style="margin:0">
+      <label>Type de document</label>
+      <select id="req-doc-type">
+        <option value="identite">Pièce d'identité</option>
+        <option value="revenus">Justificatif de revenus</option>
+        <option value="domicile">Justificatif de domicile</option>
+        <option value="bancaire">Relevé bancaire</option>
+        <option value="autre">Autre</option>
+      </select>
+    </div>
+    <div>
+      <button class="btn btn-navy btn-sm" onclick="requestDocument()">Demander</button>
+    </div>
+  </div>
+  <div class="fg" style="margin-top:10px">
+    <label>Message au client (optionnel)</label>
+    <input type="text" id="req-doc-message" placeholder="Ex: Veuillez envoyer votre pièce d'identité recto-verso">
+  </div>
+  <div id="request-status" style="margin-top:8px;font-size:12px"></div>
+</div>
+      
     <div class="dbox mb-2">
   <div class="dbox-h">Déposer un document pour un client</div>
   <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end">
