@@ -474,7 +474,7 @@ function renderDocuments(filter) {
       <td>
         <div style="display:flex;gap:5px">
           ${d.status==='pending'?`<button class="btn btn-ok btn-sm" onclick="verifyDoc('${d.id}')">Valider</button>`:''}
-          <button class="btn btn-ghost btn-sm">Télécharger</button>
+          <button class="btn btn-ghost btn-sm" onclick="downloadDocument('${d.path}','${d.name}')">Télécharger</button>
         </div>
       </td>
     </tr>`).join('');
