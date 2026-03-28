@@ -148,7 +148,7 @@ async function loadDocuments() {
   DOCUMENTS = (data || []).map(d => ({
     id:       d.id,
     clientId: d.user_id,
-    client:   d.user_id,
+    client:   CLIENTS.find(function(c) { return c.id === d.user_id; })?.name || d.user_id,
     loan:     d.loans?.reference || '—',
     name:     d.name || 'Document',
     type:     d.type || 'autre',
