@@ -769,3 +769,17 @@ async function requestDocument() {
   await loadDocuments();
   renderDocuments();
 }
+
+/*  Listener WebSocket pour les documents */
+supabase
+  .channel('admin-documents')
+  .on('postgres_changes',
+    { event: 'UPDATE', schema: 'public', table: 'documents' },
+    async function(payload) {
+      await loadDocuments();
+      renderDocuments();
+      updateBadges();
+      showToast('Nouveau document reçu!');
+    }
+  )
+  .subscribe();
