@@ -214,13 +214,29 @@ async function loadClientDocuments() {
   }
 
   grid.innerHTML = data.map(function(d) {
-    return '<div class="doc-card" data-cat="' + (d.type || 'autre') + '">' +
-      '<div class="doc-icon" style="background:var(--info-bg)"><svg viewBox="0 0 24 24" stroke="var(--info-bdr)" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>' +
-      '<div class="doc-name">' + d.name + '</div>' +
-      '<div class="doc-meta">' + (d.ext || 'PDF') + ' - ' + (d.size || '') + ' - ' + new Date(d.created_at).toLocaleDateString('de-DE') + '</div>' +
-      '<span class="badge ' + (d.status === 'verified' ? 'badge-ok' : 'badge-warn') + '" style="width:fit-content">' + (d.status === 'verified' ? 'Geprueft' : 'In Bearbeitung') + '</span>' +
-      '<button class="doc-dl" onclick="downloadDocument(\'' + d.path + '\', \'' + d.name + '\')">Herunterladen</button>' +
-      '</div>';
+    if (d.status === 'requested') {
+      /* Document demandé — afficher un bouton upload */
+      return '<div class="doc-card" style="border:1px dashed var(--gold)">' +
+        '<div class="doc-icon" style="background:var(--warn-bg)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--warn-bdr)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>' +
+        '<div class="doc-name">' + d.name + '</div>' +
+        '<div class="doc-meta" style="color:var(--warn-bdr)">Dokument angefordert</div>' +
+        (d.request_message ? '<div class="doc-meta" style="margin-top:4px;font-style:italic">' + d.request_message + '</div>' : '') +
+        '<span class="badge badge-warn" style="width:fit-content">Ausstehend</span>' +
+        '<input type="file" id="upload-' + d.id + '" style="display:none" onchange="uploadRequestedDoc(\'' + d.id + '\', \'' + d.name + '\')">' +
+        '<button class="doc-dl" style="background:var(--gold);color:#fff;border:none" onclick="document.getElementById(\'upload-' + d.id + '\').click()">Dokument hochladen</button>' +
+        '</div>';
+    } else {
+      /* Document normal */
+      var statusBadge = d.status === 'verified' ? 'badge-ok' : d.status === 'rejected' ? 'badge-danger' : 'badge-warn';
+      var statusLabel = d.status === 'verified' ? 'Geprueft' : d.status === 'rejected' ? 'Abgelehnt' : 'In Bearbeitung';
+      return '<div class="doc-card">' +
+        '<div class="doc-icon" style="background:var(--info-bg)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--info-bdr)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>' +
+        '<div class="doc-name">' + d.name + '</div>' +
+        '<div class="doc-meta">' + (d.ext || 'PDF') + ' - ' + (d.size || '') + ' - ' + new Date(d.created_at).toLocaleDateString('de-DE') + '</div>' +
+        '<span class="badge ' + statusBadge + '" style="width:fit-content">' + statusLabel + '</span>' +
+        '<button class="doc-dl" onclick="downloadDocument(\'' + d.path + '\', \'' + d.name + '\')">Herunterladen</button>' +
+        '</div>';
+    }
   }).join('');
 }
 
@@ -311,4 +327,38 @@ async function loadSecurityInfo() {
     var d = new Date(session.created_at || Date.now());
     timeEl.textContent = d.toLocaleDateString('de-DE', {day:'numeric', month:'long', year:'numeric'}) + ' - ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
   }
+}
+
+async function uploadRequestedDoc(docId, docName) {
+  var fileInput = document.getElementById('upload-' + docId);
+  if (!fileInput || !fileInput.files[0]) return;
+  var file = fileInput.files[0];
+
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+  var fileName = userId + '/' + Date.now() + '_' + cleanName;
+
+  showToast('Upload en cours...');
+
+  var { error: uploadError } = await _supabase.storage
+    .from('documents')
+    .upload(fileName, file);
+
+  if (uploadError) { showToast('Fehler: ' + uploadError.message); return; }
+
+  var { error: dbError } = await _supabase.from('documents').update({
+    path:      fileName,
+    size:      Math.round(file.size / 1024) + ' Ko',
+    ext:       file.name.split('.').pop().toUpperCase(),
+    status:    'pending',
+    requested: false
+  }).eq('id', docId);
+
+  if (dbError) { showToast('Fehler: ' + dbError.message); return; }
+
+  showToast('Dokument erfolgreich hochgeladen!');
+  loadClientDocuments();
 }
