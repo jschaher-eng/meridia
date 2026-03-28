@@ -187,7 +187,9 @@ async function validateLoan(id, decision) {
       reviewed_at: new Date().toISOString(),
     })
     .eq('id', id);
- var clientId = LOANS.find(function(l) { return l.id === id; })?.clientId;
+ var loan = LOANS.find(function(l) { return l.id === id; });
+ var clientId = loan?.clientId;
+ console.log('Loan:', loan, 'ClientId:', clientId);
   if (clientId) {
     await createNotification(clientId, 'status',
       'Statusaenderung Ihrer Akte',
