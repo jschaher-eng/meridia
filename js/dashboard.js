@@ -360,5 +360,5 @@ async function uploadRequestedDoc(docId, docName) {
   if (dbError) { showToast('Fehler: ' + dbError.message); return; }
 
   showToast('Dokument erfolgreich hochgeladen!');
-  loadClientDocuments();
+  setTimeout(function() { loadClientDocuments(); }, 500);
 }
