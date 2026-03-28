@@ -365,57 +365,102 @@
 
 <!-- ===================== MODAL : CLIENT ===================== -->
 <div class="modal-overlay" id="modal-client">
-  <div class="modal">
-    <h3>Fiche client</h3>
-
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem">
-      <div class="av av-lg av-navy" id="mc-avatar">JM</div>
-      <div>
-        <div style="font-size:16px;font-weight:500" id="mc-name"></div>
-        <div style="font-size:12px;color:var(--text-m)" id="mc-email"></div>
+  <div class="modal" style="max-width:680px;padding:0;overflow:hidden">
+    
+    <!-- Header avec dégradé -->
+    <div style="background:linear-gradient(135deg,#0B1F3A,#1E3A5F);padding:1.5rem;color:#fff">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="av av-lg" id="mc-avatar" style="background:rgba(255,255,255,0.15);color:#fff;font-size:20px;width:60px;height:60px;border:2px solid rgba(255,255,255,0.3)">JM</div>
+        <div style="flex:1">
+          <div style="font-size:20px;font-weight:600" id="mc-name">—</div>
+          <div style="font-size:13px;opacity:0.75;margin-top:2px" id="mc-email">—</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:11px;opacity:0.6;margin-bottom:4px">Statut</div>
+          <span class="badge" id="mc-status" style="background:rgba(34,197,94,0.2);color:#86efac">—</span>
+        </div>
       </div>
     </div>
 
-    <div class="fg-row mb-2">
-      <div>
-        <div class="card-h">Coordonnées</div>
-        <div class="prow"><span class="pl">Téléphone</span><span class="pv" id="mc-phone"></span></div>
-        <div class="prow"><span class="pl">Ville</span><span class="pv" id="mc-city"></span></div>
-        <div class="prow"><span class="pl">Client depuis</span><span class="pv" id="mc-created"></span></div>
+    <!-- Corps -->
+    <div style="padding:1.5rem;max-height:70vh;overflow-y:auto">
+
+      <!-- Grille infos -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+        
+        <!-- Coordonnées -->
+        <div style="background:#F5F7FA;border-radius:10px;padding:1rem">
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#6B7280;margin-bottom:0.75rem">Coordonnées</div>
+          <div class="prow"><span class="pl">Téléphone</span><span class="pv" id="mc-phone">—</span></div>
+          <div class="prow"><span class="pl">Ville</span><span class="pv" id="mc-city">—</span></div>
+          <div class="prow"><span class="pl">Adresse</span><span class="pv" id="mc-address">—</span></div>
+          <div class="prow"><span class="pl">Client depuis</span><span class="pv" id="mc-created">—</span></div>
+        </div>
+
+        <!-- Finances -->
+        <div style="background:#F5F7FA;border-radius:10px;padding:1rem">
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#6B7280;margin-bottom:0.75rem">Finances</div>
+          <div class="prow"><span class="pl">Revenus/mois</span><span class="pv" id="mc-income">—</span></div>
+          <div class="prow"><span class="pl">Charges/mois</span><span class="pv" id="mc-charges">—</span></div>
+          <div class="prow"><span class="pl">Dossiers</span><span class="pv" id="mc-loans">—</span></div>
+        </div>
       </div>
-      <div>
-        <div class="card-h">Finances</div>
-        <div class="prow"><span class="pl">Revenus/mois</span><span class="pv" id="mc-income"></span></div>
-        <div class="prow">
-        <span class="pl">Score crédit</span>
-        <span class="pv" style="display:flex;align-items:center;gap:8px">
-        <span id="mc-score"></span>
-        <input type="number" id="mc-score-input" min="0" max="850" placeholder="Score" style="width:70px;padding:3px 6px;border:0.5px solid var(--border-md);border-radius:3px;font-size:11px;font-family:var(--font-sans)">
-        <select id="mc-score-label" style="padding:3px 6px;border:0.5px solid var(--border-md);border-radius:3px;font-size:11px;font-family:var(--font-sans)">
-      <option value="Ausgezeichnet">Ausgezeichnet</option>
-      <option value="Sehr gut">Sehr gut</option>
-      <option value="Gut">Gut</option>
-      <option value="Befriedigend">Befriedigend</option>
-      <option value="Ausreichend">Ausreichend</option>
-    </select>
-    <button class="btn btn-sm btn-navy" style="padding:3px 10px;font-size:11px" onclick="saveClientScore()">OK</button>
-  </span>
-</div>
-        <div class="prow"><span class="pl">Statut</span><span class="pv" id="mc-status"></span></div>
-        <div class="prow"><span class="pl">Dossiers</span><span class="pv" id="mc-loans"></span></div>
+
+      <!-- Score crédit -->
+      <div style="background:#F5F7FA;border-radius:10px;padding:1rem;margin-bottom:1.25rem">
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#6B7280;margin-bottom:0.75rem">Score de crédit</div>
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem">
+          <div style="width:56px;height:56px;border-radius:50%;border:3px solid #0B1F3A;display:flex;align-items:center;justify-content:center;flex-direction:column;flex-shrink:0">
+            <span style="font-size:16px;font-weight:600;color:#0B1F3A" id="mc-score-display">0</span>
+            <span style="font-size:9px;color:#6B7280">/850</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:500;color:#0B1F3A;margin-bottom:4px" id="mc-score-label-display">—</div>
+            <div style="height:6px;background:#E5E7EB;border-radius:3px;overflow:hidden">
+              <div id="mc-score-bar" style="height:100%;background:linear-gradient(90deg,#0B1F3A,#3B82F6);border-radius:3px;width:0%;transition:width 0.8s ease"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Modifier le score -->
+        <div style="display:flex;align-items:center;gap:8px;padding-top:0.75rem;border-top:1px solid #E5E7EB">
+          <span style="font-size:12px;color:#6B7280">Modifier:</span>
+          <input type="number" id="mc-score-input" min="0" max="850" placeholder="Score" style="width:70px;padding:4px 8px;border:1px solid #E5E7EB;border-radius:6px;font-size:12px">
+          <select id="mc-score-label" style="padding:4px 8px;border:1px solid #E5E7EB;border-radius:6px;font-size:12px;flex:1">
+            <option value="Ausgezeichnet">Ausgezeichnet</option>
+            <option value="Sehr gut">Sehr gut</option>
+            <option value="Gut">Gut</option>
+            <option value="Befriedigend">Befriedigend</option>
+            <option value="Ausreichend">Ausreichend</option>
+          </select>
+          <button class="btn btn-sm" style="background:#0B1F3A;color:#fff;padding:4px 12px;font-size:12px" onclick="saveClientScore()">OK</button>
+        </div>
+      </div>
+
+      <!-- Historique des prêts -->
+      <div style="background:#F5F7FA;border-radius:10px;padding:1rem;margin-bottom:1.25rem">
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#6B7280;margin-bottom:0.75rem">Historique des prêts</div>
+        <div id="mc-loans-list"></div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:1rem 1.5rem;border-top:1px solid #E5E7EB;display:flex;justify-content:space-between;align-items:center;background:#fff">
+      <button class="btn btn-outline btn-sm" onclick="closeModal('modal-client')">Fermer</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-sm" style="background:#3B82F6;color:#fff" onclick="startConversationWithClient()">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Envoyer un message
+        </button>
+        <button class="btn btn-sm" style="background:#F59E0B;color:#fff" onclick="closeModal('modal-client');goPanel('loans')">
+          Voir les dossiers
+        </button>
       </div>
     </div>
 
-    <div class="card-h">Historique des prêts</div>
-    <div id="mc-loans-list" style="margin-bottom:1rem"></div>
-
-    <div class="modal-footer">
-      <button class="btn btn-ghost btn-sm" onclick="closeModal('modal-client')">Fermer</button>
-      <button class="btn btn-navy btn-sm" onclick="startConversationWithClient()">Envoyer un message</button>
-    </div>
   </div>
 </div>
-
+  
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
