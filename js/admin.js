@@ -41,6 +41,18 @@ function goPanel(id) {
   if (id === 'documents') {
     renderDocuments();
     populateClientSelect();
+    /* Aussi pour le select de demande */
+    var reqSelect = document.getElementById('req-client-select');
+    if (reqSelect) {
+      supabase.from('profiles').select('id, full_name, email').then(function(r) {
+        if (r.data) {
+          reqSelect.innerHTML = '<option value="">Sélectionner un client...</option>' +
+            r.data.map(function(c) {
+              return '<option value="' + c.id + '">' + (c.full_name || c.email) + '</option>';
+            }).join('');
+        }
+      });
+    }
   }
 }
 /* ========================================
