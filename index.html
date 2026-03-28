@@ -682,55 +682,54 @@
 <!-- PAGE AUTH -->
 <div id="pg-auth" class="pg">
   <div class="auth-wrap">
-    <div class="sec-h2 text-center mb-3" data-i18n="auth.title">Kundenbereich B-Mo Financial</div>
+    <div class="sec-h2 text-center mb-3" data-i18n="auth.title" style="font-size:28px">B-Mo Financial</div>
+    <p style="text-align:center;color:var(--text-light);margin-bottom:1.5rem;font-size:14px" data-i18n="auth.subtitle">Ihr gesicherter Kundenbereich</p>
     <div class="auth-card">
-      <div class="step-bar">
+      <div class="step-bar" style="margin-bottom:1.5rem">
         <button class="si act" id="at-c" onclick="authTab('c')" data-i18n="auth.login_tab">Anmelden</button>
         <button class="si" id="at-n" onclick="authTab('n')" data-i18n="auth.register_tab">Konto erstellen</button>
       </div>
+
+      <!-- Connexion -->
       <div id="a-c">
-       <div id="login-error" style="display:none;background:#FCEBEB;color:#791F1F;padding:10px 12px;border-radius:4px;font-size:14px;margin-bottom:1rem;border-left:3px solid #A32D2D"></div>
-<div class="fg"><label data-i18n="auth.email">E-Mail-Adresse</label><input type="email" id="login-email" placeholder="jean.martin@email.com"></div>
-<div class="fg"><label data-i18n="auth.password">Passwort</label><input type="password" id="login-password" placeholder="••••••••"></div>
-<div class="remember-row">
-  <label><input type="checkbox"> <span data-i18n="auth.remember">Angemeldet bleiben</span></label>
-  <span class="forgot-link" data-i18n="auth.forgot">Passwort vergessen?</span>
-</div>
-<button id="btn-login" class="btn btn-primary btn-full" style="padding:10px;margin-bottom:8px" onclick="doLogin()" data-i18n="auth.login_btn">Zu meinem Bereich</button>
-<p class="auth-footer" data-i18n="auth.ssl_note">SSL-verschluesselte Verbindung - 2FA verfuegbar</p>
-      </div>
-      <div id="a-n" style="display:none">
-        <div id="reg-error" style="display:none;background:#FCEBEB;color:#791F1F;padding:10px 12px;border-radius:4px;font-size:14px;margin-bottom:1rem;border-left:3px solid #A32D2D"></div>
-<div class="auth-note" data-i18n="auth.register_note">Erstellen Sie Ihren Bereich, um einen Antrag zu stellen und Ihren Vorgang zu verfolgen.</div>
-<div class="fg-row">
-  <div class="fg"><label data-i18n="apply.firstname">Vorname</label><input type="text" id="reg-fname" placeholder="Jean"></div>
-  <div class="fg"><label data-i18n="apply.lastname">Nachname</label><input type="text" id="reg-lname" placeholder="Martin"></div>
-</div>
-<div class="fg"><label data-i18n="auth.email">E-Mail</label><input type="email" id="reg-email" placeholder="jean.martin@email.com"></div>
-<div class="fg"><label data-i18n="auth.password">Passwort</label><input type="password" id="reg-password" placeholder="Mindestens 8 Zeichen"></div>
+        <div id="login-error" style="display:none;background:#FEE2E2;color:#991B1B;padding:10px 12px;border-radius:8px;font-size:13px;margin-bottom:1rem;border-left:3px solid #EF4444"></div>
         <div class="fg">
-  <label data-i18n="auth.confirm_password">Passwort bestaetigen</label>
-  <input type="password" id="reg-password-confirm" placeholder="••••••••">
-</div>
-<div class="fg"><label data-i18n="auth.profile_label">Profil</label>
-  <select>
-    <option data-i18n="auth.individual">Privatperson</option>
-    <option data-i18n="auth.business">Unternehmen / KMU</option>
-  </select>
-</div>
-<div class="accept-row">
-  <input type="checkbox" id="reg-accept">
-  <span data-i18n="auth.accept_text">Ich akzeptiere die AGB und die Datenschutzrichtlinie von B-Mo Financial.</span>
-</div>
+          <label data-i18n="auth.email">E-Mail-Adresse</label>
+          <input type="email" id="login-email" placeholder="ihre@email.de">
         </div>
-        <div class="accept-row">
-          <input type="checkbox">
-          <span><span data-i18n="auth.accept">Ich akzeptiere die</span> <a href="#" style="color:var(--gold)" data-i18n="auth.terms">Allgemeinen Geschaeftsbedingungen</a> <span data-i18n="auth.and">und die</span> <a href="#" style="color:var(--gold)" data-i18n="auth.privacy">Datenschutzrichtlinie</a>.</span>
+        <div class="fg">
+          <label data-i18n="auth.password">Passwort</label>
+          <input type="password" id="login-password" placeholder="••••••••">
         </div>
-        <button id="btn-register" class="btn btn-gold btn-full" style="padding:10px" onclick="doRegister()" data-i18n="auth.create_btn">Konto erstellen</button>
+        <div class="remember-row">
+          <label><input type="checkbox"> <span data-i18n="auth.remember">Angemeldet bleiben</span></label>
+          <span class="forgot-link" data-i18n="auth.forgot">Passwort vergessen?</span>
+        </div>
+        <button id="btn-login" class="btn btn-primary btn-full" style="padding:12px;margin-bottom:8px" onclick="doLogin()" data-i18n="auth.login_btn">Zu meinem Bereich</button>
+        <p class="auth-footer" style="text-align:center;font-size:12px;color:var(--text-light)" data-i18n="auth.ssl_note">SSL-verschluesselte Verbindung - 2FA verfuegbar</p>
       </div>
+
+      <!-- Inscription -->
+      <div id="a-n" style="display:none">
+        <div id="reg-error" style="display:none;background:#FEE2E2;color:#991B1B;padding:10px 12px;border-radius:8px;font-size:13px;margin-bottom:1rem;border-left:3px solid #EF4444"></div>
+        <div class="auth-note" style="background:#DBEAFE;color:#1E40AF;padding:10px 12px;border-radius:8px;font-size:13px;margin-bottom:1rem" data-i18n="auth.register_note">Erstellen Sie Ihren Bereich, um einen Antrag zu verfolgen.</div>
+        <div class="fg-row">
+          <div class="fg"><label data-i18n="apply.firstname">Vorname</label><input type="text" id="reg-fname" placeholder="Hans"></div>
+          <div class="fg"><label data-i18n="apply.lastname">Nachname</label><input type="text" id="reg-lname" placeholder="Mueller"></div>
+        </div>
+        <div class="fg"><label data-i18n="auth.email">E-Mail</label><input type="email" id="reg-email" placeholder="ihre@email.de"></div>
+        <div class="fg"><label data-i18n="auth.password">Passwort</label><input type="password" id="reg-password" placeholder="Mindestens 8 Zeichen"></div>
+        <div class="fg"><label data-i18n="auth.confirm_password">Passwort bestaetigen</label><input type="password" id="reg-password-confirm" placeholder="••••••••"></div>
+        <div class="accept-row" style="display:flex;align-items:flex-start;gap:8px;margin-bottom:1rem;font-size:13px">
+          <input type="checkbox" id="reg-accept" style="margin-top:3px">
+          <span><span data-i18n="auth.accept">Ich akzeptiere die</span> <a href="#" style="color:var(--blue)" data-i18n="auth.terms">AGB</a> <span data-i18n="auth.and">und die</span> <a href="#" style="color:var(--blue)" data-i18n="auth.privacy">Datenschutzrichtlinie</a>.</span>
+        </div>
+        <button id="btn-register" class="btn btn-full" style="padding:12px;background:var(--blue);color:#fff" onclick="doRegister()" data-i18n="auth.create_btn">Konto erstellen</button>
+      </div>
+
     </div>
   </div>
+</div>
 </div>
 
 <!-- PAGE DASHBOARD -->
