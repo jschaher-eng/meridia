@@ -782,3 +782,18 @@ supabase
     }
   )
   .subscribe();
+
+async function downloadDocument(path, name) {
+  if (!path || path === '—') { showToast('Kein Dokument verfuegbar.'); return; }
+  
+  const { data, error } = await supabase.storage.from('documents').download(path);
+  
+  if (error) { showToast('Fehler: ' + error.message); return; }
+  
+  var url = URL.createObjectURL(data);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = name || 'document';
+  a.click();
+  URL.revokeObjectURL(url);
+}
