@@ -142,7 +142,7 @@ for (const key of Object.keys(convMap)) {
 async function loadDocuments() {
   const { data, error } = await supabase
     .from('documents')
-    .select('*, loans ( reference ), path')
+    .select('id, user_id, loan_id, name, type, size, ext, path, status, requested, request_message, created_at, loans ( reference )')
     .order('created_at', { ascending: false });
   if (error) { console.error('loadDocuments:', error.message); return; }
   DOCUMENTS = (data || []).map(d => ({
