@@ -320,7 +320,14 @@ function openClientDetail(id) {
   setEl('mc-income',  fmt(c.income));
   setEl('mc-created', c.created);
   setEl('mc-loans',   c.loans + ' dossier' + (c.loans > 1 ? 's' : ''));
-  setEl('mc-score',   c.score + ' / 850');
+  setEl('mc-charges', c.charges ? Math.round(c.charges).toLocaleString('fr-FR') + ' €' : '—');
+  setEl('mc-address', (c.postal_code ? c.postal_code + ' ' : '') + (c.city || '—'));
+  var scoreDisplay = document.getElementById('mc-score-display');
+var scoreBar = document.getElementById('mc-score-bar');
+var scoreLabelDisplay = document.getElementById('mc-score-label-display');
+if (scoreDisplay) scoreDisplay.textContent = c.score || 0;
+if (scoreBar) scoreBar.style.width = Math.round(((c.score || 0) / 850) * 100) + '%';
+if (scoreLabelDisplay) scoreLabelDisplay.textContent = c.scoreLabel || '—';
   setEl('mc-status',  STATUS_LABEL[c.status] || c.status);
   const clientLoans = LOANS.filter(l => l.clientId === c.id);
   const loansList = document.getElementById('mc-loans-list');
