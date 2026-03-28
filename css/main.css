@@ -80,7 +80,7 @@
 
   /* Polices */
   --font-serif:  'Barlow', sans-serif;
-  --font-sans:   'Montserrat', sans-serif;
+  --font-sans:   'Montserrat, calibri, arial, "DejaVu Sans", tahoma, verdana', sans-serif;
 }
 
 /* --- Reset --- */
