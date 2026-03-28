@@ -697,7 +697,7 @@ async function sendNotificationEmail(to, subject, html) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer sb_publishable_FBMabC65Upvntx5AMsFIjw_rHkIll9X'
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wdGRleW15dm9rb293bGlxdm5tIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDA1Mjk5NCwiZXhwIjoyMDg5NjI4OTk0fQ.EWV6JQkMeFSKwu7Rf47N53MM7GU8ByvVnq23t_TBhCA'
       },
       body: JSON.stringify({ to, subject, html })
     });
