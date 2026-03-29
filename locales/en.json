@@ -21,4 +21,47 @@
   "auth": { "title": "B-Mo Financial client area", "login_tab": "Sign in", "register_tab": "Create account", "email": "Email address", "password": "Password", "remember": "Remember me", "forgot": "Forgot password?", "login_btn": "Access my area", "ssl_note": "SSL encrypted · 2FA available", "register_note": "Create your space to submit an application and track your file in real time.", "individual": "Individual", "business": "Business / SME", "create_btn": "Create my account" },
   "dashboard": { "greeting": "Hello,", "updated": "Updated today", "new_request": "+ New request", "active_file": "Active file", "in_repayment": "In repayment", "granted_amount": "Granted amount", "next_due": "Next due date", "progress": "Progress", "paid": "Paid", "upcoming": "Upcoming", "advisor": "Your advisor", "send_message": "Send a message" },
   "footer": { "our_loans": "Our loans", "business": "Business", "info": "Information", "about": "About us", "legal": "Legal notice", "privacy": "Privacy policy", "contact": "Contact", "copyright": "© 2025 B-Mo Financial. All rights reserved.", "license": "ACPR License No. 123456" }
+"testimonials": {
+  "title": "What our clients say",
+  "subtitle": "Over 12,000 satisfied clients trust us",
+  "t1_text": "Thanks to B-Mo Financial, I was able to buy my dream home. Simple, fast and fully online. I got my answer within 24 hours!",
+  "t1_name": "Maria K.",
+  "t1_detail": "Mortgage · €280,000",
+  "t2_text": "As a self-employed person, I struggled to get credit. B-Mo Financial processed my application in 2 days. Very professional team!",
+  "t2_name": "Thomas H.",
+  "t2_detail": "Business loan · €45,000",
+  "t3_text": "The online application was very easy. I could track my file in real time. The advisor was attentive and highly competent.",
+  "t3_name": "Sophie L.",
+  "t3_detail": "Personal loan · €18,000"
+},
+"team": {
+  "title": "Our team",
+  "subtitle": "Experts to guide you every step of the way",
+  "sophie_role": "Head of Personal Banking",
+  "sophie_exp": "12 years of experience",
+  "marc_role": "Mortgage Financing",
+  "marc_exp": "8 years of experience",
+  "anna_role": "Business Advisor",
+  "anna_exp": "10 years of experience",
+  "paul_role": "Microfinance",
+  "paul_exp": "6 years of experience"
+},
+"contact": {
+  "title": "Contact & Location",
+  "subtitle": "Our team is available Monday to Friday, 8am to 6pm.",
+  "hq_label": "Head office",
+  "hq_value": "Friedrichstrasse 100, 10117 Berlin, Germany",
+  "phone_label": "Phone",
+  "email_label": "Email",
+  "hours_label": "Opening hours",
+  "hours_value": "Mon–Fri: 8:00am – 6:00pm / Sat: 9:00am – 1:00pm",
+  "form_title": "Send a quick message",
+  "name_label": "Your name",
+  "name_placeholder": "John Smith",
+  "email_placeholder": "john@email.com",
+  "msg_label": "Your message",
+  "msg_placeholder": "I'm interested in...",
+  "send_btn": "Send message",
+  "toast": "Message sent! We'll get back to you soon."
+}
 }
