@@ -559,34 +559,58 @@
           <button class="btn btn-primary btn-full" style="padding:10px" onclick="applyStep(2)" data-i18n="apply.next">Weiter</button>
         </div>
         <!-- Etape 2 -->
-        <div id="af2" class="tf">
-          <div class="form-title" data-i18n="apply.identity_title">Ihre Identitaet</div>
-          <p class="form-sub" data-i18n="apply.identity_sub">Persoenliche Daten oder gesetzlicher Vertreter</p>
-          <div class="fg-row">
-            <div class="fg"><label data-i18n="apply.firstname">Vorname</label><input type="text" placeholder="Hans"></div>
-            <div class="fg"><label data-i18n="apply.lastname">Nachname</label><input type="text" placeholder="Mueller"></div>
-          </div>
-          <div class="fg-row">
-            <div class="fg"><label data-i18n="apply.birthdate">Geburtsdatum</label><input type="date"></div>
-            <div class="fg"><label data-i18n="apply.nationality">Staatsangehoerigkeit</label>
-              <select>
-                <option data-i18n="apply.nat_de">Deutsch</option>
-                <option data-i18n="apply.nat_eu">EU-Buerger/in</option>
-                <option data-i18n="apply.nat_other">Andere</option>
-              </select>
-            </div>
-          </div>
-          <div class="fg"><label data-i18n="apply.email">E-Mail-Adresse</label><input type="email" placeholder="hans.mueller@email.de"></div>
-          <div class="fg"><label data-i18n="apply.phone">Mobiltelefon</label><input type="tel" placeholder="+49 170 000 00 00"></div>
-          <div class="fg-row">
-            <div class="fg"><label data-i18n="apply.postal_code">Postleitzahl</label><input type="text" placeholder="10115" maxlength="5"></div>
-            <div class="fg"><label data-i18n="apply.city">Stadt</label><input type="text" placeholder="Berlin"></div>
-          </div>
-          <div style="display:flex;gap:8px">
-            <button class="btn btn-outline" style="flex:1;padding:9px" onclick="applyStep(1)" data-i18n="apply.back">Zurueck</button>
-            <button class="btn btn-primary" style="flex:2;padding:9px" onclick="applyStep(3)" data-i18n="apply.next">Weiter</button>
-          </div>
-        </div>
+     <div id="af2" class="tf">
+  <div class="form-title" data-i18n="apply.identity_title">Ihre Identitaet</div>
+  <p class="form-sub" data-i18n="apply.identity_sub">Persoenliche Daten oder gesetzlicher Vertreter</p>
+
+  <!-- Nom et Prénom -->
+  <div class="fg-row">
+    <div class="fg"><label data-i18n="apply.firstname">Vorname</label><input type="text" placeholder="Hans"></div>
+    <div class="fg"><label data-i18n="apply.lastname">Nachname</label><input type="text" placeholder="Mueller"></div>
+  </div>
+
+  <!-- Date et Nationalité -->
+  <div class="fg-row">
+    <div class="fg"><label data-i18n="apply.birthdate">Geburtsdatum</label><input type="date"></div>
+    <div class="fg"><label data-i18n="apply.nationality">Staatsangehoerigkeit</label>
+      <select>
+        <option data-i18n="apply.nat_de">Deutsch</option>
+        <option data-i18n="apply.nat_eu">EU-Buerger/in</option>
+        <option data-i18n="apply.nat_other">Andere</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="fg-row">
+    <div class="fg"><label data-i18n="apply.email">E-Mail-Adresse</label><input type="email" placeholder="hans.mueller@email.de"></div>
+    <div class="fg"><label data-i18n="apply.phone">Mobiltelefon</label><input type="tel" placeholder="+49 170 000 00 00"></div>
+  </div>
+
+  <!-- Adresse de résidence -->
+  <div style="background:#F8FAFC;border:1px solid #E5E7EB;border-radius:10px;padding:1rem;margin-bottom:1rem">
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#6B7280;margin-bottom:0.75rem">Wohnadresse</div>
+    <div class="fg"><label>Strasse und Hausnummer</label><input type="text" placeholder="Friedrichstrasse 100"></div>
+    <div class="fg-row">
+      <div class="fg"><label data-i18n="apply.postal_code">Postleitzahl</label><input type="text" placeholder="10115" maxlength="5"></div>
+      <div class="fg"><label data-i18n="apply.city">Stadt</label><input type="text" placeholder="Berlin"></div>
+    </div>
+    <div class="fg" style="margin-bottom:0"><label>Land</label>
+      <select>
+        <option>Deutschland</option>
+        <option>Oesterreich</option>
+        <option>Schweiz</option>
+        <option>Andere</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Boutons -->
+  <div style="display:flex;gap:10px;margin-top:1.25rem">
+    <button class="btn btn-outline" style="flex:1;padding:11px" onclick="applyStep(1)" data-i18n="apply.back">← Zurueck</button>
+    <button class="btn btn-primary" style="flex:2;padding:11px" onclick="applyStep(3)" data-i18n="apply.next">Weiter →</button>
+  </div>
+</div>
         <!-- Etape 3 -->
         <div id="af3" class="tf">
           <div class="form-title" data-i18n="apply.finance_title">Finanzielle Situation</div>
