@@ -585,7 +585,8 @@ async function loadDashboard() {
     pel = document.getElementById('prof-name');  if (pel) pel.textContent = p.full_name || '—';
     pel = document.getElementById('prof-email'); if (pel) pel.textContent = p.email || '—';
     pel = document.getElementById('prof-phone'); if (pel) pel.textContent = p.phone || '—';
-    pel = document.getElementById('prof-city');  if (pel) pel.textContent = (p.postal_code ? p.postal_code + ' ' : '') + (p.city || '—');
+    pel = document.getElementById('prof-city');    if (pel) pel.textContent = (p.postal_code || '') + ' ' + (p.city || '—');
+    pel = document.getElementById('prof-address'); if (pel) pel.textContent = p.street ? p.street + ', ' + (p.country || '') : '—';
     pel = document.getElementById('prof-income'); if (pel) pel.textContent = p.monthly_income ? Math.round(p.monthly_income).toLocaleString('de-DE') + ' EUR' : '—';
     pel = document.getElementById('prof-charges'); if (pel) pel.textContent = p.monthly_charges ? Math.round(p.monthly_charges).toLocaleString('de-DE') + ' EUR' : '—';
     pel = document.getElementById('prof-birthdate'); if (pel) pel.textContent = p.birthdate || '—';
