@@ -53,8 +53,9 @@
   font-weight: 700;
 }
 .hero-inner h1 em {
-  color: #F59E0B;
-  font-style: normal;
+  color: #F59E0B !important;
+  font-style: normal !important;
+  display: inline !important;
 }
 .hero-inner p {
   font-size: 16px;
