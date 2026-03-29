@@ -1,0 +1,299 @@
+/* =========================================
+   B-MO FINANCIAL — nav.css
+   Topbar · Navigation · Notification bell
+   ========================================= */
+
+/* --- Topbar --- */
+.topbar {
+  background: #0B1F3A;
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  padding: 6px 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.2px;
+}
+.topbar-right {
+  display: flex;
+  gap: 24px;
+}
+.topbar-right a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.topbar-right a:hover { color: #fff; }
+
+/* --- Main Navigation --- */
+.main-nav {
+  background: #ffffff;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 66px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  text-decoration: none;
+}
+.logo-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: #0B1F3A;
+  letter-spacing: -0.5px;
+}
+.logo-tag {
+  font-size: 9px;
+  color: #F59E0B;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-left: 8px;
+  padding-top: 2px;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  gap: 2px;
+}
+.nav-link {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+  letter-spacing: 0.2px;
+  position: relative;
+}
+.nav-link:hover {
+  background: #F5F7FA;
+  color: #0B1F3A;
+}
+.nav-link.act {
+  color: #0B1F3A;
+  font-weight: 600;
+}
+.nav-link.act::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background: #F59E0B;
+  border-radius: 1px;
+}
+
+/* Nav right actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Notification bell button */
+.notif-btn {
+  position: relative;
+  background: none;
+  border: 1.5px solid #E5E7EB;
+  padding: 7px 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #1F2937;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+}
+.notif-btn:hover {
+  background: #F5F7FA;
+  border-color: #D1D5DB;
+}
+.notif-btn svg {
+  width: 15px; height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+.notif-dot {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #EF4444;
+  border: 2px solid #fff;
+}
+
+/* Notification dropdown */
+.notif-panel {
+  position: absolute;
+  top: 72px;
+  right: 2rem;
+  width: 320px;
+  background: var(--white);
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  z-index: 200;
+  display: none;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.notif-panel.open { display: block; }
+.notif-panel-header {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #E5E7EB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0B1F3A;
+  background: #F8FAFC;
+}
+.notif-panel-header span.mark-read {
+  font-size: 12px;
+  color: #F59E0B;
+  cursor: pointer;
+  font-weight: 500;
+}
+.notif-item {
+  padding: 0.8rem 1.1rem;
+  border-bottom: 1px solid #F1F5F9;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.notif-item:last-child { border-bottom: none; }
+.notif-item:hover { background: #F8FAFC; }
+.notif-item .n-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 3px;
+  color: #1F2937;
+}
+.notif-item .n-sub   { font-size: 12px; color: #6B7280; }
+.notif-item .n-time  { font-size: 11px; color: #9CA3AF; margin-top: 4px; }
+.notif-item.danger .n-title { color: #EF4444; }
+.notif-item.new .n-title    { color: #0B1F3A; }
+
+/* Segment switcher */
+.seg-bar {
+  background: #F8FAFC;
+  border-bottom: 1px solid #E5E7EB;
+}
+.seg-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+}
+.seg-btn {
+  padding: 14px 24px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6B7280;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+.seg-btn.act {
+  color: #0B1F3A;
+  border-bottom-color: #F59E0B;
+  font-weight: 600;
+}
+.seg-btn:hover { color: #1F2937; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .logo-tag { display: none; }
+  .nav-links { display: none; }
+  .topbar { display: none; }
+}
+
+/* Menu hamburger mobile */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #0B1F3A;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 66px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 0.5rem 0;
+  z-index: 150;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.mobile-menu.open { display: block; }
+.mobile-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 1.5rem;
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-family: var(--font-sans);
+  color: #1F2937;
+  cursor: pointer;
+  border-bottom: 1px solid #F1F5F9;
+}
+.mobile-menu button:hover { background: #F8FAFC; }
+.mobile-menu button:last-child { border-bottom: none; }
+
+@media (max-width: 768px) {
+  .hamburger    { display: flex; }
+  .nav-links    { display: none; }
+  #lang-selector { display: none; }
+  .notif-btn    { display: none; }
+  .btn-outline  { display: none; }
+  .nav-actions  { gap: 4px; }
+  .main-nav     { padding: 0 1rem; height: 58px; }
+  .logo-name    { font-size: 18px; }
+  .logo-tag     { display: none; }
+  .topbar       { display: none; }
+  .btn-primary.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
