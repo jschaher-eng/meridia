@@ -588,6 +588,9 @@ async function loadDashboard() {
     pel = document.getElementById('prof-city');  if (pel) pel.textContent = (p.postal_code ? p.postal_code + ' ' : '') + (p.city || '—');
     pel = document.getElementById('prof-income'); if (pel) pel.textContent = p.monthly_income ? Math.round(p.monthly_income).toLocaleString('de-DE') + ' EUR' : '—';
     pel = document.getElementById('prof-charges'); if (pel) pel.textContent = p.monthly_charges ? Math.round(p.monthly_charges).toLocaleString('de-DE') + ' EUR' : '—';
+    pel = document.getElementById('prof-birthdate'); if (pel) pel.textContent = p.birthdate || '—';
+    pel = document.getElementById('prof-nationality'); if (pel) pel.textContent = p.nationality || '—';
+    pel = document.getElementById('prof-address'); if (pel) pel.textContent = (p.street ? p.street + ', ' : '') + (p.postal_code || '') + ' ' + (p.city || '') + (p.country ? ', ' + p.country : '');
 
     /* Score de crédit */
     var score = p.credit_score || 0;
