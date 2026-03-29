@@ -288,3 +288,58 @@ input, select, textarea { font-family: var(--font-sans); }
   .two-col { grid-template-columns: 1fr; }
   .three-col { grid-template-columns: 1fr; }
 }
+
+/* ---- MISE A JOUR ADMIN ---- */
+
+.kpi {
+  background: var(--white);
+  border: 0.5px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: .9rem 1rem;
+}
+.kpi .kv {
+  font-size: 26px;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  color: var(--navy);
+}
+
+body {
+  background: #F5F7FA;
+}
+
+.sidebar {
+  background: #0B1F3A;
+  border-right: none;
+}
+.sb-label {
+  color: rgba(255,255,255,0.35);
+}
+.sb-link {
+  color: rgba(255,255,255,0.6);
+  border-left-color: transparent;
+}
+.sb-link:hover {
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+}
+.sb-link.act {
+  color: #fff;
+  font-weight: 500;
+  border-left-color: var(--gold);
+  background: rgba(255,255,255,0.1);
+}
+.sb-link svg {
+  stroke: currentColor;
+}
+.sb-footer {
+  color: rgba(255,255,255,0.35);
+  border-top-color: rgba(255,255,255,0.1);
+}
+
+.ph {
+  margin-bottom: 1.5rem;
+}
+.ph h1 {
+  font-size: 26px;
+}
