@@ -820,11 +820,21 @@ document.addEventListener('DOMContentLoaded', async function() {
   } else {
     goPage('home');
   }
+   
   setTimeout(function() {
-    var lsm = document.getElementById('lang-selector-mobile');
-    var ls  = document.getElementById('lang-selector');
-    if (lsm && ls) { lsm.innerHTML = ls.innerHTML; }
-  }, 500);
+  var lsm = document.getElementById('lang-selector-mobile');
+  var ls  = document.getElementById('lang-selector');
+  if (lsm && ls) { 
+    lsm.innerHTML = ls.innerHTML;
+    /* Changer les IDs dans la copie mobile pour éviter les conflits */
+    var mobileBtn = lsm.querySelector('#lang-current');
+    var mobileDD  = lsm.querySelector('#lang-dropdown');
+    if (mobileBtn) mobileBtn.id = 'lang-current-mobile';
+    if (mobileDD)  mobileDD.id  = 'lang-dropdown-mobile';
+    /* Corriger le onclick du bouton mobile */
+    if (mobileBtn) mobileBtn.setAttribute('onclick', 'I18N.toggleDropdownMobile()');
+  }
+}, 500);
 
 // Mise à jour du récapitulatif en temps réel
   document.querySelectorAll('#af1 select, #af1 input').forEach(function(el) {
