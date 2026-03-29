@@ -207,10 +207,31 @@ function applyStep(n) {
   for (var i = 1; i <= 4; i++) {
     var f  = document.getElementById('af' + i);
     var sp = document.getElementById('ap' + i);
-    if (f)  f.classList.toggle('act', i === n);
+    if (f) {
+      if (i === n) {
+        f.classList.remove('act');
+        setTimeout(function(panel) {
+          return function() {
+            panel.classList.add('act');
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateY(10px)';
+            setTimeout(function() {
+              panel.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+              panel.style.opacity = '1';
+              panel.style.transform = 'translateY(0)';
+            }, 10);
+          };
+        }(f), 50);
+      } else {
+        f.classList.remove('act');
+        f.style.transition = '';
+        f.style.opacity = '';
+        f.style.transform = '';
+      }
+    }
     if (sp) {
       sp.classList.remove('act', 'done');
-      if (i < n)       sp.classList.add('done');
+      if (i < n)        sp.classList.add('done');
       else if (i === n) sp.classList.add('act');
     }
   }
