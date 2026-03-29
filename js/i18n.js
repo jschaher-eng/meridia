@@ -107,7 +107,8 @@ var I18N = {
   },
   toggleDropdown: function() {
   var dd = document.getElementById('lang-dropdown');
-  if (!dd) return;
-  dd.classList.toggle('open');
+  var ddm = document.getElementById('lang-dropdown-mobile');
+  if (dd) dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+  if (ddm) ddm.style.display = ddm.style.display === 'block' ? 'none' : 'block';
 }
 };
