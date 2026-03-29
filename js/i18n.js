@@ -2,8 +2,8 @@
 'use strict';
 var I18N = {
   defaultLang: 'de',
-  supported: { de:{label:'Deutsch',flag:'DE'}, fr:{label:'Francais',flag:'FR'}, en:{label:'English',flag:'EN'}, es:{label:'Espanol',flag:'ES'}, it:{label:'Italiano',flag:'IT'}, sl:{label:'Slovenscina',flag:'SL'}, hr:{label:'Hrvatski',flag:'HR'}, ru:{label:'Russkiy',flag:'RU'} },
-  googleOnly: { pl:{label:'Polski',flag:'PL'}, cs:{label:'Cestina',flag:'CZ'}, hu:{label:'Magyar',flag:'HU'}, ro:{label:'Romana',flag:'RO'}, nl:{label:'Nederlands',flag:'NL'}, pt:{label:'Portugues',flag:'PT'}, tr:{label:'Turkce',flag:'TR'}, ar:{label:'Arabe',flag:'AR'}, zh:{label:'Chinois',flag:'ZH'}, ja:{label:'Japonais',flag:'JA'} },
+  supported: { de:{label:'Deutsch',flag:'🇩🇪'}, fr:{label:'Français',flag:'🇫🇷'}, en:{label:'English',flag:'🇬🇧'}, es:{label:'Español',flag:'🇪🇸'}, it:{label:'Italiano',flag:'🇮🇹'}, sl:{label:'Slovenščina',flag:'🇸🇮'}, hr:{label:'Hrvatski',flag:'🇭🇷'}, ru:{label:'Русский',flag:'🇷🇺'} },
+  googleOnly: { pl:{label:'Polski',flag:'🇵🇱'}, cs:{label:'Čeština',flag:'🇨🇿'}, hu:{label:'Magyar',flag:'🇭🇺'}, ro:{label:'Română',flag:'🇷🇴'}, nl:{label:'Nederlands',flag:'🇳🇱'}, pt:{label:'Português',flag:'🇵🇹'} },
   de: {
     topbar: { text:'B-Mo Financial - ACPR-zugelassen - Einlagen bis 100.000 EUR gesichert', branches:'Filialen', client_space:'Kundenbereich', contact:'Kontakt', tag:'Versicherungen & Kredit' },
     nav: { home:'Startseite', loans:'Unsere Kredite', simulator:'Kreditrechner', apply:'Online-Antrag', login:'Anmelden', open_account:'Konto eroeffnen', alerts:'Benachrichtigungen' },
@@ -106,21 +106,28 @@ var I18N = {
     var all = {}; var k;
     for (k in this.supported) { all[k] = this.supported[k]; }
     for (k in this.googleOnly) { all[k] = this.googleOnly[k]; }
-    var info = all[this.currentLang]; if (info) { btn.textContent = '[' + info.flag + '] ' + info.label; }
+    var info = all[this.currentLang]; if (info) { btn.textContent = info.flag + ' ' + info.label; }
     var cur = this.currentLang;
     document.querySelectorAll('.lang-option').forEach(function(el) { el.classList.toggle('active', el.getAttribute('data-lang') === cur); });
   },
+  
   renderSelector: function() {
     var container = document.getElementById('lang-selector'); if (!container) { return; }
     var self = this;
-    var html = '<div class="lang-wrapper"><button id="lang-current" class="lang-btn" onclick="I18N.toggleDropdown()">[DE] Deutsch</button><div id="lang-dropdown" class="lang-dropdown"><div class="lang-group-label">Traductions completes</div>';
+    var html = '<div class="lang-wrapper"><button id="lang-current" class="lang-btn" onclick="I18N.toggleDropdown()">🇩🇪 Deutsch</button><div id="lang-dropdown" class="lang-dropdown"><div class="lang-group-label">Traductions complètes</div>';
     var code;
-    for (code in this.supported) { var l = this.supported[code]; html += '<button class="lang-option" onclick="I18N.setLang(\'' + code + '\')" data-lang="' + code + '">[' + l.flag + '] ' + l.label + '</button>'; }
+    for (code in this.supported) { var l = this.supported[code]; html += '<button class="lang-option" onclick="I18N.setLang(\'' + code + '\');I18N.closeDropdown()" data-lang="' + code + '">' + l.flag + ' ' + l.label + '</button>'; }
     html += '<div class="lang-group-label">Via Google Translate</div>';
-    for (code in this.googleOnly) { var lg = this.googleOnly[code]; html += '<button class="lang-option" onclick="I18N.setLang(\'' + code + '\')" data-lang="' + code + '">[' + lg.flag + '] ' + lg.label + '</button>'; }
+    for (code in this.googleOnly) { var lg = this.googleOnly[code]; html += '<button class="lang-option" onclick="I18N.setLang(\'' + code + '\');I18N.closeDropdown()" data-lang="' + code + '">' + lg.flag + ' ' + lg.label + '</button>'; }
     html += '</div></div>'; container.innerHTML = html;
     document.addEventListener('click', function(e) { if (!container.contains(e.target)) { var dd = document.getElementById('lang-dropdown'); if (dd) { dd.classList.remove('open'); } } });
   },
+  closeDropdown: function() {
+  var dd = document.getElementById('lang-dropdown');
+  var ddm = document.getElementById('lang-dropdown-mobile');
+  if (dd) dd.style.display = 'none';
+  if (ddm) ddm.style.display = 'none';
+},
   toggleDropdown: function() {
   var dd = document.getElementById('lang-dropdown');
   var ddm = document.getElementById('lang-dropdown-mobile');
