@@ -2,84 +2,80 @@
    B-MO FINANCIAL — lang-selector.css
    Sélecteur de langue
    ========================================= */
-
-#lang-selector { position: relative; }
-
-.lang-wrapper { position: relative; }
-
+ #lang-selector {
+  position: relative;
+  display: inline-block;
+}
+.lang-wrapper {
+  position: relative;
+  display: inline-block;
+}
 .lang-btn {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
   background: none;
-  border: 0.5px solid rgba(255,255,255,0.25);
-  border-radius: 4px;
-  color: rgba(255,255,255,0.85);
-  font-size: 12px;
-  font-family: 'Jost', sans-serif;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px;
+  color: var(--text-main);
+  font-size: 13px;
+  font-family: var(--font-sans);
   cursor: pointer;
   transition: all 0.15s;
   white-space: nowrap;
 }
 .lang-btn:hover {
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-/* Dans la nav (fond blanc) */
-.main-nav .lang-btn {
-  border-color: var(--border-md);
-  color: var(--text-main);
-}
-.main-nav .lang-btn:hover {
   background: var(--gray-100);
 }
-
 .lang-dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 8px);
   right: 0;
-  width: 200px;
-  background: var(--white, #fff);
-  border: 0.5px solid var(--border-md, rgba(0,0,0,0.18));
-  border-radius: 8px;
+  min-width: 200px;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
   overflow: hidden;
-  z-index: 300;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  z-index: 9999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
-
+.lang-dropdown.open {
+  display: block;
+}
 .lang-group-label {
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text-muted, #6B6965);
-  padding: 8px 12px 4px;
+  color: #9CA3AF;
+  padding: 10px 14px 4px;
 }
-
 .lang-option {
   display: flex;
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 8px 12px;
+  padding: 9px 14px;
   background: none;
   border: none;
-  font-size: 12px;
-  font-family: 'Jost', sans-serif;
-  color: var(--text-main, #1C1C1A);
+  font-size: 13px;
+  font-family: var(--font-sans);
+  color: #1F2937;
   cursor: pointer;
-  transition: background 0.1s;
+  transition: background 0.15s;
   text-align: left;
 }
-.lang-option:hover {
-  background: var(--gray-100, #F4F4F2);
+.lang-option:hover { background: #F5F7FA; }
+.lang-option.active {
+  font-weight: 600;
+  color: #0B1F3A;
+  background: #EFF6FF;
 }
-.lang-option[data-lang].active {
-  font-weight: 500;
-  color: var(--navy, #0C2340);
-  background: var(--info-bg, #E6F1FB);
+.goog-te-banner-frame,
+.skiptranslate { display: none !important; }
+body { top: 0 !important; }
+@media (max-width: 768px) {
+  #lang-selector { display: none; }
 }
-
