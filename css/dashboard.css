@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: 220px 1fr;
   min-height: calc(100vh - 62px);
+  align-items: stretch;
 }
 
 /* --- Sidebar --- */
@@ -19,6 +20,7 @@
   top: 62px;
   height: calc(100vh - 62px);
   overflow-y: auto;
+  min-height: 100%;
 }
 
 .sb-user {
