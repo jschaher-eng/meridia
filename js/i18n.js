@@ -103,7 +103,11 @@ var I18N = {
     html += '<div class="lang-group-label">Via Google Translate</div>';
     for (code in this.googleOnly) { var lg = this.googleOnly[code]; html += '<button class="lang-option" onclick="I18N.setLang(\'' + code + '\')" data-lang="' + code + '">[' + lg.flag + '] ' + lg.label + '</button>'; }
     html += '</div></div>'; container.innerHTML = html;
-    document.addEventListener('click', function(e) { if (!container.contains(e.target)) { var dd = document.getElementById('lang-dropdown'); if (dd) { dd.style.display = 'none'; } } });
+    document.addEventListener('click', function(e) { if (!container.contains(e.target)) { var dd = document.getElementById('lang-dropdown'); if (dd) { dd.classList.remove('open'); } } });
   },
-  toggleDropdown: function() { var dd = document.getElementById('lang-dropdown'); if (!dd) { return; } dd.style.display = dd.style.display === 'block' ? 'none' : 'block'; }
+  toggleDropdown: function() {
+  var dd = document.getElementById('lang-dropdown');
+  if (!dd) return;
+  dd.classList.toggle('open');
+}
 };
