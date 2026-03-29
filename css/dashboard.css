@@ -598,3 +598,13 @@
 }
 
 #pg-dash { min-height: 100vh; }
+
+@media (max-width: 768px) {
+  .dash-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar,
+  .dash-sidebar {
+    display: none;
+  }
+}
