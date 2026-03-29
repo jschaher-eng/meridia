@@ -79,3 +79,10 @@ body { top: 0 !important; }
 @media (max-width: 768px) {
   #lang-selector { display: none; }
 }
+
+@media (max-width: 768px) {
+  .lang-dropdown {
+    right: auto;
+    left: 0;
+  }
+}
