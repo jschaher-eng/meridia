@@ -111,9 +111,3 @@ var I18N = {
   dd.classList.toggle('open');
 }
 };
-
-toggleDropdownMobile: function() {
-  var dd = document.getElementById('lang-dropdown-mobile');
-  if (!dd) return;
-  dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
-}
