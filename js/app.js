@@ -509,6 +509,10 @@ async function submitLoanWithAccount() {
     postal_code:     applyData.postal_code || null,
     monthly_income:  applyData.income || null,
     monthly_charges: applyData.charges || null,
+    street:          applyData.street || null,
+    country:         applyData.country || null,
+    birthdate:       document.querySelector('#af2 input[type="date"]')?.value || null,
+    nationality:     document.querySelectorAll('#af2 select')[0]?.value || null,
   });
 
   await _supabase.from('loans').insert({
