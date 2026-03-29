@@ -66,6 +66,7 @@ var I18N = {
     for (var i = 0; i < parts.length; i++) { if (val === undefined || val === null) { return ''; } val = val[parts[i]]; }
     return val || '';
   },
+  
   applyTranslations: function() {
   var self = this;
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
@@ -74,8 +75,14 @@ var I18N = {
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
       el.placeholder = val;
     } else if (el.querySelector('[data-i18n]')) {
-      /* Ne pas écraser les éléments qui ont des enfants traduits */
-      return;
+      /* Élément avec enfants traduits — ne toucher qu'au texte direct */
+      var childNodes = el.childNodes;
+      for (var i = 0; i < childNodes.length; i++) {
+        if (childNodes[i].nodeType === 3) {
+          childNodes[i].textContent = val + ',';
+          break;
+        }
+      }
     } else {
       el.textContent = val;
     }
