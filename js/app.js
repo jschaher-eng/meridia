@@ -832,7 +832,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (mobileBtn) mobileBtn.id = 'lang-current-mobile';
     if (mobileDD)  mobileDD.id  = 'lang-dropdown-mobile';
     /* Corriger le onclick du bouton mobile */
-    if (mobileBtn) mobileBtn.setAttribute('onclick', 'I18N.toggleDropdownMobile()');
+    if (mobileBtn) mobileBtn.setAttribute('onclick', 'I18N.toggleDropdown()');
   }
 }, 500);
 
