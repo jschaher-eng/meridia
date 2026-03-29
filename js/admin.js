@@ -321,7 +321,7 @@ function openClientDetail(id) {
   setEl('mc-created', c.created);
   setEl('mc-loans',   c.loans + ' dossier' + (c.loans > 1 ? 's' : ''));
   setEl('mc-charges', c.charges ? Math.round(c.charges).toLocaleString('fr-FR') + ' €' : '—');
-  setEl('mc-address', [c.address, c.postal_code, c.city].filter(Boolean).join(', ') || '—');
+  setEl('mc-address', [c.street, c.postal_code, c.city].filter(Boolean).join(', ') || '—');
   setEl('mc-city', c.city || '—');
   var scoreInput = document.getElementById('mc-score-input');
   if (scoreInput) scoreInput.value = c.score || '';
