@@ -67,12 +67,21 @@ var I18N = {
     return val || '';
   },
   applyTranslations: function() {
-    var self = this;
-    document.querySelectorAll('[data-i18n]').forEach(function(el) {
-      var val = self.t(el.getAttribute('data-i18n')); if (!val) { return; }
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { el.placeholder = val; } else { el.textContent = val; }
-    });
-  },
+  var self = this;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var val = self.t(el.getAttribute('data-i18n'));
+    if (!val) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else if (el.querySelector('[data-i18n]')) {
+      /* Ne pas écraser les éléments qui ont des enfants traduits */
+      return;
+    } else {
+      el.textContent = val;
+    }
+  });
+},
+  
   applyGoogleTranslate: function(lang) {
     this.removeGoogleTranslate();
     document.cookie = 'googtrans=/auto/' + lang + '; path=/';
