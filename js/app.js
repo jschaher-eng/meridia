@@ -201,6 +201,8 @@ function applyStep(n) {
     applyData.postal_code = document.querySelector('#af2 input[placeholder="10115"]')?.value || '';
     applyData.city        = document.querySelector('#af2 input[placeholder="Berlin"]')?.value || '';
     applyData.country     = document.querySelectorAll('#af2 select')[1]?.value || 'Deutschland';
+    applyData.birthdate    = document.querySelector('#af2 input[type="date"]')?.value || null;
+    applyData.nationality  = document.querySelectorAll('#af2 select')[0]?.value || null;
   }
   if (document.getElementById('af3') && document.getElementById('af3').classList.contains('act')) {
     applyData.income   = parseFloat(document.querySelectorAll('#af3 input[type="number"]')[0]?.value) || 0;
@@ -511,8 +513,8 @@ async function submitLoanWithAccount() {
     monthly_charges: applyData.charges || null,
     street:          applyData.street || null,
     country:         applyData.country || null,
-    birthdate:       document.querySelector('#af2 input[type="date"]')?.value || null,
-    nationality:     document.querySelectorAll('#af2 select')[0]?.value || null,
+    birthdate:    applyData.birthdate || null,
+    nationality:  applyData.nationality || null,
   });
 
   await _supabase.from('loans').insert({
