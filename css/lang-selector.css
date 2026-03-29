@@ -92,3 +92,14 @@ body { top: 0 !important; }
     display: none;
   }
 }
+
+.lang-wrapper {
+  position: relative;
+  display: inline-block !important;
+}
+
+#lang-selector {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+}
