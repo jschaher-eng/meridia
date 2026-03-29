@@ -5,7 +5,8 @@
 
 'use strict';
 var applyData = {
-  email: '', fname: '', lname: '', phone: '', city: '', postal_code: '',
+  email: '', fname: '', lname: '', phone: '', 
+  city: '', postal_code: '', street: '', country: '',
   type: '', amount: 0, duration: 36, income: 0, charges: 0
 };
 
@@ -196,8 +197,10 @@ function applyStep(n) {
     applyData.lname       = document.querySelectorAll('#af2 .fg-row input')[1]?.value.trim() || '';
     applyData.email       = document.querySelector('#af2 input[type="email"]')?.value.trim() || '';
     applyData.phone       = document.querySelector('#af2 input[type="tel"]')?.value || '';
-    applyData.city        = document.querySelectorAll('#af2 input[type="text"]')[3]?.value || '';
-    applyData.postal_code = document.querySelectorAll('#af2 input[type="text"]')[2]?.value || '';
+    applyData.street      = document.querySelector('#af2 input[placeholder="Friedrichstrasse 100"]')?.value || '';
+    applyData.postal_code = document.querySelector('#af2 input[placeholder="10115"]')?.value || '';
+    applyData.city        = document.querySelector('#af2 input[placeholder="Berlin"]')?.value || '';
+    applyData.country     = document.querySelectorAll('#af2 select')[1]?.value || 'Deutschland';
   }
   if (document.getElementById('af3') && document.getElementById('af3').classList.contains('act')) {
     applyData.income   = parseFloat(document.querySelectorAll('#af3 input[type="number"]')[0]?.value) || 0;
