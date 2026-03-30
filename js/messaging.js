@@ -1,5 +1,5 @@
 /* =========================================
-   MERIDIA — messaging.js
+   Allodo — messaging.js
    Messagerie sécurisée client
    ========================================= */
 
@@ -244,7 +244,7 @@ async function loadLastMessages() {
     var d = new Date(m.created_at);
     var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
     return '<div class="lr" style="cursor:pointer;align-items:flex-start;gap:10px" onclick="dashTab(\'messages\')">' +
-      '<div style="width:30px;height:30px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#fff;flex-shrink:0">' + (isAdmin ? 'BM' : 'Sie') + '</div>' +
+      '<div style="width:30px;height:30px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#fff;flex-shrink:0">' + (isAdmin ? 'AF' : 'Sie') + '</div>' +
       '<div><div class="ln">' + (isAdmin ? 'Allodo Finanz' : 'Sie') + '</div>' +
       '<div class="lm">' + m.content.slice(0, 50) + '</div>' +
       '<div class="lm" style="margin-top:2px">' + time + '</div></div></div>';
