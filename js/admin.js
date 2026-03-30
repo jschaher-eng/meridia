@@ -1,5 +1,5 @@
 /* =========================================
-   Allodo ADMIN — admin.js
+   B-Mo Financial ADMIN — admin.js
    Navigation · Dashboard · Prêts · Clients
    Messagerie · Documents · Modals · Toasts
    ========================================= */
@@ -224,11 +224,11 @@ async function validateLoan(id, decision) {
     
     sendNotificationEmail(
       clientProfile.email,
-      'Allodo — Aktualisierung Ihrer Akte',
+      'B-Mo Financial — Aktualisierung Ihrer Akte',
       `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
         <div style="background:#0C2340;padding:24px;text-align:center">
-          <h1 style="color:#fff;font-size:22px;margin:0">Allodo</h1>
+          <h1 style="color:#fff;font-size:22px;margin:0">B-Mo Financial</h1>
         </div>
         <div style="padding:32px;background:#f9f9f9">
           <h2 style="color:#0C2340;font-size:18px">Guten Tag ${clientProfile.name},</h2>
@@ -237,10 +237,10 @@ async function validateLoan(id, decision) {
             <strong style="color:#0C2340;font-size:16px">${statusLabelsEmail[decision] || decision}</strong>
           </div>
           <p style="color:#555;line-height:1.6">Melden Sie sich in Ihrem Kundenbereich an, um alle Details zu sehen.</p>
-          <a href="https://www.allodo.de" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;margin-top:16px">Mein Konto aufrufen</a>
+          <a href="https://bmofinancial.de" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;margin-top:16px">Mein Konto aufrufen</a>
         </div>
         <div style="padding:16px;text-align:center;color:#999;font-size:12px">
-          Allodo · Friedrichstrasse 100 · 10117 Berlin
+          B-Mo Financial · Friedrichstrasse 100 · 10117 Berlin
         </div>
       </div>
       `
@@ -788,7 +788,7 @@ async function requestDocument() {
   /* Envoyer une notification au client */
   await createNotification(clientId, 'document',
     'Dokument angefordert',
-    'Allodo bittet Sie, ein Dokument hochzuladen: ' + (typeLabels[docType] || docType)
+    'B-Mo Financial bittet Sie, ein Dokument hochzuladen: ' + (typeLabels[docType] || docType)
   );
 
   statusEl.textContent = 'Demande envoyée au client !';
