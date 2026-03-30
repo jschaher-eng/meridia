@@ -228,7 +228,7 @@ async function validateLoan(id, decision) {
       `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
         <div style="background:#0C2340;padding:24px;text-align:center">
-          <h1 style="color:#fff;font-size:22px;margin:0">Allodo</h1>
+          <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:50px">
         </div>
         <div style="padding:32px;background:#f9f9f9">
           <h2 style="color:#0C2340;font-size:18px">Guten Tag ${clientProfile.name},</h2>
