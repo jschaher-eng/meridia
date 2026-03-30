@@ -237,7 +237,7 @@ async function validateLoan(id, decision) {
             <strong style="color:#0C2340;font-size:16px">${statusLabelsEmail[decision] || decision}</strong>
           </div>
           <p style="color:#555;line-height:1.6">Melden Sie sich in Ihrem Kundenbereich an, um alle Details zu sehen.</p>
-          <a href="https://www.allodo.de" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;margin-top:16px">Mein Konto aufrufen</a>
+          <a href="https://www.allodo.de/#dash" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;margin-top:16px">Mein Konto aufrufen</a>
         </div>
         <div style="padding:16px;text-align:center;color:#999;font-size:12px">
           Allodo · Friedrichstrasse 100 · 10117 Berlin
