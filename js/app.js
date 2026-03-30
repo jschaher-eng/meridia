@@ -1,5 +1,5 @@
 /* =========================================
-   MERIDIA — app.js
+   Allodo — app.js
    Navigation · Pages · Notifications
    ========================================= */
 
@@ -623,7 +623,7 @@ async function loadDashboard() {
 
   if (!loans || loans.length === 0) return;
   var loan = loans[0];
-  var advisorName   = loan.advisor_name   || 'B-Mo Financial';
+  var advisorName   = loan.advisor_name   || 'Allodo';
   var advisorAvatar = loan.advisor_avatar || 'BM';
 
   var advName = document.querySelector('#dp-vue .ln');
