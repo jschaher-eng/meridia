@@ -224,7 +224,7 @@ async function validateLoan(id, decision) {
     
     sendNotificationEmail(
       clientProfile.email,
-      'Allodo — Aktualisierung Ihrer Akte',
+      'Allodo Finanz — Aktualisierung Ihrer Akte',
       `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
         <div style="background:#0C2340;padding:24px;text-align:center">
@@ -240,7 +240,7 @@ async function validateLoan(id, decision) {
           <a href="https://www.allodo.de/#dash" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;margin-top:16px">Mein Konto aufrufen</a>
         </div>
         <div style="padding:16px;text-align:center;color:#999;font-size:12px">
-          Allodo · Friedrichstrasse 100 · 10117 Berlin
+          Allodo Finanz · Friedrichstrasse 100 · 10117 Berlin
         </div>
       </div>
       `
