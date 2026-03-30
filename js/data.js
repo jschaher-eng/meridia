@@ -7,7 +7,7 @@ var MSG_CONVERSATIONS = {};
 var KPIS = { totalClients:0, activeLoans:0, pendingLoans:0, totalEncours:0, unreadMessages:0, pendingDocs:0 };
 
 async function loadClients() {
-  const { data, error } = await supabase.from('profiles').select('*').order('created_at', { ascending: false });
+  const { data, error } = await supabase.from('profiles').'*'.order('created_at', { ascending: false });
   if (error) { console.error('loadClients:', error.message); return; }
   CLIENTS = (data || []).map(u => ({
     id:      u.id,
@@ -24,7 +24,7 @@ async function loadClients() {
     color:   'navy',
     charges:    u.monthly_charges || 0,
     postal_code: u.postal_code || '',
-    address: u.address || '',
+    address: u.street || '',
     scoreLabel: u.credit_score_label || '—',
   }));
 }
