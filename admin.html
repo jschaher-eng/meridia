@@ -23,35 +23,33 @@
   </div>
 </header>
 
-  <div class="admin-drawer" id="admin-drawer">
-  <div class="sb-section">
-    <div class="sb-label">Vue générale</div>
-    <div class="sb-link" onclick="goPanel('dashboard');closeAdminMenu()">
+  <nav class="admin-mobile-nav">
+  <div class="amn-grid">
+    <div class="amn-item act" id="amn-dashboard" onclick="goPanel('dashboard');setAmnActive('dashboard')">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-      Tableau de bord
+      <span>Board</span>
     </div>
-  </div>
-  <div class="sb-section">
-    <div class="sb-label">Gestion</div>
-    <div class="sb-link" onclick="goPanel('loans');closeAdminMenu()">
+    <div class="amn-item" id="amn-loans" onclick="goPanel('loans');setAmnActive('loans')">
       <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      Dossiers de prêt
+      <span>Dossiers</span>
+      <div class="amn-badge" id="amn-badge-loans" style="display:none">0</div>
     </div>
-    <div class="sb-link" onclick="goPanel('clients');closeAdminMenu()">
+    <div class="amn-item" id="amn-clients" onclick="goPanel('clients');setAmnActive('clients')">
       <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-      Clients
+      <span>Clients</span>
     </div>
-    <div class="sb-link" onclick="goPanel('messaging');closeAdminMenu()">
+    <div class="amn-item" id="amn-messaging" onclick="goPanel('messaging');setAmnActive('messaging')">
       <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Messagerie
+      <span>Messages</span>
+      <div class="amn-badge" id="amn-badge-msgs" style="display:none">0</div>
     </div>
-    <div class="sb-link" onclick="goPanel('documents');closeAdminMenu()">
+    <div class="amn-item" id="amn-documents" onclick="goPanel('documents');setAmnActive('documents')">
       <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-      Documents
+      <span>Documents</span>
+      <div class="amn-badge" id="amn-badge-docs" style="display:none">0</div>
     </div>
   </div>
-</div>
-<div class="admin-drawer-overlay" id="admin-drawer-overlay" onclick="closeAdminMenu()"></div>
+</nav>
   
 <!-- ===================== APP LAYOUT ===================== -->
 <div class="app">
