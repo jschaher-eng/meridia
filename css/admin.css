@@ -389,3 +389,33 @@ body {
 @media (max-width: 900px) {
   .hamburger-admin { display: flex; }
 }
+
+@media (max-width: 900px) {
+
+  /* Topbar — simplifié */
+  .topbar-btn { display: none; }
+  .admin-avatar { display: none; }
+  .topbar-right span { display: none; }
+
+  /* Hamburger à droite */
+  .hamburger-admin { margin-left: auto; }
+
+  /* KPI — 2 colonnes */
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+
+  /* Tables — scroll horizontal */
+  .card { overflow-x: auto; }
+  .data-table { min-width: 600px; }
+
+  /* Messagerie — une seule colonne */
+  .msg-layout { grid-template-columns: 1fr; }
+  .msg-list { border-right: none; border-bottom: 0.5px solid var(--border); max-height: 250px; overflow-y: auto; }
+  .msg-view { min-height: 400px; }
+  .msg-body { max-height: 280px; }
+
+  /* Two-col — une colonne */
+  .two-col { grid-template-columns: 1fr; }
+
+  /* Main padding réduit */
+  .main { padding: 1rem; }
+}
