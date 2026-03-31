@@ -284,10 +284,75 @@ input, select, textarea { font-family: var(--font-sans); }
 @media (max-width: 900px) {
   .app { grid-template-columns: 1fr; }
   .sidebar { display: none; }
+  .topbar-btn { display: none; }
+  .admin-avatar { display: none; }
+  .topbar-right > span { display: none; }
+  .hamburger-admin { display: none; }
+  .admin-drawer { display: none; }
+  .admin-drawer-overlay { display: none; }
+  .main { padding: 0; }
   .kpi-row { grid-template-columns: repeat(2, 1fr); }
   .two-col { grid-template-columns: 1fr; }
   .three-col { grid-template-columns: 1fr; }
+  .msg-layout { grid-template-columns: 1fr; }
+  .msg-list { border-right: none; border-bottom: 0.5px solid var(--border); max-height: 220px; }
+  .msg-body { max-height: 260px; }
+  .card { overflow-x: auto; }
+  .data-table { min-width: 560px; }
+  .panel { padding: 0; }
+  .ph { padding: 16px; background: var(--white); border-bottom: 0.5px solid var(--border); margin-bottom: 8px; }
+  .card { border-radius: 0; border-left: none; border-right: none; margin-bottom: 8px; }
+  .dbox { border-radius: 0; border-left: none; border-right: none; }
+
+  /* Barre de navigation mobile */
+  .admin-mobile-nav {
+    display: block;
+    background: #0C2340;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 12px;
+    position: sticky;
+    top: 48px;
+    z-index: 100;
+  }
+  .amn-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+  .amn-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.15s ease;
+    background: rgba(255,255,255,0.06);
+  }
+  .amn-item.act { background: rgba(184,150,62,0.2); }
+  .amn-item svg { width: 20px; height: 20px; stroke: rgba(255,255,255,0.5); fill: none; stroke-width: 1.5; }
+  .amn-item.act svg { stroke: #B8963E; }
+  .amn-item span { font-size: 9px; color: rgba(255,255,255,0.5); font-weight: 500; text-align: center; }
+  .amn-item.act span { color: #B8963E; }
+  .amn-badge {
+    position: absolute;
+    top: 4px; right: 4px;
+    background: #E24B4A;
+    color: white;
+    font-size: 9px;
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
 }
+
+/* Cacher la nav mobile sur desktop */
+.admin-mobile-nav { display: none; }
 
 /* ---- MISE A JOUR ADMIN ---- */
 
