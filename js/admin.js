@@ -854,3 +854,12 @@ async function downloadDocument(path, name) {
   a.click();
   URL.revokeObjectURL(url);
 }
+
+function toggleAdminMenu() {
+  document.getElementById('admin-drawer').classList.toggle('open');
+  document.getElementById('admin-drawer-overlay').classList.toggle('open');
+}
+function closeAdminMenu() {
+  document.getElementById('admin-drawer').classList.remove('open');
+  document.getElementById('admin-drawer-overlay').classList.remove('open');
+}
