@@ -343,3 +343,49 @@ body {
 .ph h1 {
   font-size: 28px;
 }
+
+.hamburger-admin {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger-admin span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.admin-drawer {
+  position: fixed;
+  top: 48px;
+  left: -280px;
+  width: 260px;
+  height: calc(100vh - 48px);
+  background: #0B1F3A;
+  z-index: 300;
+  padding: 1.25rem 0;
+  overflow-y: auto;
+  transition: left 0.25s ease;
+}
+.admin-drawer.open { left: 0; }
+.admin-drawer .sb-label { color: rgba(255,255,255,0.35); }
+.admin-drawer .sb-link { color: rgba(255,255,255,0.6); border-left-color: transparent; }
+.admin-drawer .sb-link:hover { background: rgba(255,255,255,0.07); color: #fff; }
+.admin-drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 299;
+}
+.admin-drawer-overlay.open { display: block; }
+
+@media (max-width: 900px) {
+  .hamburger-admin { display: flex; }
+}
