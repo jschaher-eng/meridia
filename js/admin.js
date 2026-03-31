@@ -588,6 +588,12 @@ function updateBadges() {
   if (sb) { sb.textContent = pending; sb.style.display = pending ? '' : 'none'; }
   if (sm) { sm.textContent = unread;  sm.style.display = unread  ? '' : 'none'; }
   if (sd) { sd.textContent = pdocs;   sd.style.display = pdocs   ? '' : 'none'; }
+var am = document.getElementById('amn-badge-loans');
+var amm = document.getElementById('amn-badge-msgs');
+var amd = document.getElementById('amn-badge-docs');
+if (am) { am.textContent = pending; am.style.display = pending ? 'flex' : 'none'; }
+if (amm) { amm.textContent = unread; amm.style.display = unread ? 'flex' : 'none'; }
+if (amd) { amd.textContent = pdocs; amd.style.display = pdocs ? 'flex' : 'none'; }
 }
 
 /* ========================================
@@ -862,4 +868,10 @@ function toggleAdminMenu() {
 function closeAdminMenu() {
   document.getElementById('admin-drawer').classList.remove('open');
   document.getElementById('admin-drawer-overlay').classList.remove('open');
+}
+
+function setAmnActive(id) {
+  document.querySelectorAll('.amn-item').forEach(i => i.classList.remove('act'));
+  var el = document.getElementById('amn-' + id);
+  if (el) el.classList.add('act');
 }
