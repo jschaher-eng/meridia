@@ -382,6 +382,34 @@ async function sendAdminReply() {
 
   inp.value = '';
   showToast('Message envoyé.');
+   
+ var clientProfile = CLIENTS.find(function(c) { return c.id === currentClientId; });
+if (clientProfile && clientProfile.email) {
+  sendNotificationEmail(
+    clientProfile.email,
+    'Allodo — Neue Nachricht von Ihrem Berater',
+    `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#0C2340;padding:24px;text-align:center">
+        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+      </div>
+      <div style="padding:32px;background:#f9f9f9">
+        <h2 style="color:#0C2340;font-size:17px;font-weight:400;font-family:Georgia,serif">Guten Tag ${clientProfile.name},</h2>
+        <p style="color:#555;line-height:1.7;font-size:14px">Sie haben eine neue Nachricht von Ihrem Allodo-Berater erhalten.</p>
+        <div style="background:#fff;border-left:3px solid #B8963E;padding:16px;margin:20px 0;border-radius:0 4px 4px 0">
+          <p style="margin:0;color:#0C2340;font-size:14px;font-style:italic">"${text}"</p>
+        </div>
+        <a href="https://www.allodo.de/#dash" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:13px;margin-top:8px">
+          Nachricht lesen →
+        </a>
+      </div>
+      <div style="padding:16px;text-align:center;color:#999;font-size:11px">
+        Allodo · Friedrichstrasse 100 · 10117 Berlin
+      </div>
+    </div>
+    `
+  );
+}
   await loadMessages();
   renderMessaging();
 }
