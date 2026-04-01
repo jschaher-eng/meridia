@@ -463,6 +463,9 @@ function selectConv(id) {
 
   updateBadges();
   renderConvList();
+   // Ouvrir la vue conversation sur mobile
+var layout = document.querySelector('.msg-layout');
+if (layout) layout.classList.add('conv-open');
 }
 
 function appendBubble(container, isRecv, text, meta) {
@@ -874,4 +877,9 @@ function setAmnActive(id) {
   document.querySelectorAll('.amn-item').forEach(i => i.classList.remove('act'));
   var el = document.getElementById('amn-' + id);
   if (el) el.classList.add('act');
+}
+
+function closeMobileConv() {
+  var layout = document.querySelector('.msg-layout');
+  if (layout) layout.classList.remove('conv-open');
 }
