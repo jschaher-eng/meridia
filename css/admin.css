@@ -352,4 +352,24 @@ input, select, textarea { font-family: var(--font-sans); }
     justify-content: center;
     font-weight: 600;
   }
+ /* Messagerie — vue alternée sur mobile */
+  .msg-list { display: block; }
+  .msg-view { display: none; }
+  .msg-layout.conv-open .msg-list { display: none; }
+  .msg-layout.conv-open .msg-view { display: flex; }
+
+  /* Documents — actions visibles */
+  .data-table td:last-child { 
+    position: sticky; 
+    right: 0; 
+    background: var(--white);
+    box-shadow: -2px 0 4px rgba(0,0,0,0.06);
+  }
+  .data-table thead th:last-child {
+    position: sticky;
+    right: 0;
+    background: var(--gray-100);
+    box-shadow: -2px 0 4px rgba(0,0,0,0.06);
+  }
+   .mobile-back-msg { display: block !important; }
 }
