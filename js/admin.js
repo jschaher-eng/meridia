@@ -518,7 +518,6 @@ function closeMobileConv() {
   wrap.appendChild(bub);
   wrap.appendChild(t);
   container.appendChild(wrap);
-}
 
 /* ========================================
    DOCUMENTS
