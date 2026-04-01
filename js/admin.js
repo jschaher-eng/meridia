@@ -504,7 +504,7 @@ function closeMobileConv() {
   if (layout) layout.classList.remove('conv-open');
 }
 
-
+function appendBubble(container, isRecv, text, meta) {
   const wrap = document.createElement('div');
   wrap.style.display = 'flex';
   wrap.style.flexDirection = 'column';
@@ -518,6 +518,7 @@ function closeMobileConv() {
   wrap.appendChild(bub);
   wrap.appendChild(t);
   container.appendChild(wrap);
+}
 
 /* ========================================
    DOCUMENTS
@@ -906,15 +907,4 @@ function toggleAdminMenu() {
 function closeAdminMenu() {
   document.getElementById('admin-drawer').classList.remove('open');
   document.getElementById('admin-drawer-overlay').classList.remove('open');
-}
-
-function setAmnActive(id) {
-  document.querySelectorAll('.amn-item').forEach(i => i.classList.remove('act'));
-  var el = document.getElementById('amn-' + id);
-  if (el) el.classList.add('act');
-}
-
-function closeMobileConv() {
-  var layout = document.querySelector('.msg-layout');
-  if (layout) layout.classList.remove('conv-open');
 }
