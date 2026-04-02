@@ -49,7 +49,7 @@ function goPanel(id) {
   }
 
   window.scrollTo(0, 0);
-
+  history.pushState({ panel: id }, '', '#admin/' + id);
   // Render panel content
   if (id === 'dashboard')  renderDashboard();
   if (id === 'loans')      renderLoans();
@@ -80,6 +80,27 @@ function goPanel(id) {
     }
   }
 }
+
+/* Gestion du bouton retour téléphone */
+window.addEventListener('popstate', function(e) {
+  if (e.state && e.state.panel) {
+    var id = e.state.panel;
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('act'));
+    var el = document.getElementById('panel-' + id);
+    if (el) el.classList.add('act');
+    currentPanel = id;
+    document.querySelectorAll('.amn-item').forEach(i => i.classList.remove('act'));
+    var amn = document.getElementById('amn-' + id);
+    if (amn) amn.classList.add('act');
+    if (window.innerWidth <= 900) {
+      var mobileNav = document.querySelector('.admin-mobile-nav');
+      if (mobileNav) mobileNav.style.display = id === 'dashboard' ? '' : 'none';
+      document.querySelectorAll('.mobile-back-admin').forEach(function(b) {
+        b.style.display = id === 'dashboard' ? 'none' : 'flex';
+      });
+    }
+  }
+});
 /* ========================================
    DASHBOARD
    ======================================== */
