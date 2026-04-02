@@ -527,7 +527,8 @@ async function submitLoanWithAccount() {
   });
 
   await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
-    .eq('reference', applyData.currentRef);
+  .eq('email', applyData.email)
+  .eq('converted', false);
 
   await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
 
