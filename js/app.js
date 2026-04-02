@@ -526,6 +526,7 @@ async function submitLoanWithAccount() {
     status:    'pending'
   });
 
+  console.log('email:', applyData.email, 'ref:', applyData.currentRef);
   await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
   .eq('email', applyData.email)
   .eq('converted', false);
