@@ -453,7 +453,6 @@ async function submitLoanRequest() {
 
   var { error } = await _supabase.from('loan_requests').insert({
     reference:   ref,
-    converted:   false,
     type:        applyData.type,
     amount:      applyData.amount,
     duration:    applyData.duration,
@@ -527,10 +526,8 @@ async function submitLoanWithAccount() {
     status:    'pending'
   });
 
-  console.log('email:', applyData.email, 'ref:', applyData.currentRef);
   await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
-  .eq('email', applyData.email)
-  .or('converted.is.null,converted.eq.false');
+    .eq('reference', applyData.currentRef);
 
   await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
 
