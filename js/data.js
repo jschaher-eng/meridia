@@ -24,6 +24,7 @@ async function loadClients() {
     color:   'navy',
     charges:    u.monthly_charges || 0,
     postal_code: u.postal_code || '',
+    address: u.street || '',
     scoreLabel: u.credit_score_label || '—',
   }));
 }
