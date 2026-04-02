@@ -37,11 +37,12 @@ async function loadLoans() {
     .order('created_at', { ascending: false });
   if (err1) { console.error('loadLoans:', err1.message); }
 
- /* Charger toutes les demandes */
-const { data: requests, error: err2 } = await supabase
-  .from('loan_requests')
-  .select('*')
-  .order('created_at', { ascending: false });
+  /* Charger les demandes sans compte */
+  const { data: requests, error: err2 } = await supabase
+    .from('loan_requests')
+    .select('*')
+    .eq('converted', false)
+    .order('created_at', { ascending: false });
   if (err2) { console.error('loadRequests:', err2.message); }
 
   var allLoans = [
@@ -63,7 +64,7 @@ const { data: requests, error: err2 } = await supabase
       id: r.id,
       ref: r.reference || ('BM-' + r.id.slice(0,8).toUpperCase()),
       client: (r.fname || '') + ' ' + (r.lname || ''),
-      clientId: r.user_id || null,
+      clientId: null,
       email: r.email,
       type: r.type || 'Privatkredit',
       amount: r.amount || 0,
