@@ -609,14 +609,37 @@ async function loadDashboard() {
       scoreDate.textContent = 'Score noch nicht berechnet';
     }
   }
-  var { data: loans } = await _supabase
-    .from('loans')
-    .select('*')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false });
+  var { data: loansData } = await _supabase
+  .from('loans')
+  .select('*')
+  .eq('user_id', userId)
+  .order('created_at', { ascending: false });
 
-  if (!loans || loans.length === 0) return;
-  var loan = loans[0];
+var { data: requestsData } = await _supabase
+  .from('loan_requests')
+  .select('*')
+  .eq('user_id', userId)
+  .order('created_at', { ascending: false });
+
+var loans = [
+  ...(loansData || []),
+  ...(requestsData || []).map(function(r) {
+    return {
+      id:        r.id,
+      reference: r.reference,
+      type:      r.type,
+      amount:    r.amount,
+      duration:  r.duration,
+      rate:      r.rate || 3.9,
+      status:    r.status,
+      user_id:   r.user_id,
+      created_at: r.created_at
+    };
+  })
+].sort(function(a,b) { return new Date(b.created_at) - new Date(a.created_at); });
+
+if (!loans || loans.length === 0) return;
+var loan = loans[0];
   var advisorName   = loan.advisor_name   || 'Allodo';
   var advisorAvatar = loan.advisor_avatar || 'BM';
 
