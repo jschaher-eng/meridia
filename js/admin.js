@@ -33,43 +33,33 @@ function goPanel(id) {
   /* Sur mobile : cacher la nav quand on entre dans un panel secondaire */
   if (window.innerWidth <= 900) {
     var mobileNav = document.querySelector('.admin-mobile-nav');
-    if (mobileNav) {
-      mobileNav.style.display = id === 'dashboard' ? '' : 'none';
-    }
-    /* Afficher/cacher le bouton retour */
-    document.querySelectorAll('.mobile-back-admin').forEach(function(b) {
-      b.style.display = id === 'dashboard' ? 'none' : 'flex';
-    });
+    if (mobileNav) mobileNav.style.display = id === 'dashboard' ? '' : 'none';
   }
 
-  /* Réinitialiser la messagerie */
+  /* Réinitialiser la messagerie si on quitte ce panel */
   if (id !== 'messaging') {
     var layout = document.querySelector('.msg-layout');
-  if (layout) layout.classList.add('conv-open');
-  if (window.innerWidth <= 900) {
-  history.pushState({ panel: 'messaging', conv: id }, '', '#admin/messaging/conv');
-}
+    if (layout) layout.classList.remove('conv-open');
   }
 
   window.scrollTo(0, 0);
   history.pushState({ panel: id }, '', '#admin/' + id);
-  // Render panel content
+
   if (id === 'dashboard')  renderDashboard();
   if (id === 'loans')      renderLoans();
   if (id === 'clients')    renderClients();
-  if (id === 'messaging') { 
-    loadMessages().then(function() { 
+  if (id === 'messaging') {
+    loadMessages().then(function() {
       if (!currentClientId) {
-        renderMessaging(); 
+        renderMessaging();
       } else {
         renderConvList();
       }
-    }); 
+    });
   }
   if (id === 'documents') {
     renderDocuments();
     populateClientSelect();
-    /* Aussi pour le select de demande */
     var reqSelect = document.getElementById('req-client-select');
     if (reqSelect) {
       supabase.from('profiles').select('id, full_name, email').then(function(r) {
@@ -522,6 +512,9 @@ function selectConv(id) {
    // Ouvrir la vue conversation sur mobile
 var layout = document.querySelector('.msg-layout');
 if (layout) layout.classList.add('conv-open');
+if (window.innerWidth <= 900) {
+  history.pushState({ panel: 'messaging', conv: id }, '', '#admin/messaging/conv');
+}
 }
 
 function setAmnActive(id) {
