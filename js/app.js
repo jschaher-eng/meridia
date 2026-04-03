@@ -844,12 +844,17 @@ document.addEventListener('DOMContentLoaded', async function() {
   updateSummary(1);
 
 /* Gérer l'URL au chargement */
-  if (window.location.hash.startsWith('#dash/')) {
-    var panel = window.location.hash.replace('#dash/', '');
-    if (session) { goPage('dash'); dashTab(panel); }
-  } else if (window.location.hash === '#dash') {
-    if (session) { goPage('dash'); }
+if (window.location.hash.startsWith('#dash/')) {
+  var panel = window.location.hash.replace('#dash/', '');
+  if (session) { goPage('dash'); dashTab(panel); }
+} else if (window.location.hash === '#dash') {
+  if (session) { goPage('dash'); }
+} else {
+  var hash = window.location.hash.replace('#', '');
+  if (hash && ['apply', 'sim', 'prods', 'auth'].includes(hash)) {
+    goPage(hash);
   }
+}
 });
 
 window.addEventListener('pageshow', function(e) {
