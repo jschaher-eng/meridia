@@ -97,8 +97,6 @@ window.addEventListener('popstate', function(e) {
       }
     }
   }
-   window.addEventListener('popstate', function(e) {
-  console.log('popstate:', JSON.stringify(e.state));
 });
 /* ========================================
    DASHBOARD
