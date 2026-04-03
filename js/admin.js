@@ -45,7 +45,10 @@ function goPanel(id) {
   /* Réinitialiser la messagerie */
   if (id !== 'messaging') {
     var layout = document.querySelector('.msg-layout');
-    if (layout) layout.classList.remove('conv-open');
+  if (layout) layout.classList.add('conv-open');
+  if (window.innerWidth <= 900) {
+  history.pushState({ panel: 'messaging', conv: id }, '', '#admin/messaging/conv');
+}
   }
 
   window.scrollTo(0, 0);
@@ -84,20 +87,24 @@ function goPanel(id) {
 /* Gestion du bouton retour téléphone */
 window.addEventListener('popstate', function(e) {
   if (e.state && e.state.panel) {
-    var id = e.state.panel;
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('act'));
-    var el = document.getElementById('panel-' + id);
-    if (el) el.classList.add('act');
-    currentPanel = id;
-    document.querySelectorAll('.amn-item').forEach(i => i.classList.remove('act'));
-    var amn = document.getElementById('amn-' + id);
-    if (amn) amn.classList.add('act');
-    if (window.innerWidth <= 900) {
-      var mobileNav = document.querySelector('.admin-mobile-nav');
-      if (mobileNav) mobileNav.style.display = id === 'dashboard' ? '' : 'none';
-      document.querySelectorAll('.mobile-back-admin').forEach(function(b) {
-        b.style.display = id === 'dashboard' ? 'none' : 'flex';
-      });
+    if (e.state.conv) {
+      /* Retour depuis une conversation → afficher la liste */
+      var layout = document.querySelector('.msg-layout');
+      if (layout) layout.classList.remove('conv-open');
+    } else {
+      /* Retour depuis un panel → aller au dashboard */
+      var id = e.state.panel;
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('act'));
+      var el = document.getElementById('panel-' + id);
+      if (el) el.classList.add('act');
+      currentPanel = id;
+      document.querySelectorAll('.amn-item').forEach(i => i.classList.remove('act'));
+      var amn = document.getElementById('amn-' + id);
+      if (amn) amn.classList.add('act');
+      if (window.innerWidth <= 900) {
+        var mobileNav = document.querySelector('.admin-mobile-nav');
+        if (mobileNav) mobileNav.style.display = id === 'dashboard' ? '' : 'none';
+      }
     }
   }
 });
