@@ -818,6 +818,13 @@ document.addEventListener('DOMContentLoaded', async function() {
       dashTab(savedPanel);
     }, 100);
   } else {
+  /* Détecter la langue dans l'URL */
+  var urlParams = new URLSearchParams(window.location.search);
+  var langParam = urlParams.get('lang');
+  if (langParam && I18N.supported[langParam]) {
+    I18N.setLang(langParam);
+  }
+
   var hash = window.location.hash.replace('#', '');
   if (hash && ['apply', 'sim', 'prods', 'auth'].includes(hash)) {
     goPage(hash);
