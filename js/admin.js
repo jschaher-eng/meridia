@@ -464,8 +464,11 @@ if (clientProfile && clientProfile.email) {
    ======================================== */
 function renderMessaging() {
   renderConvList();
-  const firstKey = Object.keys(MSG_CONVERSATIONS)[0];
-  if (firstKey) selectConv(firstKey);
+  /* Sur mobile, ne pas ouvrir automatiquement une conversation */
+  if (window.innerWidth > 900) {
+    const firstKey = Object.keys(MSG_CONVERSATIONS)[0];
+    if (firstKey) selectConv(firstKey);
+  }
 }
 
 function renderConvList() {
