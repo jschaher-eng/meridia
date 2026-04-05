@@ -449,7 +449,7 @@ async function doLogout() {
 
 /* Étape 4 — Soumettre la demande SANS compte (au chargement de l'étape 4) */
 async function submitLoanRequest() {
-  var ref = 'BM-' + Date.now().toString().slice(-8);
+  var ref = 'AF-' + Date.now().toString().slice(-8);
 
   var { error } = await _supabase.from('loan_requests').insert({
     reference:   ref,
@@ -519,7 +519,7 @@ async function submitLoanWithAccount() {
 
   await _supabase.from('loans').insert({
     user_id:   userId,
-    reference: applyData.currentRef || ('BM-' + Date.now().toString().slice(-8)),
+    reference: applyData.currentRef || ('AF-' + Date.now().toString().slice(-8)),
     type:      applyData.type,
     amount:    applyData.amount,
     duration:  applyData.duration,
@@ -623,8 +623,8 @@ async function loadDashboard() {
 
   if (!loans || loans.length === 0) return;
   var loan = loans[0];
-  var advisorName   = loan.advisor_name   || 'B-Mo Financial';
-  var advisorAvatar = loan.advisor_avatar || 'BM';
+  var advisorName   = loan.advisor_name   || 'Allodo Finanz';
+  var advisorAvatar = loan.advisor_avatar || 'AF';
 
   var advName = document.querySelector('#dp-vue .ln');
   var advAv   = document.querySelector('#dp-vue .dbox:last-child .sb-type');
