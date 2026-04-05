@@ -106,7 +106,7 @@
 "create_account_btn": "Crear cuenta y seguir mi solicitud",
 "no_account_btn": "Continuar sin cuenta"
 },
-  "auth": { "title": "Área de cliente Allodo Finanz", "login_tab": "Iniciar sesión", "register_tab": "Crear cuenta", "email": "Correo electrónico", "password": "Contraseña", "remember": "Recordarme", "forgot": "¿Olvidó su contraseña?", "login_btn": "Acceder a mi área", "ssl_note": "Conexión segura SSL · 2FA disponible", "individual": "Particular", "business": "Empresa / PYME", "create_btn": "Crear mi cuenta" },
+  "auth": { "title": "Área de cliente Allodo Finanz", "login_tab": "Iniciar sesión", "register_tab": "Crear cuenta", "email": "Correo electrónico", "password": "Contraseña", "remember": "Recordarme", "forgot": "¿Olvidó su contraseña?", "login_btn": "Acceder a mi área", "ssl_note": "Conexión segura SSL · 2FA disponible", "individual": "Particular", "business": "Empresa / PYME", "create_btn": "Crear mi cuenta", "min_chars": "Al menos 8 caracteres", "repeat_password": "Repita la contraseña" },
   "dashboard": { "greeting": "Hola,", "updated": "Actualizado hoy", "new_request": "+ Nueva solicitud", "active_file": "Expediente activo", "in_repayment": "En reembolso", "granted_amount": "Importe concedido", "next_due": "Próximo vencimiento", "progress": "Progreso", "paid": "Pagado", "upcoming": "Próximo", "advisor": "Su asesor/a", "send_message": "Enviar mensaje" },
   "footer": { "our_loans": "Nuestros préstamos", "business": "Empresas", "info": "Información", "about": "Quiénes somos", "legal": "Aviso legal", "privacy": "Privacidad", "contact": "Contacto", "copyright": "© 2025 Allodo Finanz. Todos los derechos reservados.", "license": "Lic. ACPR n°123456" },
 "testimonials": {
