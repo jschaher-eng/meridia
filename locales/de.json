@@ -9,7 +9,7 @@
     "alerts": "Benachrichtigungen"
   },
   "topbar": {
-    "text": "B-Mo Financial · ACPR-zugelassen · Einlagen bis 100.000 € gesichert",
+    "text": "Allodo Finanz · ACPR-zugelassen · Einlagen bis 100.000 € gesichert",
     "branches": "Filialen",
     "client_space": "Kundenbereich",
     "contact": "Kontakt"
@@ -109,12 +109,12 @@
     "doc_salary": "Letzte 3 Gehaltsabrechnungen",
     "doc_bank": "Letzte 3 Kontoauszüge",
     "submit": "Antrag einreichen",
-    "cgu": "Mit der Einreichung akzeptieren Sie unsere AGB und ermächtigen B-Mo Financial, Ihre Kredithistorie einzusehen.",
+    "cgu": "Mit der Einreichung akzeptieren Sie unsere AGB und ermächtigen Allodo Finanz, Ihre Kredithistorie einzusehen.",
     "summary": "Zusammenfassung",
     "monthly_est": "geschätzte Monatsrate"
   },
   "auth": {
-    "title": "Kundenbereich B-Mo Financial",
+    "title": "Kundenbereich Allodo Finanz",
     "login_tab": "Anmelden",
     "register_tab": "Konto erstellen",
     "email": "E-Mail-Adresse",
@@ -164,7 +164,7 @@
     "legal": "Impressum",
     "privacy": "Datenschutz",
     "contact": "Kontakt",
-    "copyright": "© 2025 B-Mo Financial. Alle Rechte vorbehalten.",
+    "copyright": "© 2025 Allodo Finanz. Alle Rechte vorbehalten.",
     "license": "ACPR-Zulassung Nr. 123456"
   }
 }
