@@ -229,6 +229,9 @@
   "step_by_step": "Suivi étape par étape",
   "capital_repaid": "Capital remboursé",
   "no_messages": "Aucun message.",
+  "instalments_of": "versements sur",
+"no_alerts": "Aucune notification.",
+"client_type": "Client particulier",
   "score_updated": "Score mis à jour le"
 }
 }
