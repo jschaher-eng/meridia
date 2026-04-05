@@ -48,12 +48,11 @@ var I18N = {
   currentLang: 'de',
   translations: {},
   init: function() {
-    this.translations['de'] = this.de;
-    var saved = localStorage.getItem('bmo_lang') || this.defaultLang;
-    this.renderSelector();
-    if (saved === 'de') { this.currentLang = 'de'; this.applyTranslations(); this.updateSelectorUI(); }
-    else { this.applyTranslations(); this.setLang(saved); }
-  },
+  this.translations['de'] = this.de;
+  var saved = localStorage.getItem('bmo_lang') || this.defaultLang;
+  this.renderSelector();
+  this.setLang(saved);
+},
   setLang: function(lang) {
     var self = this;
     if (this.googleOnly[lang]) { this.currentLang = lang; localStorage.setItem('bmo_lang', lang); this.applyGoogleTranslate(lang); this.updateSelectorUI(); return; }
