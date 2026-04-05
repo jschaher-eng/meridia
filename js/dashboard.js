@@ -209,7 +209,7 @@ async function loadClientDocuments() {
   if (!grid) return;
 
   if (error || !data || data.length === 0) {
-    grid.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:1rem">Keine Dokumente verfuegbar.</p>';
+    grid.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:1rem">' + (I18N.t('dash.no_docs') || 'Keine Dokumente verfuegbar.') + '</p>';
     return;
   }
 
@@ -219,11 +219,11 @@ async function loadClientDocuments() {
       return '<div class="doc-card" style="border:1px dashed var(--gold)">' +
         '<div class="doc-icon" style="background:var(--warn-bg)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--warn-bdr)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>' +
         '<div class="doc-name">' + d.name + '</div>' +
-        '<div class="doc-meta" style="color:var(--warn-bdr)">Dokument angefordert</div>' +
+        '<div class="doc-meta" style="color:var(--warn-bdr)">' + (I18N.t('dash.doc_requested') || 'Dokument angefordert') + '</div>' +
         (d.request_message ? '<div class="doc-meta" style="margin-top:4px;font-style:italic">' + d.request_message + '</div>' : '') +
-        '<span class="badge badge-warn" style="width:fit-content">Ausstehend</span>' +
+        '<span class="badge badge-warn" style="width:fit-content">' + (I18N.t('dash.doc_pending') || 'Ausstehend') + '</span>' +
         '<input type="file" id="upload-' + d.id + '" style="display:none" onchange="uploadRequestedDoc(\'' + d.id + '\', \'' + d.name + '\')">' +
-        '<button class="doc-dl" style="background:var(--gold);color:#fff;border:none" onclick="document.getElementById(\'upload-' + d.id + '\').click()">Dokument hochladen</button>' +
+        '<button class="doc-dl" style="background:var(--gold);color:#fff;border:none" onclick="document.getElementById(\'upload-' + d.id + '\').click()">' + (I18N.t('dash.doc_upload') || 'Dokument hochladen') + '</button>' +
         '</div>';
     } else {
       /* Document normal */
