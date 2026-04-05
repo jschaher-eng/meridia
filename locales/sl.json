@@ -36,7 +36,7 @@
   "simulator": { "title": "Kalkulator posojila", "subtitle": "Izračunajte mesečni obrok v realnem času, brez obveznosti", "amount": "Znesek posojila", "duration": "Trajanje", "rate": "Letna obrestna mera", "apply_btn": "Vloži zahtevek →", "monthly": "Ocenjeni mesečni obrok", "capital": "Kapital", "interest": "Skupne obresti", "total": "Skupaj za vračilo", "disclaimer": "Okvirna simulacija brez obveznosti." },
   "apply": { "title": "Spletna vloga za posojilo", "subtitle": "100% digitalno · Odločitev v 24h", "step1": "1 — Projekt", "step2": "2 — Identiteta", "step3": "3 — Finance", "step4": "4 — Dokumenti", "next": "Naprej →", "back": "← Nazaj", "submit": "Oddaj vlogo", "summary": "Povzetek", "monthly_est": "ocenjeni mesečni obrok" },
   "auth": { "title": "Območje za stranke B-Mo Financial", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun" },
-  "footer": { "copyright": "© 2025 B-Mo Financial. Vse pravice pridržane." }
+  "footer": { "copyright": "© 2025 B-Mo Financial. Vse pravice pridržane." },
 "testimonials": {
   "title": "Kaj pravijo naše stranke",
   "subtitle": "Več kot 12.000 zadovoljnih strank nam zaupa",
