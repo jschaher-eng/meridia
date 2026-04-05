@@ -97,7 +97,13 @@
   "trust1": "Šifrirani i sigurni podaci",
   "trust2": "Bez obveze prije potpisivanja",
   "trust3": "Odluka unutar 24 sata",
-  "trust4": "SSL 256-bitno šifriranje"
+  "trust4": "SSL 256-bitno šifriranje",
+  "submitted_text": "Vaš zahtjev je uspješno podnesen! Referenca: ",
+"account_title": "Stvorite račun (neobavezno)",
+"account_sub": "Stvorite račun za praćenje zahtjeva u stvarnom vremenu i komunikaciju s nama.",
+"account_for": "Račun će biti stvoren za:",
+"create_account_btn": "Stvori račun i prati moj zahtjev",
+"no_account_btn": "Nastavi bez računa"
 },
   "auth": { "title": "Korisnički prostor Allodo Finanz", "login_tab": "Prijava", "register_tab": "Stvori račun", "email": "E-mail adresa", "password": "Lozinka", "forgot": "Zaboravljena lozinka?", "login_btn": "Pristupi mom prostoru", "create_btn": "Stvori moj račun" },
   "footer": { "copyright": "© 2025 Allodo Finanz. Sva prava pridržana." },
