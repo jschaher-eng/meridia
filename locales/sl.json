@@ -97,7 +97,13 @@
   "trust1": "Šifrirani in varni podatki",
   "trust2": "Brez obveznosti pred podpisom",
   "trust3": "Odločitev v 24 urah",
-  "trust4": "Šifriranje SSL 256 bit"
+  "trust4": "Šifriranje SSL 256 bit",
+  "submitted_text": "Vaša vloga je bila uspešno oddana! Referenca: ",
+"account_title": "Ustvari račun (neobvezno)",
+"account_sub": "Ustvarite račun za sledenje vlogi v realnem času in komunikacijo z nami.",
+"account_for": "Račun bo ustvarjen za:",
+"create_account_btn": "Ustvari račun in sledi moji vlogi",
+"no_account_btn": "Nadaljuj brez računa"
 },
   "auth": { "title": "Območje za stranke Allodo Finanz", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun" },
   "footer": { "copyright": "© 2025 Allodo Finanz. Vse pravice pridržane." },
