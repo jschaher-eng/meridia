@@ -93,6 +93,7 @@
   "trust2": "Aucun engagement avant signature",
   "trust3": "Décision de principe sous 24 heures",
   "trust4": "Chiffrement SSL 256 bits"
+  "street": "Rue et numéro", "country": "Pays"
 },
   "auth": { "title": "Espace client Allodo Finanz", "login_tab": "Connexion", "register_tab": "Créer un compte", "email": "Email", "password": "Mot de passe", "remember": "Se souvenir de moi", "forgot": "Mot de passe oublié ?", "login_btn": "Accéder à mon espace", "ssl_note": "Connexion sécurisée SSL · 2FA disponible", "register_note": "Créez votre espace pour suivre votre dossier en temps réel.", "individual": "Particulier", "business": "Entreprise / PME", "create_btn": "Créer mon compte" },
   "dashboard": { "greeting": "Bonjour,", "updated": "Mis à jour aujourd'hui", "new_request": "+ Nouvelle demande", "active_file": "Dossier actif", "in_repayment": "En remboursement", "granted_amount": "Montant accordé", "next_due": "Prochaine échéance", "progress": "Progression", "paid": "Réglée", "upcoming": "À venir", "advisor": "Votre conseiller/ère", "send_message": "Envoyer un message" },
