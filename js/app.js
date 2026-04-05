@@ -541,14 +541,14 @@ async function submitLoanWithAccount() {
 
 function renderTimeline(status) {
   var steps = [
-    { key:'pending',   label:'Antrag eingereicht' },
-    { key:'reviewing', label:'Dokumentenpruefung' },
-    { key:'analysis',  label:'Aktenanalyse' },
-    { key:'approved',  label:'Grundsatzentscheidung' },
-    { key:'fees',      label:'Gebuehrenzahlung' },
-    { key:'signed',    label:'Vertragsunterzeichnung' },
-    { key:'funded',    label:'Auszahlung der Mittel' },
-    { key:'active',    label:'Rueckzahlung' },
+    { key:'pending',   label: I18N.t('status.pending')   || 'Antrag eingereicht' },
+    { key:'reviewing', label: I18N.t('status.reviewing') || 'Dokumentenpruefung' },
+    { key:'analysis',  label: I18N.t('status.analysis')  || 'Aktenanalyse' },
+    { key:'approved',  label: I18N.t('status.approved')  || 'Grundsatzentscheidung' },
+    { key:'fees',      label: I18N.t('status.fees')      || 'Gebuehrenzahlung' },
+    { key:'signed',    label: I18N.t('status.signed')    || 'Vertragsunterzeichnung' },
+    { key:'funded',    label: I18N.t('status.funded')    || 'Auszahlung der Mittel' },
+    { key:'active',    label: I18N.t('status.active')    || 'Rueckzahlung' },
   ];
 
   var order = ['pending','reviewing','analysis','approved','fees','signed','funded','active'];
@@ -635,9 +635,19 @@ async function loadDashboard() {
   if (avEl)  avEl.textContent  = advisorAvatar;
   renderTimeline(loan.status || 'pending');
 
-var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung', analysis:'Aktenanalyse', approved:'Grundsatzentscheidung', fees:'Gebuehrenzahlung', signed:'Vertragsunterzeichnung', funded:'Auszahlung der Mittel', active:'In Rueckzahlung', rejected:'Abgelehnt' };
-  var statusLabel = statusLabels[loan.status] || 'Antrag eingereicht';
-
+var statusLabels = {
+  pending:   I18N.t('status.pending')   || 'Antrag eingereicht',
+  reviewing: I18N.t('status.reviewing') || 'Dokumentenpruefung',
+  analysis:  I18N.t('status.analysis')  || 'Aktenanalyse',
+  approved:  I18N.t('status.approved')  || 'Grundsatzentscheidung',
+  fees:      I18N.t('status.fees')      || 'Gebuehrenzahlung',
+  signed:    I18N.t('status.signed')    || 'Vertragsunterzeichnung',
+  funded:    I18N.t('status.funded')    || 'Auszahlung der Mittel',
+  active:    I18N.t('status.active')    || 'In Rueckzahlung',
+  rejected:  I18N.t('status.rejected')  || 'Abgelehnt'
+};
+var statusLabel = statusLabels[loan.status] || I18N.t('status.pending') || 'Antrag eingereicht';
+   
   var r2 = (loan.rate || 3.9) / 100 / 12;
   var d2 = loan.duration || 36;
   var a2 = loan.amount || 0;
