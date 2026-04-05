@@ -33,7 +33,7 @@
   "treasury_desc": "Revolving linija obrtnih sredstava.",
   "treasury_rate": "Od 5,00% EKS"
 },
-  "simulator": { "title": "Kalkulator kredita", "subtitle": "Izračunajte mjesečnu ratu u realnom vremenu, bez obveze", "amount": "Iznos kredita", "duration": "Trajanje", "rate": "Godišnja kamatna stopa", "apply_btn": "Podnesi zahtjev →", "monthly": "Procjenjena mjesečna rata", "capital": "Kapital", "interest": "Ukupne kamate", "total": "Ukupno za otplatu", "disclaimer": "Indikativna simulacija bez obveze." },
+  "simulator": { "title": "Kalkulator kredita", "subtitle": "Izračunajte mjesečnu ratu u realnom vremenu, bez obveze", "amount": "Iznos kredita", "duration": "Trajanje", "rate": "Godišnja kamatna stopa", "apply_btn": "Podnesi zahtjev →", "monthly": "Procjenjena mjesečna rata", "capital": "Kapital", "interest": "Ukupne kamate", "total": "Ukupno za otplatu", "disclaimer": "Indikativna simulacija bez obveze.", "profile_employee": "Privatna osoba - Zaposlenik/ca", "profile_freelance": "Privatna osoba - Samostalni/a", "profile_business": "Tvrtka / MSP"},
   "apply": {
   "title": "Online zahtjev za kredit",
   "subtitle": "100% digitalno · Odluka unutar 24h",
