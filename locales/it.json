@@ -232,6 +232,26 @@
   "instalments_of": "rate su",
 "no_alerts": "Nessuna notifica.",
 "client_type": "Cliente privato",
-  "score_updated": "Punteggio aggiornato il"
+  "score_updated": "Punteggio aggiornato il",
+  "no_docs": "Nessun documento disponibile.",
+"doc_requested": "Documento richiesto",
+"doc_pending": "In attesa",
+"doc_upload": "Carica documento",
+"doc_verified": "Verificato",
+"doc_rejected": "Rifiutato",
+"doc_processing": "In elaborazione",
+"doc_download": "Scarica"
+}
+  ,
+"status": {
+  "pending": "Richiesta inviata",
+  "reviewing": "Verifica documenti",
+  "analysis": "Analisi del fascicolo",
+  "approved": "Decisione di principio",
+  "fees": "Pagamento spese",
+  "signed": "Firma del contratto",
+  "funded": "Erogazione dei fondi",
+  "active": "In rimborso",
+  "rejected": "Rifiutato"
 }
 }
