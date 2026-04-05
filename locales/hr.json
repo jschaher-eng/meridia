@@ -80,4 +80,16 @@
   "send_btn": "Pošalji poruku",
   "toast": "Poruka poslana! Odgovorit ćemo vam uskoro."
 }
+  ,
+"prods": {
+  "title": "Naša kreditna rješenja",
+  "sub": "4 proizvoda za fizičke i pravne osobe",
+  "tag_individuals": "Fizičke osobe",
+  "tag_both": "Fizičke i pravne osobe",
+  "personal_detail": "1.000 € do 75.000 € - 12 do 84 mjeseci - Bez dokaza namjene - Odgovor za 24h",
+  "mortgage_detail": "50.000 € do 1.500.000 € - Do 25 godina - Fiksna ili promjenjiva stopa",
+  "auto_detail": "3.000 € do 80.000 € - Novo ili rabljeno - Benzin ili električno",
+  "micro_detail": "500 € do 25.000 € - Bez složenih jamstava - Pogodno za mikropoduzetnike",
+  "apply_btn": "Podnijeti zahtjev"
+}
 }
