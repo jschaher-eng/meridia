@@ -65,7 +65,7 @@
   "phone": "Telefono cellulare",
   "postal_code": "Codice postale",
   "city": "Città",
-  "street": "Via e numero civico", "country": "Paese"
+  "street": "Via e numero civico", "country": "Paese",
   "finance_title": "Situazione finanziaria",
   "finance_sub": "Entrate e uscite mensili",
   "employment": "Situazione lavorativa",
