@@ -1,6 +1,6 @@
 {
   "nav": { "home": "Home", "loans": "Our loans", "simulator": "Calculator", "apply": "Apply online", "login": "Sign in", "open_account": "Open an account", "alerts": "Alerts" },
-  "topbar": { "text": "B-Mo Financial · ACPR Licensed · Deposits guaranteed up to €100,000", "branches": "Branches", "client_space": "Client area", "contact": "Contact" },
+  "topbar": { "text": "Allodo Finanz · ACPR Licensed · Deposits guaranteed up to €100,000", "branches": "Branches", "client_space": "Client area", "contact": "Contact" },
   "hero": { "title": "Finance your projects,", "title_em": "at your own pace", "subtitle": "Individuals and businesses: access our tailored credit solutions and track every step of your application from your secure space.", "simulate": "Calculate my loan", "discover": "Discover our offers" },
   "segments": { "individuals": "Individuals", "business": "Businesses & SMEs" },
   "products": {
@@ -36,16 +36,16 @@
   "figures": { "hours": "24h", "hours_label": "Decision in principle", "percent": "100%", "percent_label": "Online application", "clients": "12,000+", "clients_label": "Clients supported" },
   "simulator": { "title": "Loan calculator", "subtitle": "Estimate your monthly payments in real time, no commitment", "amount": "Loan amount", "duration": "Duration", "rate": "Annual rate (APR)", "profile": "Borrower profile", "profile_employee": "Individual — employee", "profile_freelance": "Individual — self-employed", "profile_business": "Business / SME", "apply_btn": "Apply now →", "monthly": "Estimated monthly payment", "capital": "Loan amount", "interest": "Total interest", "total": "Total repayable", "debt_ratio": "Debt ratio", "disclaimer": "Indicative simulation, no commitment. APR excludes insurance." },
   "apply": { "title": "Online loan application", "subtitle": "100% digital · Decision within 24h", "step1": "1 — Project", "step2": "2 — Identity", "step3": "3 — Finances", "step4": "4 — Documents", "project_title": "Your project", "project_sub": "Tell us what you want to finance", "loan_type": "Loan type", "borrower_profile": "Borrower profile", "amount": "Amount (€)", "duration_label": "Desired duration", "purpose": "Purpose", "purpose_placeholder": "e.g. car purchase, renovation...", "next": "Next step →", "back": "← Back", "submit": "Submit application", "cgu": "By submitting, you accept our T&Cs.", "summary": "Summary", "monthly_est": "estimated monthly payment" },
-  "auth": { "title": "B-Mo Financial client area", "login_tab": "Sign in", "register_tab": "Create account", "email": "Email address", "password": "Password", "remember": "Remember me", "forgot": "Forgot password?", "login_btn": "Access my area", "ssl_note": "SSL encrypted · 2FA available", "register_note": "Create your space to submit an application and track your file in real time.", "individual": "Individual", "business": "Business / SME", "create_btn": "Create my account" },
+  "auth": { "title": "Allodo Finanz client area", "login_tab": "Sign in", "register_tab": "Create account", "email": "Email address", "password": "Password", "remember": "Remember me", "forgot": "Forgot password?", "login_btn": "Access my area", "ssl_note": "SSL encrypted · 2FA available", "register_note": "Create your space to submit an application and track your file in real time.", "individual": "Individual", "business": "Business / SME", "create_btn": "Create my account" },
   "dashboard": { "greeting": "Hello,", "updated": "Updated today", "new_request": "+ New request", "active_file": "Active file", "in_repayment": "In repayment", "granted_amount": "Granted amount", "next_due": "Next due date", "progress": "Progress", "paid": "Paid", "upcoming": "Upcoming", "advisor": "Your advisor", "send_message": "Send a message" },
-  "footer": { "our_loans": "Our loans", "business": "Business", "info": "Information", "about": "About us", "legal": "Legal notice", "privacy": "Privacy policy", "contact": "Contact", "copyright": "© 2025 B-Mo Financial. All rights reserved.", "license": "ACPR License No. 123456" },
+  "footer": { "our_loans": "Our loans", "business": "Business", "info": "Information", "about": "About us", "legal": "Legal notice", "privacy": "Privacy policy", "contact": "Contact", "copyright": "© 2025 Allodo Finanz. All rights reserved.", "license": "ACPR License No. 123456" },
 "testimonials": {
   "title": "What our clients say",
   "subtitle": "Over 12,000 satisfied clients trust us",
-  "t1_text": "Thanks to B-Mo Financial, I was able to buy my dream home. Simple, fast and fully online. I got my answer within 24 hours!",
+  "t1_text": "Thanks to Allodo Finanz, I was able to buy my dream home. Simple, fast and fully online. I got my answer within 24 hours!",
   "t1_name": "Maria K.",
   "t1_detail": "Mortgage · €280,000",
-  "t2_text": "As a self-employed person, I struggled to get credit. B-Mo Financial processed my application in 2 days. Very professional team!",
+  "t2_text": "As a self-employed person, I struggled to get credit. Allodo Finanz processed my application in 2 days. Very professional team!",
   "t2_name": "Thomas H.",
   "t2_detail": "Business loan · €45,000",
   "t3_text": "The online application was very easy. I could track my file in real time. The advisor was attentive and highly competent.",
