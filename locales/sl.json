@@ -105,7 +105,7 @@
 "create_account_btn": "Ustvari račun in sledi moji vlogi",
 "no_account_btn": "Nadaljuj brez računa"
 },
-  "auth": { "title": "Območje za stranke Allodo Finanz", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun" },
+  "auth": { "title": "Območje za stranke Allodo Finanz", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun", "min_chars": "Vsaj 8 znakov", "repeat_password": "Ponovite geslo" },
   "footer": { "copyright": "© 2025 Allodo Finanz. Vse pravice pridržane." },
 "testimonials": {
   "title": "Kaj pravijo naše stranke",
