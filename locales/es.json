@@ -98,7 +98,13 @@
   "trust1": "Datos cifrados y seguros",
   "trust2": "Sin compromiso antes de firmar",
   "trust3": "Decisión en 24 horas",
-  "trust4": "Cifrado SSL 256 bits"
+  "trust4": "Cifrado SSL 256 bits",
+    "submitted_text": "¡Su solicitud fue enviada con éxito! Referencia: ",
+"account_title": "Crear una cuenta (opcional)",
+"account_sub": "Cree una cuenta para seguir su solicitud en tiempo real y comunicarse con nosotros.",
+"account_for": "Cuenta creada para:",
+"create_account_btn": "Crear cuenta y seguir mi solicitud",
+"no_account_btn": "Continuar sin cuenta"
 },
   "auth": { "title": "Área de cliente Allodo Finanz", "login_tab": "Iniciar sesión", "register_tab": "Crear cuenta", "email": "Correo electrónico", "password": "Contraseña", "remember": "Recordarme", "forgot": "¿Olvidó su contraseña?", "login_btn": "Acceder a mi área", "ssl_note": "Conexión segura SSL · 2FA disponible", "individual": "Particular", "business": "Empresa / PYME", "create_btn": "Crear mi cuenta" },
   "dashboard": { "greeting": "Hola,", "updated": "Actualizado hoy", "new_request": "+ Nueva solicitud", "active_file": "Expediente activo", "in_repayment": "En reembolso", "granted_amount": "Importe concedido", "next_due": "Próximo vencimiento", "progress": "Progreso", "paid": "Pagado", "upcoming": "Próximo", "advisor": "Su asesor/a", "send_message": "Enviar mensaje" },
