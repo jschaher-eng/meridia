@@ -34,7 +34,7 @@
   "treasury_rate": "Dal 5,00% TAEG"
 },
   "figures": { "hours": "24h", "hours_label": "Decisione di principio", "percent": "100%", "percent_label": "Pratica online", "clients": "12.000+", "clients_label": "Clienti assistiti" },
-  "simulator": { "title": "Simulatore di prestito", "subtitle": "Calcola la tua rata mensile in tempo reale, senza impegno", "amount": "Importo del prestito", "duration": "Durata", "rate": "Tasso annuo (TAEG)", "profile": "Profilo richiedente", "apply_btn": "Fai la mia richiesta →", "monthly": "Rata mensile stimata", "capital": "Capitale", "interest": "Interessi totali", "total": "Totale da rimborsare", "debt_ratio": "Rapporto debito/reddito", "disclaimer": "Simulazione indicativa senza impegno. TAEG esclusa assicurazione." },
+  "simulator": { "title": "Simulatore di prestito", "subtitle": "Calcola la tua rata mensile in tempo reale, senza impegno", "amount": "Importo del prestito", "duration": "Durata", "rate": "Tasso annuo (TAEG)", "profile": "Profilo richiedente", "apply_btn": "Fai la mia richiesta →", "monthly": "Rata mensile stimata", "capital": "Capitale", "interest": "Interessi totali", "total": "Totale da rimborsare", "debt_ratio": "Rapporto debito/reddito", "disclaimer": "Simulazione indicativa senza impegno. TAEG esclusa assicurazione.", "profile_employee": "Privato - Dipendente", "profile_freelance": "Privato - Autonomo/a", "profile_business": "Azienda / PMI"},
   "apply": {
   "title": "Richiesta di credito online",
   "subtitle": "100% digitale · Decisione entro 24h",
