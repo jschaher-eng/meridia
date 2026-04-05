@@ -82,4 +82,16 @@
   "send_btn": "Envoyer le message",
   "toast": "Message envoyé ! Nous vous répondrons très bientôt."
 }
+  ,
+"prods": {
+  "title": "Nos solutions de crédit",
+  "sub": "4 produits pour particuliers et entreprises",
+  "tag_individuals": "Particuliers",
+  "tag_both": "Particuliers & Entreprises",
+  "personal_detail": "1 000 EUR à 75 000 EUR - 12 à 84 mois - Sans justificatif d'utilisation - Réponse en 24h",
+  "mortgage_detail": "50 000 EUR à 1 500 000 EUR - Jusqu'à 25 ans - Taux fixe ou variable",
+  "auto_detail": "3 000 EUR à 80 000 EUR - Neuf ou occasion - Essence ou électrique",
+  "micro_detail": "500 EUR à 25 000 EUR - Sans garanties complexes - Adapté aux micro-entreprises",
+  "apply_btn": "Faire une demande"
+}
 }
