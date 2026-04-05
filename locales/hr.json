@@ -230,6 +230,26 @@
   "instalments_of": "rata od",
 "no_alerts": "Nema obavijesti.",
 "client_type": "Privatni klijent",
-  "score_updated": "Rejting ažuriran"
+  "score_updated": "Rejting ažuriran",
+  "no_docs": "Nema dostupnih dokumenata.",
+"doc_requested": "Dokument zatražen",
+"doc_pending": "Na čekanju",
+"doc_upload": "Učitaj dokument",
+"doc_verified": "Provjereno",
+"doc_rejected": "Odbijeno",
+"doc_processing": "U obradi",
+"doc_download": "Preuzmi"
+}
+  ,
+"status": {
+  "pending": "Zahtjev podnesen",
+  "reviewing": "Provjera dokumenata",
+  "analysis": "Analiza dosijea",
+  "approved": "Načelna odluka",
+  "fees": "Plaćanje naknada",
+  "signed": "Potpisivanje ugovora",
+  "funded": "Isplata sredstava",
+  "active": "U otplati",
+  "rejected": "Odbijeno"
 }
 }
