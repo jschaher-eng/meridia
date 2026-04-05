@@ -105,7 +105,7 @@
 "create_account_btn": "Создать аккаунт и отслеживать заявку",
 "no_account_btn": "Продолжить без аккаунта"
 },
-  "auth": { "title": "Личный кабинет Allodo Finanz", "login_tab": "Войти", "register_tab": "Создать аккаунт", "email": "Адрес электронной почты", "password": "Пароль", "forgot": "Забыли пароль?", "login_btn": "Войти в мой кабинет", "individual": "Частное лицо", "business": "Компания / МСП", "create_btn": "Создать аккаунт" },
+  "auth": { "title": "Личный кабинет Allodo Finanz", "login_tab": "Войти", "register_tab": "Создать аккаунт", "email": "Адрес электронной почты", "password": "Пароль", "forgot": "Забыли пароль?", "login_btn": "Войти в мой кабинет", "individual": "Частное лицо", "business": "Компания / МСП", "create_btn": "Создать аккаунт", "min_chars": "Минимум 8 символов", "repeat_password": "Повторите пароль" },
   "footer": { "copyright": "© 2025 Allodo Finanz. Все права защищены." },
 "testimonials": {
   "title": "Отзывы наших клиентов",
