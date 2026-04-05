@@ -93,6 +93,7 @@
   "trust2": "No commitment before signing",
   "trust3": "Decision within 24 hours",
   "trust4": "SSL 256-bit encryption"
+  "street": "Street and house number", "country": "Country"
 },
   "auth": { "title": "Allodo Finanz client area", "login_tab": "Sign in", "register_tab": "Create account", "email": "Email address", "password": "Password", "remember": "Remember me", "forgot": "Forgot password?", "login_btn": "Access my area", "ssl_note": "SSL encrypted · 2FA available", "register_note": "Create your space to submit an application and track your file in real time.", "individual": "Individual", "business": "Business / SME", "create_btn": "Create my account" },
   "dashboard": { "greeting": "Hello,", "updated": "Updated today", "new_request": "+ New request", "active_file": "Active file", "in_repayment": "In repayment", "granted_amount": "Granted amount", "next_due": "Next due date", "progress": "Progress", "paid": "Paid", "upcoming": "Upcoming", "advisor": "Your advisor", "send_message": "Send a message" },
