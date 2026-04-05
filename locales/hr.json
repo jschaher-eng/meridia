@@ -227,6 +227,9 @@
   "step_by_step": "Praćenje korak po korak",
   "capital_repaid": "Otplaćeni kapital",
   "no_messages": "Nema poruka.",
+  "instalments_of": "rata od",
+"no_alerts": "Nema obavijesti.",
+"client_type": "Privatni klijent",
   "score_updated": "Rejting ažuriran"
 }
 }
