@@ -64,7 +64,7 @@
   "phone": "Mobilni telefon",
   "postal_code": "Poštna številka",
   "city": "Mesto",
-  "street": "Ulica in hišna številka", "country": "Država"
+  "street": "Ulica in hišna številka", "country": "Država",
   "finance_title": "Finančni položaj",
   "finance_sub": "Mesečni prihodki in odhodki",
   "employment": "Status zaposlitve",
