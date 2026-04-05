@@ -227,6 +227,9 @@
   "step_by_step": "Sledenje korak za korakom",
   "capital_repaid": "Odplačani kapital",
   "no_messages": "Ni sporočil.",
+  "instalments_of": "obrokov od",
+"no_alerts": "Ni obvestil.",
+"client_type": "Zasebna stranka",
   "score_updated": "Ocena posodobljena"
 }
 }
