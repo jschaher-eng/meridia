@@ -82,4 +82,16 @@
   "send_btn": "Send message",
   "toast": "Message sent! We'll get back to you soon."
 }
+  ,
+"prods": {
+  "title": "Our credit solutions",
+  "sub": "4 products for individuals and businesses",
+  "tag_individuals": "Individuals",
+  "tag_both": "Individuals & Businesses",
+  "personal_detail": "€1,000 to €75,000 - 12 to 84 months - No proof of use required - Answer in 24h",
+  "mortgage_detail": "€50,000 to €1,500,000 - Up to 25 years - Fixed or variable rate",
+  "auto_detail": "€3,000 to €80,000 - New or used - Petrol or electric",
+  "micro_detail": "€500 to €25,000 - No complex guarantees - Suitable for micro-businesses",
+  "apply_btn": "Apply now"
+}
 }
