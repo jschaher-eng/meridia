@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerklärung — Allodo</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0C2340; --gold: #B8963E; --gold-l: #D4AF6A;
+      --white: #ffffff; --gray-100: #F5F7FA;
+      --text: #1C1C1A; --text-m: #6B6965; --border: rgba(0,0,0,0.09);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Jost', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-sans); background: var(--gray-100); color: var(--text); line-height: 1.7; }
+    .topbar { background: var(--navy); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: var(--font-serif); font-size: 22px; color: #fff; text-decoration: none; }
+    .logo span { color: var(--gold-l); }
+    .back-btn { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; border: 0.5px solid rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 4px; transition: all 0.15s; }
+    .back-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .hero { background: var(--navy); padding: 4rem 2rem 3rem; text-align: center; border-bottom: 3px solid var(--gold); }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; color: #fff; margin-bottom: 0.5rem; }
+    .hero p { color: rgba(255,255,255,0.5); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+    .container { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+    .section { background: var(--white); border-radius: 12px; padding: 2rem 2.5rem; margin-bottom: 1.5rem; border: 0.5px solid var(--border); }
+    .section-title { font-family: var(--font-serif); font-size: 20px; font-weight: 500; color: var(--navy); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+    .section h3 { font-size: 15px; font-weight: 500; color: var(--navy); margin: 1.25rem 0 0.5rem; }
+    .section p { font-size: 14px; color: var(--text-m); margin-bottom: 0.75rem; line-height: 1.8; }
+    .section p:last-child { margin-bottom: 0; }
+    .section strong { color: var(--text); font-weight: 500; }
+    .section a { color: var(--gold); text-decoration: none; }
+    .section a:hover { text-decoration: underline; }
+    .section ul { font-size: 14px; color: var(--text-m); padding-left: 1.25rem; margin-bottom: 0.75rem; line-height: 1.9; }
+    .toc { background: #F8F7F4; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; border: 0.5px solid var(--border); }
+    .toc p { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-m); margin-bottom: 0.75rem; }
+    .toc a { display: block; font-size: 13px; color: var(--navy); text-decoration: none; padding: 3px 0; }
+    .toc a:hover { color: var(--gold); }
+    .footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--text-m); border-top: 0.5px solid var(--border); }
+    .footer a { color: var(--gold); text-decoration: none; margin: 0 8px; }
+    @media (max-width: 600px) { .section { padding: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="logo">Allodo<span>.</span></a>
+  <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+</header>
+
+<div class="hero">
+  <h1>Datenschutzerklärung</h1>
+  <p>Zuletzt aktualisiert: Januar 2025</p>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <p>Inhaltsverzeichnis</p>
+    <a href="#verantwortlicher">1. Verantwortlicher</a>
+    <a href="#daten">2. Welche Daten wir erheben</a>
+    <a href="#zweck">3. Zweck der Datenverarbeitung</a>
+    <a href="#rechtsgrundlage">4. Rechtsgrundlage</a>
+    <a href="#weitergabe">5. Weitergabe von Daten</a>
+    <a href="#speicherung">6. Speicherdauer</a>
+    <a href="#rechte">7. Ihre Rechte</a>
+    <a href="#cookies">8. Cookies</a>
+    <a href="#kontakt">9. Kontakt</a>
+  </div>
+
+  <div class="section" id="verantwortlicher">
+    <div class="section-title">1. Verantwortlicher</div>
+    <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+    <p><strong>Allodo GmbH</strong><br>Friedrichstrasse 100<br>10117 Berlin, Deutschland<br>E-Mail: <a href="mailto:datenschutz@allodo.de">datenschutz@allodo.de</a><br>Telefon: +49 15510 591674</p>
+  </div>
+
+  <div class="section" id="daten">
+    <div class="section-title">2. Welche Daten wir erheben</div>
+    <h3>2.1 Bei der Nutzung unserer Website</h3>
+    <p>Beim Besuch unserer Website werden automatisch folgende Daten erhoben:</p>
+    <ul>
+      <li>IP-Adresse (anonymisiert)</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Aufgerufene Seiten und Dateien</li>
+      <li>Browsertyp und -version</li>
+      <li>Betriebssystem</li>
+    </ul>
+    <h3>2.2 Bei der Kreditbeantragung</h3>
+    <p>Im Rahmen unserer Dienstleistungen erheben wir folgende personenbezogene Daten:</p>
+    <ul>
+      <li>Vor- und Nachname, Geburtsdatum, Staatsangehörigkeit</li>
+      <li>Kontaktdaten (E-Mail, Telefon, Adresse)</li>
+      <li>Finanzielle Informationen (Einkommen, Ausgaben, bestehende Kredite)</li>
+      <li>Identitätsdokumente (Personalausweis, Reisepass)</li>
+      <li>Kontoauszüge und Gehaltsabrechnungen</li>
+    </ul>
+  </div>
+
+  <div class="section" id="zweck">
+    <div class="section-title">3. Zweck der Datenverarbeitung</div>
+    <p>Wir verarbeiten Ihre Daten zu folgenden Zwecken:</p>
+    <ul>
+      <li>Bearbeitung und Prüfung Ihres Kreditantrags</li>
+      <li>Bonitätsprüfung und Risikobeurteilung</li>
+      <li>Erfüllung gesetzlicher Anforderungen (KYC, AML)</li>
+      <li>Kommunikation bezüglich Ihres Dossiers</li>
+      <li>Verbesserung unserer Dienstleistungen</li>
+      <li>Betrugsprävention und Sicherheit</li>
+    </ul>
+  </div>
+
+  <div class="section" id="rechtsgrundlage">
+    <div class="section-title">4. Rechtsgrundlage</div>
+    <p>Die Verarbeitung Ihrer Daten erfolgt auf Basis folgender Rechtsgrundlagen gemäß DSGVO:</p>
+    <ul>
+      <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> — Vertragserfüllung bei der Kreditbeantragung</li>
+      <li><strong>Art. 6 Abs. 1 lit. c DSGVO</strong> — Erfüllung gesetzlicher Verpflichtungen</li>
+      <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> — Ihre Einwilligung für optionale Dienste</li>
+      <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> — Berechtigte Interessen (Sicherheit, Betrugsschutz)</li>
+    </ul>
+  </div>
+
+  <div class="section" id="weitergabe">
+    <div class="section-title">5. Weitergabe von Daten</div>
+    <p>Ihre Daten werden nicht an Dritte verkauft. Eine Weitergabe erfolgt nur in folgenden Fällen:</p>
+    <ul>
+      <li>An Kreditbüros (z.B. SCHUFA) zur Bonitätsprüfung</li>
+      <li>An Partnerbanken zur Kreditvermittlung</li>
+      <li>An Behörden bei gesetzlicher Verpflichtung</li>
+      <li>An IT-Dienstleister (Supabase) unter Einhaltung der DSGVO</li>
+    </ul>
+    <p>Alle Dienstleister sind vertraglich zur Einhaltung des Datenschutzes verpflichtet.</p>
+  </div>
+
+  <div class="section" id="speicherung">
+    <div class="section-title">6. Speicherdauer</div>
+    <p>Ihre Daten werden nur so lange gespeichert, wie es für den jeweiligen Zweck erforderlich ist:</p>
+    <ul>
+      <li>Kreditantragsunterlagen: 10 Jahre (gesetzliche Aufbewahrungspflicht)</li>
+      <li>Kommunikationsdaten: 3 Jahre nach Abschluss des Vorgangs</li>
+      <li>Serverprotokolle: 30 Tage</li>
+      <li>Bei abgelehnten Anträgen: 6 Monate</li>
+    </ul>
+  </div>
+
+  <div class="section" id="rechte">
+    <div class="section-title">7. Ihre Rechte</div>
+    <p>Als betroffene Person haben Sie folgende Rechte:</p>
+    <ul>
+      <li><strong>Auskunftsrecht</strong> — Sie können jederzeit Auskunft über Ihre gespeicherten Daten verlangen</li>
+      <li><strong>Berichtigungsrecht</strong> — Unrichtige Daten können Sie jederzeit berichtigen lassen</li>
+      <li><strong>Löschungsrecht</strong> — Sie können die Löschung Ihrer Daten verlangen</li>
+      <li><strong>Einschränkungsrecht</strong> — Sie können die Verarbeitung einschränken lassen</li>
+      <li><strong>Widerspruchsrecht</strong> — Sie können der Verarbeitung widersprechen</li>
+      <li><strong>Datenübertragbarkeit</strong> — Sie können Ihre Daten in einem gängigen Format erhalten</li>
+    </ul>
+    <p>Zur Ausübung Ihrer Rechte wenden Sie sich an: <a href="mailto:datenschutz@allodo.de">datenschutz@allodo.de</a></p>
+    <p>Sie haben das Recht, bei der zuständigen Aufsichtsbehörde Beschwerde einzulegen: <strong>Berliner Beauftragte für Datenschutz und Informationsfreiheit</strong>, <a href="https://www.datenschutz-berlin.de" target="_blank">www.datenschutz-berlin.de</a></p>
+  </div>
+
+  <div class="section" id="cookies">
+    <div class="section-title">8. Cookies</div>
+    <p>Unsere Website verwendet ausschließlich technisch notwendige Cookies zur Aufrechterhaltung Ihrer Sitzung und zur Authentifizierung. Diese Cookies sind für den Betrieb der Website unerlässlich und können nicht deaktiviert werden.</p>
+    <p>Wir verwenden keine Tracking-Cookies, keine Werbe-Cookies und keine Analyse-Dienste von Drittanbietern (z.B. Google Analytics).</p>
+  </div>
+
+  <div class="section" id="kontakt">
+    <div class="section-title">9. Kontakt Datenschutz</div>
+    <p>Bei Fragen zum Datenschutz wenden Sie sich bitte an:</p>
+    <p><strong>Datenschutzbeauftragter</strong><br>Allodo GmbH<br>Friedrichstrasse 100<br>10117 Berlin<br>E-Mail: <a href="mailto:datenschutz@allodo.de">datenschutz@allodo.de</a></p>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <p>© 2025 Allodo GmbH · Alle Rechte vorbehalten</p>
+  <div style="margin-top:8px">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="agb.html">AGB</a>
+  </div>
+</footer>
+
+</body>
+</html>
