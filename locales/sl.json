@@ -33,7 +33,7 @@
   "treasury_desc": "Revolving linija obratnih sredstev.",
   "treasury_rate": "Od 5,00% EOM"
 },
-  "simulator": { "title": "Kalkulator posojila", "subtitle": "Izračunajte mesečni obrok v realnem času, brez obveznosti", "amount": "Znesek posojila", "duration": "Trajanje", "rate": "Letna obrestna mera", "apply_btn": "Vloži zahtevek →", "monthly": "Ocenjeni mesečni obrok", "capital": "Kapital", "interest": "Skupne obresti", "total": "Skupaj za vračilo", "disclaimer": "Okvirna simulacija brez obveznosti." },
+  "simulator": { "title": "Kalkulator posojila", "subtitle": "Izračunajte mesečni obrok v realnem času, brez obveznosti", "amount": "Znesek posojila", "duration": "Trajanje", "rate": "Letna obrestna mera", "apply_btn": "Vloži zahtevek →", "monthly": "Ocenjeni mesečni obrok", "capital": "Kapital", "interest": "Skupne obresti", "total": "Skupaj za vračilo", "disclaimer": "Okvirna simulacija brez obveznosti.", "profile_employee": "Zasebna oseba - Zaposleni/a", "profile_freelance": "Zasebna oseba - Samostojni/a", "profile_business": "Podjetje / MSP"},
   "apply": {
   "title": "Spletna vloga za kredit",
   "subtitle": "100% digitalno · Odločitev v 24h",
