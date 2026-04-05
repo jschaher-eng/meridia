@@ -232,6 +232,26 @@
   "instalments_of": "cuotas de",
 "no_alerts": "Sin notificaciones.",
 "client_type": "Cliente particular",
-  "score_updated": "Puntuación actualizada el"
+  "score_updated": "Puntuación actualizada el",
+  "no_docs": "No hay documentos disponibles.",
+"doc_requested": "Documento solicitado",
+"doc_pending": "Pendiente",
+"doc_upload": "Subir documento",
+"doc_verified": "Verificado",
+"doc_rejected": "Rechazado",
+"doc_processing": "En proceso",
+"doc_download": "Descargar"
+}
+  ,
+"status": {
+  "pending": "Solicitud enviada",
+  "reviewing": "Revisión de documentos",
+  "analysis": "Análisis del expediente",
+  "approved": "Decisión de principio",
+  "fees": "Pago de honorarios",
+  "signed": "Firma del contrato",
+  "funded": "Desembolso de fondos",
+  "active": "En reembolso",
+  "rejected": "Rechazado"
 }
 }
