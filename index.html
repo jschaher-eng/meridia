@@ -622,19 +622,19 @@
         <div id="af4" class="tf">
   <div style="background:var(--success-bg);border:1px solid var(--success-bdr);border-radius:var(--r-lg);padding:1rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--success-bdr)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-    <span style="font-size:15px;color:var(--success-txt)">Ihr Antrag wurde erfolgreich eingereicht! Referenz: <strong id="apply-ref-display">—</strong></span>
+    <span style="font-size:15px;color:var(--success-txt)" data-i18n="apply.submitted_text">Ihr Antrag wurde erfolgreich eingereicht! Referenz: </span><strong id="apply-ref-display">—</strong>
   </div>
 
-  <div style="font-family:var(--font-serif);font-size:20px;font-weight:600;margin-bottom:0.5rem">Konto erstellen (optional)</div>
-  <p style="font-size:15px;color:var(--text-muted);margin-bottom:1.5rem">Erstellen Sie ein Konto, um Ihren Antrag in Echtzeit zu verfolgen und mit uns zu kommunizieren.</p>
+  <div data-i18n="apply.account_title" style="font-family:var(--font-serif);font-size:20px;font-weight:600;margin-bottom:0.5rem">Konto erstellen (optional)</div>
+  <p data-i18n="apply.account_sub" style="font-size:15px;color:var(--text-muted);margin-bottom:1.5rem">Erstellen Sie ein Konto, um Ihren Antrag in Echtzeit zu verfolgen und mit uns zu kommunizieren.</p>
 
   <div style="font-size:14px;color:var(--text-muted);margin-bottom:1rem">
-    Konto wird erstellt für: <strong id="apply-email-display">—</strong>
+    <span data-i18n="apply.account_for">Konto wird erstellt für:</span> <strong id="apply-email-display">—</strong>
   </div>
 
   <div class="fg">
-    <label>Passwort</label>
-    <input type="password" id="apply-password" placeholder="Mindestens 8 Zeichen">
+    <label data-i18n="auth.password">Passwort</label>
+    <label data-i18n="auth.confirm_password">Passwort bestaetigen</label>
   </div>
       <div class="fg">
     <label>Passwort bestaetigen</label>
@@ -643,12 +643,12 @@
 
        <div id="apply-account-error" style="display:none;background:#FCEBEB;color:#791F1F;padding:10px 12px;border-radius:4px;font-size:14px;margin-bottom:1rem;border-left:3px solid #A32D2D"></div>
 
-       <button id="btn-submit-apply" class="btn btn-gold btn-full" style="margin-bottom:0.75rem" onclick="submitLoanWithAccount()">
+       <button id="btn-submit-apply" data-i18n="apply.create_account_btn" class="btn btn-gold btn-full" style="margin-bottom:0.75rem" onclick="submitLoanWithAccount()">
     Konto erstellen &amp; Antrag verfolgen
-       </button>
-       <button class="btn btn-outline btn-full" onclick="goPage('confirm')">
+        </button>
+       <button data-i18n="apply.no_account_btn" class="btn btn-outline btn-full" onclick="goPage('confirm')">
     Ohne Konto fortfahren
-      </button>
+        </button>
     </div>
   </div>
       </div>
