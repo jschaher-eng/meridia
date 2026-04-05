@@ -251,6 +251,7 @@
   "fees": "Paiement des frais",
   "signed": "Signature du contrat",
   "funded": "Déblocage des fonds",
-  "active": "En remboursement"
+  "active": "En remboursement",
+  "rejected": "Refusé"
 }
 }
