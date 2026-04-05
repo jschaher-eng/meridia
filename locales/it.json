@@ -66,6 +66,11 @@
   "postal_code": "Codice postale",
   "city": "Città",
   "street": "Via e numero civico", "country": "Paese",
+  "residence_address": "Indirizzo di residenza",
+  "country_de": "Germania",
+  "country_at": "Austria",
+  "country_ch": "Svizzera",
+  "country_other": "Altro"
   "finance_title": "Situazione finanziaria",
   "finance_sub": "Entrate e uscite mensili",
   "employment": "Situazione lavorativa",
