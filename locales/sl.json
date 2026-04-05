@@ -230,6 +230,26 @@
   "instalments_of": "obrokov od",
 "no_alerts": "Ni obvestil.",
 "client_type": "Zasebna stranka",
-  "score_updated": "Ocena posodobljena"
+  "score_updated": "Ocena posodobljena",
+  "no_docs": "Ni razpoložljivih dokumentov.",
+"doc_requested": "Dokument zahtevan",
+"doc_pending": "V čakanju",
+"doc_upload": "Naloži dokument",
+"doc_verified": "Preverjeno",
+"doc_rejected": "Zavrnjeno",
+"doc_processing": "V obdelavi",
+"doc_download": "Prenesi"
+}
+  ,
+"status": {
+  "pending": "Vloga oddana",
+  "reviewing": "Pregled dokumentov",
+  "analysis": "Analiza mape",
+  "approved": "Načelna odločitev",
+  "fees": "Plačilo stroškov",
+  "signed": "Podpis pogodbe",
+  "funded": "Izplačilo sredstev",
+  "active": "V odplačevanju",
+  "rejected": "Zavrnjeno"
 }
 }
