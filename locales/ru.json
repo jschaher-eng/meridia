@@ -230,6 +230,26 @@
   "instalments_of": "платежей из",
 "no_alerts": "Нет уведомлений.",
 "client_type": "Частный клиент",
-  "score_updated": "Рейтинг обновлён"
+  "score_updated": "Рейтинг обновлён",
+  "no_docs": "Нет доступных документов.",
+"doc_requested": "Документ запрошен",
+"doc_pending": "Ожидание",
+"doc_upload": "Загрузить документ",
+"doc_verified": "Проверено",
+"doc_rejected": "Отклонено",
+"doc_processing": "В обработке",
+"doc_download": "Скачать"
+}
+  ,
+"status": {
+  "pending": "Заявка подана",
+  "reviewing": "Проверка документов",
+  "analysis": "Анализ дела",
+  "approved": "Принципиальное решение",
+  "fees": "Оплата сборов",
+  "signed": "Подписание договора",
+  "funded": "Выдача средств",
+  "active": "В погашении",
+  "rejected": "Отклонено"
 }
 }
