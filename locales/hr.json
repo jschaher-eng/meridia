@@ -36,7 +36,7 @@
   "simulator": { "title": "Kalkulator kredita", "subtitle": "Izračunajte mjesečnu ratu u realnom vremenu, bez obveze", "amount": "Iznos kredita", "duration": "Trajanje", "rate": "Godišnja kamatna stopa", "apply_btn": "Podnesi zahtjev →", "monthly": "Procjenjena mjesečna rata", "capital": "Kapital", "interest": "Ukupne kamate", "total": "Ukupno za otplatu", "disclaimer": "Indikativna simulacija bez obveze." },
   "apply": { "title": "Online zahtjev za kredit", "subtitle": "100% digitalno · Odluka u 24h", "step1": "1 — Projekt", "step2": "2 — Identitet", "step3": "3 — Financije", "step4": "4 — Dokumenti", "next": "Dalje →", "back": "← Natrag", "submit": "Pošalji zahtjev", "summary": "Sažetak", "monthly_est": "procijenjena mjesečna rata" },
   "auth": { "title": "Korisnički prostor B-Mo Financial", "login_tab": "Prijava", "register_tab": "Stvori račun", "email": "E-mail adresa", "password": "Lozinka", "forgot": "Zaboravljena lozinka?", "login_btn": "Pristupi mom prostoru", "create_btn": "Stvori moj račun" },
-  "footer": { "copyright": "© 2025 B-Mo Financial. Sva prava pridržana." }
+  "footer": { "copyright": "© 2025 B-Mo Financial. Sva prava pridržana." },
 "testimonials": {
   "title": "Što kažu naši klijenti",
   "subtitle": "Više od 12.000 zadovoljnih klijenata vjeruje nam",
