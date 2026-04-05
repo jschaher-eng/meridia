@@ -227,6 +227,9 @@
   "step_by_step": "Отслеживание шаг за шагом",
   "capital_repaid": "Выплаченный капитал",
   "no_messages": "Нет сообщений.",
+  "instalments_of": "платежей из",
+"no_alerts": "Нет уведомлений.",
+"client_type": "Частный клиент",
   "score_updated": "Рейтинг обновлён"
 }
 }
