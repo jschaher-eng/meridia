@@ -56,7 +56,7 @@ function goPage(id) {
         if (gr)     gr.textContent     = name.split(' ')[0] + ',';
         var since = new Date(user.created_at).getFullYear();
         var sinceEl = document.querySelector('.sb-type');
-        if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
+        if (sinceEl) sinceEl.textContent = (I18N.t('dash.client_type') || 'Privatkunde') + ' - ' + (I18N.t('dash.client_since') || 'Kunde seit') + ' ' + since;
         loadDashboard();
         loadLastMessages();
       });
@@ -680,7 +680,7 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   el2 = document.getElementById('vue-type');         if (el2) el2.textContent = loan.type;
   el2 = document.getElementById('vue-progress');     if (el2) el2.textContent = progress + ' %';
   el2 = document.getElementById('vue-installments'); if (el2) el2.textContent = paid + ' / ' + d + ' Raten';
-  el2 = document.getElementById('vue-progress-label'); if (el2) el2.textContent = paid + ' Raten von ' + d;
+  el2 = document.getElementById('vue-progress-label'); if (el2) el2.textContent = paid + ' ' + (I18N.t('dash.instalments_of') || 'Raten von') + ' ' + d;
   el2 = document.getElementById('vue-repaid');    if (el2 && el2.firstChild) el2.firstChild.textContent = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR ';
   el2 = document.getElementById('vue-remaining'); if (el2 && el2.firstChild) el2.firstChild.textContent = remaining.toLocaleString('de-DE') + ' EUR ';
 
@@ -695,8 +695,8 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
 
   var repaidEl    = document.querySelector('.prog-bar + div span:first-child');
   var remainingEl = document.querySelector('.prog-bar + div span:last-child');
-  if (repaidEl)    repaidEl.textContent    = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR zurueckgezahlt';
-  if (remainingEl) remainingEl.textContent = remaining.toLocaleString('de-DE') + ' EUR verbleibend';
+  if (repaidEl)    repaidEl.textContent    = Math.round(paidAmount).toLocaleString('de-DE') + ' EUR ' + (I18N.t('dash.repaid') || 'zurueckgezahlt');
+  if (remainingEl) remainingEl.textContent = remaining.toLocaleString('de-DE') + ' EUR ' + (I18N.t('dash.remaining') || 'verbleibend');
 
   if (payments && payments.length > 0) {
     var tbody = document.querySelector('#dp-vue .dbox:nth-child(2)');
@@ -775,7 +775,7 @@ var statusLabels = { pending:'Antrag eingereicht', reviewing:'Dokumentenpruefung
   var notifContainer = document.getElementById('vue-notifications-preview');
   if (notifContainer) {
     if (!notifs || notifs.length === 0) {
-      notifContainer.innerHTML = '<p style="font-size:12px;color:var(--text-muted)">Keine Benachrichtigungen.</p>';
+      notifContainer.innerHTML = '<p style="font-size:12px;color:var(--text-muted)">' + (I18N.t('dash.no_alerts') || 'Keine Benachrichtigungen.') + '</p>';
     } else {
       notifContainer.innerHTML = notifs.map(function(n) {
         return '<div style="padding:8px 0;border-bottom:0.5px solid var(--border)">' +
@@ -799,7 +799,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (av) av.textContent = initials;
     var since = new Date(user.created_at).getFullYear();
     var sinceEl = document.querySelector('.sb-type');
-    if (sinceEl) sinceEl.textContent = 'Privatkunde - Kunde seit ' + since;
+    if (sinceEl) sinceEl.textContent = (I18N.t('dash.client_type') || 'Privatkunde') + ' - ' + (I18N.t('dash.client_since') || 'Kunde seit') + ' ' + since;
     var savedPanel = window.location.hash.startsWith('#dash/') 
       ? window.location.hash.replace('#dash/', '') 
       : 'vue';
