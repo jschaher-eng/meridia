@@ -228,13 +228,13 @@ async function loadClientDocuments() {
     } else {
       /* Document normal */
       var statusBadge = d.status === 'verified' ? 'badge-ok' : d.status === 'rejected' ? 'badge-danger' : 'badge-warn';
-      var statusLabel = d.status === 'verified' ? 'Geprueft' : d.status === 'rejected' ? 'Abgelehnt' : 'In Bearbeitung';
+      var statusLabel = d.status === 'verified' ? (I18N.t('dash.doc_verified') || 'Geprueft') : d.status === 'rejected' ? (I18N.t('dash.doc_rejected') || 'Abgelehnt') : (I18N.t('dash.doc_processing') || 'In Bearbeitung');
       return '<div class="doc-card">' +
         '<div class="doc-icon" style="background:var(--info-bg)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--info-bdr)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>' +
         '<div class="doc-name">' + d.name + '</div>' +
         '<div class="doc-meta">' + (d.ext || 'PDF') + ' - ' + (d.size || '') + ' - ' + new Date(d.created_at).toLocaleDateString('de-DE') + '</div>' +
         '<span class="badge ' + statusBadge + '" style="width:fit-content">' + statusLabel + '</span>' +
-        '<button class="doc-dl" onclick="downloadDocument(\'' + d.path + '\', \'' + d.name + '\')">Herunterladen</button>' +
+        '<button class="doc-dl" onclick="downloadDocument(\'' + d.path + '\', \'' + d.name + '\')">' + (I18N.t('dash.doc_download') || 'Herunterladen') + '</button>' +
         '</div>';
     }
   }).join('');
