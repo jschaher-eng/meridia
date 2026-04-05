@@ -1,6 +1,6 @@
 {
   "nav": { "home": "Inicio", "loans": "Nuestros préstamos", "simulator": "Simulador", "apply": "Solicitar online", "login": "Iniciar sesión", "open_account": "Abrir una cuenta", "alerts": "Alertas" },
-  "topbar": { "text": "B-Mo Financial · Autorizado ACPR · Depósitos garantizados hasta 100.000 €", "branches": "Sucursales", "client_space": "Área de cliente", "contact": "Contacto" },
+  "topbar": { "text": "Allodo Finanz · Autorizado ACPR · Depósitos garantizados hasta 100.000 €", "branches": "Sucursales", "client_space": "Área de cliente", "contact": "Contacto" },
   "hero": { "title": "Financie sus proyectos,", "title_em": "a su ritmo", "subtitle": "Particulares y empresas: acceda a nuestras soluciones de crédito y siga cada paso desde su área segura.", "simulate": "Calcular mi préstamo", "discover": "Descubrir nuestras ofertas" },
   "segments": { "individuals": "Particulares", "business": "Empresas y PYMES" },
   "products": {
@@ -36,16 +36,16 @@
   "figures": { "hours": "24h", "hours_label": "Decisión de principio", "percent": "100%", "percent_label": "Solicitud online", "clients": "12.000+", "clients_label": "Clientes acompañados" },
   "simulator": { "title": "Simulador de préstamo", "subtitle": "Calcule su cuota mensual en tiempo real, sin compromiso", "amount": "Importe del préstamo", "duration": "Plazo", "rate": "Tasa anual (TAE)", "profile": "Perfil del solicitante", "profile_employee": "Particular — asalariado", "profile_freelance": "Particular — autónomo", "profile_business": "Empresa / PYME", "apply_btn": "Hacer mi solicitud →", "monthly": "Cuota mensual estimada", "capital": "Capital prestado", "interest": "Intereses totales", "total": "Total a reembolsar", "debt_ratio": "Tasa de endeudamiento", "disclaimer": "Simulación indicativa sin compromiso. TAE sin seguro." },
   "apply": { "title": "Solicitud de préstamo online", "subtitle": "100% digital · Decisión en 24h", "step1": "1 — Proyecto", "step2": "2 — Identidad", "step3": "3 — Finanzas", "step4": "4 — Documentos", "project_title": "Su proyecto", "project_sub": "Díganos qué desea financiar", "loan_type": "Tipo de préstamo", "borrower_profile": "Perfil del solicitante", "amount": "Importe (€)", "duration_label": "Plazo deseado", "purpose": "Finalidad", "purpose_placeholder": "Ej: compra de vehículo, obras...", "next": "Siguiente →", "back": "← Atrás", "submit": "Enviar solicitud", "cgu": "Al enviar, acepta nuestros T&C.", "summary": "Resumen", "monthly_est": "cuota mensual estimada" },
-  "auth": { "title": "Área de cliente B-Mo Financial", "login_tab": "Iniciar sesión", "register_tab": "Crear cuenta", "email": "Correo electrónico", "password": "Contraseña", "remember": "Recordarme", "forgot": "¿Olvidó su contraseña?", "login_btn": "Acceder a mi área", "ssl_note": "Conexión segura SSL · 2FA disponible", "individual": "Particular", "business": "Empresa / PYME", "create_btn": "Crear mi cuenta" },
+  "auth": { "title": "Área de cliente Allodo Finanz", "login_tab": "Iniciar sesión", "register_tab": "Crear cuenta", "email": "Correo electrónico", "password": "Contraseña", "remember": "Recordarme", "forgot": "¿Olvidó su contraseña?", "login_btn": "Acceder a mi área", "ssl_note": "Conexión segura SSL · 2FA disponible", "individual": "Particular", "business": "Empresa / PYME", "create_btn": "Crear mi cuenta" },
   "dashboard": { "greeting": "Hola,", "updated": "Actualizado hoy", "new_request": "+ Nueva solicitud", "active_file": "Expediente activo", "in_repayment": "En reembolso", "granted_amount": "Importe concedido", "next_due": "Próximo vencimiento", "progress": "Progreso", "paid": "Pagado", "upcoming": "Próximo", "advisor": "Su asesor/a", "send_message": "Enviar mensaje" },
-  "footer": { "our_loans": "Nuestros préstamos", "business": "Empresas", "info": "Información", "about": "Quiénes somos", "legal": "Aviso legal", "privacy": "Privacidad", "contact": "Contacto", "copyright": "© 2025 B-Mo Financial. Todos los derechos reservados.", "license": "Lic. ACPR n°123456" },
+  "footer": { "our_loans": "Nuestros préstamos", "business": "Empresas", "info": "Información", "about": "Quiénes somos", "legal": "Aviso legal", "privacy": "Privacidad", "contact": "Contacto", "copyright": "© 2025 Allodo Finanz. Todos los derechos reservados.", "license": "Lic. ACPR n°123456" },
 "testimonials": {
   "title": "Lo que dicen nuestros clientes",
   "subtitle": "Más de 12.000 clientes satisfechos confían en nosotros",
-  "t1_text": "Gracias a B-Mo Financial pude comprar la casa de mis sueños. El proceso fue sencillo, rápido y completamente online. ¡Recibí mi respuesta en menos de 24 horas!",
+  "t1_text": "Gracias a Allodo Finanz pude comprar la casa de mis sueños. El proceso fue sencillo, rápido y completamente online. ¡Recibí mi respuesta en menos de 24 horas!",
   "t1_name": "Maria K.",
   "t1_detail": "Crédito inmobiliario · 280.000 EUR",
-  "t2_text": "Como autónomo, me costaba conseguir crédito. B-Mo Financial tramitó mi solicitud en 2 días. ¡Equipo muy profesional!",
+  "t2_text": "Como autónomo, me costaba conseguir crédito. Allodo Finanz tramitó mi solicitud en 2 días. ¡Equipo muy profesional!",
   "t2_name": "Thomas H.",
   "t2_detail": "Crédito empresarial · 45.000 EUR",
   "t3_text": "La solicitud online fue muy sencilla. Pude seguir mi expediente en tiempo real. La asesora fue muy atenta y competente.",
