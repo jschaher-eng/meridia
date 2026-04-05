@@ -232,6 +232,25 @@
   "instalments_of": "versements sur",
 "no_alerts": "Aucune notification.",
 "client_type": "Client particulier",
-  "score_updated": "Score mis à jour le"
+  "score_updated": "Score mis à jour le",
+  "no_docs": "Aucun document disponible.",
+"doc_requested": "Document demandé",
+"doc_pending": "En attente",
+"doc_upload": "Téléverser le document",
+"doc_verified": "Vérifié",
+"doc_rejected": "Refusé",
+"doc_processing": "En traitement",
+"doc_download": "Télécharger"
+},
+
+"status": {
+  "pending": "Demande soumise",
+  "reviewing": "Vérification des documents",
+  "analysis": "Analyse du dossier",
+  "approved": "Décision de principe",
+  "fees": "Paiement des frais",
+  "signed": "Signature du contrat",
+  "funded": "Déblocage des fonds",
+  "active": "En remboursement"
 }
 }
