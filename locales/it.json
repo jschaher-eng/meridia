@@ -1,6 +1,6 @@
 {
   "nav": { "home": "Home", "loans": "I nostri prestiti", "simulator": "Simulatore", "apply": "Richiesta online", "login": "Accedi", "open_account": "Apri un conto", "alerts": "Avvisi" },
-  "topbar": { "text": "B-Mo Financial · Autorizzato ACPR · Depositi garantiti fino a 100.000 €", "branches": "Filiali", "client_space": "Area clienti", "contact": "Contatti" },
+  "topbar": { "text": "Allodo Finanz · Autorizzato ACPR · Depositi garantiti fino a 100.000 €", "branches": "Filiali", "client_space": "Area clienti", "contact": "Contatti" },
   "hero": { "title": "Finanzia i tuoi progetti,", "title_em": "ai tuoi ritmi", "subtitle": "Privati e aziende: accedi alle nostre soluzioni di credito e segui ogni fase dalla tua area sicura.", "simulate": "Calcola il mio prestito", "discover": "Scopri le nostre offerte" },
   "segments": { "individuals": "Privati", "business": "Aziende e PMI" },
   "products": {
@@ -36,16 +36,16 @@
   "figures": { "hours": "24h", "hours_label": "Decisione di principio", "percent": "100%", "percent_label": "Pratica online", "clients": "12.000+", "clients_label": "Clienti assistiti" },
   "simulator": { "title": "Simulatore di prestito", "subtitle": "Calcola la tua rata mensile in tempo reale, senza impegno", "amount": "Importo del prestito", "duration": "Durata", "rate": "Tasso annuo (TAEG)", "profile": "Profilo richiedente", "apply_btn": "Fai la mia richiesta →", "monthly": "Rata mensile stimata", "capital": "Capitale", "interest": "Interessi totali", "total": "Totale da rimborsare", "debt_ratio": "Rapporto debito/reddito", "disclaimer": "Simulazione indicativa senza impegno. TAEG esclusa assicurazione." },
   "apply": { "title": "Richiesta di prestito online", "subtitle": "100% digitale · Decisione entro 24h", "step1": "1 — Progetto", "step2": "2 — Identità", "step3": "3 — Finanze", "step4": "4 — Documenti", "next": "Avanti →", "back": "← Indietro", "submit": "Invia richiesta", "summary": "Riepilogo", "monthly_est": "rata mensile stimata" },
-  "auth": { "title": "Area clienti B-Mo Financial", "login_tab": "Accedi", "register_tab": "Crea account", "email": "Indirizzo email", "password": "Password", "remember": "Ricordami", "forgot": "Password dimenticata?", "login_btn": "Accedi alla mia area", "individual": "Privato", "business": "Azienda / PMI", "create_btn": "Crea il mio account" },
+  "auth": { "title": "Area clienti Allodo Finanz", "login_tab": "Accedi", "register_tab": "Crea account", "email": "Indirizzo email", "password": "Password", "remember": "Ricordami", "forgot": "Password dimenticata?", "login_btn": "Accedi alla mia area", "individual": "Privato", "business": "Azienda / PMI", "create_btn": "Crea il mio account" },
   "dashboard": { "greeting": "Buongiorno,", "updated": "Aggiornato oggi", "new_request": "+ Nuova richiesta", "paid": "Pagato", "upcoming": "In scadenza", "advisor": "Il tuo consulente", "send_message": "Invia messaggio" },
-  "footer": { "copyright": "© 2025 B-Mo Financial. Tutti i diritti riservati." },
+  "footer": { "copyright": "© 2025 Allodo Finanz. Tutti i diritti riservati." },
 "testimonials": {
   "title": "Cosa dicono i nostri clienti",
   "subtitle": "Oltre 12.000 clienti soddisfatti si fidano di noi",
-  "t1_text": "Grazie a B-Mo Financial ho potuto acquistare la casa dei miei sogni. Il processo è stato semplice, rapido e completamente online. Ho ricevuto la risposta entro 24 ore!",
+  "t1_text": "Grazie a Allodo Finanz ho potuto acquistare la casa dei miei sogni. Il processo è stato semplice, rapido e completamente online. Ho ricevuto la risposta entro 24 ore!",
   "t1_name": "Maria K.",
   "t1_detail": "Mutuo immobiliare · 280.000 EUR",
-  "t2_text": "Da lavoratore autonomo, faticavo ad ottenere credito. B-Mo Financial ha elaborato la mia richiesta in 2 giorni. Un team molto professionale!",
+  "t2_text": "Da lavoratore autonomo, faticavo ad ottenere credito. Allodo Finanz ha elaborato la mia richiesta in 2 giorni. Un team molto professionale!",
   "t2_name": "Thomas H.",
   "t2_detail": "Credito aziendale · 45.000 EUR",
   "t3_text": "La richiesta online era molto semplice. Ho potuto seguire la mia pratica in tempo reale. La consulente era molto attenta e competente.",
