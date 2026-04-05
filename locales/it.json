@@ -106,7 +106,7 @@
 "create_account_btn": "Crea account e segui la mia richiesta",
 "no_account_btn": "Continua senza account"
 },
-  "auth": { "title": "Area clienti Allodo Finanz", "login_tab": "Accedi", "register_tab": "Crea account", "email": "Indirizzo email", "password": "Password", "remember": "Ricordami", "forgot": "Password dimenticata?", "login_btn": "Accedi alla mia area", "individual": "Privato", "business": "Azienda / PMI", "create_btn": "Crea il mio account" },
+  "auth": { "title": "Area clienti Allodo Finanz", "login_tab": "Accedi", "register_tab": "Crea account", "email": "Indirizzo email", "password": "Password", "remember": "Ricordami", "forgot": "Password dimenticata?", "login_btn": "Accedi alla mia area", "individual": "Privato", "business": "Azienda / PMI", "create_btn": "Crea il mio account", "min_chars": "Almeno 8 caratteri", "repeat_password": "Ripeti la password" },
   "dashboard": { "greeting": "Buongiorno,", "updated": "Aggiornato oggi", "new_request": "+ Nuova richiesta", "paid": "Pagato", "upcoming": "In scadenza", "advisor": "Il tuo consulente", "send_message": "Invia messaggio" },
   "footer": { "copyright": "© 2025 Allodo Finanz. Tutti i diritti riservati." },
 "testimonials": {
