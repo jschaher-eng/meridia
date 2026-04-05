@@ -229,6 +229,9 @@
   "step_by_step": "Step-by-step tracking",
   "capital_repaid": "Capital repaid",
   "no_messages": "No messages.",
+  "instalments_of": "instalments of",
+"no_alerts": "No notifications.",
+"client_type": "Private client",
   "score_updated": "Score updated on"
 }
 }
