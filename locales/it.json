@@ -229,6 +229,9 @@
   "step_by_step": "Monitoraggio passo dopo passo",
   "capital_repaid": "Capitale rimborsato",
   "no_messages": "Nessun messaggio.",
+  "instalments_of": "rate su",
+"no_alerts": "Nessuna notifica.",
+"client_type": "Cliente privato",
   "score_updated": "Punteggio aggiornato il"
 }
 }
