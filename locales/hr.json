@@ -105,7 +105,7 @@
 "create_account_btn": "Stvori račun i prati moj zahtjev",
 "no_account_btn": "Nastavi bez računa"
 },
-  "auth": { "title": "Korisnički prostor Allodo Finanz", "login_tab": "Prijava", "register_tab": "Stvori račun", "email": "E-mail adresa", "password": "Lozinka", "forgot": "Zaboravljena lozinka?", "login_btn": "Pristupi mom prostoru", "create_btn": "Stvori moj račun" },
+  "auth": { "title": "Korisnički prostor Allodo Finanz", "login_tab": "Prijava", "register_tab": "Stvori račun", "email": "E-mail adresa", "password": "Lozinka", "forgot": "Zaboravljena lozinka?", "login_btn": "Pristupi mom prostoru", "create_btn": "Stvori moj račun", "min_chars": "Najmanje 8 znakova", "repeat_password": "Ponovite lozinku" },
   "footer": { "copyright": "© 2025 Allodo Finanz. Sva prava pridržana." },
 "testimonials": {
   "title": "Što kažu naši klijenti",
