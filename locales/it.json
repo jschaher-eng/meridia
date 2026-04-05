@@ -38,7 +38,7 @@
   "apply": { "title": "Richiesta di prestito online", "subtitle": "100% digitale · Decisione entro 24h", "step1": "1 — Progetto", "step2": "2 — Identità", "step3": "3 — Finanze", "step4": "4 — Documenti", "next": "Avanti →", "back": "← Indietro", "submit": "Invia richiesta", "summary": "Riepilogo", "monthly_est": "rata mensile stimata" },
   "auth": { "title": "Area clienti B-Mo Financial", "login_tab": "Accedi", "register_tab": "Crea account", "email": "Indirizzo email", "password": "Password", "remember": "Ricordami", "forgot": "Password dimenticata?", "login_btn": "Accedi alla mia area", "individual": "Privato", "business": "Azienda / PMI", "create_btn": "Crea il mio account" },
   "dashboard": { "greeting": "Buongiorno,", "updated": "Aggiornato oggi", "new_request": "+ Nuova richiesta", "paid": "Pagato", "upcoming": "In scadenza", "advisor": "Il tuo consulente", "send_message": "Invia messaggio" },
-  "footer": { "copyright": "© 2025 B-Mo Financial. Tutti i diritti riservati." }
+  "footer": { "copyright": "© 2025 B-Mo Financial. Tutti i diritti riservati." },
 "testimonials": {
   "title": "Cosa dicono i nostri clienti",
   "subtitle": "Oltre 12.000 clienti soddisfatti si fidano di noi",
