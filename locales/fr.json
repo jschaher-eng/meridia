@@ -241,8 +241,8 @@
 "doc_rejected": "Refusé",
 "doc_processing": "En traitement",
 "doc_download": "Télécharger"
-},
-
+}
+,
 "status": {
   "pending": "Demande soumise",
   "reviewing": "Vérification des documents",
