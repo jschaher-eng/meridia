@@ -1,6 +1,6 @@
 {
   "nav": { "home": "Domov", "loans": "Naša posojila", "simulator": "Kalkulator", "apply": "Spletna vloga", "login": "Prijava", "open_account": "Odpri račun", "alerts": "Obvestila" },
-  "topbar": { "text": "B-Mo Financial · Pooblaščen ACPR · Vloge zagotovljene do 100.000 €", "branches": "Podružnice", "client_space": "Območje za stranke", "contact": "Kontakt" },
+  "topbar": { "text": "Allodo Finanz · Pooblaščen ACPR · Vloge zagotovljene do 100.000 €", "branches": "Podružnice", "client_space": "Območje za stranke", "contact": "Kontakt" },
   "hero": { "title": "Financirajte svoje projekte,", "title_em": "v svojem tempu", "subtitle": "Posamezniki in podjetja: dostopajte do naših kreditnih rešitev in spremljajte vsak korak iz vašega varnega območja.", "simulate": "Izračunaj posojilo", "discover": "Odkrijte naše ponudbe" },
   "segments": { "individuals": "Posamezniki", "business": "Podjetja in MSP" },
   "products": {
@@ -35,15 +35,15 @@
 },
   "simulator": { "title": "Kalkulator posojila", "subtitle": "Izračunajte mesečni obrok v realnem času, brez obveznosti", "amount": "Znesek posojila", "duration": "Trajanje", "rate": "Letna obrestna mera", "apply_btn": "Vloži zahtevek →", "monthly": "Ocenjeni mesečni obrok", "capital": "Kapital", "interest": "Skupne obresti", "total": "Skupaj za vračilo", "disclaimer": "Okvirna simulacija brez obveznosti." },
   "apply": { "title": "Spletna vloga za posojilo", "subtitle": "100% digitalno · Odločitev v 24h", "step1": "1 — Projekt", "step2": "2 — Identiteta", "step3": "3 — Finance", "step4": "4 — Dokumenti", "next": "Naprej →", "back": "← Nazaj", "submit": "Oddaj vlogo", "summary": "Povzetek", "monthly_est": "ocenjeni mesečni obrok" },
-  "auth": { "title": "Območje za stranke B-Mo Financial", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun" },
-  "footer": { "copyright": "© 2025 B-Mo Financial. Vse pravice pridržane." },
+  "auth": { "title": "Območje za stranke Allodo Finanz", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun" },
+  "footer": { "copyright": "© 2025 Allodo Finanz. Vse pravice pridržane." },
 "testimonials": {
   "title": "Kaj pravijo naše stranke",
   "subtitle": "Več kot 12.000 zadovoljnih strank nam zaupa",
-  "t1_text": "Zahvaljujoč B-Mo Financialu sem si lahko kupil hišo svojih sanj. Postopek je bil preprost, hiter in v celoti spletni. Odgovor sem prejel v manj kot 24 urah!",
+  "t1_text": "Zahvaljujoč Allodo Finanzu sem si lahko kupil hišo svojih sanj. Postopek je bil preprost, hiter in v celoti spletni. Odgovor sem prejel v manj kot 24 urah!",
   "t1_name": "Maria K.",
   "t1_detail": "Stanovanjski kredit · 280.000 EUR",
-  "t2_text": "Kot samozaposlena oseba sem težko dobil kredit. B-Mo Financial je obravnaval mojo vlogo v 2 dneh. Zelo profesionalna ekipa!",
+  "t2_text": "Kot samozaposlena oseba sem težko dobil kredit. Allodo Finanz je obravnaval mojo vlogo v 2 dneh. Zelo profesionalna ekipa!",
   "t2_name": "Thomas H.",
   "t2_detail": "Poslovni kredit · 45.000 EUR",
   "t3_text": "Spletna vloga je bila zelo preprosta. Svojo vlogo sem lahko sledil v realnem času. Svetovalka je bila zelo pozorna in strokovna.",
