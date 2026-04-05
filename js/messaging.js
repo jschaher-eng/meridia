@@ -234,7 +234,7 @@ async function loadLastMessages() {
   if (!container) return;
 
   if (!data || data.length === 0) {
-    container.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:8px 0">Keine Nachrichten.</p>';
+    container.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:8px 0">' + (I18N.t('dash.no_messages') || 'Keine Nachrichten.') + '</p>';
     return;
   }
 
