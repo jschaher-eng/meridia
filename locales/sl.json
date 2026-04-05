@@ -80,4 +80,16 @@
   "send_btn": "Pošlji sporočilo",
   "toast": "Sporočilo poslano! Kmalu se vam bomo oglasili."
 }
+  ,
+"prods": {
+  "title": "Naše kreditne rešitve",
+  "sub": "4 produkti za posameznike in podjetja",
+  "tag_individuals": "Posamezniki",
+  "tag_both": "Posamezniki in podjetja",
+  "personal_detail": "1.000 € do 75.000 € - 12 do 84 mesecev - Brez dokazila o namenu - Odgovor v 24h",
+  "mortgage_detail": "50.000 € do 1.500.000 € - Do 25 let - Fiksna ali spremenljiva obrestna mera",
+  "auto_detail": "3.000 € do 80.000 € - Novo ali rabljeno - Bencin ali električno",
+  "micro_detail": "500 € do 25.000 € - Brez kompleksnih jamstev - Primerno za mikropodjetja",
+  "apply_btn": "Vloži zahtevo"
+}
 }
