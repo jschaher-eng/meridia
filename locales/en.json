@@ -232,6 +232,26 @@
   "instalments_of": "instalments of",
 "no_alerts": "No notifications.",
 "client_type": "Private client",
-  "score_updated": "Score updated on"
+  "score_updated": "Score updated on",
+  "no_docs": "No documents available.",
+"doc_requested": "Document requested",
+"doc_pending": "Pending",
+"doc_upload": "Upload document",
+"doc_verified": "Verified",
+"doc_rejected": "Rejected",
+"doc_processing": "Processing",
+"doc_download": "Download"
+}
+  ,
+"status": {
+  "pending": "Application submitted",
+  "reviewing": "Document review",
+  "analysis": "File analysis",
+  "approved": "Principal decision",
+  "fees": "Fee payment",
+  "signed": "Contract signing",
+  "funded": "Fund disbursement",
+  "active": "In repayment",
+  "rejected": "Rejected"
 }
 }
