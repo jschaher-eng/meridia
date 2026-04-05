@@ -82,4 +82,16 @@
   "send_btn": "Enviar mensaje",
   "toast": "¡Mensaje enviado! Le responderemos pronto."
 }
+  ,
+"prods": {
+  "title": "Nuestras soluciones de crédito",
+  "sub": "4 productos para particulares y empresas",
+  "tag_individuals": "Particulares",
+  "tag_both": "Particulares y Empresas",
+  "personal_detail": "1.000 € a 75.000 € - 12 a 84 meses - Sin justificante de uso - Respuesta en 24h",
+  "mortgage_detail": "50.000 € a 1.500.000 € - Hasta 25 años - Tipo fijo o variable",
+  "auto_detail": "3.000 € a 80.000 € - Nuevo o de segunda mano - Gasolina o eléctrico",
+  "micro_detail": "500 € a 25.000 € - Sin garantías complejas - Apto para microempresas",
+  "apply_btn": "Solicitar ahora"
+}
 }
