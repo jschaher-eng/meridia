@@ -254,7 +254,12 @@
 "doc_processing": "V obdelavi",
 "doc_download": "Prenesi",
 "new_badge": "Novo",
-"doc_request_notif": "Allodo zahteva, da naložite dokument:"
+"doc_request_notif": "Allodo zahteva, da naložite dokument:",
+"notif_message": "Novo sporočilo",
+"notif_status": "Posodobitev mape",
+"notif_document": "Dokument zahtevan",
+"notif_security": "Varnostno opozorilo",
+"notif_payment": "Plačilo"
 }
 ,
 "status": {
