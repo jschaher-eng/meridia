@@ -242,7 +242,7 @@
 "doc_processing": "En proceso",
 "doc_download": "Descargar"
 }
-  ,
+,
 "status": {
   "pending": "Solicitud enviada",
   "reviewing": "Revisión de documentos",
