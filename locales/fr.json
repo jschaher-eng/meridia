@@ -152,7 +152,7 @@
   "send_btn": "Envoyer le message",
   "toast": "Message envoyé ! Nous vous répondrons très bientôt."
 }
-  ,
+,
 "prods": {
   "title": "Nos solutions de crédit",
   "sub": "4 produits pour particuliers et entreprises",
@@ -164,7 +164,7 @@
   "micro_detail": "500 EUR à 25 000 EUR - Sans garanties complexes - Adapté aux micro-entreprises",
   "apply_btn": "Faire une demande"
 }
-  ,
+,
 "dash": {
   "overview": "Vue d'ensemble",
   "my_file": "Mon dossier",
