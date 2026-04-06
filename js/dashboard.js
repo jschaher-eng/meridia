@@ -309,7 +309,7 @@ async function loadNotifications() {
     return '<div class="alert-item ' + cfg.color + '" style="cursor:pointer" onclick="markNotifRead(\'' + n.id + '\', this)">' +
       '<div class="al-icon" style="background:var(--' + cfg.color + '-bg)">' +
       '<svg viewBox="0 0 24 24" stroke="var(--' + cfg.color + '-bdr)" fill="none" stroke-width="2"><path d="' + cfg.icon + '"/></svg></div>' +
-      '<div><div class="al-title" style="color:var(--' + cfg.color + '-bdr)">' + n.title + (n.read ? '' : ' <span style="background:var(--navy);color:#fff;font-size:9px;padding:1px 6px;border-radius:10px">' + (I18N.t('dash.new_badge') || 'Neu') + '</span>') + '</div>' +
+      '<div class="al-title" style="color:var(--' + cfg.color + '-bdr)">' + (I18N.t('dash.notif_' + n.type) || n.title) + (n.read ? '' : ' <span style="background:var(--navy);color:#fff;font-size:9px;padding:1px 6px;border-radius:10px">' + (I18N.t('dash.new_badge') || 'Neu') + '</span>') + '</div>' +
       '<div class="al-sub">' + msg + '</div>' +
       '<div class="al-time">' + time + '</div></div></div>';
   }).join('');
