@@ -241,7 +241,8 @@
 "doc_rejected": "Rifiutato",
 "doc_processing": "In elaborazione",
 "doc_download": "Scarica",
-"new_badge": "Nuovo"
+"new_badge": "Nuovo",
+"doc_request_notif": "Allodo ti chiede di caricare un documento:"
 }
 ,
 "status": {
