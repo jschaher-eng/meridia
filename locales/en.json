@@ -241,7 +241,8 @@
 "doc_rejected": "Rejected",
 "doc_processing": "Processing",
 "doc_download": "Download",
-"new_badge": "New"
+"new_badge": "New",
+"doc_request_notif": "Allodo requests you to upload a document:"
 }
 ,
 "status": {
