@@ -254,7 +254,12 @@
 "doc_processing": "В обработке",
 "doc_download": "Скачать",
 "new_badge": "Новое",
-"doc_request_notif": "Allodo просит вас загрузить документ:"
+"doc_request_notif": "Allodo просит вас загрузить документ:",
+"notif_message": "Новое сообщение",
+"notif_status": "Обновление дела",
+"notif_document": "Документ запрошен",
+"notif_security": "Предупреждение безопасности",
+"notif_payment": "Платёж"
 }
 ,
 "status": {
