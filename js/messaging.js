@@ -22,7 +22,7 @@ function appendBubble(container, isRecv, text, meta, animate) {
 
   const bub = document.createElement('div');
   bub.className = 'bubble ' + (isRecv ? 'recv' : 'sent');
-  bub.textContent = text;
+  bub.innerHTML = (text || '').replace(/\n/g, '<br>');
   if (animate) {
     bub.style.opacity = '0';
     bub.style.transform = 'translateY(6px)';
