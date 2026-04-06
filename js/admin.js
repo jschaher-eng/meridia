@@ -535,7 +535,7 @@ function appendBubble(container, isRecv, text, meta) {
   wrap.style.alignItems = isRecv ? 'flex-start' : 'flex-end';
   const bub = document.createElement('div');
   bub.className = 'bubble ' + (isRecv ? 'recv' : 'sent');
-  bub.textContent = text;
+  bub.innerHTML = (text || '').replace(/\n/g, '<br>');
   const t = document.createElement('div');
   t.className = 'bubble-time' + (isRecv ? '' : ' r');
   t.textContent = meta;
