@@ -295,17 +295,23 @@ async function loadNotifications() {
     var time = d.toLocaleDateString('de-DE', {day:'numeric', month:'short'}) + ' ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
     /* Traduire le message si c'est un code de document */
     var msg = n.message || '';
-    if (msg.startsWith('doc_request:')) {
-      var docType = msg.replace('doc_request:', '');
-      var docTypeLabels = {
-        identite: I18N.t('doc_type.identite') || 'Personalausweis',
-        revenus:  I18N.t('doc_type.revenus')  || 'Einkommensnachweis',
-        domicile: I18N.t('doc_type.domicile') || 'Wohnsitznachweis',
-        bancaire: I18N.t('doc_type.bancaire') || 'Kontoauszug',
-        autre:    I18N.t('doc_type.autre')    || 'Dokument'
-      };
-      msg = (I18N.t('dash.doc_request_notif') || 'Dokument angefordert:') + ' ' + (docTypeLabels[docType] || docType);
+   var docTypeLabels = {
+  identite: I18N.t('doc_type.identite') || 'Personalausweis',
+  revenus:  I18N.t('doc_type.revenus')  || 'Einkommensnachweis',
+  domicile: I18N.t('doc_type.domicile') || 'Wohnsitznachweis',
+  bancaire: I18N.t('doc_type.bancaire') || 'Kontoauszug',
+  autre:    I18N.t('doc_type.autre')    || 'Dokument'
+};
+if (msg.startsWith('doc_request:')) {
+  var docType = msg.replace('doc_request:', '');
+  msg = (I18N.t('dash.doc_request_notif') || 'Dokument angefordert:') + ' ' + (docTypeLabels[docType] || docType);
+} else {
+  Object.keys(docTypeLabels).forEach(function(key) {
+    if (msg.includes(key)) {
+      msg = (I18N.t('dash.doc_request_notif') || 'Dokument angefordert:') + ' ' + docTypeLabels[key];
     }
+  });
+}
     return '<div class="alert-item ' + cfg.color + '" style="cursor:pointer" onclick="markNotifRead(\'' + n.id + '\', this)">' +
       '<div class="al-icon" style="background:var(--' + cfg.color + '-bg)">' +
       '<svg viewBox="0 0 24 24" stroke="var(--' + cfg.color + '-bdr)" fill="none" stroke-width="2"><path d="' + cfg.icon + '"/></svg></div>' +
