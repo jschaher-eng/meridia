@@ -242,7 +242,12 @@
 "doc_processing": "Processing",
 "doc_download": "Download",
 "new_badge": "New",
-"doc_request_notif": "Allodo requests you to upload a document:"
+"doc_request_notif": "Allodo requests you to upload a document:",
+"notif_message": "New message",
+"notif_status": "File update",
+"notif_document": "Document requested",
+"notif_security": "Security alert",
+"notif_payment": "Payment"
 }
 ,
 "status": {
