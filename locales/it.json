@@ -242,7 +242,12 @@
 "doc_processing": "In elaborazione",
 "doc_download": "Scarica",
 "new_badge": "Nuovo",
-"doc_request_notif": "Allodo ti chiede di caricare un documento:"
+"doc_request_notif": "Allodo ti chiede di caricare un documento:",
+"notif_message": "Nuovo messaggio",
+"notif_status": "Aggiornamento fascicolo",
+"notif_document": "Documento richiesto",
+"notif_security": "Avviso sicurezza",
+"notif_payment": "Pagamento"
 }
 ,
 "status": {
