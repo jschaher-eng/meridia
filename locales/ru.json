@@ -240,7 +240,7 @@
 "doc_processing": "В обработке",
 "doc_download": "Скачать"
 }
-  ,
+,
 "status": {
   "pending": "Заявка подана",
   "reviewing": "Проверка документов",
