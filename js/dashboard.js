@@ -214,11 +214,19 @@ async function loadClientDocuments() {
   }
 
   grid.innerHTML = data.map(function(d) {
+   var docTypeLabels = {
+  identite: I18N.t('doc_type.identite') || 'Personalausweis',
+  revenus:  I18N.t('doc_type.revenus')  || 'Einkommensnachweis',
+  domicile: I18N.t('doc_type.domicile') || 'Wohnsitznachweis',
+  bancaire: I18N.t('doc_type.bancaire') || 'Kontoauszug',
+  autre:    I18N.t('doc_type.autre')    || 'Dokument'
+};
+var docName = docTypeLabels[d.type] || d.name;
     if (d.status === 'requested') {
       /* Document demandé — afficher un bouton upload */
       return '<div class="doc-card" style="border:1px dashed var(--gold)">' +
         '<div class="doc-icon" style="background:var(--warn-bg)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--warn-bdr)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>' +
-        '<div class="doc-name">' + d.name + '</div>' +
+        '<div class="doc-name">' + docName + '</div>' +
         '<div class="doc-meta" style="color:var(--warn-bdr)">' + (I18N.t('dash.doc_requested') || 'Dokument angefordert') + '</div>' +
         (d.request_message ? '<div class="doc-meta" style="margin-top:4px;font-style:italic">' + d.request_message + '</div>' : '') +
         '<span class="badge badge-warn" style="width:fit-content">' + (I18N.t('dash.doc_pending') || 'Ausstehend') + '</span>' +
@@ -231,7 +239,7 @@ async function loadClientDocuments() {
       var statusLabel = d.status === 'verified' ? (I18N.t('dash.doc_verified') || 'Geprueft') : d.status === 'rejected' ? (I18N.t('dash.doc_rejected') || 'Abgelehnt') : (I18N.t('dash.doc_processing') || 'In Bearbeitung');
       return '<div class="doc-card">' +
         '<div class="doc-icon" style="background:var(--info-bg)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--info-bdr)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>' +
-        '<div class="doc-name">' + d.name + '</div>' +
+        '<div class="doc-name">' + docName + '</div>' +
         '<div class="doc-meta">' + (d.ext || 'PDF') + ' - ' + (d.size || '') + ' - ' + new Date(d.created_at).toLocaleDateString('de-DE') + '</div>' +
         '<span class="badge ' + statusBadge + '" style="width:fit-content">' + statusLabel + '</span>' +
         '<button class="doc-dl" onclick="downloadDocument(\'' + d.path + '\', \'' + d.name + '\')">' + (I18N.t('dash.doc_download') || 'Herunterladen') + '</button>' +
@@ -269,7 +277,7 @@ async function loadNotifications() {
   if (!container) return;
 
   if (!data || data.length === 0) {
-    container.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:1rem">Keine Benachrichtigungen.</p>';
+    container.innerHTML = '<p style="font-size:12px;color:var(--text-muted);padding:1rem">' + (I18N.t('dash.no_alerts') || 'Keine Benachrichtigungen.') + '</p>';
     return;
   }
 
@@ -285,11 +293,24 @@ async function loadNotifications() {
     var cfg = typeConfig[n.type] || typeConfig.message;
     var d = new Date(n.created_at);
     var time = d.toLocaleDateString('de-DE', {day:'numeric', month:'short'}) + ' ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+    /* Traduire le message si c'est un code de document */
+    var msg = n.message || '';
+    if (msg.startsWith('doc_request:')) {
+      var docType = msg.replace('doc_request:', '');
+      var docTypeLabels = {
+        identite: I18N.t('doc_type.identite') || 'Personalausweis',
+        revenus:  I18N.t('doc_type.revenus')  || 'Einkommensnachweis',
+        domicile: I18N.t('doc_type.domicile') || 'Wohnsitznachweis',
+        bancaire: I18N.t('doc_type.bancaire') || 'Kontoauszug',
+        autre:    I18N.t('doc_type.autre')    || 'Dokument'
+      };
+      msg = (I18N.t('dash.doc_request_notif') || 'Dokument angefordert:') + ' ' + (docTypeLabels[docType] || docType);
+    }
     return '<div class="alert-item ' + cfg.color + '" style="cursor:pointer" onclick="markNotifRead(\'' + n.id + '\', this)">' +
       '<div class="al-icon" style="background:var(--' + cfg.color + '-bg)">' +
       '<svg viewBox="0 0 24 24" stroke="var(--' + cfg.color + '-bdr)" fill="none" stroke-width="2"><path d="' + cfg.icon + '"/></svg></div>' +
-      '<div><div class="al-title" style="color:var(--' + cfg.color + '-bdr)">' + n.title + (n.read ? '' : ' <span style="background:var(--navy);color:#fff;font-size:9px;padding:1px 6px;border-radius:10px">Neu</span>') + '</div>' +
-      '<div class="al-sub">' + (n.message || '') + '</div>' +
+      '<div><div class="al-title" style="color:var(--' + cfg.color + '-bdr)">' + n.title + (n.read ? '' : ' <span style="background:var(--navy);color:#fff;font-size:9px;padding:1px 6px;border-radius:10px">' + (I18N.t('dash.new_badge') || 'Neu') + '</span>') + '</div>' +
+      '<div class="al-sub">' + msg + '</div>' +
       '<div class="al-time">' + time + '</div></div></div>';
   }).join('');
 
