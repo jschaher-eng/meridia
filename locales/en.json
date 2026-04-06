@@ -152,7 +152,7 @@
   "send_btn": "Send message",
   "toast": "Message sent! We'll get back to you soon."
 }
-  ,
+,
 "prods": {
   "title": "Our credit solutions",
   "sub": "4 products for individuals and businesses",
@@ -164,7 +164,7 @@
   "micro_detail": "€500 to €25,000 - No complex guarantees - Suitable for micro-businesses",
   "apply_btn": "Apply now"
 }
-  ,
+,
 "dash": {
   "overview": "Overview",
   "my_file": "My file",
@@ -240,7 +240,8 @@
 "doc_verified": "Verified",
 "doc_rejected": "Rejected",
 "doc_processing": "Processing",
-"doc_download": "Download"
+"doc_download": "Download",
+"new_badge": "New"
 }
 ,
 "status": {
@@ -253,5 +254,13 @@
   "funded": "Fund disbursement",
   "active": "In repayment",
   "rejected": "Rejected"
+}
+,
+"doc_type": {
+  "identite": "Identity document",
+  "revenus": "Proof of income",
+  "domicile": "Proof of address",
+  "bancaire": "Bank statement",
+  "autre": "Document"
 }
 }
