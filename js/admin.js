@@ -885,7 +885,7 @@ async function requestDocument() {
   /* Envoyer une notification au client */
   await createNotification(clientId, 'document',
     'Dokument angefordert',
-    'Allodo bittet Sie, ein Dokument hochzuladen: ' + (typeLabels[docType] || docType)
+    'doc_request:' + docType
   );
 
   statusEl.textContent = 'Demande envoyée au client !';
