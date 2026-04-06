@@ -150,7 +150,7 @@
   "send_btn": "Pošlji sporočilo",
   "toast": "Sporočilo poslano! Kmalu se vam bomo oglasili."
 }
-  ,
+,
 "prods": {
   "title": "Naše kreditne rešitve",
   "sub": "4 produkti za posameznike in podjetja",
@@ -162,7 +162,7 @@
   "micro_detail": "500 € do 25.000 € - Brez kompleksnih jamstev - Primerno za mikropodjetja",
   "apply_btn": "Vloži zahtevo"
 }
-  ,
+,
 "dash": {
   "overview": "Pregled",
   "my_file": "Moja mapa",
@@ -238,7 +238,8 @@
 "doc_verified": "Preverjeno",
 "doc_rejected": "Zavrnjeno",
 "doc_processing": "V obdelavi",
-"doc_download": "Prenesi"
+"doc_download": "Prenesi",
+"new_badge": "Novo"
 }
 ,
 "status": {
@@ -251,5 +252,13 @@
   "funded": "Izplačilo sredstev",
   "active": "V odplačevanju",
   "rejected": "Zavrnjeno"
+}
+,
+"doc_type": {
+  "identite": "Osebni dokument",
+  "revenus": "Dokazilo o dohodku",
+  "domicile": "Dokazilo o bivališču",
+  "bancaire": "Bančni izpisek",
+  "autre": "Dokument"
 }
 }
