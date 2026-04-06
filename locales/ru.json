@@ -106,6 +106,20 @@
 "no_account_btn": "Продолжить без аккаунта"
 },
   "auth": { "title": "Личный кабинет Allodo Finanz", "login_tab": "Войти", "register_tab": "Создать аккаунт", "email": "Адрес электронной почты", "password": "Пароль", "forgot": "Забыли пароль?", "login_btn": "Войти в мой кабинет", "individual": "Частное лицо", "business": "Компания / МСП", "create_btn": "Создать аккаунт", "min_chars": "Минимум 8 символов", "repeat_password": "Повторите пароль" },
+  "dashboard": {
+  "greeting": "Добрый день,",
+  "updated": "Обновлено сегодня",
+  "new_request": "+ Новая заявка",
+  "active_file": "Активное дело",
+  "in_repayment": "В погашении",
+  "granted_amount": "Одобренная сумма",
+  "next_due": "Следующий платёж",
+  "progress": "Прогресс",
+  "paid": "Оплачено",
+  "upcoming": "Предстоящий",
+  "advisor": "Ваш консультант",
+  "send_message": "Отправить сообщение"
+},
   "footer": { "copyright": "© 2025 Allodo Finanz. Все права защищены." },
 "testimonials": {
   "title": "Отзывы наших клиентов",
@@ -239,7 +253,8 @@
 "doc_rejected": "Отклонено",
 "doc_processing": "В обработке",
 "doc_download": "Скачать",
-"new_badge": "Новое"
+"new_badge": "Новое",
+"doc_request_notif": "Allodo просит вас загрузить документ:"
 }
 ,
 "status": {
