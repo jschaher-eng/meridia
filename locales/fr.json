@@ -242,7 +242,12 @@
 "doc_processing": "En traitement",
 "doc_download": "Télécharger",
 "new_badge": "Nouveau",
-"doc_request_notif": "Allodo vous demande de téléverser un document :"
+"doc_request_notif": "Allodo vous demande de téléverser un document :",
+"notif_message": "Nouveau message",
+"notif_status": "Mise à jour de votre dossier",
+"notif_document": "Document demandé",
+"notif_security": "Alerte sécurité",
+"notif_payment": "Paiement"
 }
 ,
 "status": {
