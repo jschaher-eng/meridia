@@ -359,6 +359,13 @@ async function doLogin() {
   showLoader(false);
   if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
   errEl.style.display = 'none';
+ /* Lier les loan_requests existantes à ce compte */
+var userEmail = result.data.user.email;
+var userId = result.data.user.id;
+await _supabase.from('loan_requests')
+  .update({ user_id: userId, converted: true })
+  .eq('email', userEmail)
+  .or('converted.is.null,converted.eq.false');
   goPage('dash');
   setTimeout(function() {
     var user = result.data.user;
