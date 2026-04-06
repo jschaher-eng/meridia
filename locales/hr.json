@@ -240,7 +240,7 @@
 "doc_processing": "U obradi",
 "doc_download": "Preuzmi"
 }
-  ,
+,
 "status": {
   "pending": "Zahtjev podnesen",
   "reviewing": "Provjera dokumenata",
