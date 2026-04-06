@@ -240,7 +240,8 @@
 "doc_verified": "Vérifié",
 "doc_rejected": "Refusé",
 "doc_processing": "En traitement",
-"doc_download": "Télécharger"
+"doc_download": "Télécharger",
+"new_badge": "Nouveau"
 }
 ,
 "status": {
@@ -253,5 +254,13 @@
   "funded": "Déblocage des fonds",
   "active": "En remboursement",
   "rejected": "Refusé"
+}
+,
+"doc_type": {
+  "identite": "Pièce d'identité",
+  "revenus": "Justificatif de revenus",
+  "domicile": "Justificatif de domicile",
+  "bancaire": "Relevé bancaire",
+  "autre": "Document"
 }
 }
