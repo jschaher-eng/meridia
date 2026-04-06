@@ -106,6 +106,20 @@
 "no_account_btn": "Nadaljuj brez računa"
 },
   "auth": { "title": "Območje za stranke Allodo Finanz", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun", "min_chars": "Vsaj 8 znakov", "repeat_password": "Ponovite geslo" },
+  "dashboard": {
+  "greeting": "Dober dan,",
+  "updated": "Posodobljeno danes",
+  "new_request": "+ Nova vloga",
+  "active_file": "Aktivna mapa",
+  "in_repayment": "V odplačevanju",
+  "granted_amount": "Odobreni znesek",
+  "next_due": "Naslednji obrok",
+  "progress": "Napredek",
+  "paid": "Plačano",
+  "upcoming": "Prihajajočo",
+  "advisor": "Vaš svetovalec",
+  "send_message": "Pošlji sporočilo"
+},
   "footer": { "copyright": "© 2025 Allodo Finanz. Vse pravice pridržane." },
 "testimonials": {
   "title": "Kaj pravijo naše stranke",
@@ -239,7 +253,8 @@
 "doc_rejected": "Zavrnjeno",
 "doc_processing": "V obdelavi",
 "doc_download": "Prenesi",
-"new_badge": "Novo"
+"new_badge": "Novo",
+"doc_request_notif": "Allodo zahteva, da naložite dokument:"
 }
 ,
 "status": {
