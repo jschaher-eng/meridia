@@ -152,7 +152,7 @@
   "send_btn": "Enviar mensaje",
   "toast": "¡Mensaje enviado! Le responderemos pronto."
 }
-  ,
+,
 "prods": {
   "title": "Nuestras soluciones de crédito",
   "sub": "4 productos para particulares y empresas",
@@ -164,7 +164,7 @@
   "micro_detail": "500 € a 25.000 € - Sin garantías complejas - Apto para microempresas",
   "apply_btn": "Solicitar ahora"
 }
-  ,
+,
 "dash": {
   "overview": "Resumen",
   "my_file": "Mi expediente",
@@ -240,7 +240,8 @@
 "doc_verified": "Verificado",
 "doc_rejected": "Rechazado",
 "doc_processing": "En proceso",
-"doc_download": "Descargar"
+"doc_download": "Descargar",
+"new_badge": "Nuevo"
 }
 ,
 "status": {
@@ -253,5 +254,13 @@
   "funded": "Desembolso de fondos",
   "active": "En reembolso",
   "rejected": "Rechazado"
+}
+,
+"doc_type": {
+  "identite": "Documento de identidad",
+  "revenus": "Justificante de ingresos",
+  "domicile": "Justificante de domicilio",
+  "bancaire": "Extracto bancario",
+  "autre": "Documento"
 }
 }
