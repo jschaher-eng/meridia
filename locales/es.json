@@ -241,7 +241,8 @@
 "doc_rejected": "Rechazado",
 "doc_processing": "En proceso",
 "doc_download": "Descargar",
-"new_badge": "Nuevo"
+"new_badge": "Nuevo",
+"doc_request_notif": "Allodo le solicita que suba un documento:"
 }
 ,
 "status": {
