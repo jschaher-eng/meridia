@@ -150,7 +150,7 @@
   "send_btn": "Pošalji poruku",
   "toast": "Poruka poslana! Odgovorit ćemo vam uskoro."
 }
-  ,
+,
 "prods": {
   "title": "Naša kreditna rješenja",
   "sub": "4 proizvoda za fizičke i pravne osobe",
@@ -162,7 +162,7 @@
   "micro_detail": "500 € do 25.000 € - Bez složenih jamstava - Pogodno za mikropoduzetnike",
   "apply_btn": "Podnijeti zahtjev"
 }
-  ,
+,
 "dash": {
   "overview": "Pregled",
   "my_file": "Moj dosje",
@@ -238,7 +238,8 @@
 "doc_verified": "Provjereno",
 "doc_rejected": "Odbijeno",
 "doc_processing": "U obradi",
-"doc_download": "Preuzmi"
+"doc_download": "Preuzmi",
+"new_badge": "Novo"
 }
 ,
 "status": {
@@ -251,5 +252,13 @@
   "funded": "Isplata sredstava",
   "active": "U otplati",
   "rejected": "Odbijeno"
+}
+,
+"doc_type": {
+  "identite": "Osobna iskaznica",
+  "revenus": "Dokaz o prihodima",
+  "domicile": "Dokaz o prebivalištu",
+  "bancaire": "Izvod bankovnog računa",
+  "autre": "Dokument"
 }
 }
