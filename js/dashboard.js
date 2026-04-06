@@ -305,10 +305,17 @@ async function loadNotifications() {
 if (msg.startsWith('doc_request:')) {
   var docType = msg.replace('doc_request:', '');
   msg = (I18N.t('dash.doc_request_notif') || 'Dokument angefordert:') + ' ' + (docTypeLabels[docType] || docType);
-} else {
-  Object.keys(docTypeLabels).forEach(function(key) {
+} else if (msg.includes('Allodo bittet Sie')) {
+  var oldTypeMap = {
+    'Personalausweis':    'identite',
+    'Einkommensnachweis': 'revenus',
+    'Wohnsitznachweis':   'domicile',
+    'Kontoauszug':        'bancaire',
+    'Dokument':           'autre'
+  };
+  Object.keys(oldTypeMap).forEach(function(key) {
     if (msg.includes(key)) {
-      msg = (I18N.t('dash.doc_request_notif') || 'Dokument angefordert:') + ' ' + docTypeLabels[key];
+      msg = (I18N.t('dash.doc_request_notif') || 'Document demandé :') + ' ' + (docTypeLabels[oldTypeMap[key]] || key);
     }
   });
 }
