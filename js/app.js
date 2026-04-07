@@ -57,8 +57,10 @@ function goPage(id) {
         var since = new Date(user.created_at).getFullYear();
         var sinceEl = document.querySelector('.sb-type');
         if (sinceEl) sinceEl.textContent = (I18N.t('dash.client_type') || 'Privatkunde') + ' - ' + (I18N.t('dash.client_since') || 'Kunde seit') + ' ' + since;
-        loadDashboard();
+        if (!skipLoad) { 
+         loadDashboard();
         loadLastMessages();
+        }
       });
 
       /* Cacher toute la navigation quand connecté */
@@ -378,10 +380,11 @@ try {
   console.log('link error:', e.message);
 }
 
-goPage('dash');
+goPage('dash', true);
 
 setTimeout(function() {
   loadDashboard();
+  loadLastMessages();
   var user = result.data.user;
   var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
   var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
@@ -391,7 +394,7 @@ setTimeout(function() {
   if (el) el.textContent = name;
   if (av) av.textContent = initials;
   if (gr) gr.textContent = name.split(' ')[0] + ',';
-}, 1000);
+}, 500);
 }
 
 async function doRegister() {
