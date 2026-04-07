@@ -524,7 +524,7 @@ async function submitLoanWithAccount() {
   });
 
   await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
-  .eq('reference', applyData.currentRef);
+  .eq('email', applyData.email);
 
   await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
 
@@ -623,7 +623,7 @@ var { data: requestsData } = await _supabase
   .select('*')
   .eq('user_id', userId)
   .order('created_at', { ascending: false });
-
+   
 var loans = [
   ...(loansData || []),
   ...(requestsData || []).map(function(r) {
