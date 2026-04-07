@@ -237,9 +237,11 @@ function openLoanDetail(id) {
 async function validateLoan(id, decision) {
  var loan = LOANS.find(function(l) { return l.id === id; });
  var table = (loan && loan.isRequest) ? 'loan_requests' : 'loans';
- const { error } = await supabase
+ var updateData = { status: decision };
+if (table === 'loans') updateData.reviewed_at = new Date().toISOString();
+const { error } = await supabase
   .from(table)
-  .update({ status: decision, reviewed_at: new Date().toISOString() })
+  .update(updateData)
   .eq('id', id);
    
  var loan = LOANS.find(function(l) { return l.id === id; });
