@@ -364,8 +364,7 @@ var userEmail = result.data.user.email;
 var userId = result.data.user.id;
 await _supabase.from('loan_requests')
   .update({ user_id: userId, converted: true })
-  .eq('email', userEmail)
-  .or('converted.is.null,converted.eq.false');
+  .eq('email', userEmail);
   goPage('dash');
   setTimeout(function() {
     var user = result.data.user;
