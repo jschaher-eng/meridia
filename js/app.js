@@ -361,40 +361,28 @@ async function doLogin() {
   showLoader(false);
   if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
   errEl.style.display = 'none';
- /* Lier les loan_requests existantes à ce compte */
-var userEmail = result.data.user.email;
-var userId = result.data.user.id;
-console.log('avant fetch - email:', userEmail, 'userId:', userId);
-try {
-  var linkResult = await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wdGRleW15dm9rb293bGlxdm5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwNTI5OTQsImV4cCI6MjA4OTYyODk5NH0.jGos9yWLDkNPZeRVMiIUiNuF6nnz5FfRgOHiGGMVFlc'
-    },
-    body: JSON.stringify({ email: userEmail, userId: userId })
-  });
-  var linkData = await linkResult.json();
-  console.log('link result:', linkData);
-} catch(e) {
-  console.log('link error:', e.message);
-}
 
-goPage('dash', true);
+  var userId = result.data.user.id;
+  var userEmail = result.data.user.email;
+  var fullName = result.data.user.user_metadata?.full_name || userEmail;
 
-setTimeout(function() {
-  loadDashboard();
-  loadLastMessages();
-  var user = result.data.user;
-  var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
-  var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
-  var el = document.getElementById('sb-name');
-  var av = document.getElementById('sb-avatar');
-  var gr = document.getElementById('dash-greeting');
-  if (el) el.textContent = name;
-  if (av) av.textContent = initials;
-  if (gr) gr.textContent = name.split(' ')[0] + ',';
-}, 500);
+  /* Créer le profil si inexistant */
+  await _supabase.from('profiles').upsert({
+    id:        userId,
+    email:     userEmail,
+    full_name: fullName
+  }, { onConflict: 'id' });
+
+  /* Lier les loan_requests via Edge Function */
+  try {
+    await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wdGRleW15dm9rb293bGlxdm5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwNTI5OTQsImV4cCI6MjA4OTYyODk5NH0.jGos9yWLDkNPZeRVMiIUiNuF6nnz5FfRgOHiGGMVFlc' },
+      body: JSON.stringify({ email: userEmail, userId: userId })
+    });
+  } catch(e) { console.log('link error:', e.message); }
+
+  goPage('dash');
 }
 
 async function doRegister() {
