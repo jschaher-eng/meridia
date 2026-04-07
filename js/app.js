@@ -523,17 +523,8 @@ async function submitLoanWithAccount() {
     nationality:  applyData.nationality || null,
   });
 
-  await _supabase.from('loans').insert({
-    user_id:   userId,
-    reference: applyData.currentRef || ('AF-' + Date.now().toString().slice(-8)),
-    type:      applyData.type,
-    amount:    applyData.amount,
-    duration:  applyData.duration,
-    status:    'pending'
-  });
-
   await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
-    .eq('reference', applyData.currentRef);
+  .eq('reference', applyData.currentRef);
 
   await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
 
