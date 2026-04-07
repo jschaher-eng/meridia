@@ -523,8 +523,14 @@ async function submitLoanWithAccount() {
     nationality:  applyData.nationality || null,
   });
 
-   await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
-  .eq('email', applyData.email);
+   await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wdGRleW15dm9rb293bGlxdm5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwNTI5OTQsImV4cCI6MjA4OTYyODk5NH0.jGos9yWLDkNPZeRVMiIUiNuF6nnz5FfRgOHiGGMVFlc'
+  },
+  body: JSON.stringify({ email: applyData.email, userId: userId })
+});
 
 await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
 
