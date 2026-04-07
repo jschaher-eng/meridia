@@ -523,17 +523,17 @@ async function submitLoanWithAccount() {
     nationality:  applyData.nationality || null,
   });
 
+  await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
+
   await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
   .eq('email', applyData.email);
-
-  await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
 
   btn.textContent = 'Konto erstellen & Antrag verfolgen';
   btn.disabled = false;
   var btnConfirm = document.getElementById('btn-confirm-account');
   if (btnConfirm) btnConfirm.style.display = 'block';
   goPage('dash');
-  loadDashboard();
+  setTimeout(function() { loadDashboard(); }, 500);
 }
 
 function renderTimeline(status) {
