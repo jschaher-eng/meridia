@@ -362,6 +362,7 @@ async function doLogin() {
  /* Lier les loan_requests existantes à ce compte */
 var userEmail = result.data.user.email;
 var userId = result.data.user.id;
+console.log('avant fetch - email:', userEmail, 'userId:', userId);
 try {
   var linkResult = await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
     method: 'POST',
