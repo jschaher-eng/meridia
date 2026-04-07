@@ -362,7 +362,7 @@ async function doLogin() {
  /* Lier les loan_requests existantes à ce compte */
 var userEmail = result.data.user.email;
 var userId = result.data.user.id;
-await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
+var linkResult = await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -370,7 +370,10 @@ await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-req
   },
   body: JSON.stringify({ email: userEmail, userId: userId })
 });
-  goPage('dash');
+var linkData = await linkResult.json();
+console.log('link result:', linkData);
+goPage('dash');
+   
   setTimeout(function() {
     var user = result.data.user;
     var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
