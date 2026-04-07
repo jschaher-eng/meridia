@@ -235,13 +235,13 @@ function openLoanDetail(id) {
 
 // Dans admin.js — remplace la fonction validateLoan()
 async function validateLoan(id, decision) {
-  const { error } = await supabase
-    .from('loans')
-    .update({
-      status: decision,
-      reviewed_at: new Date().toISOString(),
-    })
-    .eq('id', id);
+ var loan = LOANS.find(function(l) { return l.id === id; });
+ var table = (loan && loan.isRequest) ? 'loan_requests' : 'loans';
+ const { error } = await supabase
+  .from(table)
+  .update({ status: decision, reviewed_at: new Date().toISOString() })
+  .eq('id', id);
+   
  var loan = LOANS.find(function(l) { return l.id === id; });
  var clientId = loan?.clientId;
  console.log('Loan:', loan, 'ClientId:', clientId);
