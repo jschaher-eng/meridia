@@ -39,12 +39,15 @@ async function loadLoans() {
 
   /* Charger les demandes sans compte */
   const { data: requests, error: err2 } = await supabase
-    .from('loan_requests')
-    .select('*')
-    .eq('converted', false)
-    .order('created_at', { ascending: false });
+  .from('loan_requests')
+  .select('*')
+  .order('created_at', { ascending: false });
   if (err2) { console.error('loadRequests:', err2.message); }
 
+  /* Exclure les loan_requests qui ont un équivalent dans loans */
+const loanRefs = new Set((loans || []).map(l => l.reference));
+const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference));
+  
   var allLoans = [
     ...(loans || []).map(l => ({
       id: l.id,
@@ -60,11 +63,11 @@ async function loadLoans() {
       created: formatDate(l.created_at),
       isRequest: false,
     })),
-    ...(requests || []).map(r => ({
+    ...(filteredRequests || []).map(r => ({
       id: r.id,
       ref: r.reference || ('BM-' + r.id.slice(0,8).toUpperCase()),
       client: (r.fname || '') + ' ' + (r.lname || ''),
-      clientId: null,
+      clientId: r.user_id || null,
       email: r.email,
       type: r.type || 'Privatkredit',
       amount: r.amount || 0,
