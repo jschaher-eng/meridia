@@ -523,9 +523,12 @@ async function submitLoanWithAccount() {
     nationality:  applyData.nationality || null,
   });
 
-  await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
+  var signInResult = await _supabase.auth.signInWithPassword({ email: applyData.email, password: password });
 
-  await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
+/* Attendre que la session soit active */
+await new Promise(function(resolve) { setTimeout(resolve, 1000); });
+
+await _supabase.from('loan_requests').update({ converted: true, user_id: userId })
   .eq('email', applyData.email);
 
   btn.textContent = 'Konto erstellen & Antrag verfolgen';
