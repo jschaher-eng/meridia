@@ -362,16 +362,20 @@ async function doLogin() {
  /* Lier les loan_requests existantes à ce compte */
 var userEmail = result.data.user.email;
 var userId = result.data.user.id;
-var linkResult = await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wdGRleW15dm9rb293bGlxdm5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwNTI5OTQsImV4cCI6MjA4OTYyODk5NH0.jGos9yWLDkNPZeRVMiIUiNuF6nnz5FfRgOHiGGMVFlc'
-  },
-  body: JSON.stringify({ email: userEmail, userId: userId })
-});
-var linkData = await linkResult.json();
-console.log('link result:', linkData);
+try {
+  var linkResult = await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wdGRleW15dm9rb293bGlxdm5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwNTI5OTQsImV4cCI6MjA4OTYyODk5NH0.jGos9yWLDkNPZeRVMiIUiNuF6nnz5FfRgOHiGGMVFlc'
+    },
+    body: JSON.stringify({ email: userEmail, userId: userId })
+  });
+  var linkData = await linkResult.json();
+  console.log('link result:', linkData);
+} catch(e) {
+  console.log('link error:', e.message);
+}
 goPage('dash');
    
   setTimeout(function() {
