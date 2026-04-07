@@ -56,11 +56,9 @@ function goPage(id) {
         if (gr)     gr.textContent     = name.split(' ')[0] + ',';
         var since = new Date(user.created_at).getFullYear();
         var sinceEl = document.querySelector('.sb-type');
-        if (sinceEl) sinceEl.textContent = (I18N.t('dash.client_type') || 'Privatkunde') + ' - ' + (I18N.t('dash.client_since') || 'Kunde seit') + ' ' + since;
-        if (!skipLoad) { 
+        if (sinceEl) sinceEl.textContent = (I18N.t('dash.client_type') || 'Privatkunde') + ' - ' + (I18N.t('dash.client_since') || 'Kunde seit') + ' ' + since; 
          loadDashboard();
         loadLastMessages();
-        }
       });
 
       /* Cacher toute la navigation quand connecté */
