@@ -376,19 +376,21 @@ try {
 } catch(e) {
   console.log('link error:', e.message);
 }
+
 goPage('dash');
-   
-  setTimeout(function() {
-    var user = result.data.user;
-    var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
-    var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
-    var el = document.getElementById('sb-name');
-    var av = document.getElementById('sb-avatar');
-    var gr = document.getElementById('dash-greeting');
-    if (el) el.textContent = name;
-    if (av) av.textContent = initials;
-    if (gr) gr.textContent = name.split(' ')[0] + ',';
-  }, 100);
+
+setTimeout(function() {
+  loadDashboard();
+  var user = result.data.user;
+  var name = (user.user_metadata && user.user_metadata.full_name) ? user.user_metadata.full_name : user.email;
+  var initials = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0,2);
+  var el = document.getElementById('sb-name');
+  var av = document.getElementById('sb-avatar');
+  var gr = document.getElementById('dash-greeting');
+  if (el) el.textContent = name;
+  if (av) av.textContent = initials;
+  if (gr) gr.textContent = name.split(' ')[0] + ',';
+}, 1000);
 }
 
 async function doRegister() {
