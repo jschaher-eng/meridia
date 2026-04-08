@@ -441,4 +441,12 @@ async function loadClientInvoices() {
       : '') +
     '</div>';
   }).join('');
+var { data, error } = await _supabase
+  .from('invoices')
+  .select('*')
+  .eq('user_id', userId)
+  .order('created_at', { ascending: false });
+
+console.log('invoices data:', JSON.stringify(data));
+console.log('invoices error:', error);
 }
