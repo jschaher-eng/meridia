@@ -247,7 +247,17 @@
 "notif_status": "Actualización del expediente",
 "notif_document": "Documento solicitado",
 "notif_security": "Alerta de seguridad",
-"notif_payment": "Pago", "invoices_nav": "Facturas", "invoices": "Facturas", "invoices_sub": "Sus facturas y detalles de pago"
+"notif_payment": "Pago", "invoices_nav": "Facturas", "invoices": "Facturas", "invoices_sub": "Sus facturas y detalles de pago", 
+"no_invoices": "Sin facturas.",
+"inv_paid": "Pagada",
+"inv_cancelled": "Cancelada",
+"inv_pending": "Pendiente",
+"inv_type": "Tipo",
+"inv_description": "Descripción",
+"inv_amount": "Importe",
+"inv_payment_details": "Datos de pago",
+"inv_beneficiary": "Beneficiario",
+"inv_reference": "Referencia del pago"
 }
 ,
 "status": {
