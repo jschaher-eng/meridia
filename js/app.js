@@ -123,6 +123,8 @@ function dashTab(t) {
   if (t === 'profil')   { loadDashboard(); }
   if (t === 'securite') { loadSecurityInfo(); }
   window.scrollTo(0, 0);
+
+  if (t === 'invoices') { loadClientInvoices(); }
 }
 
 /* ---- Home segment switcher ---- */
