@@ -356,6 +356,7 @@ async function doLogin() {
   var btn = document.getElementById('btn-login');
   btn.textContent = '...'; btn.disabled = true;
   var result = await _supabase.auth.signInWithPassword({ email: email, password: password });
+  console.log('userId:', userId, 'email:', userEmail);
   showLoader(false);
   if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
   errEl.style.display = 'none';
