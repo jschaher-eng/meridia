@@ -108,8 +108,31 @@ async function loadClientMessages() {
   var userId = userResult.data.user.id;
   var ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
 
-  var { data, error } = await _supabase
-    .from('messages')
+  var ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
+
+/* Récupérer le nom du conseiller */
+var advisorName = 'Allodo Finanz';
+var { data: loanData } = await _supabase
+  .from('loans')
+  .select('advisor_name')
+  .eq('user_id', userId)
+  .limit(1)
+  .single();
+
+if (loanData && loanData.advisor_name) {
+  advisorName = loanData.advisor_name;
+} else {
+  var { data: reqData } = await _supabase
+    .from('loan_requests')
+    .select('advisor_name')
+    .eq('user_id', userId)
+    .limit(1)
+    .single();
+  if (reqData && reqData.advisor_name) advisorName = reqData.advisor_name;
+}
+
+var { data, error } = await _supabase
+  .from('messages')
     .select('*')
     .or('from_id.eq.' + userId + ',to_id.eq.' + userId)
     .order('created_at', { ascending: true });
@@ -126,7 +149,7 @@ async function loadClientMessages() {
     var isAdmin = m.from_id === ADMIN_ID;
     var d = new Date(m.created_at);
     var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
-    var meta = isAdmin ? 'Allodo Finanz · ' + time : 'Sie · ' + time;
+    var meta = isAdmin ? 'advisorName · ' + time : 'Sie · ' + time;
     /* recv=true = message recu = affiché à gauche = message de l'admin */
     appendBubble(body, isAdmin, m.content, meta, false);
   });
