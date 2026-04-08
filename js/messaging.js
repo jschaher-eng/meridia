@@ -149,7 +149,7 @@ var { data, error } = await _supabase
     var isAdmin = m.from_id === ADMIN_ID;
     var d = new Date(m.created_at);
     var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
-    var meta = isAdmin ? 'advisor_name · ' + time : 'Sie · ' + time;
+    var meta = isAdmin ? advisorName + ' · ' + time : 'Sie · ' + time;
     /* recv=true = message recu = affiché à gauche = message de l'admin */
     appendBubble(body, isAdmin, m.content, meta, false);
   });
