@@ -365,22 +365,14 @@ async function doLogin() {
   var userEmail = result.data.user.email;
   var fullName = result.data.user.user_metadata?.full_name || userEmail;
 
-  /* Créer le profil si inexistant */
-  await _supabase.from('profiles').upsert({
-    id:        userId,
-    email:     userEmail,
-    full_name: fullName
-  }, { onConflict: 'id' });
-
-  /* Lier les loan_requests via Edge Function */
-  try {
-    await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wdGRleW15dm9rb293bGlxdm5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwNTI5OTQsImV4cCI6MjA4OTYyODk5NH0.jGos9yWLDkNPZeRVMiIUiNuF6nnz5FfRgOHiGGMVFlc' },
-      body: JSON.stringify({ email: userEmail, userId: userId })
-    });
-  } catch(e) { console.log('link error:', e.message); }
-
+  /* Lier les loan_requests ET créer le profil via Edge Function */
+try {
+  await fetch('https://optdeymyvokoowliqvnm.supabase.co/functions/v1/link-loan-request', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wdGRleW15dm9rb293bGlxdm5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwNTI5OTQsImV4cCI6MjA4OTYyODk5NH0.jGos9yWLDkNPZeRVMiIUiNuF6nnz5FfRgOHiGGMVFlc' },
+    body: JSON.stringify({ email: userEmail, userId: userId, fullName: fullName })
+  });
+} catch(e) { console.log('link error:', e.message); }
   goPage('dash');
 }
 
