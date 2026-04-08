@@ -72,6 +72,21 @@ function goPanel(id) {
       });
     }
   }
+
+   if (id === 'invoices') {
+  loadInvoices().then(function() {
+    renderInvoices();
+    /* Remplir le select client */
+    var sel = document.getElementById('inv-client-select');
+    if (sel) {
+      sel.innerHTML = '<option value="">Sélectionner un client...</option>' +
+        CLIENTS.map(function(c) {
+          return '<option value="' + c.id + '">' + c.name + '</option>';
+        }).join('');
+    }
+  });
+}
+   
 }
 
 /* Gestion du bouton retour téléphone */
@@ -950,4 +965,166 @@ function toggleAdminMenu() {
 function closeAdminMenu() {
   document.getElementById('admin-drawer').classList.remove('open');
   document.getElementById('admin-drawer-overlay').classList.remove('open');
+}
+
+/* ========================================
+   FACTURES
+   ======================================== */
+var INVOICES = [];
+
+async function loadInvoices() {
+  var { data, error } = await supabase
+    .from('invoices')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) { console.error('loadInvoices:', error.message); return; }
+  INVOICES = (data || []).map(function(inv) {
+    var client = CLIENTS.find(function(c) { return c.id === inv.user_id; });
+    return {
+      id:             inv.id,
+      number:         inv.invoice_number,
+      clientId:       inv.user_id,
+      client:         client ? client.name : '—',
+      type:           inv.type,
+      amount:         inv.amount,
+      description:    inv.description,
+      status:         inv.status,
+      iban:           inv.iban,
+      bic:            inv.bic,
+      beneficiary:    inv.beneficiary,
+      reference:      inv.reference,
+      created:        formatDate(inv.created_at),
+      paidAt:         inv.paid_at ? formatDate(inv.paid_at) : null
+    };
+  });
+}
+
+function renderInvoices() {
+  var tbody = document.getElementById('invoices-body');
+  if (!tbody) return;
+  if (INVOICES.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="text-m text-s" style="padding:1.5rem">Aucune facture.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = INVOICES.map(function(inv) {
+    var badgeClass = inv.status === 'paid' ? 'b-ok' : inv.status === 'cancelled' ? 'b-err' : 'b-warn';
+    var badgeLabel = inv.status === 'paid' ? 'Payée' : inv.status === 'cancelled' ? 'Annulée' : 'En attente';
+    return '<tr>' +
+      '<td><div class="td-name">' + inv.number + '</div></td>' +
+      '<td>' + inv.client + '</td>' +
+      '<td>' + inv.type + '</td>' +
+      '<td class="fw-5">' + fmt(inv.amount) + '</td>' +
+      '<td><span class="badge ' + badgeClass + '">' + badgeLabel + '</span></td>' +
+      '<td>' + inv.created + '</td>' +
+      '<td>' +
+        '<div style="display:flex;gap:5px">' +
+          '<button class="btn btn-ghost btn-sm" onclick="markInvoicePaid(\'' + inv.id + '\')">Marquer payée</button>' +
+          '<button class="btn btn-navy btn-sm" onclick="sendInvoiceToClient(\'' + inv.id + '\')">Envoyer</button>' +
+        '</div>' +
+      '</td>' +
+    '</tr>';
+  }).join('');
+  setEl('invoices-count', INVOICES.length + ' facture' + (INVOICES.length > 1 ? 's' : ''));
+}
+
+async function createInvoice() {
+  var clientId    = document.getElementById('inv-client-select').value;
+  var type        = document.getElementById('inv-type').value;
+  var amount      = parseFloat(document.getElementById('inv-amount').value);
+  var reference   = document.getElementById('inv-reference').value;
+  var description = document.getElementById('inv-description').value;
+  var iban        = document.getElementById('inv-iban').value;
+  var bic         = document.getElementById('inv-bic').value;
+  var beneficiary = document.getElementById('inv-beneficiary').value;
+
+  if (!clientId) { showToast('Veuillez sélectionner un client.'); return; }
+  if (!amount || amount <= 0) { showToast('Veuillez entrer un montant valide.'); return; }
+  if (!iban) { showToast('Veuillez entrer un IBAN.'); return; }
+
+  /* Générer le numéro de facture */
+  var invoiceNumber = 'INV-' + new Date().getFullYear() + '-' + Date.now().toString().slice(-6);
+
+  var { error } = await supabase.from('invoices').insert({
+    invoice_number: invoiceNumber,
+    user_id:        clientId,
+    type:           type,
+    amount:         amount,
+    description:    description,
+    reference:      reference || invoiceNumber,
+    iban:           iban,
+    bic:            bic,
+    beneficiary:    beneficiary,
+    status:         'pending'
+  });
+
+  if (error) { showToast('Erreur: ' + error.message); return; }
+
+  showToast('Facture ' + invoiceNumber + ' créée.');
+  
+  /* Notifier le client */
+  await createNotification(clientId, 'payment',
+    'Neue Rechnung',
+    'Eine neue Rechnung wurde erstellt: ' + invoiceNumber + ' - ' + Math.round(amount).toLocaleString('de-DE') + ' EUR'
+  );
+
+  await loadInvoices();
+  renderInvoices();
+}
+
+async function markInvoicePaid(id) {
+  var { error } = await supabase.from('invoices')
+    .update({ status: 'paid', paid_at: new Date().toISOString() })
+    .eq('id', id);
+  if (error) { showToast('Erreur: ' + error.message); return; }
+  showToast('Facture marquée comme payée.');
+  await loadInvoices();
+  renderInvoices();
+}
+
+async function sendInvoiceToClient(id) {
+  var inv = INVOICES.find(function(i) { return i.id === id; });
+  if (!inv) return;
+  var client = CLIENTS.find(function(c) { return c.id === inv.clientId; });
+  if (!client || !client.email) { showToast('Email client introuvable.'); return; }
+
+  await sendNotificationEmail(
+    client.email,
+    'Allodo — Rechnung ' + inv.number,
+    `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#0C2340;padding:24px;text-align:center">
+        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+      </div>
+      <div style="padding:32px;background:#f9f9f9">
+        <h2 style="color:#0C2340;font-size:18px">Rechnung ${inv.number}</h2>
+        <p style="color:#555;line-height:1.7">Sehr geehrte/r ${client.name},</p>
+        <p style="color:#555;line-height:1.7">Anbei finden Sie Ihre Rechnung:</p>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:20px;margin:20px 0">
+          <table style="width:100%;font-size:14px">
+            <tr><td style="color:#555;padding:6px 0">Rechnungsnummer</td><td style="font-weight:500;text-align:right">${inv.number}</td></tr>
+            <tr><td style="color:#555;padding:6px 0">Art</td><td style="font-weight:500;text-align:right">${inv.type}</td></tr>
+            <tr><td style="color:#555;padding:6px 0">Beschreibung</td><td style="font-weight:500;text-align:right">${inv.description || '—'}</td></tr>
+            <tr style="border-top:2px solid #E5E7EB"><td style="color:#0C2340;font-weight:600;padding:10px 0;font-size:16px">Betrag</td><td style="color:#0C2340;font-weight:600;text-align:right;font-size:16px">${Math.round(inv.amount).toLocaleString('de-DE')} EUR</td></tr>
+          </table>
+        </div>
+        <div style="background:#0C2340;color:#fff;border-radius:8px;padding:20px;margin:20px 0">
+          <div style="font-size:13px;opacity:0.7;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px">Zahlungsdetails</div>
+          <table style="width:100%;font-size:14px;color:#fff">
+            <tr><td style="padding:4px 0;opacity:0.8">Begünstigter</td><td style="text-align:right;font-weight:500">${inv.beneficiary}</td></tr>
+            <tr><td style="padding:4px 0;opacity:0.8">IBAN</td><td style="text-align:right;font-weight:500">${inv.iban}</td></tr>
+            <tr><td style="padding:4px 0;opacity:0.8">BIC</td><td style="text-align:right;font-weight:500">${inv.bic}</td></tr>
+            <tr><td style="padding:4px 0;opacity:0.8">Verwendungszweck</td><td style="text-align:right;font-weight:500;color:#B8963E">${inv.reference}</td></tr>
+          </table>
+        </div>
+        <a href="https://www.allodo.de/#dash" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:13px">
+          Mein Konto aufrufen →
+        </a>
+      </div>
+      <div style="padding:16px;text-align:center;color:#999;font-size:11px">
+        Allodo · Friedrichstrasse 100 · 10117 Berlin
+      </div>
+    </div>
+    `
+  );
+  showToast('Facture envoyée à ' + client.email);
 }
