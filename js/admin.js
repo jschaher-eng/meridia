@@ -456,7 +456,10 @@ if (clientProfile && clientProfile.email) {
   );
 }
   await loadMessages();
-  renderMessaging();
+renderConvList();
+/* Garder la conversation ouverte sans réinitialiser mv-sub */
+var layout = document.querySelector('.msg-layout');
+if (layout) layout.classList.add('conv-open');
 }
 /* ========================================
    MESSAGERIE
