@@ -621,6 +621,7 @@ var { data: requestsData } = await _supabase
 var loans = [
   ...(loansData || []),
   ...(requestsData || []).map(function(r) {
+     console.log('r.advisor_name:', r.advisor_name);
     return {
       id:        r.id,
       reference: r.reference,
