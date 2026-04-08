@@ -259,7 +259,17 @@
 "notif_status": "Posodobitev mape",
 "notif_document": "Dokument zahtevan",
 "notif_security": "Varnostno opozorilo",
-"notif_payment": "Plačilo", "invoices_nav": "Računi", "invoices": "Računi", "invoices_sub": "Vaši računi in podatki o plačilu"
+"notif_payment": "Plačilo", "invoices_nav": "Računi", "invoices": "Računi", "invoices_sub": "Vaši računi in podatki o plačilu",
+"no_invoices": "Ni računov.",
+"inv_paid": "Plačano",
+"inv_cancelled": "Preklicano",
+"inv_pending": "V čakanju",
+"inv_type": "Vrsta",
+"inv_description": "Opis",
+"inv_amount": "Znesek",
+"inv_payment_details": "Podatki o plačilu",
+"inv_beneficiary": "Prejemnik",
+"inv_reference": "Namen plačila"
 }
 ,
 "status": {
