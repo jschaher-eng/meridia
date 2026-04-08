@@ -247,7 +247,7 @@
 "notif_status": "File update",
 "notif_document": "Document requested",
 "notif_security": "Security alert",
-"notif_payment": "Payment"
+"notif_payment": "Payment", "invoices_nav": "Invoices", "invoices": "Invoices", "invoices_sub": "Your invoices and payment details"
 }
 ,
 "status": {
