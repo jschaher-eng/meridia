@@ -247,7 +247,17 @@
 "notif_status": "Aggiornamento fascicolo",
 "notif_document": "Documento richiesto",
 "notif_security": "Avviso sicurezza",
-"notif_payment": "Pagamento", "invoices_nav": "Fatture", "invoices": "Fatture", "invoices_sub": "Le tue fatture e dettagli di pagamento"
+"notif_payment": "Pagamento", "invoices_nav": "Fatture", "invoices": "Fatture", "invoices_sub": "Le tue fatture e dettagli di pagamento",
+"no_invoices": "Nessuna fattura.",
+"inv_paid": "Pagata",
+"inv_cancelled": "Annullata",
+"inv_pending": "In attesa",
+"inv_type": "Tipo",
+"inv_description": "Descrizione",
+"inv_amount": "Importo",
+"inv_payment_details": "Dettagli di pagamento",
+"inv_beneficiary": "Beneficiario",
+"inv_reference": "Causale del pagamento"
 }
 ,
 "status": {
