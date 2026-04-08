@@ -247,7 +247,7 @@
 "notif_status": "Mise à jour de votre dossier",
 "notif_document": "Document demandé",
 "notif_security": "Alerte sécurité",
-"notif_payment": "Paiement"
+"notif_payment": "Paiement", "invoices_nav": "Factures", "invoices": "Factures", "invoices_sub": "Vos factures et coordonnées de paiement"
 }
 ,
 "status": {
