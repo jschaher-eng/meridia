@@ -259,7 +259,17 @@
 "notif_status": "Ažuriranje dosijea",
 "notif_document": "Dokument zatražen",
 "notif_security": "Sigurnosno upozorenje",
-"notif_payment": "Plaćanje", "invoices_nav": "Računi", "invoices": "Računi", "invoices_sub": "Vaši računi i podaci o plaćanju"
+"notif_payment": "Plaćanje", "invoices_nav": "Računi", "invoices": "Računi", "invoices_sub": "Vaši računi i podaci o plaćanju",
+"no_invoices": "Nema računa.",
+"inv_paid": "Plaćeno",
+"inv_cancelled": "Otkazano",
+"inv_pending": "Na čekanju",
+"inv_type": "Vrsta",
+"inv_description": "Opis",
+"inv_amount": "Iznos",
+"inv_payment_details": "Podaci o plaćanju",
+"inv_beneficiary": "Primatelj",
+"inv_reference": "Poziv na broj"
 }
 ,
 "status": {
