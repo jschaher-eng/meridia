@@ -396,3 +396,49 @@ async function uploadRequestedDoc(docId, docName) {
   showToast('Dokument erfolgreich hochgeladen!');
   setTimeout(function() { loadClientDocuments(); }, 500);
 }
+
+async function loadClientInvoices() {
+  var userResult = await _supabase.auth.getUser();
+  if (!userResult.data.user) return;
+  var userId = userResult.data.user.id;
+
+  var { data, error } = await _supabase
+    .from('invoices')
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false });
+
+  var grid = document.getElementById('client-invoices-grid');
+  if (!grid) return;
+
+  if (error || !data || data.length === 0) {
+    grid.innerHTML = '<p style="font-size:14px;color:var(--text-muted)">' + (I18N.t('dash.no_invoices') || 'Keine Rechnungen.') + '</p>';
+    return;
+  }
+
+  grid.innerHTML = data.map(function(inv) {
+    var statusBadge = inv.status === 'paid' ? 'badge-ok' : inv.status === 'cancelled' ? 'badge-danger' : 'badge-warn';
+    var statusLabel = inv.status === 'paid' ? (I18N.t('dash.inv_paid') || 'Bezahlt') : inv.status === 'cancelled' ? (I18N.t('dash.inv_cancelled') || 'Storniert') : (I18N.t('dash.inv_pending') || 'Ausstehend');
+    return '<div class="dbox" style="margin-bottom:1rem">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">' +
+        '<div>' +
+          '<div style="font-size:16px;font-weight:500;color:var(--navy)">' + inv.invoice_number + '</div>' +
+          '<div style="font-size:13px;color:var(--text-muted)">' + new Date(inv.created_at).toLocaleDateString('de-DE') + '</div>' +
+        '</div>' +
+        '<span class="badge ' + statusBadge + '">' + statusLabel + '</span>' +
+      '</div>' +
+      '<div class="prow"><span class="plbl">' + (I18N.t('dash.inv_type') || 'Art') + '</span><span class="pval">' + inv.type + '</span></div>' +
+      '<div class="prow"><span class="plbl">' + (I18N.t('dash.inv_description') || 'Beschreibung') + '</span><span class="pval">' + (inv.description || '—') + '</span></div>' +
+      '<div class="prow"><span class="plbl">' + (I18N.t('dash.inv_amount') || 'Betrag') + '</span><span class="pval fw-5" style="color:var(--navy);font-size:16px">' + Math.round(inv.amount).toLocaleString('de-DE') + ' EUR</span></div>' +
+      (inv.status !== 'paid' ? 
+        '<div style="background:var(--navy);border-radius:8px;padding:1.25rem;margin-top:1rem">' +
+          '<div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">' + (I18N.t('dash.inv_payment_details') || 'Zahlungsdetails') + '</div>' +
+          '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">' + (I18N.t('dash.inv_beneficiary') || 'Begünstigter') + '</span><span class="pval" style="color:#fff">' + (inv.beneficiary || '—') + '</span></div>' +
+          '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">IBAN</span><span class="pval" style="color:#fff">' + (inv.iban || '—') + '</span></div>' +
+          '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">BIC</span><span class="pval" style="color:#fff">' + (inv.bic || '—') + '</span></div>' +
+          '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">' + (I18N.t('dash.inv_reference') || 'Verwendungszweck') + '</span><span class="pval" style="color:var(--gold-l);font-weight:500">' + (inv.reference || '—') + '</span></div>' +
+        '</div>'
+      : '') +
+    '</div>';
+  }).join('');
+}
