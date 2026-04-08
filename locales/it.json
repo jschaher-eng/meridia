@@ -247,7 +247,7 @@
 "notif_status": "Aggiornamento fascicolo",
 "notif_document": "Documento richiesto",
 "notif_security": "Avviso sicurezza",
-"notif_payment": "Pagamento"
+"notif_payment": "Pagamento", "invoices_nav": "Fatture", "invoices": "Fatture", "invoices_sub": "Le tue fatture e dettagli di pagamento"
 }
 ,
 "status": {
