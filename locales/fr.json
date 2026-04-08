@@ -247,7 +247,17 @@
 "notif_status": "Mise à jour de votre dossier",
 "notif_document": "Document demandé",
 "notif_security": "Alerte sécurité",
-"notif_payment": "Paiement", "invoices_nav": "Factures", "invoices": "Factures", "invoices_sub": "Vos factures et coordonnées de paiement"
+"notif_payment": "Paiement", "invoices_nav": "Factures", "invoices": "Factures", "invoices_sub": "Vos factures et coordonnées de paiement",
+"no_invoices": "Aucune facture.",
+"inv_paid": "Payée",
+"inv_cancelled": "Annulée",
+"inv_pending": "En attente",
+"inv_type": "Type",
+"inv_description": "Description",
+"inv_amount": "Montant",
+"inv_payment_details": "Coordonnées de paiement",
+"inv_beneficiary": "Bénéficiaire",
+"inv_reference": "Référence du virement"
 }
 ,
 "status": {
