@@ -420,7 +420,7 @@ async function sendAdminReply() {
     from_id: currentAdminId,
     to_id:   currentClientId,
     content: text,
-    read:    false
+    read:    true
   });
 
   if (error) { showToast('Erreur: ' + error.message); return; }
