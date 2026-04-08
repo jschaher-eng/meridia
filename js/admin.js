@@ -456,8 +456,13 @@ if (clientProfile && clientProfile.email) {
   );
 }
   await loadMessages();
+/* Sauvegarder la référence avant renderConvList */
+var savedName = document.getElementById('mv-name')?.textContent;
+var savedSub = document.getElementById('mv-sub')?.textContent;
 renderConvList();
-/* Garder la conversation ouverte sans réinitialiser mv-sub */
+/* Restaurer après */
+if (savedName) setEl('mv-name', savedName);
+if (savedSub) setEl('mv-sub', savedSub);
 var layout = document.querySelector('.msg-layout');
 if (layout) layout.classList.add('conv-open');
 }
