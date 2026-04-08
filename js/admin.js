@@ -494,6 +494,14 @@ function selectConv(id) {
   if (!conv) return;
   conv.unread = 0;
 
+   /* Marquer les messages comme lus dans Supabase */
+supabase.from('messages')
+  .update({ read: true })
+  .eq('to_id', ADMIN_ID)
+  .eq('from_id', conv.clientId)
+  .eq('read', false)
+  .then(function() {});
+
   document.querySelectorAll('.msg-item').forEach(i => i.classList.remove('act'));
   const el = document.getElementById('conv-' + id);
   if (el) el.classList.add('act');
