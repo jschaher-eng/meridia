@@ -259,7 +259,7 @@
 "notif_status": "Ažuriranje dosijea",
 "notif_document": "Dokument zatražen",
 "notif_security": "Sigurnosno upozorenje",
-"notif_payment": "Plaćanje"
+"notif_payment": "Plaćanje", "invoices_nav": "Računi", "invoices": "Računi", "invoices_sub": "Vaši računi i podaci o plaćanju"
 }
 ,
 "status": {
