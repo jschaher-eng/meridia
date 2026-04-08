@@ -259,7 +259,17 @@
 "notif_status": "Обновление дела",
 "notif_document": "Документ запрошен",
 "notif_security": "Предупреждение безопасности",
-"notif_payment": "Платёж", "invoices_nav": "Счета", "invoices": "Счета", "invoices_sub": "Ваши счета и платёжные реквизиты"
+"notif_payment": "Платёж", "invoices_nav": "Счета", "invoices": "Счета", "invoices_sub": "Ваши счета и платёжные реквизиты",
+"no_invoices": "Нет счетов.",
+"inv_paid": "Оплачено",
+"inv_cancelled": "Отменено",
+"inv_pending": "Ожидание",
+"inv_type": "Тип",
+"inv_description": "Описание",
+"inv_amount": "Сумма",
+"inv_payment_details": "Платёжные реквизиты",
+"inv_beneficiary": "Получатель",
+"inv_reference": "Назначение платежа"
 }
 ,
 "status": {
