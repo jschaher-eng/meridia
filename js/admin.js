@@ -829,7 +829,8 @@ async function startConversationWithClient() {
   setTimeout(function() {
     var convKey = currentClient.id;
     setEl('mv-name', currentClient.name);
-    setEl('mv-sub', currentClient.email || '');
+    var clientLoan = LOANS.find(function(l) { return l.clientId === currentClient.id; });
+    setEl('mv-sub', clientLoan ? 'Réf. ' + clientLoan.ref : currentClient.email || '');
     var av = document.getElementById('mv-avatar');
     if (av) { av.textContent = currentClient.avatar || '?'; av.className = 'av av-md av-navy'; }
     var body = document.getElementById('msg-body-admin');
