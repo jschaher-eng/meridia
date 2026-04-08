@@ -181,7 +181,7 @@ function initRealtimeMessages() {
         
         var d = new Date(m.created_at);
         var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
-        var meta = 'Allodo Finanz · ' + time;
+        var meta = 'advisorName · ' + time;
         appendBubble(body, true, m.content, meta, true);
         updateMessageBadge();
         body.scrollTop = body.scrollHeight;
