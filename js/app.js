@@ -630,7 +630,8 @@ var loans = [
       rate:      r.rate || 3.9,
       status:    r.status,
       user_id:   r.user_id,
-      created_at: r.created_at
+      created_at: r.created_at,
+      advisor_name: r.advisor_name || null
     };
   })
 ].sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); });
