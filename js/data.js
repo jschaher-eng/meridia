@@ -120,7 +120,7 @@ async function loadMessages() {
       };
     }
 
-    if (!m.read && m.from_id !== ADMIN_ID) convMap[key].unread++;
+    if (!m.read && m.to_id === ADMIN_ID) convMap[key].unread++;
     convMap[key].lastTime = formatTime(m.created_at);
     convMap[key].messages.push({
       recv: m.from_id !== ADMIN_ID,
