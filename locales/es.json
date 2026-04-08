@@ -247,7 +247,7 @@
 "notif_status": "Actualización del expediente",
 "notif_document": "Documento solicitado",
 "notif_security": "Alerta de seguridad",
-"notif_payment": "Pago"
+"notif_payment": "Pago", "invoices_nav": "Facturas", "invoices": "Facturas", "invoices_sub": "Sus facturas y detalles de pago"
 }
 ,
 "status": {
