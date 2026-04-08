@@ -454,7 +454,11 @@ async function submitLoanRequest() {
     postal_code: applyData.postal_code,
     income:      applyData.income,
     charges:     applyData.charges,
-    status:      'pending'
+    status:      'pending',
+    birthdate:   applyData.birthdate || null,
+    nationality: applyData.nationality || null,
+    street:      applyData.street || null,
+    country:     applyData.country || null,
   });
 
   if (error) { console.error('Erreur demande:', error.message); return null; }
