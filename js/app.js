@@ -419,19 +419,6 @@ async function doLogout() {
       if (topBar)  topBar.style.display  = '';
 }
 
-async function doLogin() {
-  var email    = document.getElementById('login-email').value.trim();
-  var password = document.getElementById('login-password').value;
-  var errEl    = document.getElementById('login-error');
-  if (!email || !password) { errEl.textContent = 'Bitte alle Felder ausfullen.'; errEl.style.display = 'block'; return; }
-  var btn = document.getElementById('btn-login');
-  btn.textContent = '...'; btn.disabled = true;
-  var result = await _supabase.auth.signInWithPassword({ email: email, password: password });
-  if (result.error) { errEl.textContent = 'E-Mail oder Passwort falsch.'; errEl.style.display = 'block'; btn.textContent = 'Zu meinem Bereich'; btn.disabled = false; return; }
-  errEl.style.display = 'none';
-  goPage('dash');
-}
-
 async function doRegister() {
   var email    = document.getElementById('reg-email').value.trim();
   var password = document.getElementById('reg-password').value;
