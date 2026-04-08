@@ -111,8 +111,7 @@ async function loadClientMessages() {
   var ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
 
 /* Récupérer le nom du conseiller */
-var advisorName = 'Allodo Finanz';
-var { data: loanData } = await _supabase
+var advisorName = window._advisorName || 'Allodo Finanz';
   .from('loans')
   .select('advisor_name')
   .eq('user_id', userId)
@@ -181,7 +180,7 @@ function initRealtimeMessages() {
         
         var d = new Date(m.created_at);
         var time = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
-        var meta = 'advisorName · ' + time;
+        var meta = (window._advisorName || 'Allodo Finanz') + ' · ' + time;
         appendBubble(body, true, m.content, meta, true);
         updateMessageBadge();
         body.scrollTop = body.scrollHeight;
