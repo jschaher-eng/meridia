@@ -259,7 +259,7 @@
 "notif_status": "Posodobitev mape",
 "notif_document": "Dokument zahtevan",
 "notif_security": "Varnostno opozorilo",
-"notif_payment": "Plačilo"
+"notif_payment": "Plačilo", "invoices_nav": "Računi", "invoices": "Računi", "invoices_sub": "Vaši računi in podatki o plačilu"
 }
 ,
 "status": {
