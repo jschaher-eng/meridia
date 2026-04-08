@@ -435,7 +435,7 @@ async function loadClientInvoices() {
           '<div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">' + (I18N.t('dash.inv_payment_details') || 'Zahlungsdetails') + '</div>' +
           '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">' + (I18N.t('dash.inv_beneficiary') || 'Begünstigter') + '</span><span class="pval" style="color:#fff">' + (inv.beneficiary || '—') + '</span></div>' +
           '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">IBAN</span><span class="pval" style="color:#fff">' + (inv.iban || '—') + '</span></div>' +
-          '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">BIC</span><span class="pval" style="color:#fff">' + (inv.bic || '—') + '</span></div>' +
+          '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">BIC</span><span class="pval" style="color:#fff">' + (inv.reference || '—') + '</span></div>' +
           '<div class="prow" style="border-color:rgba(255,255,255,0.1)"><span class="plbl" style="color:rgba(255,255,255,0.6)">' + (I18N.t('dash.inv_reference') || 'Verwendungszweck') + '</span><span class="pval" style="color:var(--gold-l);font-weight:500">' + (inv.reference || '—') + '</span></div>' +
        '</div>'
       : '') +
