@@ -117,7 +117,7 @@ var { data: loanData } = await _supabase
   .select('advisor_name')
   .eq('user_id', userId)
   .limit(1)
-  .single();
+  .maybeSingle();
 
 if (loanData && loanData.advisor_name) {
   advisorName = loanData.advisor_name;
@@ -127,7 +127,7 @@ if (loanData && loanData.advisor_name) {
     .select('advisor_name')
     .eq('user_id', userId)
     .limit(1)
-    .single();
+    .maybeSingle();
   if (reqData && reqData.advisor_name) advisorName = reqData.advisor_name;
 }
 
