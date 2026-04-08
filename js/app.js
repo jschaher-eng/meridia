@@ -637,6 +637,7 @@ var loans = [
 
 if (!loans || loans.length === 0) return;
 var loan = loans[0];
+ window._advisorName = loan.advisor_name || 'Allodo Finanz';
   var advisorName   = loan.advisor_name   || 'Allodo Finanz';
   var advisorAvatar = loan.advisor_avatar || 'AF';
 
