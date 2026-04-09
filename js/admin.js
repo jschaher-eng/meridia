@@ -562,6 +562,8 @@ function setAmnActive(id) {
 function closeMobileConv() {
   var layout = document.querySelector('.msg-layout');
   if (layout) layout.classList.remove('conv-open');
+  var msgView = document.querySelector('.msg-view');
+  if (msgView) msgView.style.display = 'none';
 }
 
 function appendBubble(container, isRecv, text, meta) {
