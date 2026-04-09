@@ -353,7 +353,9 @@ input, select, textarea { font-family: var(--font-sans); }
 
   /* Messagerie — vue alternée */
   .msg-list { display: block; border-right: none; border-bottom: 0.5px solid var(--border); max-height: 260px; overflow-y: auto; }
-  .msg-view { display: none; min-height: 350px; }
+  .msg-view { display: none !important; min-height: 350px; }
+  .msg-layout.conv-open .msg-view { display: flex !important; }
+  .msg-list { max-height: calc(100vh - 200px); }
   .msg-body { max-height: 260px; }
   .msg-layout { grid-template-columns: 1fr; }
   .msg-layout.conv-open .msg-list { display: none; }
