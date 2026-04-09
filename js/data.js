@@ -131,33 +131,22 @@ async function loadMessages() {
       text: m.content || ''
     });
   });
-/* Récupérer tous les profils en une seule requête */
-var clientIds = Object.keys(convMap);
-var { data: profiles } = await supabase
-  .from('profiles')
-  .select('id, full_name, email')
-  .in('id', clientIds);
-
-var profileMap = {};
-(profiles || []).forEach(function(p) { profileMap[p.id] = p; });
-
-Object.keys(convMap).forEach(function(key) {
-  var profile = profileMap[key];
-  if (profile) {
-    var name = profile.full_name || profile.email || key;
-    convMap[key].clientName = name;
-    convMap[key].clientAvatar = name.split(' ').map(function(w) { return w[0]; }).join('').toUpperCase().slice(0, 2);
-  }
-});
+for (const key of Object.keys(convMap)) {
+    const clientId = convMap[key].clientId;
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('full_name, email')
+      .eq('id', clientId)
+      .single();
     if (profile) {
       const name = profile.full_name || profile.email || clientId;
       convMap[key].clientName = name;
       convMap[key].clientAvatar = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
     }
-  MSG_CONVERSATIONS = convMap;
   }
 
-  
+  MSG_CONVERSATIONS = convMap;
+}
 
 async function loadDocuments() {
   const { data, error } = await supabase
