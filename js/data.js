@@ -154,10 +154,10 @@ Object.keys(convMap).forEach(function(key) {
       convMap[key].clientName = name;
       convMap[key].clientAvatar = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
     }
+  MSG_CONVERSATIONS = convMap;
   }
 
-  MSG_CONVERSATIONS = convMap;
-}
+  
 
 async function loadDocuments() {
   const { data, error } = await supabase
