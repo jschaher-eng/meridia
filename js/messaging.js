@@ -118,10 +118,10 @@ async function loadClientMessages() {
 
   var body = document.getElementById('msg-body');
   if (!body) return;
-body.innerHTML = '';
-await markMessagesAsRead();
+  body.innerHTML = '';
+  await markMessagesAsRead();
 
-data.forEach(function(m) {
+  data.forEach(function(m) {
     var isMe = m.from_id === userId;
     var isAdmin = m.from_id === ADMIN_ID;
     var d = new Date(m.created_at);
