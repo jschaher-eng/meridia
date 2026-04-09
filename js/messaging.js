@@ -118,10 +118,19 @@ async function loadClientMessages() {
 
   var body = document.getElementById('msg-body');
   if (!body) return;
-  body.innerHTML = '';
   await markMessagesAsRead();
+var advisorName = window._advisorName || 'Allodo Finanz';
 
-  data.forEach(function(m) {
+/* Ne recharger que si nécessaire */
+var currentCount = body.querySelectorAll('.bubble-wrap').length;
+if (currentCount === data.length) {
+  body.scrollTop = body.scrollHeight;
+  await updateMessageBadge();
+  return;
+}
+body.innerHTML = '';
+
+data.forEach(function(m) {
     var isMe = m.from_id === userId;
     var isAdmin = m.from_id === ADMIN_ID;
     var d = new Date(m.created_at);
