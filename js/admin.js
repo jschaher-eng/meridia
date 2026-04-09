@@ -93,10 +93,11 @@ function goPanel(id) {
 window.addEventListener('popstate', function(e) {
   if (e.state && e.state.panel) {
     if (e.state.conv) {
-      /* Retour depuis une conversation → afficher la liste */
-      var layout = document.querySelector('.msg-layout');
-      if (layout) layout.classList.remove('conv-open');
-    } else {
+  var layout = document.querySelector('.msg-layout');
+  if (layout) layout.classList.remove('conv-open');
+  var msgView = document.querySelector('.msg-view');
+  if (msgView) msgView.style.display = 'none';
+} else {
       /* Retour depuis un panel → aller au dashboard */
       var id = e.state.panel;
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('act'));
@@ -545,6 +546,8 @@ supabase.from('messages')
    // Ouvrir la vue conversation sur mobile
 var layout = document.querySelector('.msg-layout');
 if (layout) layout.classList.add('conv-open');
+var msgView = document.querySelector('.msg-view');
+if (msgView && window.innerWidth <= 900) msgView.style.display = 'flex';
 if (window.innerWidth <= 900) {
   history.pushState({ panel: 'messaging', conv: id }, '', '#admin/messaging/conv');
 }
