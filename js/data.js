@@ -62,6 +62,7 @@ const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference)
       monthly: calcMonthly(l.amount, l.duration, l.rate),
       created: formatDate(l.created_at),
       isRequest: false,
+      created_at_raw: l.created_at,
     })),
     ...(filteredRequests || []).map(r => ({
       id: r.id,
@@ -77,6 +78,7 @@ const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference)
       monthly: calcMonthly(r.amount, r.duration, 3.9),
       created: formatDate(r.created_at),
       isRequest: true,
+      created_at_raw: r.created_at,
     }))
   ];
 
