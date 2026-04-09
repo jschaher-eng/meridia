@@ -118,10 +118,15 @@ async function loadClientMessages() {
 
   var body = document.getElementById('msg-body');
   if (!body) return;
-  body.innerHTML = '';
-  await markMessagesAsRead();
+ await markMessagesAsRead();
 
-  data.forEach(function(m) {
+/* Ne vider que si le contenu a changé */
+var newContent = data.map(function(m) { return m.id; }).join(',');
+if (body.dataset.loaded === newContent) return;
+body.dataset.loaded = newContent;
+body.innerHTML = '';
+
+data.forEach(function(m) {
     var isMe = m.from_id === userId;
     var isAdmin = m.from_id === ADMIN_ID;
     var d = new Date(m.created_at);
