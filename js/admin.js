@@ -39,7 +39,9 @@ function goPanel(id) {
   /* Réinitialiser la messagerie si on quitte ce panel */
   if (id !== 'messaging') {
     var layout = document.querySelector('.msg-layout');
-    if (layout) layout.classList.remove('conv-open');
+if (layout) layout.classList.add('conv-open');
+var msgView = document.getElementById('msg-view-admin');
+if (msgView && window.innerWidth <= 900) msgView.style.display = 'flex';
   }
 
   window.scrollTo(0, 0);
@@ -559,6 +561,8 @@ function setAmnActive(id) {
 function closeMobileConv() {
   var layout = document.querySelector('.msg-layout');
   if (layout) layout.classList.remove('conv-open');
+  var msgView = document.getElementById('msg-view-admin');
+  if (msgView) msgView.style.display = 'none';
 }
 
 function appendBubble(container, isRecv, text, meta) {
