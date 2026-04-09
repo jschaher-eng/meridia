@@ -181,10 +181,12 @@ async function updateKPIs() {
 async function loadAllData() {
   showLoadingState(true);
   try {
-    await loadClients();
-    await loadLoans();
-    await loadMessages();
-    await loadDocuments();
+    await Promise.all([
+      loadClients(),
+      loadLoans(),
+      loadMessages(),
+      loadDocuments()
+    ]);
     await updateKPIs();
   } catch(err) {
     console.error('Erreur chargement:', err);
