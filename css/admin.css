@@ -352,9 +352,10 @@ input, select, textarea { font-family: var(--font-sans); }
   }
 
   /* Messagerie — vue alternée */
-  .msg-layout { display: flex; flex-direction: column; }
-  .msg-list { width: 100%; height: auto; overflow-y: auto; border-right: none; border-bottom: none; }
-  .msg-view { width: 100%; display: none; min-height: 350px; }
+  .msg-list { display: block; border-right: none; border-bottom: 0.5px solid var(--border); max-height: 260px; overflow-y: auto; }
+  .msg-view { display: none; min-height: 350px; }
+  .msg-body { max-height: 260px; }
+  .msg-layout { grid-template-columns: 1fr; }
   .msg-layout.conv-open .msg-list { display: none; }
   .msg-layout.conv-open .msg-view { display: flex; }
   .mobile-back-msg {
