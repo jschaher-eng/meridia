@@ -7,7 +7,8 @@
 .dash-layout {
   display: grid;
   grid-template-columns: 220px 1fr;
-  min-height: calc(100vh - 62px);
+  height: calc(100vh - 62px);
+  overflow: hidden;
   align-items: stretch;
 }
 
@@ -99,6 +100,8 @@
 .dash-main {
   background: #F5F7FA;
   padding: 1.75rem;
+  height: calc(100vh - 62px);
+  overflow-y: auto;
 }
 
 .dash-header {
