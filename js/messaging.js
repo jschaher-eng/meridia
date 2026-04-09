@@ -118,17 +118,8 @@ async function loadClientMessages() {
 
   var body = document.getElementById('msg-body');
   if (!body) return;
- await markMessagesAsRead();
-
-var newContent = data.map(function(m) { return m.id; }).join(',');
-var advisorName = window._advisorName || 'Allodo Finanz';
-
-if (body.dataset.loaded === newContent) {
-  body.scrollTop = body.scrollHeight;
-  return;
-}
-body.dataset.loaded = newContent;
 body.innerHTML = '';
+await markMessagesAsRead();
 
 data.forEach(function(m) {
     var isMe = m.from_id === userId;
