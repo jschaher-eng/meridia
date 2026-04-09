@@ -120,9 +120,13 @@ async function loadClientMessages() {
   if (!body) return;
  await markMessagesAsRead();
 
-/* Ne vider que si le contenu a changé */
 var newContent = data.map(function(m) { return m.id; }).join(',');
-if (body.dataset.loaded === newContent) return;
+var advisorName = window._advisorName || 'Allodo Finanz';
+
+if (body.dataset.loaded === newContent) {
+  body.scrollTop = body.scrollHeight;
+  return;
+}
 body.dataset.loaded = newContent;
 body.innerHTML = '';
 
