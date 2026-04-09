@@ -117,7 +117,10 @@ function dashTab(t) {
   }
 
   if (t === 'dossier')  { loadDashboard(); }
-  if (t === 'messages') { loadClientMessages(); }
+  if (t === 'messages') { 
+  if (!window._advisorName) { loadDashboard().then(function() { loadClientMessages(); }); }
+  else { loadClientMessages(); }
+}
   if (t === 'docs')     { loadClientDocuments(); }
   if (t === 'alertes')  { loadNotifications(); }
   if (t === 'profil')   { loadDashboard(); }
