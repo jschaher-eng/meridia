@@ -126,7 +126,8 @@ function renderDashboard() {
   setEl('kpi-msgs',     KPIS.unreadMessages);
 
   // Pending loans table
-  const pending = LOANS.filter(l => l.status === 'pending');
+  const pending = LOANS.filter(l => l.status === 'pending')
+  .sort(function(a, b) { return new Date(b.created) - new Date(a.created); });
   const tbody = document.getElementById('dash-pending-body');
   if (!tbody) return;
   tbody.innerHTML = pending.map(l => `
@@ -185,7 +186,7 @@ function renderDashboard() {
 function renderLoans(filter) {
   const statusFilter = filter || document.getElementById('loan-filter-status')?.value || 'all';
   const search       = (document.getElementById('loan-search')?.value || '').toLowerCase();
-  let data = LOANS.slice();
+  let data = LOANS.slice().sort(function(a, b) { return new Date(b.created) - new Date(a.created); });
   if (statusFilter !== 'all') data = data.filter(l => l.status === statusFilter);
   if (search) data = data.filter(l => l.client.toLowerCase().includes(search) || l.ref.toLowerCase().includes(search) || l.type.toLowerCase().includes(search));
 
