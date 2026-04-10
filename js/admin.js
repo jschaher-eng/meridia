@@ -195,7 +195,7 @@ function renderLoans(filter) {
   tbody.innerHTML = data.map(l => `
     <tr onclick="openLoanDetail('${l.id}')">
       <td><div class="td-name">${l.ref}</div><div class="td-sub">${l.created}</div></td>
-      <td><div class="td-name">${l.client}</div></td>
+      <td><div class="td-name">${l.client}</div>${l.isRequest ? '<div class="td-sub">' + (l.email || '') + (l.phone ? ' · ' + l.phone : '') + '</div>' : ''}</td>
       <td>${l.type}</td>
       <td class="fw-5">${fmt(l.amount)}</td>
       <td>${l.duration} mois</td>
