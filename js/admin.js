@@ -1159,25 +1159,24 @@ async function sendCampaign() {
   statusEl.style.color = 'var(--text-m)';
 
   var html = `
-    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
-      <div style="background:#0C2340;padding:24px;text-align:center">
-        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
-      </div>
-      <div style="padding:32px;background:#f9f9f9">
-        <div style="font-size:15px;color:#333;line-height:1.8;white-space:pre-line">${message}</div>
-        <div style="margin-top:32px">
-          <a href="https://www.allodo.de/#apply" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:14px">
-            Jetzt Antrag stellen →
-          </a>
-        </div>
-      </div>
-      <div style="padding:16px;text-align:center;color:#999;font-size:11px;border-top:1px solid #eee">
-        Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin<br>
-        <a href="https://www.allodo.de/impressum.html" style="color:#999">Impressum</a> · 
-        <a href="https://www.allodo.de/datenschutz.html" style="color:#999">Datenschutz</a>
-      </div>
+  <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;color:#222">
+    <div style="padding:24px 0;border-bottom:1px solid #eee;text-align:center">
+      <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:40px">
     </div>
-  `;
+    <div style="padding:32px 0;font-size:15px;line-height:1.9;color:#333;white-space:pre-line">${message}</div>
+    <div style="padding:20px 0">
+      <a href="https://www.allodo.de" style="display:inline-block;background:#0C2340;color:#fff;padding:11px 24px;border-radius:3px;text-decoration:none;font-size:14px;font-family:Arial,sans-serif">
+        Mehr erfahren
+      </a>
+    </div>
+    <div style="padding:24px 0;border-top:1px solid #eee;font-size:11px;color:#999;font-family:Arial,sans-serif">
+      Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin<br>
+      <a href="https://www.allodo.de/impressum.html" style="color:#999">Impressum</a> · 
+      <a href="https://www.allodo.de/datenschutz.html" style="color:#999">Datenschutz</a> · 
+      <a href="mailto:contact@allodo.de?subject=Abmeldung" style="color:#999">Abmelden</a>
+    </div>
+  </div>
+`;
 
   var sent = 0;
   var failed = 0;
