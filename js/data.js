@@ -51,7 +51,7 @@ const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference)
   var allLoans = [
     ...(loans || []).map(l => ({
       id: l.id,
-      ref: l.reference || ('BM-' + l.id.slice(0,8).toUpperCase()),
+      ref: l.reference || ('AF-' + l.id.slice(0,8).toUpperCase()),
       client: l.user_id,
       clientId: l.user_id,
       type: l.type || 'Privatkredit',
@@ -66,7 +66,7 @@ const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference)
     })),
     ...(filteredRequests || []).map(r => ({
       id: r.id,
-      ref: r.reference || ('BM-' + r.id.slice(0,8).toUpperCase()),
+      ref: r.reference || ('AF-' + r.id.slice(0,8).toUpperCase()),
       client: (r.fname || '') + ' ' + (r.lname || ''),
       clientId: r.user_id || null,
       email: r.email,
@@ -79,6 +79,7 @@ const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference)
       created: formatDate(r.created_at),
       isRequest: true,
       created_at_raw: r.created_at,
+      phone: r.phone || null,
     }))
   ];
 
