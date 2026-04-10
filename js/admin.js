@@ -897,7 +897,7 @@ async function requestDocument() {
   if (!clientId) { statusEl.textContent = 'Veuillez sélectionner un client.'; statusEl.style.color = 'red'; return; }
 
   /* Trouver le loan_id du client */
-  var loan = LOANS.find(function(l) { return l.clientId === clientId; });
+  var loan = LOANS.find(function(l) { return l.clientId === clientId && !l.isRequest; });
   var loanId = loan ? loan.id : null;
 
   var typeLabels = {
