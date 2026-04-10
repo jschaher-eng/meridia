@@ -47,9 +47,13 @@
     </div>
     <div class="amn-item" id="amn-invoices" onclick="goPanel('invoices');setAmnActive('invoices')">
   <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-  <span>Rechnungen</span>
+  <span>Factures</span>
 </div>
   </div>
+    <div class="amn-item" id="amn-campaigns" onclick="goPanel('campaigns');setAmnActive('campaigns')">
+  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  <span>Campagnes</span>
+</div>
 </nav>
 
 <!-- ===================== APP LAYOUT ===================== -->
@@ -88,6 +92,10 @@
       <div class="sb-link" id="sb-invoices" onclick="goPanel('invoices')">
   <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
   Factures
+      </div>
+      <div class="sb-link" id="sb-campaigns" onclick="goPanel('campaigns')">
+  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  Campagnes
 </div>
     </div>
     <div class="sb-section">
@@ -434,6 +442,47 @@
         <tr><td colspan="7" class="text-m text-s" style="padding:1.5rem">Chargement…</td></tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+    <!-- ==================== CAMPAGNES ==================== -->
+<div class="panel" id="panel-campaigns">
+  <div class="ph">
+    <div><h1>Campagnes email</h1><p>Envoyez des emails à vos prospects</p></div>
+  </div>
+
+  <div class="card mb-2">
+    <div class="card-h">Composer un email</div>
+    
+    <div class="fg">
+      <label>Adresses email destinataires (une par ligne)</label>
+      <textarea id="camp-emails" style="min-height:120px" placeholder="prospect1@email.com&#10;prospect2@email.com&#10;prospect3@email.com"></textarea>
+    </div>
+
+    <div class="fg">
+      <label>Objet de l'email</label>
+      <input type="text" id="camp-subject" placeholder="Allodo — Votre solution de crédit sur mesure">
+    </div>
+
+    <div class="fg">
+      <label>Message</label>
+      <textarea id="camp-message" style="min-height:200px" placeholder="Rédigez votre message ici..."></textarea>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center">
+      <button class="btn btn-navy" onclick="sendCampaign()">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Envoyer la campagne
+      </button>
+      <span id="camp-status" style="font-size:13px;color:var(--text-m)"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h">Aperçu de l'email</div>
+    <div id="camp-preview" style="border:1px solid var(--border);border-radius:var(--r);padding:1rem;min-height:100px;font-size:14px;color:var(--text-m)">
+      L'aperçu s'affiche ici...
+    </div>
   </div>
 </div>
     
