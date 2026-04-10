@@ -86,6 +86,7 @@ function goPanel(id) {
     }
   });
 }
+   if (id === 'campaigns') { /* panel prêt */ }
    
 }
 
@@ -1134,3 +1135,76 @@ async function sendInvoiceToClient(id) {
   );
   showToast('Facture envoyée à ' + client.email);
 }
+
+/* ========================================
+   CAMPAGNES EMAIL
+   ======================================== */
+async function sendCampaign() {
+  var emailsRaw = document.getElementById('camp-emails').value.trim();
+  var subject   = document.getElementById('camp-subject').value.trim();
+  var message   = document.getElementById('camp-message').value.trim();
+  var statusEl  = document.getElementById('camp-status');
+
+  if (!emailsRaw) { statusEl.textContent = 'Veuillez entrer au moins un email.'; statusEl.style.color = 'red'; return; }
+  if (!subject)   { statusEl.textContent = 'Veuillez entrer un objet.'; statusEl.style.color = 'red'; return; }
+  if (!message)   { statusEl.textContent = 'Veuillez entrer un message.'; statusEl.style.color = 'red'; return; }
+
+  var emails = emailsRaw.split('\n')
+    .map(function(e) { return e.trim(); })
+    .filter(function(e) { return e.includes('@'); });
+
+  if (emails.length === 0) { statusEl.textContent = 'Aucun email valide trouvé.'; statusEl.style.color = 'red'; return; }
+
+  statusEl.textContent = 'Envoi en cours... 0/' + emails.length;
+  statusEl.style.color = 'var(--text-m)';
+
+  var html = `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#0C2340;padding:24px;text-align:center">
+        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+      </div>
+      <div style="padding:32px;background:#f9f9f9">
+        <div style="font-size:15px;color:#333;line-height:1.8;white-space:pre-line">${message}</div>
+        <div style="margin-top:32px">
+          <a href="https://www.allodo.de/#apply" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:14px">
+            Jetzt Antrag stellen →
+          </a>
+        </div>
+      </div>
+      <div style="padding:16px;text-align:center;color:#999;font-size:11px;border-top:1px solid #eee">
+        Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin<br>
+        <a href="https://www.allodo.de/impressum.html" style="color:#999">Impressum</a> · 
+        <a href="https://www.allodo.de/datenschutz.html" style="color:#999">Datenschutz</a>
+      </div>
+    </div>
+  `;
+
+  var sent = 0;
+  var failed = 0;
+
+  for (var i = 0; i < emails.length; i++) {
+    try {
+      await sendNotificationEmail(emails[i], subject, html);
+      sent++;
+      statusEl.textContent = 'Envoi en cours... ' + sent + '/' + emails.length;
+    } catch(e) {
+      failed++;
+    }
+    /* Petite pause pour éviter le rate limiting */
+    await new Promise(function(resolve) { setTimeout(resolve, 300); });
+  }
+
+  statusEl.textContent = '✓ Envoyé : ' + sent + ' · Échec : ' + failed;
+  statusEl.style.color = sent > 0 ? 'green' : 'red';
+}
+
+/* Aperçu en temps réel */
+document.addEventListener('DOMContentLoaded', function() {
+  var msgInput = document.getElementById('camp-message');
+  if (msgInput) {
+    msgInput.addEventListener('input', function() {
+      var preview = document.getElementById('camp-preview');
+      if (preview) preview.innerHTML = this.value.replace(/\n/g, '<br>');
+    });
+  }
+});
