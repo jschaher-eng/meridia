@@ -79,6 +79,20 @@ function goPage(id) {
    if (window.location.hash !== '#' + id) {
     history.pushState({ page: id }, '', '#' + id);
   }
+
+   var el = document.getElementById('pg-' + id);
+if (el) {
+  el.classList.add('act');
+  setTimeout(function() { el.style.opacity = '1'; }, 10);
+}
+   /* Suivi conversion Google Ads */
+if (id === 'confirm') {
+  gtag('event', 'conversion', {
+    'send_to': 'AW-17907454872/PJTTCLXq0pkcEJin-NpC',
+    'value': 1.0,
+    'currency': 'EUR'
+  });
+}
 }
 
 function showLoader(show) {
