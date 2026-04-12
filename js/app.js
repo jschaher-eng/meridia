@@ -294,6 +294,10 @@ var labelEl = document.getElementById('apply-step-label');
 if (bar) bar.style.width = pct[n-1] + '%';
 if (pctEl) pctEl.textContent = pct[n-1] + '%';
 if (labelEl) labelEl.textContent = labels[n-1];
+   
+/* Gérer le bouton retour téléphone */
+history.pushState({ applyStep: n }, '', '#apply/step' + n);
+   
   updateSummary(n);
 }
 
@@ -929,10 +933,25 @@ window.addEventListener('pageshow', function(e) {
 });
 
 window.addEventListener('popstate', function(e) {
+  /* Retour entre étapes du formulaire */
+  if (e.state && e.state.applyStep) {
+    var step = e.state.applyStep;
+    document.querySelectorAll('.tf').forEach(function(f) { f.classList.remove('act'); });
+    var el = document.getElementById('af' + step);
+    if (el) el.classList.add('act');
+    var pct = [25, 50, 75, 100];
+    var bar = document.getElementById('apply-progress-bar');
+    var pctEl = document.getElementById('apply-step-pct');
+    var labelEl = document.getElementById('apply-step-label');
+    if (bar) bar.style.width = pct[step-1] + '%';
+    if (pctEl) pctEl.textContent = pct[step-1] + '%';
+    if (labelEl) labelEl.textContent = 'Schritt ' + step + ' von 4';
+    return;
+  }
+
   _supabase.auth.getSession().then(function(r) {
     var session = r.data.session;
     if (session) {
-      /* Connecté — rester dans le dashboard */
       if (e.state && e.state.panel) {
         dashTab(e.state.panel);
       } else if (window.location.hash.startsWith('#dash/')) {
@@ -942,7 +961,6 @@ window.addEventListener('popstate', function(e) {
         dashTab('vue');
       }
     } else {
-      /* Déconnecté — retourner au site */
       goPage('home');
     }
   });
