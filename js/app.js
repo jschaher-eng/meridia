@@ -285,6 +285,15 @@ function applyStep(n) {
     });
   }
   // Update summary panel
+   /* Mettre à jour la barre de progression */
+var pct = [25, 50, 75, 100];
+var labels = ['Schritt 1 von 4', 'Schritt 2 von 4', 'Schritt 3 von 4', 'Schritt 4 von 4'];
+var bar = document.getElementById('apply-progress-bar');
+var pctEl = document.getElementById('apply-step-pct');
+var labelEl = document.getElementById('apply-step-label');
+if (bar) bar.style.width = pct[n-1] + '%';
+if (pctEl) pctEl.textContent = pct[n-1] + '%';
+if (labelEl) labelEl.textContent = labels[n-1];
   updateSummary(n);
 }
 
