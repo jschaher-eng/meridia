@@ -509,12 +509,15 @@
 </div>
     <div class="sec-h2" data-i18n="apply.title">Online-Kreditantrag</div>
     <p class="sec-sub" data-i18n="apply.subtitle">100% digital - Grundsatzentscheidung in 24 Std.</p>
-    <div class="step-bar">
-      <div class="si act" id="ap1" data-i18n="apply.step1">1 - Vorhaben</div>
-      <div class="si" id="ap2" data-i18n="apply.step2">2 - Identitaet</div>
-      <div class="si" id="ap3" data-i18n="apply.step3">3 - Finanzen</div>
-      <div class="si" id="ap4">4 - Konto</div>
-    </div>
+    <div style="margin-bottom:1.5rem">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span id="apply-step-label" style="font-size:13px;color:var(--text-m)">Schritt 1 von 4</span>
+    <span id="apply-step-pct" style="font-size:13px;font-weight:500;color:var(--navy)">25%</span>
+  </div>
+  <div style="height:6px;background:#E5E7EB;border-radius:3px;overflow:hidden">
+    <div id="apply-progress-bar" style="height:100%;background:linear-gradient(90deg,#0B1F3A,#B8963E);border-radius:3px;width:25%;transition:width 0.4s ease"></div>
+  </div>
+</div>
     <div class="apply-layout">
       <div class="apply-card">
         <!-- Etape 1 -->
