@@ -1316,10 +1316,11 @@ async function confirmGenerateContract() {
   set('ct-account-holder', client.name);
   set('ct-first-payment3', fmtDE(firstPaymentDate));
 
+   console.log('content element:', document.getElementById('contract-content'));
   /* Afficher le template */
   var content = document.getElementById('contract-content');
   content.style.display = 'block';
-
+   
   var opt = {
     margin: 0,
     filename: 'Darlehensvertrag_' + contractNumber + '.pdf',
