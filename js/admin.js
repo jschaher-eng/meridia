@@ -1312,6 +1312,9 @@ async function confirmGenerateContract() {
   set('ct-iban', iban || '________________________________');
   set('ct-bic', bic || '________________________________');
   set('ct-bank', bank || '________________________________');
+  set('ct-interest', interestTotal.toLocaleString('de-DE') + ' EUR');
+  set('ct-account-holder', client.name);
+  set('ct-first-payment3', fmtDE(firstPaymentDate));
 
   /* Afficher le template */
   var template = document.getElementById('contract-template');
