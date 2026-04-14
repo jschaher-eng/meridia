@@ -784,5 +784,73 @@
 
   </div>
 </div>
+
+  <!-- Modal génération contrat -->
+<div class="modal-overlay" id="modal-contract" style="display:none">
+  <div class="modal" style="max-width:560px;max-height:90vh;overflow-y:auto">
+    <div class="modal-h">
+      <span>Darlehensvertrag erstellen</span>
+      <button class="modal-close" onclick="closeModal('modal-contract')">✕</button>
+    </div>
+    <div style="padding:1.5rem;display:flex;flex-direction:column;gap:1rem">
+
+      <div class="fg-row">
+        <div class="fg">
+          <label>Direktor / Vertreter Allodo</label>
+          <input type="text" id="ct-input-director" placeholder="Vorname Nachname">
+        </div>
+        <div class="fg">
+          <label>Datum (Vertragsunterzeichnung)</label>
+          <input type="date" id="ct-input-date">
+        </div>
+      </div>
+
+      <div class="fg">
+        <label>Adresse des Kunden</label>
+        <input type="text" id="ct-input-address" placeholder="Straße, PLZ Stadt, Land">
+      </div>
+
+      <div class="fg">
+        <label>Verwendungszweck</label>
+        <input type="text" id="ct-input-purpose" placeholder="z.B. Autokredit, Immobilienfinanzierung">
+      </div>
+
+      <div class="fg">
+        <label>Datum erste Rückzahlung</label>
+        <input type="date" id="ct-input-first-payment">
+      </div>
+
+      <div class="fg">
+        <label>Sicherheiten (Artikel 8)</label>
+        <input type="text" id="ct-input-guarantee" placeholder="Keine / oder Beschreibung der Sicherheit">
+      </div>
+
+      <div class="fg-row">
+        <div class="fg">
+          <label>IBAN des Kunden</label>
+          <input type="text" id="ct-input-iban" placeholder="DE89 3704 0044...">
+        </div>
+        <div class="fg">
+          <label>BIC</label>
+          <input type="text" id="ct-input-bic" placeholder="COBADEFFXXX">
+        </div>
+      </div>
+
+      <div class="fg">
+        <label>Bankname</label>
+        <input type="text" id="ct-input-bank" placeholder="Deutsche Bank, Sparkasse...">
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:0.5rem">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal('modal-contract')">Abbrechen</button>
+        <button class="btn btn-navy" style="flex:2" onclick="confirmGenerateContract()">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          Vertrag generieren
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
 </body>
 </html>
