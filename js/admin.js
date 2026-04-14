@@ -1217,10 +1217,55 @@ document.addEventListener('DOMContentLoaded', function() {
 /* ========================================
    GÉNÉRATION CONTRAT PDF
    ======================================== */
-async function generateContract(clientId, loanId) {
+var _contractClientId = null;
+var _contractLoanId = null;
+
+function generateContract(clientId, loanId) {
+  _contractClientId = clientId;
+  _contractLoanId = loanId;
+
+  var client = CLIENTS.find(function(c) { return c.id === clientId; });
+  var loan = LOANS.find(function(l) { return l.id === loanId; });
+
+  /* Pré-remplir le formulaire */
+  var today = new Date();
+  var firstPayment = new Date(today.getFullYear(), today.getMonth() + 3, 1);
+  var fmt = function(d) { return d.toISOString().split('T')[0]; };
+
+  document.getElementById('ct-input-date').value = fmt(today);
+  document.getElementById('ct-input-first-payment').value = fmt(firstPayment);
+  document.getElementById('ct-input-address').value = (client && client.address) ? client.address : '';
+  document.getElementById('ct-input-purpose').value = (loan && loan.type) ? loan.type : '';
+  document.getElementById('ct-input-director').value = '';
+  document.getElementById('ct-input-guarantee').value = 'Keine';
+  document.getElementById('ct-input-iban').value = '';
+  document.getElementById('ct-input-bic').value = '';
+  document.getElementById('ct-input-bank').value = '';
+
+  openModal('modal-contract');
+}
+
+async function confirmGenerateContract() {
+  var clientId = _contractClientId;
+  var loanId = _contractLoanId;
   var client = CLIENTS.find(function(c) { return c.id === clientId; });
   var loan = LOANS.find(function(l) { return l.id === loanId; });
   if (!client || !loan) { showToast('Client ou dossier introuvable.'); return; }
+
+  var director = document.getElementById('ct-input-director').value.trim();
+  var date = document.getElementById('ct-input-date').value;
+  var address = document.getElementById('ct-input-address').value.trim();
+  var purpose = document.getElementById('ct-input-purpose').value.trim();
+  var firstPayment = document.getElementById('ct-input-first-payment').value;
+  var guarantee = document.getElementById('ct-input-guarantee').value.trim();
+  var iban = document.getElementById('ct-input-iban').value.trim();
+  var bic = document.getElementById('ct-input-bic').value.trim();
+  var bank = document.getElementById('ct-input-bank').value.trim();
+
+  if (!director) { showToast('Veuillez entrer le nom du directeur.'); return; }
+  if (!purpose) { showToast('Veuillez entrer le Verwendungszweck.'); return; }
+
+  closeModal('modal-contract');
 
   /* Calculs */
   var r = (loan.rate || 3.9) / 100 / 12;
@@ -1229,45 +1274,50 @@ async function generateContract(clientId, loanId) {
   var monthly = r === 0 ? a/d : a*r*Math.pow(1+r,d)/(Math.pow(1+r,d)-1);
   var total = Math.round(monthly * d);
   var interestTotal = Math.round(monthly * d - a);
-  var today = new Date();
-  var firstPayment = new Date(today.getFullYear(), today.getMonth() + 2, 1);
-  var endDate = new Date(today.getFullYear(), today.getMonth() + d + 1, 0);
-  var fmt = function(d) { return d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'}); };
-  var contractNumber = 'AF-' + today.getFullYear() + '-' + Date.now().toString().slice(-6);
+
+  var contractDate = new Date(date);
+  var firstPaymentDate = new Date(firstPayment);
+  var endDate = new Date(firstPaymentDate.getFullYear(), firstPaymentDate.getMonth() + d, 0);
+
+  var fmtDE = function(dt) { return new Date(dt).toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'}); };
+  var contractNumber = 'AF-' + new Date().getFullYear() + '-' + Date.now().toString().slice(-6);
 
   /* Remplir le template */
   var set = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
   set('ct-number', contractNumber);
-  set('ct-date', fmt(today));
-  set('ct-date2', fmt(today));
-  set('ct-advisor', loan.advisor_name || 'Allodo Finanz');
-  set('ct-advisor2', loan.advisor_name || 'Allodo Finanz');
+  set('ct-date', fmtDE(contractDate));
+  set('ct-date2', fmtDE(contractDate));
+  set('ct-advisor', director);
+  set('ct-advisor2', director);
   set('ct-client-name', client.name);
   set('ct-client-name2', client.name);
-  set('ct-client-address', client.address || client.city || 'Deutschland');
+  set('ct-client-address', address || client.city || 'Deutschland');
   set('ct-client-email', client.email || '');
   set('ct-client-phone', client.phone || '');
   set('ct-amount', Math.round(a).toLocaleString('de-DE') + ' EUR');
   set('ct-amount2', Math.round(a).toLocaleString('de-DE') + ' EUR');
-  set('ct-purpose', loan.type || 'Privatkredit');
-  set('ct-purpose2', loan.type || 'Privatkredit');
+  set('ct-purpose', purpose);
+  set('ct-purpose2', purpose);
   set('ct-duration', d);
   set('ct-duration2', d);
-  set('ct-rate', loan.rate || 3.9);
-  set('ct-rate2', loan.rate || 3.9);
+  set('ct-rate', (loan.rate || 3.9));
+  set('ct-rate2', (loan.rate || 3.9));
   set('ct-monthly', Math.round(monthly).toLocaleString('de-DE'));
   set('ct-monthly2', Math.round(monthly).toLocaleString('de-DE'));
-  set('ct-first-payment', fmt(firstPayment));
-  set('ct-first-payment2', fmt(firstPayment));
+  set('ct-first-payment', fmtDE(firstPaymentDate));
+  set('ct-first-payment2', fmtDE(firstPaymentDate));
   set('ct-total', total.toLocaleString('de-DE'));
-  set('ct-end-date', fmt(endDate));
+  set('ct-end-date', fmtDE(endDate));
+  set('ct-guarantee', guarantee);
+  set('ct-iban', iban || '________________________________');
+  set('ct-bic', bic || '________________________________');
+  set('ct-bank', bank || '________________________________');
 
-  /* Afficher le template pour html2pdf */
+  /* Afficher le template */
   var template = document.getElementById('contract-template');
   var content = document.getElementById('contract-content');
   template.style.display = 'block';
 
-  /* Générer le PDF */
   var opt = {
     margin: 0,
     filename: 'Darlehensvertrag_' + contractNumber + '.pdf',
@@ -1278,14 +1328,9 @@ async function generateContract(clientId, loanId) {
 
   try {
     showToast('Contrat en cours de génération...');
-    
-    /* Générer le blob PDF */
     var pdfBlob = await html2pdf().set(opt).from(content).outputPdf('blob');
-    
-    /* Cacher le template */
     template.style.display = 'none';
 
-    /* Uploader dans Supabase Storage */
     var fileName = 'contracts/' + clientId + '/' + contractNumber + '.pdf';
     var { error: uploadError } = await supabase.storage
       .from('documents')
@@ -1293,11 +1338,9 @@ async function generateContract(clientId, loanId) {
 
     if (uploadError) { showToast('Erreur upload: ' + uploadError.message); return; }
 
-    /* Récupérer l'URL publique */
     var { data: urlData } = supabase.storage.from('documents').getPublicUrl(fileName);
     var pdfUrl = urlData.publicUrl;
 
-    /* Sauvegarder dans la table documents */
     await supabase.from('documents').insert({
       user_id:  clientId,
       loan_id:  loan.isRequest ? null : loanId,
@@ -1309,17 +1352,15 @@ async function generateContract(clientId, loanId) {
       size:     Math.round(pdfBlob.size / 1024) + ' KB'
     });
 
-    /* Notifier le client */
     if (client.id) {
       await createNotification(client.id, 'document',
         'Ihr Darlehensvertrag ist verfügbar',
-        'Ihr Darlehensvertrag ' + contractNumber + ' wurde erstellt und steht in Ihrem Kundenbereich zur Verfügung.'
+        'Ihr Darlehensvertrag ' + contractNumber + ' wurde erstellt.'
       );
     }
 
-    /* Envoyer par email */
     if (client.email) {
-      await sendContractByEmail(client, contractNumber, pdfUrl, loan);
+      await sendContractByEmail(client, contractNumber, pdfUrl, loan, director);
     }
 
     showToast('✓ Contrat généré et envoyé à ' + client.email);
@@ -1333,7 +1374,7 @@ async function generateContract(clientId, loanId) {
   }
 }
 
-async function sendContractByEmail(client, contractNumber, pdfUrl, loan) {
+async function sendContractByEmail(client, contractNumber, pdfUrl, loan, director) {
   var html = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#0C2340;padding:24px;text-align:center">
@@ -1355,7 +1396,7 @@ async function sendContractByEmail(client, contractNumber, pdfUrl, loan) {
           Vertrag herunterladen →
         </a>
         <p style="color:#555;line-height:1.7;margin-top:20px">Bei Fragen stehen wir Ihnen gerne zur Verfügung.</p>
-        <p style="color:#555">Mit freundlichen Grüßen,<br><strong>${loan.advisor_name || 'Allodo GmbH'}</strong></p>
+        <p style="color:#555">Mit freundlichen Grüßen,<br><strong>${director || 'Allodo GmbH'}</strong></p>
       </div>
       <div style="padding:16px;text-align:center;color:#999;font-size:11px">
         Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin
