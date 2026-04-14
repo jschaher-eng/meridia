@@ -1325,7 +1325,7 @@ async function confirmGenerateContract() {
   margin: 15,
   filename: 'Darlehensvertrag_' + contractNumber + '.pdf',
   image: { type: 'jpeg', quality: 0.98 },
-  html2canvas: { scale: 2, useCORS: true, scrollY: 0, width: 794, windowWidth: 794 }
+  html2canvas: { scale: 2, useCORS: true, scrollY: 0, width: 750, windowWidth: 750 },
   jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
   pagebreak: { mode: 'avoid-all' }
 };
