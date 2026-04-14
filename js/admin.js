@@ -652,11 +652,11 @@ async function verifyDoc(id) {
    ======================================== */
 function openModal(id) {
   const m = document.getElementById(id);
-  if (m) m.classList.add('open');
+  if (m) { m.classList.add('open'); m.style.display = 'flex'; }
 }
 function closeModal(id) {
   const m = document.getElementById(id);
-  if (m) m.classList.remove('open');
+  if (m) { m.classList.remove('open'); m.style.display = 'none'; }
 }
 document.addEventListener('click', e => {
   if (e.target.classList.contains('modal-overlay')) closeModal(e.target.id);
