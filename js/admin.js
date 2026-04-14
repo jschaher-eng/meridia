@@ -242,12 +242,18 @@ function openLoanDetail(id) {
   setEl('ml-created',  l.created);
   setEl('ml-reviewed', l.reviewed || 'En attente');
   const acts = document.getElementById('ml-actions');
-  if (acts) {
-    acts.innerHTML = l.status === 'pending'
-      ? `<button class="btn btn-ok" onclick="validateLoan('${l.id}','active');closeModal('modal-loan')">Valider le dossier</button>
-         <button class="btn btn-err" onclick="validateLoan('${l.id}','rejected');closeModal('modal-loan')">Refuser</button>`
-      : `<button class="btn btn-ghost" onclick="closeModal('modal-loan')">Fermer</button>`;
-  }
+if (acts) {
+  var clientId = l.clientId || null;
+  acts.innerHTML = (l.status === 'pending'
+    ? `<button class="btn btn-ok" onclick="validateLoan('${l.id}','active');closeModal('modal-loan')">Valider le dossier</button>
+       <button class="btn btn-err" onclick="validateLoan('${l.id}','rejected');closeModal('modal-loan')">Refuser</button>`
+    : '') +
+    `<button class="btn btn-navy" onclick="generateContract('${l.clientId || ''}','${l.id}');closeModal('modal-loan')">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Contrat générer
+    </button>
+    <button class="btn btn-ghost" onclick="closeModal('modal-loan')">Fermer</button>`;
+}
   openModal('modal-loan');
 }
 
@@ -1207,3 +1213,154 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+/* ========================================
+   GÉNÉRATION CONTRAT PDF
+   ======================================== */
+async function generateContract(clientId, loanId) {
+  var client = CLIENTS.find(function(c) { return c.id === clientId; });
+  var loan = LOANS.find(function(l) { return l.id === loanId; });
+  if (!client || !loan) { showToast('Client ou dossier introuvable.'); return; }
+
+  /* Calculs */
+  var r = (loan.rate || 3.9) / 100 / 12;
+  var d = loan.duration || 36;
+  var a = loan.amount || 0;
+  var monthly = r === 0 ? a/d : a*r*Math.pow(1+r,d)/(Math.pow(1+r,d)-1);
+  var total = Math.round(monthly * d);
+  var interestTotal = Math.round(monthly * d - a);
+  var today = new Date();
+  var firstPayment = new Date(today.getFullYear(), today.getMonth() + 2, 1);
+  var endDate = new Date(today.getFullYear(), today.getMonth() + d + 1, 0);
+  var fmt = function(d) { return d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'}); };
+  var contractNumber = 'AF-' + today.getFullYear() + '-' + Date.now().toString().slice(-6);
+
+  /* Remplir le template */
+  var set = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+  set('ct-number', contractNumber);
+  set('ct-date', fmt(today));
+  set('ct-date2', fmt(today));
+  set('ct-advisor', loan.advisor_name || 'Allodo Finanz');
+  set('ct-advisor2', loan.advisor_name || 'Allodo Finanz');
+  set('ct-client-name', client.name);
+  set('ct-client-name2', client.name);
+  set('ct-client-address', client.address || client.city || 'Deutschland');
+  set('ct-client-email', client.email || '');
+  set('ct-client-phone', client.phone || '');
+  set('ct-amount', Math.round(a).toLocaleString('de-DE') + ' EUR');
+  set('ct-amount2', Math.round(a).toLocaleString('de-DE') + ' EUR');
+  set('ct-purpose', loan.type || 'Privatkredit');
+  set('ct-purpose2', loan.type || 'Privatkredit');
+  set('ct-duration', d);
+  set('ct-duration2', d);
+  set('ct-rate', loan.rate || 3.9);
+  set('ct-rate2', loan.rate || 3.9);
+  set('ct-monthly', Math.round(monthly).toLocaleString('de-DE'));
+  set('ct-monthly2', Math.round(monthly).toLocaleString('de-DE'));
+  set('ct-first-payment', fmt(firstPayment));
+  set('ct-first-payment2', fmt(firstPayment));
+  set('ct-total', total.toLocaleString('de-DE'));
+  set('ct-end-date', fmt(endDate));
+
+  /* Afficher le template pour html2pdf */
+  var template = document.getElementById('contract-template');
+  var content = document.getElementById('contract-content');
+  template.style.display = 'block';
+
+  /* Générer le PDF */
+  var opt = {
+    margin: 0,
+    filename: 'Darlehensvertrag_' + contractNumber + '.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  try {
+    showToast('Contrat en cours de génération...');
+    
+    /* Générer le blob PDF */
+    var pdfBlob = await html2pdf().set(opt).from(content).outputPdf('blob');
+    
+    /* Cacher le template */
+    template.style.display = 'none';
+
+    /* Uploader dans Supabase Storage */
+    var fileName = 'contracts/' + clientId + '/' + contractNumber + '.pdf';
+    var { error: uploadError } = await supabase.storage
+      .from('documents')
+      .upload(fileName, pdfBlob, { contentType: 'application/pdf', upsert: true });
+
+    if (uploadError) { showToast('Erreur upload: ' + uploadError.message); return; }
+
+    /* Récupérer l'URL publique */
+    var { data: urlData } = supabase.storage.from('documents').getPublicUrl(fileName);
+    var pdfUrl = urlData.publicUrl;
+
+    /* Sauvegarder dans la table documents */
+    await supabase.from('documents').insert({
+      user_id:  clientId,
+      loan_id:  loan.isRequest ? null : loanId,
+      name:     'Darlehensvertrag ' + contractNumber,
+      type:     'contrat',
+      status:   'verified',
+      path:     fileName,
+      ext:      'PDF',
+      size:     Math.round(pdfBlob.size / 1024) + ' KB'
+    });
+
+    /* Notifier le client */
+    if (client.id) {
+      await createNotification(client.id, 'document',
+        'Ihr Darlehensvertrag ist verfügbar',
+        'Ihr Darlehensvertrag ' + contractNumber + ' wurde erstellt und steht in Ihrem Kundenbereich zur Verfügung.'
+      );
+    }
+
+    /* Envoyer par email */
+    if (client.email) {
+      await sendContractByEmail(client, contractNumber, pdfUrl, loan);
+    }
+
+    showToast('✓ Contrat généré et envoyé à ' + client.email);
+    await loadDocuments();
+    renderDocuments();
+
+  } catch(e) {
+    template.style.display = 'none';
+    showToast('Erreur: ' + e.message);
+    console.error(e);
+  }
+}
+
+async function sendContractByEmail(client, contractNumber, pdfUrl, loan) {
+  var html = `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#0C2340;padding:24px;text-align:center">
+        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+      </div>
+      <div style="padding:32px;background:#f9f9f9">
+        <h2 style="color:#0C2340;font-size:18px">Ihr Darlehensvertrag ist bereit</h2>
+        <p style="color:#555;line-height:1.7">Sehr geehrte/r ${client.name},</p>
+        <p style="color:#555;line-height:1.7">Ihr Darlehensvertrag Nr. <strong>${contractNumber}</strong> wurde erstellt und steht Ihnen zur Verfügung.</p>
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:20px;margin:20px 0">
+          <table style="width:100%;font-size:14px">
+            <tr><td style="color:#555;padding:6px 0">Betrag</td><td style="font-weight:500;text-align:right">${Math.round(loan.amount).toLocaleString('de-DE')} EUR</td></tr>
+            <tr><td style="color:#555;padding:6px 0">Laufzeit</td><td style="font-weight:500;text-align:right">${loan.duration} Monate</td></tr>
+            <tr><td style="color:#555;padding:6px 0">Zinssatz</td><td style="font-weight:500;text-align:right">${loan.rate || 3.9} %</td></tr>
+          </table>
+        </div>
+        <p style="color:#555;line-height:1.7">Bitte lesen Sie den Vertrag sorgfältig durch und unterzeichnen Sie ihn.</p>
+        <a href="${pdfUrl}" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:14px;margin-top:8px">
+          Vertrag herunterladen →
+        </a>
+        <p style="color:#555;line-height:1.7;margin-top:20px">Bei Fragen stehen wir Ihnen gerne zur Verfügung.</p>
+        <p style="color:#555">Mit freundlichen Grüßen,<br><strong>${loan.advisor_name || 'Allodo GmbH'}</strong></p>
+      </div>
+      <div style="padding:16px;text-align:center;color:#999;font-size:11px">
+        Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin
+      </div>
+    </div>
+  `;
+  await sendNotificationEmail(client.email, 'Allodo — Ihr Darlehensvertrag ' + contractNumber, html);
+}
