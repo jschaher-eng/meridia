@@ -6,6 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>Allodo — Administration</title>
   <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -652,5 +653,137 @@
 
   <!-- Scripts -->
 
+  <!-- Template contrat PDF — invisible -->
+<div id="contract-template" style="display:none">
+  <div id="contract-content" style="font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:40px;color:#1F2937;font-size:13px;line-height:1.7">
+    
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:3px solid #B8963E;margin-bottom:24px">
+      <div>
+        <div style="font-size:22px;font-weight:bold;color:#0B1F3A;letter-spacing:1px">Allodo<span style="color:#B8963E">.</span></div>
+        <div style="font-size:10px;color:#6B7280;letter-spacing:2px;text-transform:uppercase">GmbH · Finanzierungslösungen</div>
+      </div>
+      <div style="text-align:right;font-size:11px;color:#6B7280">
+        <div>Friedrichstrasse 100 · 10117 Berlin</div>
+        <div>kundenbetruung@allodo.de</div>
+        <div>+49 15510 591674</div>
+      </div>
+    </div>
+
+    <!-- Titre -->
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="font-size:20px;font-weight:bold;color:#0B1F3A;letter-spacing:2px">DARLEHENSVERTRAG</div>
+      <div style="font-size:12px;color:#6B7280;margin-top:4px">Nr. <span id="ct-number"></span></div>
+      <div style="font-size:11px;color:#6B7280">Berlin, den <span id="ct-date"></span></div>
+    </div>
+
+    <!-- Parties -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
+      <div style="background:#0B1F3A;color:#fff;padding:16px;border-radius:4px">
+        <div style="font-size:10px;color:#B8963E;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Darlehensgeber</div>
+        <div style="font-weight:bold">Allodo GmbH</div>
+        <div style="font-size:11px;opacity:0.8">Friedrichstrasse 100</div>
+        <div style="font-size:11px;opacity:0.8">10117 Berlin, Deutschland</div>
+        <div style="font-size:11px;opacity:0.8">kundenbetruung@allodo.de</div>
+        <div style="font-size:11px;opacity:0.8">Vertreten durch: <span id="ct-advisor"></span></div>
+      </div>
+      <div style="background:#F9FAFB;padding:16px;border-radius:4px;border:1px solid #E5E7EB">
+        <div style="font-size:10px;color:#0B1F3A;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Darlehensnehmer</div>
+        <div style="font-weight:bold" id="ct-client-name"></div>
+        <div style="font-size:11px;color:#6B7280" id="ct-client-address"></div>
+        <div style="font-size:11px;color:#6B7280" id="ct-client-email"></div>
+        <div style="font-size:11px;color:#6B7280" id="ct-client-phone"></div>
+      </div>
+    </div>
+
+    <!-- Paramètres -->
+    <div style="margin-bottom:24px">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;border-bottom:2px solid #E5E7EB;padding-bottom:6px;margin-bottom:12px">ARTIKEL 9 : DARLEHENSPARAMETER</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <tr style="background:#F3F4F6"><td style="padding:8px 12px;font-weight:bold;width:50%">Darlehensbetrag</td><td style="padding:8px 12px" id="ct-amount"></td></tr>
+        <tr><td style="padding:8px 12px;font-weight:bold">Verwendungszweck</td><td style="padding:8px 12px" id="ct-purpose"></td></tr>
+        <tr style="background:#F3F4F6"><td style="padding:8px 12px;font-weight:bold">Laufzeit</td><td style="padding:8px 12px" id="ct-duration"></td></tr>
+        <tr><td style="padding:8px 12px;font-weight:bold">Zinssatz</td><td style="padding:8px 12px" id="ct-rate"></td></tr>
+        <tr style="background:#F3F4F6"><td style="padding:8px 12px;font-weight:bold">Monatliche Rate</td><td style="padding:8px 12px" id="ct-monthly"></td></tr>
+        <tr><td style="padding:8px 12px;font-weight:bold">Erste Zahlung</td><td style="padding:8px 12px" id="ct-first-payment"></td></tr>
+        <tr style="background:#F3F4F6"><td style="padding:8px 12px;font-weight:bold">Gesamtrückzahlungsbetrag</td><td style="padding:8px 12px" id="ct-total"></td></tr>
+      </table>
+    </div>
+
+    <!-- Articles -->
+    <div style="margin-bottom:20px">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;border-bottom:2px solid #E5E7EB;padding-bottom:6px;margin-bottom:10px">ARTIKEL 1 : DARLEHENSBETRAG UND LAUFZEIT</div>
+      <p style="margin:4px 0">• Der Darlehensgeber gewährt dem Darlehensnehmer ein Darlehen in Höhe von <strong id="ct-amount2"></strong>.</p>
+      <p style="margin:4px 0">• Die Laufzeit des Darlehens beträgt <strong id="ct-duration2"></strong> Monate.</p>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;border-bottom:2px solid #E5E7EB;padding-bottom:6px;margin-bottom:10px">ARTIKEL 2 : VERWENDUNGSZWECK</div>
+      <p style="margin:4px 0">• Das Darlehen wird für folgenden Zweck gewährt: <strong id="ct-purpose2"></strong>.</p>
+      <p style="margin:4px 0">• Der Darlehensnehmer verpflichtet sich, den erhaltenen Betrag ausschließlich für den genannten Zweck zu verwenden.</p>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;border-bottom:2px solid #E5E7EB;padding-bottom:6px;margin-bottom:10px">ARTIKEL 3 : AUSZAHLUNG DER MITTEL</div>
+      <p style="margin:4px 0">• Der Darlehensbetrag wird dem Darlehensnehmer nach Unterzeichnung dieses Vertrages ausgezahlt.</p>
+      <p style="margin:4px 0">• Das Darlehen ist bis spätestens zum <strong id="ct-end-date"></strong> vollständig zurückzuzahlen.</p>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;border-bottom:2px solid #E5E7EB;padding-bottom:6px;margin-bottom:10px">ARTIKEL 4 : RÜCKZAHLUNG</div>
+      <p style="margin:4px 0">• Der Darlehensnehmer zahlt das Darlehen in monatlichen Raten von je <strong id="ct-monthly2"></strong> EUR zurück, erstmalig zum <strong id="ct-first-payment2"></strong>.</p>
+      <p style="margin:4px 0">• Der Zinssatz beträgt <strong id="ct-rate2"></strong> % per annum. Verzugszinsen: 5 % per annum.</p>
+      <p style="margin:4px 0">• Vorzeitige Rückzahlung ist jederzeit möglich.</p>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;border-bottom:2px solid #E5E7EB;padding-bottom:6px;margin-bottom:10px">ARTIKEL 5 : ERKLÄRUNGEN DES DARLEHENSNEHMERS</div>
+      <p style="margin:4px 0">• Er ist volljährig und besitzt die Rechtsfähigkeit, diesen Vertrag abzuschließen.</p>
+      <p style="margin:4px 0">• Er verpflichtet sich zur vollständigen Rückzahlung gemäß den festgelegten Bedingungen.</p>
+      <p style="margin:4px 0">• Er verpflichtet sich, den Darlehensgeber über alle relevanten Änderungen seiner finanziellen Situation zu informieren.</p>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;border-bottom:2px solid #E5E7EB;padding-bottom:6px;margin-bottom:10px">ARTIKEL 10 : ANWENDBARES RECHT</div>
+      <p style="margin:4px 0">• Es gilt deutsches Recht (BGB). Gerichtsstand ist Berlin.</p>
+    </div>
+
+    <!-- Bankverbindung -->
+    <div style="margin-bottom:24px">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;border-bottom:2px solid #E5E7EB;padding-bottom:6px;margin-bottom:12px">ARTIKEL 12 : BANKVERBINDUNG DES DARLEHENSNEHMERS</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <tr style="background:#F3F4F6"><td style="padding:8px 12px;font-weight:bold;width:40%">Kontoinhaber</td><td style="padding:8px 12px">________________________________</td></tr>
+        <tr><td style="padding:8px 12px;font-weight:bold">Bankname</td><td style="padding:8px 12px">________________________________</td></tr>
+        <tr style="background:#F3F4F6"><td style="padding:8px 12px;font-weight:bold">IBAN</td><td style="padding:8px 12px">________________________________</td></tr>
+        <tr><td style="padding:8px 12px;font-weight:bold">BIC</td><td style="padding:8px 12px">________________________________</td></tr>
+      </table>
+    </div>
+
+    <!-- Signatures -->
+    <div style="margin-top:40px;padding-top:20px;border-top:2px solid #E5E7EB">
+      <div style="font-weight:bold;color:#0B1F3A;font-size:13px;margin-bottom:24px">UNTERSCHRIFTEN</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+        <div>
+          <div style="font-weight:bold;font-size:12px;color:#0B1F3A">Allodo GmbH — Darlehensgeber</div>
+          <div style="margin-top:40px;border-bottom:1px solid #374151;width:200px"></div>
+          <div style="font-size:11px;margin-top:4px" id="ct-advisor2"></div>
+          <div style="font-size:11px;color:#6B7280">Berlin, den <span id="ct-date2"></span></div>
+        </div>
+        <div>
+          <div style="font-weight:bold;font-size:12px;color:#0B1F3A">Darlehensnehmer</div>
+          <div style="margin-top:40px;border-bottom:1px solid #374151;width:200px"></div>
+          <div style="font-size:11px;margin-top:4px" id="ct-client-name2"></div>
+          <div style="font-size:11px;color:#6B7280">Ort, den ___/___/20___</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="margin-top:40px;padding-top:12px;border-top:1px solid #E5E7EB;text-align:center;font-size:10px;color:#9CA3AF">
+      Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin · kundenbetruung@allodo.de · www.allodo.de
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
