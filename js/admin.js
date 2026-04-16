@@ -1322,13 +1322,12 @@ async function confirmGenerateContract() {
   content.style.display = 'block';
    
   var opt = {
-  margin: 15,
-  filename: 'Darlehensvertrag_' + contractNumber + '.pdf',
-  image: { type: 'jpeg', quality: 0.98 },
-  html2canvas: { scale: 2, useCORS: true, scrollY: 0, width: 794, windowWidth: 794 },
-  jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-  pagebreak: { mode: 'avoid-all' }
-};
+  margin: [10, 0, 10, 0],
+    filename: 'Darlehensvertrag_' + contractNumber + '.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
 
   try {
     showToast('Contrat en cours de génération...');
