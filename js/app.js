@@ -859,7 +859,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (av) av.textContent = initials;
     var since = new Date(user.created_at).getFullYear();
     var sinceEl = document.querySelector('.sb-type');
-    if (sinceEl) sinceEl.textContent = (I18N.t('dash.client_type') || 'Privatkunde') + ' - ' + (I18N.t('dash.client_since') || 'Kunde seit') + ' ' + since;
     var savedPanel = window.location.hash.startsWith('#dash/') 
       ? window.location.hash.replace('#dash/', '') 
       : 'vue';
