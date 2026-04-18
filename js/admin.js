@@ -1319,7 +1319,7 @@ async function confirmGenerateContract() {
    console.log('content element:', document.getElementById('contract-content'));
   /* Afficher le template */
   var content = document.getElementById('contract-content');
-  content.style.display = 'block';
+  document.getElementById('contract-wrapper').style.height = 'auto';
    
   var opt = {
   margin: 15,
@@ -1333,7 +1333,7 @@ async function confirmGenerateContract() {
   try {
     showToast('Contrat en cours de génération...');
     var pdfBlob = await html2pdf().set(opt).from(content).outputPdf('blob');
-    content.style.display = 'none';
+    document.getElementById('contract-wrapper').style.height = '0';
 
     var fileName = 'contracts/' + clientId + '/' + contractNumber + '.pdf';
     var { error: uploadError } = await supabase.storage
@@ -1372,7 +1372,7 @@ async function confirmGenerateContract() {
     renderDocuments();
 
   } catch(e) {
-    content.style.display = 'none';
+    document.getElementById('contract-wrapper').style.height = '0';
     showToast('Erreur: ' + e.message);
     console.error(e);
   }
