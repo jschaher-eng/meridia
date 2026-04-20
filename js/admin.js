@@ -1474,25 +1474,25 @@ async function confirmGenerateInvoicePdf() {
 
   /* Remplir le template */
   var set = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
-  set('inv-number', number);
-  set('inv-date', fmtDE(new Date(date)));
-  set('inv-ref', number);
-  set('inv-client-name', client.name);
-  set('inv-client-address', address || client.city || 'Deutschland');
-  set('inv-contract-number', loan.ref || '—');
-  set('inv-loan-type', loan.type || 'Privatkredit');
-  set('inv-designation', designation);
-  set('inv-amount-ht', fmtNum(amountHT) + ' EUR');
-  set('inv-amount-ht2', fmtNum(amountHT) + ' EUR');
-  set('inv-subtotal', fmtNum(amountHT) + ' EUR');
-  set('inv-tva', fmtNum(tva) + ' EUR');
-  set('inv-total', fmtNum(total) + ' EUR');
-  set('inv-total2', fmtNum(total));
-  set('inv-due-date', fmtDE(new Date(dueDate)));
-  set('inv-beneficiary', beneficiary || 'Allodo GmbH');
-  set('inv-iban', iban);
-  set('inv-bic', bic || '—');
-  set('inv-payment-ref', paymentRef || number);
+  set('invt-number', number);
+  set('invt-date', fmtDE(new Date(date)));
+  set('invt-ref', number);
+  set('invt-client-name', client.name);
+  set('invt-client-address', address || client.city || 'Deutschland');
+  set('invt-contract-number', loan.ref || '—');
+  set('invt-loan-type', loan.type || 'Privatkredit');
+  set('invt-designation', designation);
+  set('invt-amount-ht', fmtNum(amountHT) + ' EUR');
+  set('invt-amount-ht2', fmtNum(amountHT) + ' EUR');
+  set('invt-subtotal', fmtNum(amountHT) + ' EUR');
+  set('invt-tva', fmtNum(tva) + ' EUR');
+  set('invt-total', fmtNum(total) + ' EUR');
+  set('invt-total2', fmtNum(total));
+  set('invt-due-date', fmtDE(new Date(dueDate)));
+  set('invt-beneficiary', beneficiary || 'Allodo GmbH');
+  set('invt-iban', iban);
+  set('invt-bic', bic || '—');
+  set('invt-payment-ref', paymentRef || number);
 
   /* Afficher le template */
   var wrapper = document.getElementById('invoice-wrapper');
