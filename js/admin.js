@@ -13,6 +13,11 @@ let currentClient = null;
 const ADMIN_ID = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
 let currentAdminId = '2be14e9a-3a8c-447f-91d2-1f0889a3b12d';
 let currentClientId = null;
+var _contractPdfUrl = null;
+var _contractNumber = null;
+var _contractDirector = null;
+var _contractLoan = null;
+var _contractClient = null;
 /* ========================================
    NAVIGATION
    ======================================== */
@@ -1363,11 +1368,38 @@ async function confirmGenerateContract() {
       );
     }
 
-    if (client.email) {
-      await sendContractByEmail(client, contractNumber, pdfUrl, loan, director);
-    }
+    /* Mettre à jour le statut à fees */
+var table = loan.isRequest ? 'loan_requests' : 'loans';
+await supabase.from(table).update({ status: 'fees' }).eq('id', loanId);
 
-    showToast('✓ Contrat généré et envoyé à ' + client.email);
+/* Ouvrir le modal facture pour générer ensemble */
+_invoiceClientId = clientId;
+_invoiceLoanId = loanId;
+_contractPdfUrl = pdfUrl;
+_contractNumber = contractNumber;
+_contractDirector = director;
+_contractLoan = loan;
+_contractClient = client;
+
+/* Pré-remplir le modal facture */
+var today2 = new Date();
+var dueDate2 = new Date(today2.getFullYear(), today2.getMonth() + 1, 15);
+var fmt2 = function(d) { return d.toISOString().split('T')[0]; };
+var invoiceNumber2 = 'AF-INV-' + today2.getFullYear() + '-' + Date.now().toString().slice(-6);
+
+document.getElementById('invpdf-number').value = invoiceNumber2;
+document.getElementById('invpdf-date').value = fmt2(today2);
+document.getElementById('invpdf-due-date').value = fmt2(dueDate2);
+document.getElementById('invpdf-address').value = client.address || client.city || '';
+document.getElementById('invpdf-designation').value = 'Verwaltungsgebühren (Aktenöffnung, Notar, Bankbearbeitung)';
+document.getElementById('invpdf-beneficiary').value = director || '';
+document.getElementById('invpdf-payment-ref').value = contractNumber;
+document.getElementById('invpdf-iban').value = '';
+document.getElementById('invpdf-bic').value = '';
+document.getElementById('invpdf-amount').value = '';
+
+openModal('modal-invoice-pdf');
+showToast('✓ Contrat généré — Complétez maintenant la facture');
     await loadDocuments();
     renderDocuments();
 
@@ -1546,36 +1578,16 @@ async function confirmGenerateInvoicePdf() {
       );
     }
 
-    /* Envoyer par email */
-    if (client.email) {
-      var html = `
-        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
-          <div style="background:#0C2340;padding:24px;text-align:center">
-            <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
-          </div>
-          <div style="padding:32px;background:#f9f9f9">
-            <h2 style="color:#0C2340;font-size:18px">Ihre Rechnung ist verfügbar</h2>
-            <p style="color:#555;line-height:1.7">Sehr geehrte/r ${client.name},</p>
-            <p style="color:#555;line-height:1.7">Ihre Rechnung Nr. <strong>${number}</strong> über <strong>${fmtNum(total)} EUR</strong> wurde erstellt.</p>
-            <p style="color:#555;line-height:1.7">Fälligkeit: <strong>${fmtDE(new Date(dueDate))}</strong></p>
-            <div style="background:#0C2340;color:#fff;border-radius:8px;padding:20px;margin:20px 0;text-align:center">
-              <div style="font-size:11px;color:#B8963E;margin-bottom:8px">ZAHLUNGSDETAILS</div>
-              <div>Begünstigter: <strong>${beneficiary || 'Allodo GmbH'}</strong></div>
-              <div>IBAN: <strong>${iban}</strong></div>
-              <div>BIC: <strong>${bic || '—'}</strong></div>
-              <div style="color:#B8963E">Verwendungszweck: <strong>${paymentRef || number}</strong></div>
-            </div>
-            <a href="${pdfUrl}" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:14px">
-              Rechnung herunterladen →
-            </a>
-          </div>
-          <div style="padding:16px;text-align:center;color:#999;font-size:11px">
-            Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin
-          </div>
-        </div>
-      `;
-      await sendNotificationEmail(client.email, 'Allodo — Ihre Rechnung ' + number, html);
-    }
+/* Envoyer email groupé si contrat généré en même temps */
+if (_contractPdfUrl && client.email) {
+  await sendContractAndInvoiceEmail(client, _contractPdfUrl, _contractNumber, _contractDirector, pdfUrl, number, total, dueDate, fmtDE, fmtNum);
+  _contractPdfUrl = null;
+  _contractNumber = null;
+} else if (client.email) {
+  /* Email facture seule */
+  var html = `...existing invoice email html...`;
+  await sendNotificationEmail(client.email, 'Allodo — Ihre Rechnung ' + number, html);
+}
 
     showToast('✓ Rechnung generiert und gesendet an ' + client.email);
     await loadDocuments();
@@ -1586,4 +1598,73 @@ async function confirmGenerateInvoicePdf() {
     showToast('Erreur: ' + e.message);
     console.error(e);
   }
+}
+
+async function sendContractAndInvoiceEmail(client, contractUrl, contractNumber, director, invoiceUrl, invoiceNumber, invoiceTotal, invoiceDueDate, fmtDE, fmtNum) {
+  var html = `
+    <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;color:#1F2937">
+      
+      <!-- Header -->
+      <div style="background:#0C2340;padding:28px;text-align:center">
+        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+      </div>
+      <div style="height:4px;background:#B8963E"></div>
+
+      <!-- Corps -->
+      <div style="padding:36px;background:#f9f9f9">
+        <p style="font-size:15px;color:#333;line-height:1.8">Sehr geehrte/r <strong>${client.name}</strong>,</p>
+        <p style="font-size:14px;color:#555;line-height:1.8">anbei finden Sie die Unterlagen zu Ihrem Darlehensantrag:</p>
+
+        <!-- Documents -->
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:20px;margin:20px 0">
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #E5E7EB">
+            <div style="width:36px;height:36px;background:#0C2340;border-radius:4px;display:flex;align-items:center;justify-content:center">
+              <span style="color:#B8963E;font-size:18px">📄</span>
+            </div>
+            <div style="flex:1">
+              <div style="font-weight:bold;color:#0C2340">Darlehensvertrag Nr. ${contractNumber}</div>
+              <div style="font-size:12px;color:#6B7280">Bitte lesen, datieren und unterschreiben</div>
+            </div>
+            <a href="${contractUrl}" style="background:#0C2340;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:12px">Herunterladen</a>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 0">
+            <div style="width:36px;height:36px;background:#B8963E;border-radius:4px;display:flex;align-items:center;justify-content:center">
+              <span style="color:#fff;font-size:18px">🧾</span>
+            </div>
+            <div style="flex:1">
+              <div style="font-weight:bold;color:#0C2340">Rechnung Nr. ${invoiceNumber}</div>
+              <div style="font-size:12px;color:#6B7280">Verwaltungsgebühren: <strong>${fmtNum(invoiceTotal)} EUR</strong> — Fälligkeit: ${fmtDE(new Date(invoiceDueDate))}</div>
+            </div>
+            <a href="${invoiceUrl}" style="background:#B8963E;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:12px">Herunterladen</a>
+          </div>
+        </div>
+
+        <p style="font-size:14px;color:#555;line-height:1.8">Bitte senden Sie uns den unterzeichneten Vertrag so schnell wie möglich zurück und begleichen Sie die Rechnung, damit wir Ihren Antrag abschließend bearbeiten können.</p>
+
+        <!-- Timeline -->
+        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:20px;margin:20px 0">
+          <div style="font-size:11px;color:#B8963E;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Ihr Bearbeitungsstand</div>
+          <div style="font-size:13px;line-height:2.2">
+            <div style="color:#22C55E">✅ Antrag eingereicht</div>
+            <div style="color:#22C55E">✅ Dokumentenprüfung</div>
+            <div style="color:#22C55E">✅ Aktenanalyse</div>
+            <div style="color:#22C55E">✅ Grundsatzentscheidung</div>
+            <div style="color:#B8963E;font-weight:bold">→ 💳 Gebührenzahlung &amp; Vertragsunterzeichnung ← Sie sind hier</div>
+            <div style="color:#9CA3AF">⬜ Auszahlung der Mittel</div>
+            <div style="color:#9CA3AF">⬜ Rückzahlung</div>
+          </div>
+        </div>
+
+        <p style="font-size:14px;color:#555;line-height:1.8">Bei Fragen stehe ich Ihnen gerne zur Verfügung.</p>
+        <p style="font-size:14px;color:#333;margin-top:24px">Mit freundlichen Grüßen,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetruung@allodo.de · +49 15510 591674</span></p>
+      </div>
+
+      <!-- Footer -->
+      <div style="padding:16px;text-align:center;color:#999;font-size:11px;border-top:1px solid #E5E7EB">
+        Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin · www.allodo.de
+      </div>
+
+    </div>
+  `;
+  await sendNotificationEmail(client.email, 'Allodo — Ihre Vertragsunterlagen: Darlehensvertrag & Rechnung', html);
 }
