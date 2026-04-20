@@ -1377,7 +1377,7 @@ _invoiceClientId = clientId;
 _invoiceLoanId = loanId;
 _contractPdfUrl = pdfUrl;
 _contractNumber = contractNumber;
-_contractDirector = director;
+_contractDirector = loan.advisor_name || director;
 _contractLoan = loan;
 _contractClient = client;
 
@@ -1616,28 +1616,19 @@ async function sendContractAndInvoiceEmail(client, contractUrl, contractNumber, 
         <p style="font-size:14px;color:#555;line-height:1.8">anbei finden Sie die Unterlagen zu Ihrem Darlehensantrag:</p>
 
         <!-- Documents -->
-        <div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:20px;margin:20px 0">
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #E5E7EB">
-            <div style="width:36px;height:36px;background:#0C2340;border-radius:4px;display:flex;align-items:center;justify-content:center">
-              <span style="color:#B8963E;font-size:18px">📄</span>
-            </div>
-            <div style="flex:1">
-              <div style="font-weight:bold;color:#0C2340">Darlehensvertrag Nr. ${contractNumber}</div>
-              <div style="font-size:12px;color:#6B7280">Bitte lesen, datieren und unterschreiben</div>
-            </div>
-            <a href="${contractUrl}" style="background:#0C2340;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:12px">Herunterladen</a>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 0">
-            <div style="width:36px;height:36px;background:#B8963E;border-radius:4px;display:flex;align-items:center;justify-content:center">
-              <span style="color:#fff;font-size:18px">🧾</span>
-            </div>
-            <div style="flex:1">
-              <div style="font-weight:bold;color:#0C2340">Rechnung Nr. ${invoiceNumber}</div>
-              <div style="font-size:12px;color:#6B7280">Verwaltungsgebühren: <strong>${fmtNum(invoiceTotal)} EUR</strong> — Fälligkeit: ${fmtDE(new Date(invoiceDueDate))}</div>
-            </div>
-            <a href="${invoiceUrl}" style="background:#B8963E;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:12px">Herunterladen</a>
-          </div>
-        </div>
+    <!-- Documents -->
+<div style="background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:20px;margin:20px 0">
+  <div style="padding:16px 0;border-bottom:1px solid #E5E7EB;text-align:center">
+    <div style="font-weight:bold;color:#0C2340;font-size:14px;margin-bottom:4px">📄 Darlehensvertrag Nr. ${contractNumber}</div>
+    <div style="font-size:12px;color:#6B7280;margin-bottom:12px">Bitte lesen, datieren und unterschreiben</div>
+    <a href="${contractUrl}" style="display:inline-block;background:#0C2340;color:#fff;padding:10px 24px;border-radius:4px;text-decoration:none;font-size:13px">Herunterladen</a>
+  </div>
+  <div style="padding:16px 0;text-align:center">
+    <div style="font-weight:bold;color:#B8963E;font-size:14px;margin-bottom:4px">🧾 Rechnung Nr. ${invoiceNumber}</div>
+    <div style="font-size:12px;color:#6B7280;margin-bottom:12px">Verwaltungsgebühren: <strong>${fmtNum(invoiceTotal)} EUR</strong></div>
+    <a href="${invoiceUrl}" style="display:inline-block;background:#B8963E;color:#fff;padding:10px 24px;border-radius:4px;text-decoration:none;font-size:13px">Herunterladen</a>
+  </div>
+</div>
 
         <p style="font-size:14px;color:#555;line-height:1.8">Bitte senden Sie uns den unterzeichneten Vertrag so schnell wie möglich zurück und begleichen Sie die Rechnung, damit wir Ihren Antrag abschließend bearbeiten können.</p>
 
