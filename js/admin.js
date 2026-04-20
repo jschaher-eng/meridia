@@ -1493,6 +1493,8 @@ async function confirmGenerateInvoicePdf() {
   set('invt-iban', iban);
   set('invt-bic', bic || '—');
   set('invt-payment-ref', paymentRef || number);
+  set('invt-designation2', designation);
+  set('invt-designation3', designation);
 
   /* Afficher le template */
   var wrapper = document.getElementById('invoice-wrapper');
