@@ -252,6 +252,7 @@ if (acts) {
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       Contrat générer
     </button>
+    '<button class="btn btn-ghost btn-sm" onclick="generateInvoicePdf(\'' + l.clientId + '\',\'' + l.id + '\');closeModal(\'modal-loan\')">Rechnung</button>'
     <button class="btn btn-ghost" onclick="closeModal('modal-loan')">Fermer</button>`;
 }
   openModal('modal-loan');
@@ -1408,4 +1409,180 @@ async function sendContractByEmail(client, contractNumber, pdfUrl, loan, directo
     </div>
   `;
   await sendNotificationEmail(client.email, 'Allodo — Ihr Darlehensvertrag ' + contractNumber, html);
+}
+
+/* ========================================
+   GÉNÉRATION FACTURE PDF
+   ======================================== */
+var _invoiceClientId = null;
+var _invoiceLoanId = null;
+
+function generateInvoicePdf(clientId, loanId) {
+  _invoiceClientId = clientId;
+  _invoiceLoanId = loanId;
+
+  var client = CLIENTS.find(function(c) { return c.id === clientId; });
+  var loan = LOANS.find(function(l) { return l.id === loanId; });
+
+  var today = new Date();
+  var dueDate = new Date(today.getFullYear(), today.getMonth() + 1, 15);
+  var fmt = function(d) { return d.toISOString().split('T')[0]; };
+  var invoiceNumber = 'AF-INV-' + today.getFullYear() + '-' + Date.now().toString().slice(-6);
+
+  document.getElementById('invpdf-number').value = invoiceNumber;
+  document.getElementById('invpdf-date').value = fmt(today);
+  document.getElementById('invpdf-due-date').value = fmt(dueDate);
+  document.getElementById('invpdf-address').value = (client && client.address) ? client.address : '';
+  document.getElementById('invpdf-designation').value = 'Verwaltungsgebühren (Aktenöffnung, Notar, Bankbearbeitung)';
+  document.getElementById('invpdf-beneficiary').value = '';
+  document.getElementById('invpdf-payment-ref').value = loan ? (loan.ref || '') : '';
+  document.getElementById('invpdf-iban').value = '';
+  document.getElementById('invpdf-bic').value = '';
+  document.getElementById('invpdf-amount').value = '';
+
+  openModal('modal-invoice-pdf');
+}
+
+async function confirmGenerateInvoicePdf() {
+  var clientId = _invoiceClientId;
+  var loanId = _invoiceLoanId;
+  var client = CLIENTS.find(function(c) { return c.id === clientId; });
+  var loan = LOANS.find(function(l) { return l.id === loanId; });
+  if (!client || !loan) { showToast('Client ou dossier introuvable.'); return; }
+
+  var number      = document.getElementById('invpdf-number').value.trim();
+  var date        = document.getElementById('invpdf-date').value;
+  var designation = document.getElementById('invpdf-designation').value.trim();
+  var amountHT    = parseFloat(document.getElementById('invpdf-amount').value);
+  var dueDate     = document.getElementById('invpdf-due-date').value;
+  var address     = document.getElementById('invpdf-address').value.trim();
+  var beneficiary = document.getElementById('invpdf-beneficiary').value.trim();
+  var paymentRef  = document.getElementById('invpdf-payment-ref').value.trim();
+  var iban        = document.getElementById('invpdf-iban').value.trim();
+  var bic         = document.getElementById('invpdf-bic').value.trim();
+
+  if (!designation) { showToast('Veuillez entrer une désignation.'); return; }
+  if (!amountHT || amountHT <= 0) { showToast('Veuillez entrer un montant valide.'); return; }
+  if (!iban) { showToast('Veuillez entrer un IBAN.'); return; }
+
+  closeModal('modal-invoice-pdf');
+
+  var tva = Math.round(amountHT * 0.19 * 100) / 100;
+  var total = Math.round((amountHT + tva) * 100) / 100;
+
+  var fmtDE = function(dt) { return new Date(dt).toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'}); };
+  var fmtNum = function(n) { return n.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+
+  /* Remplir le template */
+  var set = function(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+  set('inv-number', number);
+  set('inv-date', fmtDE(new Date(date)));
+  set('inv-ref', number);
+  set('inv-client-name', client.name);
+  set('inv-client-address', address || client.city || 'Deutschland');
+  set('inv-contract-number', loan.ref || '—');
+  set('inv-loan-type', loan.type || 'Privatkredit');
+  set('inv-designation', designation);
+  set('inv-amount-ht', fmtNum(amountHT) + ' EUR');
+  set('inv-amount-ht2', fmtNum(amountHT) + ' EUR');
+  set('inv-subtotal', fmtNum(amountHT) + ' EUR');
+  set('inv-tva', fmtNum(tva) + ' EUR');
+  set('inv-total', fmtNum(total) + ' EUR');
+  set('inv-total2', fmtNum(total));
+  set('inv-due-date', fmtDE(new Date(dueDate)));
+  set('inv-beneficiary', beneficiary || 'Allodo GmbH');
+  set('inv-iban', iban);
+  set('inv-bic', bic || '—');
+  set('inv-payment-ref', paymentRef || number);
+
+  /* Afficher le template */
+  var wrapper = document.getElementById('invoice-wrapper');
+  wrapper.style.height = 'auto';
+
+  var opt = {
+    margin: 0,
+    filename: 'Rechnung_' + number + '.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['css', 'legacy'], avoid: ['tr', 'td', 'div'] }
+  };
+
+  try {
+    showToast('Rechnung wird generiert...');
+    var content = document.getElementById('invoice-content');
+    var pdfBlob = await html2pdf().set(opt).from(content).outputPdf('blob');
+    wrapper.style.height = '0';
+
+    /* Upload Supabase Storage */
+    var fileName = 'invoices/' + clientId + '/' + number + '.pdf';
+    var { error: uploadError } = await supabase.storage
+      .from('documents')
+      .upload(fileName, pdfBlob, { contentType: 'application/pdf', upsert: true });
+
+    if (uploadError) { showToast('Erreur upload: ' + uploadError.message); return; }
+
+    var { data: urlData } = supabase.storage.from('documents').getPublicUrl(fileName);
+    var pdfUrl = urlData.publicUrl;
+
+    /* Sauvegarder dans documents */
+    await supabase.from('documents').insert({
+      user_id:  clientId,
+      loan_id:  loan.isRequest ? null : loanId,
+      name:     'Rechnung ' + number,
+      type:     'facture',
+      status:   'verified',
+      path:     fileName,
+      ext:      'PDF',
+      size:     Math.round(pdfBlob.size / 1024) + ' KB'
+    });
+
+    /* Notifier le client */
+    if (client.id) {
+      await createNotification(client.id, 'payment',
+        'Neue Rechnung verfügbar',
+        'Ihre Rechnung ' + number + ' steht in Ihrem Kundenbereich zur Verfügung.'
+      );
+    }
+
+    /* Envoyer par email */
+    if (client.email) {
+      var html = `
+        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+          <div style="background:#0C2340;padding:24px;text-align:center">
+            <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+          </div>
+          <div style="padding:32px;background:#f9f9f9">
+            <h2 style="color:#0C2340;font-size:18px">Ihre Rechnung ist verfügbar</h2>
+            <p style="color:#555;line-height:1.7">Sehr geehrte/r ${client.name},</p>
+            <p style="color:#555;line-height:1.7">Ihre Rechnung Nr. <strong>${number}</strong> über <strong>${fmtNum(total)} EUR</strong> wurde erstellt.</p>
+            <p style="color:#555;line-height:1.7">Fälligkeit: <strong>${fmtDE(new Date(dueDate))}</strong></p>
+            <div style="background:#0C2340;color:#fff;border-radius:8px;padding:20px;margin:20px 0;text-align:center">
+              <div style="font-size:11px;color:#B8963E;margin-bottom:8px">ZAHLUNGSDETAILS</div>
+              <div>Begünstigter: <strong>${beneficiary || 'Allodo GmbH'}</strong></div>
+              <div>IBAN: <strong>${iban}</strong></div>
+              <div>BIC: <strong>${bic || '—'}</strong></div>
+              <div style="color:#B8963E">Verwendungszweck: <strong>${paymentRef || number}</strong></div>
+            </div>
+            <a href="${pdfUrl}" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:14px">
+              Rechnung herunterladen →
+            </a>
+          </div>
+          <div style="padding:16px;text-align:center;color:#999;font-size:11px">
+            Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin
+          </div>
+        </div>
+      `;
+      await sendNotificationEmail(client.email, 'Allodo — Ihre Rechnung ' + number, html);
+    }
+
+    showToast('✓ Rechnung generiert und gesendet an ' + client.email);
+    await loadDocuments();
+    renderDocuments();
+
+  } catch(e) {
+    wrapper.style.height = '0';
+    showToast('Erreur: ' + e.message);
+    console.error(e);
+  }
 }
