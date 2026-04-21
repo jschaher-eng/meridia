@@ -164,7 +164,13 @@ async function loadDocuments() {
   DOCUMENTS = (data || []).map(d => ({
     id:       d.id,
     clientId: d.user_id,
-    client:   CLIENTS.find(function(c) { return c.id === d.user_id; })?.name || d.user_id,
+    client: (function() {
+  var c = CLIENTS.find(function(c) { return c.id === d.user_id; });
+  if (c) return c.name;
+  var l = LOANS.find(function(l) { return l.id === d.loan_id; });
+  if (l) return l.client;
+  return d.user_id || '—';
+})(),
     loan:     d.loans?.reference || '—',
     name:     d.name || 'Document',
     type:     d.type || 'autre',
