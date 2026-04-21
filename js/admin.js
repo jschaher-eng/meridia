@@ -1253,9 +1253,22 @@ function generateContract(clientId, loanId) {
 async function confirmGenerateContract() {
   var clientId = _contractClientId;
   var loanId = _contractLoanId;
-  var client = CLIENTS.find(function(c) { return c.id === clientId; });
   var loan = LOANS.find(function(l) { return l.id === loanId; });
-  if (!client || !loan) { showToast('Client ou dossier introuvable.'); return; }
+if (!loan) { showToast('Dossier introuvable.'); return; }
+
+var client = CLIENTS.find(function(c) { return c.id === loan.clientId; });
+
+/* Si pas de profil, créer un objet client depuis loan_request */
+if (!client) {
+  client = {
+    id:      loan.clientId || null,
+    name:    loan.client || '—',
+    email:   loan.email || null,
+    phone:   loan.phone || null,
+    address: loan.address || null,
+    city:    loan.city || null,
+  };
+}
 
   var director = document.getElementById('ct-input-director').value.trim();
   var date = document.getElementById('ct-input-date').value;
@@ -1452,8 +1465,18 @@ function generateInvoicePdf(clientId, loanId) {
   _invoiceClientId = clientId;
   _invoiceLoanId = loanId;
 
-  var client = CLIENTS.find(function(c) { return c.id === clientId; });
   var loan = LOANS.find(function(l) { return l.id === loanId; });
+var client = CLIENTS.find(function(c) { return c.id === clientId; });
+if (!client && loan) {
+  client = {
+    id:      loan.clientId || null,
+    name:    loan.client || '—',
+    email:   loan.email || null,
+    phone:   loan.phone || null,
+    address: loan.address || null,
+    city:    loan.city || null,
+  };
+}
 
   var today = new Date();
   var dueDate = new Date(today.getFullYear(), today.getMonth() + 1, 15);
@@ -1477,9 +1500,19 @@ function generateInvoicePdf(clientId, loanId) {
 async function confirmGenerateInvoicePdf() {
   var clientId = _invoiceClientId;
   var loanId = _invoiceLoanId;
-  var client = CLIENTS.find(function(c) { return c.id === clientId; });
   var loan = LOANS.find(function(l) { return l.id === loanId; });
-  if (!client || !loan) { showToast('Client ou dossier introuvable.'); return; }
+if (!loan) { showToast('Dossier introuvable.'); return; }
+var client = CLIENTS.find(function(c) { return c.id === clientId; });
+if (!client) {
+  client = {
+    id:      loan.clientId || null,
+    name:    loan.client || '—',
+    email:   loan.email || null,
+    phone:   loan.phone || null,
+    address: loan.address || null,
+    city:    loan.city || null,
+  };
+}
 
   var number      = document.getElementById('invpdf-number').value.trim();
   var date        = document.getElementById('invpdf-date').value;
