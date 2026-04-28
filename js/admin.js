@@ -1373,6 +1373,7 @@ if (!client) {
       ext:      'PDF',
       size:     Math.round(pdfBlob.size / 1024) + ' KB'
     });
+     console.log('insert result:', insertResult.error);
 
     if (client.id) {
       await createNotification(client.id, 'document',
