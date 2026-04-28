@@ -26,7 +26,6 @@ async function loadClients() {
     postal_code: u.postal_code || '',
     address: u.street || '',
     scoreLabel: u.credit_score_label || '—',
-    email: r.email || null,
   }));
 }
 
