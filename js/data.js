@@ -80,6 +80,7 @@ const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference)
       isRequest: true,
       created_at_raw: r.created_at,
       phone: r.phone || null,
+      email: r.email || null,
     }))
   ];
 
