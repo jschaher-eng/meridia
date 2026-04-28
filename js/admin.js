@@ -1365,7 +1365,7 @@ if (!client) {
 
     await supabase.from('documents').insert({
       user_id: client.id || null,
-      loan_id: loanId,
+      loan_id: loan.isRequest ? null : loanId,
       name:     'Darlehensvertrag ' + contractNumber,
       type:     'contrat',
       status:   'verified',
@@ -1595,7 +1595,7 @@ if (!client) {
     /* Sauvegarder dans documents */
     await supabase.from('documents').insert({
       user_id: client.id || null,
-      loan_id: loanId,
+      loan_id: loan.isRequest ? null : loanId,
       name:     'Rechnung ' + number,
       type:     'facture',
       status:   'verified',
