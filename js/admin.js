@@ -1363,17 +1363,16 @@ if (!client) {
     var { data: urlData } = supabase.storage.from('documents').getPublicUrl(fileName);
     var pdfUrl = urlData.publicUrl;
 
-    var insertResult = await supabase.from('documents').insert({
-    user_id:  client.id || null,
-    loan_id:  loan.isRequest ? null : loanId,
-    name:     'Darlehensvertrag ' + contractNumber,
-    type:     'contrat',
-    status:   'verified',
-    path:     fileName,
-    ext:      'PDF',
-    size:     Math.round(pdfBlob.size / 1024) + ' KB'
-});
-console.log('insert result:', insertResult.error);
+    await supabase.from('documents').insert({
+      user_id:  clientId,
+      loan_id:  loan.isRequest ? null : loanId,
+      name:     'Darlehensvertrag ' + contractNumber,
+      type:     'contrat',
+      status:   'verified',
+      path:     fileName,
+      ext:      'PDF',
+      size:     Math.round(pdfBlob.size / 1024) + ' KB'
+    });
 
     if (client.id) {
       await createNotification(client.id, 'document',
@@ -1545,7 +1544,7 @@ if (!client) {
   set('invt-ref', number);
   set('invt-client-name', client.name);
   set('invt-client-address', address || client.city || 'Deutschland');
-  set('invt-contract-number', _contractNumber || loan.ref || '—');
+  set('invt-contract-number', loan.ref || '—');
   set('invt-loan-type', loan.type || 'Privatkredit');
   set('invt-designation', designation);
   set('invt-amount-ht', fmtNum(amountHT) + ' EUR');
@@ -1594,8 +1593,8 @@ if (!client) {
 
     /* Sauvegarder dans documents */
     await supabase.from('documents').insert({
-      user_id: client.id || null,
-      loan_id: loan.isRequest ? null : loanId,
+      user_id:  clientId,
+      loan_id:  loan.isRequest ? null : loanId,
       name:     'Rechnung ' + number,
       type:     'facture',
       status:   'verified',
