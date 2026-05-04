@@ -1239,11 +1239,7 @@ function generateContract(clientId, loanId) {
 
   document.getElementById('ct-input-date').value = fmt(today);
   document.getElementById('ct-input-first-payment').value = fmt(firstPayment);
-  var autoAddress = client ? [
-  client.address,
-  client.postal_code && client.city ? client.postal_code + ' ' + client.city : client.city,
-].filter(Boolean).join(', ') : '';
-document.getElementById('ct-input-address').value = autoAddress || '';
+  document.getElementById('ct-input-address').value = (client && client.address) ? client.address : '';
   document.getElementById('ct-input-purpose').value = (loan && loan.type) ? loan.type : '';
   document.getElementById('ct-input-director').value = '';
   document.getElementById('ct-input-guarantee').value = 'Keine';
@@ -1313,12 +1309,7 @@ if (!client) {
   set('ct-advisor2', director);
   set('ct-client-name', client.name);
   set('ct-client-name2', client.name);
-  var fullAddress = [
-  address || client.street,
-  client.postal_code && client.city ? client.postal_code + ' ' + client.city : client.city,
-  client.country
-].filter(Boolean).join(', ');
-set('ct-client-address', fullAddress || '—');
+  set('ct-client-address', address || client.city || 'Deutschland');
   set('ct-client-email', client.email || '');
   set('ct-client-phone', client.phone || '');
   set('ct-amount', Math.round(a).toLocaleString('de-DE') + ' EUR');
@@ -1552,11 +1543,7 @@ if (!client) {
   set('invt-date', fmtDE(new Date(date)));
   set('invt-ref', number);
   set('invt-client-name', client.name);
-  var fullAddress = [
-  address || client.address,
-  client.postal_code && client.city ? client.postal_code + ' ' + client.city : client.city,
-].filter(Boolean).join(', ');
-  set('invt-client-address', fullAddress || '—');
+  set('invt-client-address', address || client.city || 'Deutschland');
   set('invt-contract-number', loan.ref || '—');
   set('invt-loan-type', loan.type || 'Privatkredit');
   set('invt-designation', designation);
