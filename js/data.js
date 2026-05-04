@@ -83,8 +83,9 @@ const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference)
       created_at_raw: r.created_at,
       phone: r.phone || null,
       street:      r.street || null,
-      postal_code: r.postal_code || null,
       country:     r.country || null,
+      city: r.city || null,
+      postal_code: r.postal_code || null,
     }))
   ];
 
