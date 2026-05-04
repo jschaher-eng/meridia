@@ -1470,12 +1470,13 @@ function generateInvoicePdf(clientId, loanId) {
 var client = CLIENTS.find(function(c) { return c.id === clientId; });
 if (!client && loan) {
   client = {
-    id:      loan.clientId || null,
-    name:    loan.client || '—',
-    email:   loan.email || null,
-    phone:   loan.phone || null,
-    address: loan.address || null,
-    city:    loan.city || null,
+    id:        loan.clientId || null,
+    name:      loan.client || '—',
+    email:     loan.email || null,
+    phone:     loan.phone || null,
+    address:   loan.address || null,
+    city:      loan.city || null,
+    fullAddress: [loan.street, loan.postal_code && loan.city ? loan.postal_code + ' ' + loan.city : loan.city, loan.country].filter(Boolean).join(', ') || '—',
   };
 }
 
@@ -1504,14 +1505,15 @@ async function confirmGenerateInvoicePdf() {
   var loan = LOANS.find(function(l) { return l.id === loanId; });
 if (!loan) { showToast('Dossier introuvable.'); return; }
 var client = CLIENTS.find(function(c) { return c.id === clientId; });
-if (!client) {
+if (!client && loan) {
   client = {
-    id:      loan.clientId || null,
-    name:    loan.client || '—',
-    email:   loan.email || null,
-    phone:   loan.phone || null,
-    address: loan.address || null,
-    city:    loan.city || null,
+    id:        loan.clientId || null,
+    name:      loan.client || '—',
+    email:     loan.email || null,
+    phone:     loan.phone || null,
+    address:   loan.address || null,
+    city:      loan.city || null,
+    fullAddress: [loan.street, loan.postal_code && loan.city ? loan.postal_code + ' ' + loan.city : loan.city, loan.country].filter(Boolean).join(', ') || '—',
   };
 }
 
