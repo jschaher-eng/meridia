@@ -1239,11 +1239,11 @@ function generateContract(clientId, loanId) {
 
   document.getElementById('ct-input-date').value = fmt(today);
   document.getElementById('ct-input-first-payment').value = fmt(firstPayment);
-  var autoAddress = [
+  var autoAddress = client ? [
   client.street,
   client.postal_code && client.city ? client.postal_code + ' ' + client.city : client.city,
   client.country
-].filter(Boolean).join(', ');
+].filter(Boolean).join(', ') : '';
 document.getElementById('ct-input-address').value = autoAddress || '';
   document.getElementById('ct-input-purpose').value = (loan && loan.type) ? loan.type : '';
   document.getElementById('ct-input-director').value = '';
@@ -1554,7 +1554,7 @@ if (!client) {
   set('invt-ref', number);
   set('invt-client-name', client.name);
   var fullAddress = [address, client.postal_code && client.city ? client.postal_code + ' ' + client.city : client.city, client.country].filter(Boolean).join(', ');
-  set('invt-client-address', fullAddress || 'Deutschland');
+  set('invt-client-address', fullAddress || '—');
   set('invt-contract-number', loan.ref || '—');
   set('invt-loan-type', loan.type || 'Privatkredit');
   set('invt-designation', designation);
