@@ -1680,7 +1680,7 @@ async function sendContractAndInvoiceEmail(client, contractUrl, contractNumber, 
         </div>
 
         <p style="font-size:14px;color:#555;line-height:1.8">Bei Fragen stehe ich Ihnen gerne zur Verfügung.</p>
-        <p style="font-size:14px;color:#333;margin-top:24px">Mit freundlichen Grüßen,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetruung@allodo.de · +49 15510 591674</span></p>
+        <p style="font-size:14px;color:#333;margin-top:24px">Mit freundlichen Grüßen,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetreuung@allodo.de · +49 15510 591674</span></p>
       </div>
 
       <!-- Footer -->
