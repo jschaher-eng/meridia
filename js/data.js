@@ -16,6 +16,7 @@ async function loadClients() {
     phone:   u.phone || '—',
     city:    u.city || '—',
     country: u.country || '',
+    fullAddress: [u.street, u.postal_code && u.city ? u.postal_code + ' ' + u.city : u.city, u.country].filter(Boolean).join(', '),
     status:  'active',
     score:   u.credit_score || 0,
     income:  u.monthly_income || 0,
