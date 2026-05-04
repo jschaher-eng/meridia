@@ -1267,6 +1267,7 @@ if (!client) {
     phone:   loan.phone || null,
     address: loan.address || null,
     city:    loan.city || null,
+    fullAddress: [loan.street, loan.postal_code && loan.city ? loan.postal_code + ' ' + loan.city : loan.city, loan.country].filter(Boolean).join(', ') || '—',
   };
 }
 
