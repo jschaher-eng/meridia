@@ -15,6 +15,7 @@ async function loadClients() {
     email:   u.email || '—',
     phone:   u.phone || '—',
     city:    u.city || '—',
+    country: u.country || '',
     status:  'active',
     score:   u.credit_score || 0,
     income:  u.monthly_income || 0,
