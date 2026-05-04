@@ -82,6 +82,9 @@ const filteredRequests = (requests || []).filter(r => !loanRefs.has(r.reference)
       isRequest: true,
       created_at_raw: r.created_at,
       phone: r.phone || null,
+      street:      r.street || null,
+      postal_code: r.postal_code || null,
+      country:     r.country || null,
     }))
   ];
 
