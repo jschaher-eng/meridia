@@ -1539,6 +1539,7 @@ if (!client && loan) {
 }
 
 async function confirmGenerateInvoicePdf() {
+  var lang = document.getElementById('ct-input-lang') ? document.getElementById('ct-input-lang').value : 'de';
   var clientId = _invoiceClientId;
   var loanId = _invoiceLoanId;
   var loan = LOANS.find(function(l) { return l.id === loanId; });
@@ -1603,24 +1604,49 @@ if (!client && loan) {
   set('invt-designation2', designation);
   set('invt-designation3', designation);
 
+  if (lang === 'sl') {
+  set('invt-sl-number', number);
+  set('invt-sl-date', fmtDE(new Date(date)));
+  set('invt-sl-ref', number);
+  set('invt-sl-client-name', client.name);
+  set('invt-sl-client-address', address || client.fullAddress || '—');
+  set('invt-sl-contract-number', _contractNumber || loan.ref || '—');
+  set('invt-sl-loan-type', loan.type || 'Privatkredit');
+  set('invt-sl-designation', designation);
+  set('invt-sl-amount-ht', fmtNum(amountHT) + ' EUR');
+  set('invt-sl-amount-ht2', fmtNum(amountHT) + ' EUR');
+  set('invt-sl-subtotal', fmtNum(amountHT) + ' EUR');
+  set('invt-sl-tva', fmtNum(tva) + ' EUR');
+  set('invt-sl-total', fmtNum(total) + ' EUR');
+  set('invt-sl-total2', fmtNum(total));
+  set('invt-sl-due-date', fmtDE(new Date(dueDate)));
+  set('invt-sl-beneficiary', beneficiary || 'Allodo GmbH');
+  set('invt-sl-iban', iban);
+  set('invt-sl-bic', bic || '—');
+  set('invt-sl-payment-ref', paymentRef || number);
+  set('invt-sl-designation2', designation);
+  set('invt-sl-designation3', designation);
+}
   /* Afficher le template */
-  var wrapper = document.getElementById('invoice-wrapper');
-  wrapper.style.height = 'auto';
-
-  var opt = {
-    margin: 0,
-    filename: 'Rechnung_' + number + '.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['css', 'legacy'], avoid: ['tr', 'td', 'div'] }
-  };
-
-  try {
-    showToast('Rechnung wird generiert...');
-    var content = document.getElementById('invoice-content');
-    var pdfBlob = await html2pdf().set(opt).from(content).outputPdf('blob');
-    wrapper.style.height = '0';
+var invoiceWrapperId = lang === 'sl' ? 'invoice-wrapper-sl' : 'invoice-wrapper';
+var invoiceContentId = lang === 'sl' ? 'invoice-content-sl' : 'invoice-content';
+var wrapper = document.getElementById(invoiceWrapperId);
+var content = document.getElementById(invoiceContentId);
+wrapper.style.height = 'auto';
+   
+var opt = {
+  margin: 0,
+  filename: 'Rechnung_' + number + '.pdf',
+  image: { type: 'jpeg', quality: 0.98 },
+  html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+  jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+  pagebreak: { mode: ['css', 'legacy'], avoid: ['tr', 'td', 'div'] }
+};
+   
+try {
+  showToast('Rechnung wird generiert...');
+  var pdfBlob = await html2pdf().set(opt).from(content).outputPdf('blob');
+  wrapper.style.height = '0';
 
     /* Upload Supabase Storage */
     var fileName = 'invoices/' + clientId + '/' + number + '.pdf';
