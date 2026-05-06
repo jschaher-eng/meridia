@@ -1380,7 +1380,7 @@ console.log('ct-sl-number el:', document.getElementById('ct-sl-number'));
   wrapper.style.height = 'auto';
    
   var opt = {
-  margin: 10,
+  margin: 15,
   filename: 'Darlehensvertrag_' + contractNumber + '.pdf',
   image: { type: 'jpeg', quality: 0.98 },
   html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
@@ -1635,7 +1635,7 @@ var content = document.getElementById(invoiceContentId);
 wrapper.style.height = 'auto';
    
 var opt = {
-  margin: lang === 'sl' ? 15 : 0,
+  margin: lang === 'sl' ? 10 : 0,
   filename: 'Rechnung_' + number + '.pdf',
   image: { type: 'jpeg', quality: 0.98 },
   html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
