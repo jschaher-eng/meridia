@@ -1681,6 +1681,7 @@ try {
 
 /* Envoyer email groupé si contrat généré en même temps */
 if (_contractPdfUrl && client.email) {
+   console.log('lang:', lang);
   await sendContractAndInvoiceEmail(client, _contractPdfUrl, _contractNumber, _contractDirector, pdfUrl, number, total, dueDate, fmtDE, fmtNum, lang);
   _contractPdfUrl = null;
   _contractNumber = null;
