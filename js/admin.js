@@ -1334,11 +1334,49 @@ if (!client) {
   set('ct-interest', interestTotal.toLocaleString('de-DE') + ' EUR');
   set('ct-account-holder', client.name);
   set('ct-first-payment3', fmtDE(firstPaymentDate));
+  
+   if (lang === 'sl') {
+  set('ct-sl-number', contractNumber);
+  set('ct-sl-date', fmtDE(contractDate));
+  set('ct-sl-date2', fmtDE(contractDate));
+  set('ct-sl-advisor', director);
+  set('ct-sl-advisor2', director);
+  set('ct-sl-client-name', client.name);
+  set('ct-sl-client-name2', client.name);
+  set('ct-sl-client-address', address || client.fullAddress || '—');
+  set('ct-sl-client-email', client.email || '');
+  set('ct-sl-client-phone', client.phone || '');
+  set('ct-sl-amount', Math.round(a).toLocaleString('de-DE') + ' EUR');
+  set('ct-sl-amount2', Math.round(a).toLocaleString('de-DE') + ' EUR');
+  set('ct-sl-purpose', purpose);
+  set('ct-sl-purpose2', purpose);
+  set('ct-sl-duration', d);
+  set('ct-sl-duration2', d);
+  set('ct-sl-rate', (loan.rate || 3.9));
+  set('ct-sl-rate2', (loan.rate || 3.9));
+  set('ct-sl-monthly', Math.round(monthly).toLocaleString('de-DE'));
+  set('ct-sl-monthly2', Math.round(monthly).toLocaleString('de-DE'));
+  set('ct-sl-first-payment', fmtDE(firstPaymentDate));
+  set('ct-sl-first-payment2', fmtDE(firstPaymentDate));
+  set('ct-sl-first-payment3', fmtDE(firstPaymentDate));
+  set('ct-sl-total', total.toLocaleString('de-DE'));
+  set('ct-sl-end-date', fmtDE(endDate));
+  set('ct-sl-guarantee', guarantee);
+  set('ct-sl-iban', iban || '________________________________');
+  set('ct-sl-bic', bic || '________________________________');
+  set('ct-sl-bank', bank || '________________________________');
+  set('ct-sl-interest', interestTotal.toLocaleString('de-DE') + ' EUR');
+  set('ct-sl-account-holder', client.name);
+}
 
    console.log('content element:', document.getElementById('contract-content'));
   /* Afficher le template */
-  var content = document.getElementById('contract-content');
-  document.getElementById('contract-wrapper').style.height = 'auto';
+  var lang = document.getElementById('ct-input-lang').value;
+  var wrapperId = lang === 'sl' ? 'contract-wrapper-sl' : 'contract-wrapper';
+  var contentId = lang === 'sl' ? 'contract-content-sl' : 'contract-content';
+  var wrapper = document.getElementById(wrapperId);
+  var content = document.getElementById(contentId);
+  wrapper.style.height = 'auto';
    
   var opt = {
   margin: 15,
@@ -1352,7 +1390,7 @@ if (!client) {
   try {
     showToast('Contrat en cours de génération...');
     var pdfBlob = await html2pdf().set(opt).from(content).outputPdf('blob');
-    document.getElementById('contract-wrapper').style.height = '0';
+    wrapper.style.height = '0';
 
     var fileName = 'contracts/' + clientId + '/' + contractNumber + '.pdf';
     var { error: uploadError } = await supabase.storage
@@ -1418,7 +1456,7 @@ showToast('✓ Contrat généré — Complétez maintenant la facture');
     renderDocuments();
 
   } catch(e) {
-    document.getElementById('contract-wrapper').style.height = '0';
+    wrapper.style.height = '0';
     showToast('Erreur: ' + e.message);
     console.error(e);
   }
