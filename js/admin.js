@@ -1334,7 +1334,9 @@ if (!client) {
   set('ct-interest', interestTotal.toLocaleString('de-DE') + ' EUR');
   set('ct-account-holder', client.name);
   set('ct-first-payment3', fmtDE(firstPaymentDate));
-  
+
+   console.log('lang:', lang);
+console.log('ct-sl-number el:', document.getElementById('ct-sl-number'));
    if (lang === 'sl') {
   set('ct-sl-number', contractNumber);
   set('ct-sl-date', fmtDE(contractDate));
