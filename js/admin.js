@@ -1285,7 +1285,7 @@ if (!client) {
   if (!purpose) { showToast('Veuillez entrer le Verwendungszweck.'); return; }
 
   closeModal('modal-contract');
-
+var lang = document.getElementById('ct-input-lang').value;
   /* Calculs */
   var r = (loan.rate || 3.9) / 100 / 12;
   var d = loan.duration || 36;
@@ -1370,10 +1370,9 @@ console.log('ct-sl-number el:', document.getElementById('ct-sl-number'));
   set('ct-sl-interest', interestTotal.toLocaleString('de-DE') + ' EUR');
   set('ct-sl-account-holder', client.name);
 }
-
    console.log('content element:', document.getElementById('contract-content'));
   /* Afficher le template */
-  var lang = document.getElementById('ct-input-lang').value;
+  
   var wrapperId = lang === 'sl' ? 'contract-wrapper-sl' : 'contract-wrapper';
   var contentId = lang === 'sl' ? 'contract-content-sl' : 'contract-content';
   var wrapper = document.getElementById(wrapperId);
