@@ -867,8 +867,8 @@
   <!-- Titre -->
   <div style="text-align:center;margin-bottom:32px">
     <div style="font-size:22px;font-weight:bold;color:#0B1F3A;letter-spacing:3px">POSOJILNA POGODBA</div>
-    <div style="font-size:12px;color:#6B7280;margin-top:6px">Št. <span id="ct-number"></span></div>
-    <div style="font-size:11px;color:#6B7280">Berlin, dne <span id="ct-date"></span></div>
+    <div style="font-size:12px;color:#6B7280;margin-top:6px">Št. <span id="ct-sl-number"></span></div>
+    <div style="font-size:11px;color:#6B7280">Berlin, dne <span id="ct-sl-date"></span></div>
   </div>
 
   <!-- Parties -->
@@ -879,14 +879,14 @@
       <div style="font-size:11px;opacity:0.8;margin-top:6px">Friedrichstrasse 100</div>
       <div style="font-size:11px;opacity:0.8">10117 Berlin, Nemčija</div>
       <div style="font-size:11px;opacity:0.8">kundenbetruung@allodo.de</div>
-      <div style="font-size:11px;opacity:0.8;margin-top:6px">Zastopa: <span id="ct-advisor"></span></div>
+      <div style="font-size:11px;opacity:0.8;margin-top:6px">Zastopa: <span id="ct-sl-advisor"></span></div>
     </div>
     <div style="background:#F9FAFB;padding:20px;border-left:4px solid #0B1F3A">
       <div style="font-size:9px;color:#0B1F3A;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">Posojilojemnik</div>
-      <div style="font-weight:bold;font-size:14px" id="ct-client-name"></div>
-      <div style="font-size:11px;color:#6B7280;margin-top:6px" id="ct-client-address"></div>
-      <div style="font-size:11px;color:#6B7280" id="ct-client-email"></div>
-      <div style="font-size:11px;color:#6B7280" id="ct-client-phone"></div>
+      <div style="font-weight:bold;font-size:14px" id="ct-sl-client-name"></div>
+      <div style="font-size:11px;color:#6B7280;margin-top:6px" id="ct-sl-client-address"></div>
+      <div style="font-size:11px;color:#6B7280" id="ct-sl-client-email"></div>
+      <div style="font-size:11px;color:#6B7280" id="ct-sl-client-phone"></div>
     </div>
   </div>
 
@@ -899,14 +899,14 @@
   <!-- Article 1 -->
   <div style="margin-bottom:20px">
     <div style="font-weight:bold;color:#0B1F3A;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:8px 12px;background:#F3F4F6;border-left:3px solid #0B1F3A;margin-bottom:10px">Člen 1 : Znesek in trajanje posojila</div>
-    <p style="margin:4px 0 4px 12px">Posojilodajalec odobri posojilojemniku posojilo v višini <strong id="ct-amount2"></strong>.</p>
-    <p style="margin:4px 0 4px 12px">Trajanje posojila je <strong><span id="ct-duration2"></span> mesecev</strong>.</p>
+    <p style="margin:4px 0 4px 12px">Posojilodajalec odobri posojilojemniku posojilo v višini <strong id="ct-sl-amount2"></strong>.</p>
+    <p style="margin:4px 0 4px 12px">Trajanje posojila je <strong><span id="ct-sl-duration2"></span> mesecev</strong>.</p>
   </div>
 
   <!-- Article 2 -->
   <div style="margin-bottom:20px">
     <div style="font-weight:bold;color:#0B1F3A;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:8px 12px;background:#F3F4F6;border-left:3px solid #0B1F3A;margin-bottom:10px">Člen 2 : Namen posojila</div>
-    <p style="margin:4px 0 4px 12px">Posojilo je odobreno za naslednji namen: <strong id="ct-purpose2"></strong>.</p>
+    <p style="margin:4px 0 4px 12px">Posojilo je odobreno za naslednji namen: <strong id="ct-sl-purpose2"></strong>.</p>
     <p style="margin:4px 0 4px 12px">Posojilojemnik se zavezuje, da bo prejeti znesek uporabil izključno za navedeni namen in ohranil vrednost prejetih sredstev z namenskими naložbami.</p>
   </div>
 
@@ -917,7 +917,7 @@
     <p style="margin:4px 0 4px 20px">Znesek posojila bo posojilojemniku izplačan po podpisu te pogodbe.</p>
     <p style="margin:4px 0 4px 20px">Dejanski prenos sredstev lahko traja nekaj dodatnih dni. Ta zamuda ne vpliva na začetni datum posojila.</p>
     <p style="margin:12px 0 4px 12px;font-weight:bold;color:#374151">3.2 Datum zaključka</p>
-    <p style="margin:4px 0 4px 20px">Posojilo mora biti v celoti vrnjeno najkasneje do <strong id="ct-end-date"></strong>.</p>
+    <p style="margin:4px 0 4px 20px">Posojilo mora biti v celoti vrnjeno najkasneje do <strong id="ct-sl-end-date"></strong>.</p>
     <p style="margin:4px 0 4px 20px">Delno ali celotno predčasno vračilo je kadar koli mogoče.</p>
   </div>
 
@@ -925,7 +925,7 @@
   <div style="margin-bottom:20px">
     <div style="font-weight:bold;color:#0B1F3A;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:8px 12px;background:#F3F4F6;border-left:3px solid #0B1F3A;margin-bottom:10px">Člen 4 : Vračilo</div>
     <p style="margin:4px 0 4px 12px;font-weight:bold;color:#374151">4.1 Načrt vračila</p>
-    <p style="margin:4px 0 4px 20px">Posojilojemnik vrača posojilo v mesečnih obrokih po <strong id="ct-monthly2"></strong> EUR, prvič <strong id="ct-first-payment2"></strong>.</p>
+    <p style="margin:4px 0 4px 20px">Posojilojemnik vrača posojilo v mesečnih obrokih po <strong id="ct-sl-monthly2"></strong> EUR, prvič <strong id="ct-sl-first-payment2"></strong>.</p>
     <p style="margin:4px 0 4px 20px">Ta vračila so obvezna. V primeru zamude se zaračunajo obresti v višini 5 % letno.</p>
     <p style="margin:12px 0 4px 12px;font-weight:bold;color:#374151">4.2 Predčasna zapadlost pri neplačilu</p>
     <p style="margin:4px 0 4px 20px">Posojilodajalec lahko zahteva takojšnje vračilo, če:</p>
@@ -933,7 +933,7 @@
     <p style="margin:4px 0 4px 32px">b) posojilojemnik je plačilno nesposoben;</p>
     <p style="margin:4px 0 4px 32px">c) namen posojila (čl. 2) ni več spoštovan.</p>
     <p style="margin:12px 0 4px 12px;font-weight:bold;color:#374151">4.3 Obrestna mera</p>
-    <p style="margin:4px 0 4px 20px">Obrestna mera znaša <strong id="ct-rate2"></strong> % letno za celotno trajanje posojila. Obresti se obračunajo na osnovi 360-dnevnega leta in so mesečno zapadle, prvič <strong id="ct-first-payment3"></strong>.</p>
+    <p style="margin:4px 0 4px 20px">Obrestna mera znaša <strong id="ct-sl-rate2"></strong> % letno za celotno trajanje posojila. Obresti se obračunajo na osnovi 360-dnevnega leta in so mesečno zapadle, prvič <strong id="ct-sl-first-payment3"></strong>.</p>
     <p style="margin:12px 0 4px 12px;font-weight:bold;color:#374151">4.4 Zamudne obresti</p>
     <p style="margin:4px 0 4px 20px">Vsa zamudna plačila se po zakonu obrestujejo po stopnji 5 % letno. Zamudne obresti so plačljive na prvo zahtevo posojilodajalca.</p>
   </div>
@@ -971,7 +971,7 @@
   <!-- Article 8 -->
   <div style="margin-bottom:20px">
     <div style="font-weight:bold;color:#0B1F3A;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:8px 12px;background:#F3F4F6;border-left:3px solid #0B1F3A;margin-bottom:10px">Člen 8 : Zavarovanje</div>
-    <p style="margin:4px 0 4px 12px">Zavarovanje za vračilo posojila: <strong id="ct-guarantee"></strong>.</p>
+    <p style="margin:4px 0 4px 12px">Zavarovanje za vračilo posojila: <strong id="ct-sl-guarantee"></strong>.</p>
   </div>
 
   <!-- Article 9 -->
@@ -979,14 +979,14 @@
     <div style="font-weight:bold;color:#0B1F3A;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:8px 12px;background:#F3F4F6;border-left:3px solid #0B1F3A;margin-bottom:12px">Člen 9 : Parametri posojila</div>
     <table style="width:100%;border-collapse:collapse;font-size:12px">
       <tr style="background:#0B1F3A"><td style="padding:10px 14px;font-weight:bold;color:#B8963E;width:50%">Parameter</td><td style="padding:10px 14px;font-weight:bold;color:#fff">Vrednost</td></tr>
-      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Znesek posojila</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-amount"></td></tr>
-      <tr><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Namen</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-purpose"></td></tr>
-      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Trajanje</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-duration"></td></tr>
-      <tr><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Obrestna mera</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-rate"></td></tr>
-      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Mesečni obrok</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-monthly"></td></tr>
-      <tr><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Prvo plačilo</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-first-payment"></td></tr>
-      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Skupni znesek vračila</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-total"></td></tr>
-      <tr><td style="padding:8px 14px;font-weight:bold">Skupni stroški (obresti)</td><td style="padding:8px 14px" id="ct-interest"></td></tr>
+      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Znesek posojila</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-sl-amount"></td></tr>
+      <tr><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Namen</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-sl-purpose"></td></tr>
+      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Trajanje</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-sl-duration"></td></tr>
+      <tr><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Obrestna mera</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-sl-rate"></td></tr>
+      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Mesečni obrok</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-sl-monthly"></td></tr>
+      <tr><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Prvo plačilo</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-sl-first-payment"></td></tr>
+      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border-bottom:1px solid #E5E7EB">Skupni znesek vračila</td><td style="padding:8px 14px;border-bottom:1px solid #E5E7EB" id="ct-sl-total"></td></tr>
+      <tr><td style="padding:8px 14px;font-weight:bold">Skupni stroški (obresti)</td><td style="padding:8px 14px" id="ct-sl-interest"></td></tr>
     </table>
   </div>
 
@@ -1007,10 +1007,10 @@
   <div style="margin-bottom:28px">
     <div style="font-weight:bold;color:#0B1F3A;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:8px 12px;background:#F3F4F6;border-left:3px solid #0B1F3A;margin-bottom:12px">Člen 12 : Bančni podatki posojilojemnika</div>
     <table style="width:100%;border-collapse:collapse;font-size:12px">
-      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border:1px solid #E5E7EB;width:40%">Imetnik računa</td><td style="padding:8px 14px;border:1px solid #E5E7EB" id="ct-account-holder"></td></tr>
-      <tr><td style="padding:8px 14px;font-weight:bold;border:1px solid #E5E7EB">Ime banke</td><td style="padding:8px 14px;border:1px solid #E5E7EB" id="ct-bank"></td></tr>
-      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border:1px solid #E5E7EB">IBAN</td><td style="padding:8px 14px;border:1px solid #E5E7EB" id="ct-iban"></td></tr>
-      <tr><td style="padding:8px 14px;font-weight:bold;border:1px solid #E5E7EB">BIC</td><td style="padding:8px 14px;border:1px solid #E5E7EB" id="ct-bic"></td></tr>
+      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border:1px solid #E5E7EB;width:40%">Imetnik računa</td><td style="padding:8px 14px;border:1px solid #E5E7EB" id="ct-sl-account-holder"></td></tr>
+      <tr><td style="padding:8px 14px;font-weight:bold;border:1px solid #E5E7EB">Ime banke</td><td style="padding:8px 14px;border:1px solid #E5E7EB" id="ct-sl-bank"></td></tr>
+      <tr style="background:#F9FAFB"><td style="padding:8px 14px;font-weight:bold;border:1px solid #E5E7EB">IBAN</td><td style="padding:8px 14px;border:1px solid #E5E7EB" id="ct-sl-iban"></td></tr>
+      <tr><td style="padding:8px 14px;font-weight:bold;border:1px solid #E5E7EB">BIC</td><td style="padding:8px 14px;border:1px solid #E5E7EB" id="ct-sl-bic"></td></tr>
     </table>
   </div>
 
@@ -1022,13 +1022,13 @@
         <div style="font-weight:bold;font-size:12px;color:#0B1F3A">Allodo GmbH — Posojilodajalec</div>
         <img src="https://optdeymyvokoowliqvnm.supabase.co/storage/v1/object/public/documents/signature.png" style="height:70px;margin-top:8px;margin-left:20px;display:block">
         <div style="border-bottom:1px solid #374151;width:220px"></div>
-        <div style="font-size:11px;margin-top:6px;color:#374151" id="ct-advisor2"></div>
-        <div style="font-size:11px;color:#6B7280">Berlin, dne <span id="ct-date2"></span></div>
+        <div style="font-size:11px;margin-top:6px;color:#374151" id="ct-sl-advisor2"></div>
+        <div style="font-size:11px;color:#6B7280">Berlin, dne <span id="ct-sl-date2"></span></div>
       </div>
       <div>
         <div style="font-weight:bold;font-size:12px;color:#0B1F3A">Posojilojemnik</div>
         <div style="margin-top:48px;border-bottom:1px solid #374151;width:220px"></div>
-        <div style="font-size:11px;margin-top:6px;color:#374151" id="ct-client-name2"></div>
+        <div style="font-size:11px;margin-top:6px;color:#374151" id="ct-sl-client-name2"></div>
         <div style="font-size:11px;color:#6B7280">Kraj, dne ___/___/20___</div>
       </div>
     </div>
@@ -1045,7 +1045,7 @@
   <!-- Modal génération contrat -->
 <div class="modal-overlay" id="modal-contract">  
   <div class="modal" style="max-width:560px;max-height:90vh;overflow-y:auto">
-    
+
     <div class="fg">
   <label>Langue du contrat</label>
   <select id="ct-input-lang">
