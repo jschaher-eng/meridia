@@ -1309,6 +1309,122 @@
 
 </div>
 </div>
+
+  <!-- Template facture PDF — Slovène -->
+<div id="invoice-wrapper-sl" style="height:0;overflow:hidden">
+<div id="invoice-content-sl" style="font-family:Arial,sans-serif;width:100%;padding:0;color:#1F2937;font-size:13px;line-height:1.8;box-sizing:border-box">
+
+  <!-- Header -->
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:20px;border-bottom:4px solid #B8963E;margin-bottom:16px;padding-right:30px">
+    <div>
+      <div style="font-size:26px;font-weight:bold;color:#0B1F3A;letter-spacing:1px">Allodo<span style="color:#B8963E">.</span></div>
+      <div style="font-size:9px;color:#6B7280;letter-spacing:3px;text-transform:uppercase;margin-top:2px">GmbH · Finančne rešitve</div>
+    </div>
+    <div style="text-align:right;font-size:11px;color:#6B7280;line-height:1.8">
+      <div>Friedrichstrasse 100 · 10117 Berlin</div>
+      <div>kundenbetruung@allodo.de</div>
+      <div>+49 15510 591674</div>
+      <div>www.allodo.de</div>
+    </div>
+  </div>
+
+  <!-- Titre -->
+  <div style="margin-bottom:14px">
+    <div style="font-size:22px;font-weight:bold;color:#0B1F3A;letter-spacing:2px">RAČUN <span id="invt-sl-number"></span></div>
+    <div style="display:flex;gap:60px;margin-top:12px">
+      <div>
+        <div style="font-size:10px;color:#B8963E;text-transform:uppercase;letter-spacing:1px">Datum izdaje</div>
+        <div style="font-weight:bold;margin-top:2px" id="invt-sl-date"></div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:#B8963E;text-transform:uppercase;letter-spacing:1px">Referenca</div>
+        <div style="font-weight:bold;margin-top:2px" id="invt-sl-ref"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client -->
+  <div style="background:#F9FAFB;border-left:3px solid #0B1F3A;padding:16px;margin-bottom:14px">
+    <div style="font-size:10px;color:#0B1F3A;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Stranka / Naročnik</div>
+    <div style="font-weight:bold" id="invt-sl-client-name"></div>
+    <div style="color:#6B7280;font-size:12px" id="invt-sl-client-address"></div>
+    <div style="margin-top:6px;font-size:12px">Številka pogodbe : <strong id="invt-sl-contract-number"></strong></div>
+    <div style="font-size:12px">Posojilo : <span id="invt-sl-loan-type"></span></div>
+  </div>
+
+  <!-- Tableau -->
+  <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:14px">
+    <thead>
+      <tr style="background:#0B1F3A">
+        <td style="padding:10px 14px;color:#B8963E;font-weight:bold;width:50%">Opis</td>
+        <td style="padding:10px 14px;color:#fff;font-weight:bold;text-align:center;width:15%">Količina</td>
+        <td style="padding:10px 14px;color:#fff;font-weight:bold;text-align:right;width:17%">Cena brez DDV (EUR)</td>
+        <td style="padding:10px 14px;color:#fff;font-weight:bold;text-align:right;width:18%">Skupaj z DDV (EUR)</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #E5E7EB">
+        <td style="padding:12px 14px" id="invt-sl-designation"></td>
+        <td style="padding:12px 14px;text-align:center">1</td>
+        <td style="padding:12px 14px;text-align:right" id="invt-sl-amount-ht"></td>
+        <td style="padding:12px 14px;text-align:right" id="invt-sl-amount-ht2"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Totaux -->
+  <div style="display:flex;justify-content:flex-end;margin-bottom:14px">
+    <table style="width:280px;font-size:12px;border-collapse:collapse">
+      <tr>
+        <td style="padding:6px 14px;color:#6B7280">Vmesna vsota</td>
+        <td style="padding:6px 14px;text-align:right" id="invt-sl-subtotal"></td>
+      </tr>
+      <tr>
+        <td style="padding:6px 14px;color:#6B7280">DDV 19%</td>
+        <td style="padding:6px 14px;text-align:right" id="invt-sl-tva"></td>
+      </tr>
+      <tr style="background:#0B1F3A">
+        <td style="padding:10px 14px;color:#B8963E;font-weight:bold;font-size:14px">Skupni znesek</td>
+        <td style="padding:10px 14px;color:#fff;font-weight:bold;font-size:14px;text-align:right" id="invt-sl-total"></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Échéance -->
+  <div style="margin-bottom:12px">
+    <span style="color:#B8963E;font-weight:bold">Rok plačila : </span>
+    <strong id="invt-sl-due-date"></strong>
+  </div>
+
+  <!-- Notes -->
+  <div style="margin-bottom:12px;font-size:12px;color:#374151">
+    <p style="margin:4px 0">* <span id="invt-sl-designation2"></span></p>
+    <p style="margin:4px 0">* <span id="invt-sl-designation3"></span> v skladu s splošnimi pogoji : <strong id="invt-sl-total2"></strong> EUR</p>
+  </div>
+
+  <!-- Paiement -->
+  <div style="background:#0B1F3A;padding:20px;margin-bottom:14px">
+    <div style="font-size:10px;color:#B8963E;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Podatki za plačilo</div>
+    <div style="text-align:center;color:#fff;font-size:12px;line-height:2">
+      <div>Plačilo z bančnim nakazilom</div>
+      <div>Prejemnik: <strong id="invt-sl-beneficiary"></strong></div>
+      <div>IBAN: <strong id="invt-sl-iban"></strong></div>
+      <div>BIC: <strong id="invt-sl-bic"></strong></div>
+      <div>Namen plačila: <strong style="color:#B8963E" id="invt-sl-payment-ref"></strong></div>
+    </div>
+    <div style="text-align:center;color:rgba(255,255,255,0.7);font-size:11px;margin-top:8px">
+      Vrsta zahtevanega nakazila: SEPA nakazilo ali takojšnje nakazilo.
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="border-top:1px solid #E5E7EB;padding-top:16px;font-size:10px;color:#9CA3AF;text-align:center">
+    <div>Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin · HRB 123456 · ID za DDV: DE123456789</div>
+    <div style="margin-top:4px">DDV ni uporaben v skladu z § 4 št. 8 UStG (finančne storitve)</div>
+  </div>
+
+</div>
+</div>
   
 </body>
 </html>
