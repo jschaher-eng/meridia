@@ -1539,7 +1539,7 @@ if (!client && loan) {
 }
 
 async function confirmGenerateInvoicePdf() {
-  var lang = document.getElementById('ct-input-lang') ? document.getElementById('ct-input-lang').value : 'de';
+  var lang = document.getElementById('invpdf-lang') ? document.getElementById('invpdf-lang').value : 'de';
   var clientId = _invoiceClientId;
   var loanId = _invoiceLoanId;
   var loan = LOANS.find(function(l) { return l.id === loanId; });
