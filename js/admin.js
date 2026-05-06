@@ -1380,7 +1380,7 @@ console.log('ct-sl-number el:', document.getElementById('ct-sl-number'));
   wrapper.style.height = 'auto';
    
   var opt = {
-  margin: 15,
+  margin: 10,
   filename: 'Darlehensvertrag_' + contractNumber + '.pdf',
   image: { type: 'jpeg', quality: 0.98 },
   html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
