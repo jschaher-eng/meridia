@@ -1686,7 +1686,32 @@ if (_contractPdfUrl && client.email) {
   _contractNumber = null;
 } else if (client.email) {
   /* Email facture seule */
-  var html = `...existing invoice email html...`;
+  var html = `
+  <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
+    <div style="background:#0C2340;padding:24px;text-align:center">
+      <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+    </div>
+    <div style="padding:32px;background:#f9f9f9">
+      <h2 style="color:#0C2340;font-size:18px">Ihre Rechnung ist verfügbar</h2>
+      <p style="color:#555;line-height:1.7">Sehr geehrte/r ${client.name},</p>
+      <p style="color:#555;line-height:1.7">Ihre Rechnung Nr. <strong>${number}</strong> über <strong>${fmtNum(total)} EUR</strong> wurde erstellt.</p>
+      <p style="color:#555;line-height:1.7">Fälligkeit: <strong>${fmtDE(new Date(dueDate))}</strong></p>
+      <div style="background:#0C2340;color:#fff;border-radius:8px;padding:20px;margin:20px 0;text-align:center">
+        <div style="font-size:11px;color:#B8963E;margin-bottom:8px">ZAHLUNGSDETAILS</div>
+        <div>Begünstigter: <strong>${beneficiary || 'Allodo GmbH'}</strong></div>
+        <div>IBAN: <strong>${iban}</strong></div>
+        <div>BIC: <strong>${bic || '—'}</strong></div>
+        <div style="color:#B8963E">Verwendungszweck: <strong>${paymentRef || number}</strong></div>
+      </div>
+      <a href="${pdfUrl}" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:14px">
+        Rechnung herunterladen →
+      </a>
+    </div>
+    <div style="padding:16px;text-align:center;color:#999;font-size:11px">
+      Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin
+    </div>
+  </div>
+`;
   await sendNotificationEmail(client.email, 'Allodo — Ihre Rechnung ' + number, html);
 }
 
