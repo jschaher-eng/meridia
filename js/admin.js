@@ -1787,7 +1787,7 @@ async function sendContractAndInvoiceEmail(client, contractUrl, contractNumber, 
             </div>
           </div>
           <p style="font-size:14px;color:#555;line-height:1.8">Za vsa vprašanja sem vam na voljo.</p>
-          <p style="font-size:14px;color:#333;margin-top:24px">S spoštovanjem,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetruung@allodo.de · +49 15510 591674</span></p>
+          <p style="font-size:14px;color:#333;margin-top:24px">S spoštovanjem,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetreuung@allodo.de · +49 15510 591674</span></p>
         </div>
         <div style="padding:16px;text-align:center;color:#999;font-size:11px;border-top:1px solid #E5E7EB">
           Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin · www.allodo.de
@@ -1830,7 +1830,7 @@ async function sendContractAndInvoiceEmail(client, contractUrl, contractNumber, 
             </div>
           </div>
           <p style="font-size:14px;color:#555;line-height:1.8">Bei Fragen stehe ich Ihnen gerne zur Verfügung.</p>
-          <p style="font-size:14px;color:#333;margin-top:24px">Mit freundlichen Grüßen,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetruung@allodo.de · +49 15510 591674</span></p>
+          <p style="font-size:14px;color:#333;margin-top:24px">Mit freundlichen Grüßen,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetreuung@allodo.de · +49 15510 591674</span></p>
         </div>
         <div style="padding:16px;text-align:center;color:#999;font-size:11px;border-top:1px solid #E5E7EB">
           Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin · www.allodo.de
