@@ -1,6 +1,6 @@
 {
   "nav": { "home": "Domov", "loans": "Naša posojila", "simulator": "Kalkulator", "apply": "Spletna vloga", "login": "Prijava", "open_account": "Odpri račun", "alerts": "Obvestila" },
-  "topbar": { "text": "Allodo Finanz · Pooblaščen ACPR · Vloge zagotovljene do 100.000 €", "branches": "Podružnice", "client_space": "Območje za stranke", "contact": "Kontakt" },
+  "topbar": { "text": "Keloer Finanz · Pooblaščen ACPR · Vloge zagotovljene do 100.000 €", "branches": "Podružnice", "client_space": "Območje za stranke", "contact": "Kontakt" },
   "hero": { "title": "Financirajte svoje projekte,", "title_em": "v svojem tempu", "subtitle": "Posamezniki in podjetja: dostopajte do naših kreditnih rešitev in spremljajte vsak korak iz vašega varnega območja.", "simulate": "Izračunaj posojilo", "discover": "Odkrijte naše ponudbe" },
   "segments": { "individuals": "Posamezniki", "business": "Podjetja in MSP" },
   "products": {
@@ -105,7 +105,7 @@
 "create_account_btn": "Ustvari račun in sledi moji vlogi",
 "no_account_btn": "Nadaljuj brez računa"
 },
-  "auth": { "title": "Območje za stranke Allodo Finanz", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun", "min_chars": "Vsaj 8 znakov", "repeat_password": "Ponovite geslo" },
+  "auth": { "title": "Območje za stranke Keloer Finanz", "login_tab": "Prijava", "register_tab": "Ustvari račun", "email": "E-poštni naslov", "password": "Geslo", "forgot": "Pozabljeno geslo?", "login_btn": "Dostop do mojega območja", "create_btn": "Ustvari moj račun", "min_chars": "Vsaj 8 znakov", "repeat_password": "Ponovite geslo" },
   "dashboard": {
   "greeting": "Dober dan,",
   "updated": "Posodobljeno danes",
@@ -120,14 +120,14 @@
   "advisor": "Vaš svetovalec",
   "send_message": "Pošlji sporočilo"
 },
-  "footer": { "copyright": "© 2025 Allodo Finanz. Vse pravice pridržane." },
+  "footer": { "copyright": "© 2025 Keloer Finanz. Vse pravice pridržane." },
 "testimonials": {
   "title": "Kaj pravijo naše stranke",
   "subtitle": "Več kot 12.000 zadovoljnih strank nam zaupa",
-  "t1_text": "Zahvaljujoč Allodo Finanzu sem si lahko kupil hišo svojih sanj. Postopek je bil preprost, hiter in v celoti spletni. Odgovor sem prejel v manj kot 24 urah!",
+  "t1_text": "Zahvaljujoč Keloer Finanzu sem si lahko kupil hišo svojih sanj. Postopek je bil preprost, hiter in v celoti spletni. Odgovor sem prejel v manj kot 24 urah!",
   "t1_name": "Maria K.",
   "t1_detail": "Stanovanjski kredit · 280.000 EUR",
-  "t2_text": "Kot samozaposlena oseba sem težko dobil kredit. Allodo Finanz je obravnaval mojo vlogo v 2 dneh. Zelo profesionalna ekipa!",
+  "t2_text": "Kot samozaposlena oseba sem težko dobil kredit. Keloer Finanz je obravnaval mojo vlogo v 2 dneh. Zelo profesionalna ekipa!",
   "t2_name": "Thomas H.",
   "t2_detail": "Poslovni kredit · 45.000 EUR",
   "t3_text": "Spletna vloga je bila zelo preprosta. Svojo vlogo sem lahko sledil v realnem času. Svetovalka je bila zelo pozorna in strokovna.",
@@ -237,7 +237,7 @@
   "recent_connections": "Nedavne prijave",
   "approved": "Odobreno",
   "security_note": "Vse povezave so šifrirane SSL/TLS 256 bit.",
-  "security_sub": "Zaščitite svoj Allodo prostor",
+  "security_sub": "Zaščitite svoj Keloer prostor",
   "step_by_step": "Sledenje korak za korakom",
   "capital_repaid": "Odplačani kapital",
   "no_messages": "Ni sporočil.",
@@ -254,7 +254,7 @@
 "doc_processing": "V obdelavi",
 "doc_download": "Prenesi",
 "new_badge": "Novo",
-"doc_request_notif": "Allodo zahteva, da naložite dokument:",
+"doc_request_notif": "Keloer zahteva, da naložite dokument:",
 "notif_message": "Novo sporočilo",
 "notif_status": "Posodobitev mape",
 "notif_document": "Dokument zahtevan",
