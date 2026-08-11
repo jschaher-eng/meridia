@@ -1,5 +1,5 @@
 /* =========================================
-   Allodo ADMIN — admin.js
+   Keloer ADMIN — admin.js
    Navigation · Dashboard · Prêts · Clients
    Messagerie · Documents · Modals · Toasts
    ========================================= */
@@ -298,11 +298,11 @@ const { error } = await supabase
     
     sendNotificationEmail(
       clientProfile.email,
-      'Allodo Finanz — Aktualisierung Ihrer Akte',
+      'Keloer Finanz — Aktualisierung Ihrer Akte',
       `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
         <div style="background:#0C2340;padding:24px;text-align:center">
-          <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:50px">
+          <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:50px">
         </div>
         <div style="padding:32px;background:#f9f9f9">
           <h2 style="color:#0C2340;font-size:18px">Guten Tag ${clientProfile.name},</h2>
@@ -311,10 +311,10 @@ const { error } = await supabase
             <strong style="color:#0C2340;font-size:16px">${statusLabelsEmail[decision] || decision}</strong>
           </div>
           <p style="color:#555;line-height:1.6">Melden Sie sich in Ihrem Kundenbereich an, um alle Details zu sehen.</p>
-          <a href="https://www.allodo.de/#dash" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;margin-top:16px">Mein Konto aufrufen</a>
+          <a href="https://www.keloer.com/#dash" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 24px;border-radius:4px;text-decoration:none;margin-top:16px">Mein Konto aufrufen</a>
         </div>
         <div style="padding:16px;text-align:center;color:#999;font-size:12px">
-          Allodo Finanz · Friedrichstrasse 100 · 10117 Berlin
+          Keloer Finanz · Friedrichstrasse 100 · 10117 Berlin
         </div>
       </div>
       `
@@ -461,24 +461,24 @@ async function sendAdminReply() {
 if (clientProfile && clientProfile.email) {
   sendNotificationEmail(
     clientProfile.email,
-    'Allodo — Neue Nachricht von Ihrem Berater',
+    'Keloer — Neue Nachricht von Ihrem Berater',
     `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#0C2340;padding:24px;text-align:center">
-        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+        <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:46px">
       </div>
       <div style="padding:32px;background:#f9f9f9">
         <h2 style="color:#0C2340;font-size:17px;font-weight:400;font-family:Georgia,serif">Guten Tag ${clientProfile.name},</h2>
-        <p style="color:#555;line-height:1.7;font-size:14px">Sie haben eine neue Nachricht von Ihrem Allodo-Berater erhalten.</p>
+        <p style="color:#555;line-height:1.7;font-size:14px">Sie haben eine neue Nachricht von Ihrem keloer-Berater erhalten.</p>
         <div style="background:#fff;border-left:3px solid #B8963E;padding:16px;margin:20px 0;border-radius:0 4px 4px 0">
           <p style="margin:0;color:#0C2340;font-size:14px;font-style:italic">"${text}"</p>
         </div>
-        <a href="https://www.allodo.de/#dash" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:13px;margin-top:8px">
+        <a href="https://www.keloer.com/#dash" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:13px;margin-top:8px">
           Nachricht lesen →
         </a>
       </div>
       <div style="padding:16px;text-align:center;color:#999;font-size:11px">
-        Allodo · Friedrichstrasse 100 · 10117 Berlin
+        Keloer · Friedrichstrasse 100 · 10117 Berlin
       </div>
     </div>
     `
@@ -1107,11 +1107,11 @@ async function sendInvoiceToClient(id) {
 
   await sendNotificationEmail(
     client.email,
-    'Allodo — Rechnung ' + inv.number,
+    'Keloer — Rechnung ' + inv.number,
     `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#0C2340;padding:24px;text-align:center">
-        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+        <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:46px">
       </div>
       <div style="padding:32px;background:#f9f9f9">
         <h2 style="color:#0C2340;font-size:18px">Rechnung ${inv.number}</h2>
@@ -1134,12 +1134,12 @@ async function sendInvoiceToClient(id) {
             <tr><td style="padding:4px 0;opacity:0.8">Verwendungszweck</td><td style="text-align:right;font-weight:500;color:#B8963E">${inv.reference}</td></tr>
           </table>
         </div>
-        <a href="https://www.allodo.de/#dash" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:13px">
+        <a href="https://www.keloer.com/#dash" style="display:inline-block;background:#B8963E;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:13px">
           Mein Konto aufrufen →
         </a>
       </div>
       <div style="padding:16px;text-align:center;color:#999;font-size:11px">
-        Allodo · Friedrichstrasse 100 · 10117 Berlin
+        Keloer · Friedrichstrasse 100 · 10117 Berlin
       </div>
     </div>
     `
@@ -1172,19 +1172,19 @@ async function sendCampaign() {
   var html = `
   <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;color:#222">
     <div style="padding:24px 0;border-bottom:1px solid #eee;text-align:center">
-      <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:40px">
+      <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:40px">
     </div>
     <div style="padding:32px 0;font-size:15px;line-height:1.9;color:#333;white-space:pre-line">${message}</div>
     <div style="padding:20px 0">
-      <a href="https://www.allodo.de" style="display:inline-block;background:#0C2340;color:#fff;padding:11px 24px;border-radius:3px;text-decoration:none;font-size:14px;font-family:Arial,sans-serif">
+      <a href="https://www.keloer.com" style="display:inline-block;background:#0C2340;color:#fff;padding:11px 24px;border-radius:3px;text-decoration:none;font-size:14px;font-family:Arial,sans-serif">
         Mehr erfahren
       </a>
     </div>
     <div style="padding:24px 0;border-top:1px solid #eee;font-size:11px;color:#999;font-family:Arial,sans-serif">
-      Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin<br>
-      <a href="https://www.allodo.de/impressum.html" style="color:#999">Impressum</a> · 
-      <a href="https://www.allodo.de/datenschutz.html" style="color:#999">Datenschutz</a> · 
-      <a href="mailto:contact@allodo.de?subject=Abmeldung" style="color:#999">Abmelden</a>
+      Keloer GmbH · Friedrichstrasse 100 · 10117 Berlin<br>
+      <a href="https://www.keloer.com/impressum.html" style="color:#999">Impressum</a> · 
+      <a href="https://www.keloer.com/datenschutz.html" style="color:#999">Datenschutz</a> · 
+      <a href="mailto:contact@keloer.com?subject=Abmeldung" style="color:#999">Abmelden</a>
     </div>
   </div>
 `;
@@ -1467,7 +1467,7 @@ async function sendContractByEmail(client, contractNumber, pdfUrl, loan, directo
   var html = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
       <div style="background:#0C2340;padding:24px;text-align:center">
-        <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+        <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:46px">
       </div>
       <div style="padding:32px;background:#f9f9f9">
         <h2 style="color:#0C2340;font-size:18px">Ihr Darlehensvertrag ist bereit</h2>
@@ -1485,14 +1485,14 @@ async function sendContractByEmail(client, contractNumber, pdfUrl, loan, directo
           Vertrag herunterladen →
         </a>
         <p style="color:#555;line-height:1.7;margin-top:20px">Bei Fragen stehen wir Ihnen gerne zur Verfügung.</p>
-        <p style="color:#555">Mit freundlichen Grüßen,<br><strong>${director || 'Allodo GmbH'}</strong></p>
+        <p style="color:#555">Mit freundlichen Grüßen,<br><strong>${director || 'Keloer GmbH'}</strong></p>
       </div>
       <div style="padding:16px;text-align:center;color:#999;font-size:11px">
-        Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin
+        Keloer GmbH · Friedrichstrasse 100 · 10117 Berlin
       </div>
     </div>
   `;
-  await sendNotificationEmail(client.email, 'Allodo — Ihr Darlehensvertrag ' + contractNumber, html);
+  await sendNotificationEmail(client.email, 'Keloer — Ihr Darlehensvertrag ' + contractNumber, html);
 }
 
 /* ========================================
@@ -1597,7 +1597,7 @@ if (!client && loan) {
   set('invt-total', fmtNum(total) + ' EUR');
   set('invt-total2', fmtNum(total));
   set('invt-due-date', fmtDE(new Date(dueDate)));
-  set('invt-beneficiary', beneficiary || 'Allodo GmbH');
+  set('invt-beneficiary', beneficiary || 'Keloer GmbH');
   set('invt-iban', iban);
   set('invt-bic', bic || '—');
   set('invt-payment-ref', paymentRef || number);
@@ -1620,7 +1620,7 @@ if (!client && loan) {
   set('invt-sl-total', fmtNum(total) + ' EUR');
   set('invt-sl-total2', fmtNum(total));
   set('invt-sl-due-date', fmtDE(new Date(dueDate)));
-  set('invt-sl-beneficiary', beneficiary || 'Allodo GmbH');
+  set('invt-sl-beneficiary', beneficiary || 'Keloer GmbH');
   set('invt-sl-iban', iban);
   set('invt-sl-bic', bic || '—');
   set('invt-sl-payment-ref', paymentRef || number);
@@ -1688,11 +1688,11 @@ if (_contractPdfUrl && client.email) {
 } else if (client.email) {
   var subject, html;
   if (lang === 'sl') {
-    subject = 'Allodo — Vaš račun ' + number;
+    subject = 'Keloer — Vaš račun ' + number;
     html = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
         <div style="background:#0C2340;padding:24px;text-align:center">
-          <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+          <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:46px">
         </div>
         <div style="padding:32px;background:#f9f9f9">
           <h2 style="color:#0C2340;font-size:18px">Vaš račun je na voljo</h2>
@@ -1701,21 +1701,21 @@ if (_contractPdfUrl && client.email) {
           <p style="color:#555;line-height:1.7">Rok plačila: <strong>${fmtDE(new Date(dueDate))}</strong></p>
           <div style="background:#0C2340;color:#fff;border-radius:8px;padding:20px;margin:20px 0;text-align:center">
             <div style="font-size:11px;color:#B8963E;margin-bottom:8px">PODATKI ZA PLAČILO</div>
-            <div>Prejemnik: <strong>${beneficiary || 'Allodo GmbH'}</strong></div>
+            <div>Prejemnik: <strong>${beneficiary || 'Keloer GmbH'}</strong></div>
             <div>IBAN: <strong>${iban}</strong></div>
             <div>BIC: <strong>${bic || '—'}</strong></div>
             <div style="color:#B8963E">Namen plačila: <strong>${paymentRef || number}</strong></div>
           </div>
           <a href="${pdfUrl}" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:14px">Prenesi račun →</a>
         </div>
-        <div style="padding:16px;text-align:center;color:#999;font-size:11px">Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin</div>
+        <div style="padding:16px;text-align:center;color:#999;font-size:11px">Keloer GmbH · Friedrichstrasse 100 · 10117 Berlin</div>
       </div>`;
   } else {
-    subject = 'Allodo — Ihre Rechnung ' + number;
+    subject = 'Keloer — Ihre Rechnung ' + number;
     html = `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto">
         <div style="background:#0C2340;padding:24px;text-align:center">
-          <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+          <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:46px">
         </div>
         <div style="padding:32px;background:#f9f9f9">
           <h2 style="color:#0C2340;font-size:18px">Ihre Rechnung ist verfügbar</h2>
@@ -1724,14 +1724,14 @@ if (_contractPdfUrl && client.email) {
           <p style="color:#555;line-height:1.7">Fälligkeit: <strong>${fmtDE(new Date(dueDate))}</strong></p>
           <div style="background:#0C2340;color:#fff;border-radius:8px;padding:20px;margin:20px 0;text-align:center">
             <div style="font-size:11px;color:#B8963E;margin-bottom:8px">ZAHLUNGSDETAILS</div>
-            <div>Begünstigter: <strong>${beneficiary || 'Allodo GmbH'}</strong></div>
+            <div>Begünstigter: <strong>${beneficiary || 'Keloer GmbH'}</strong></div>
             <div>IBAN: <strong>${iban}</strong></div>
             <div>BIC: <strong>${bic || '—'}</strong></div>
             <div style="color:#B8963E">Verwendungszweck: <strong>${paymentRef || number}</strong></div>
           </div>
           <a href="${pdfUrl}" style="display:inline-block;background:#0C2340;color:#fff;padding:12px 28px;border-radius:4px;text-decoration:none;font-size:14px">Rechnung herunterladen →</a>
         </div>
-        <div style="padding:16px;text-align:center;color:#999;font-size:11px">Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin</div>
+        <div style="padding:16px;text-align:center;color:#999;font-size:11px">Keloer GmbH · Friedrichstrasse 100 · 10117 Berlin</div>
       </div>`;
   }
   await sendNotificationEmail(client.email, subject, html);
@@ -1751,11 +1751,11 @@ async function sendContractAndInvoiceEmail(client, contractUrl, contractNumber, 
   var subject, html;
 
   if (lang === 'sl') {
-    subject = 'Allodo — Vaša pogodbena dokumentacija: Posojilna pogodba & Račun';
+    subject = 'Keloer — Vaša pogodbena dokumentacija: Posojilna pogodba & Račun';
     html = `
       <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;color:#1F2937">
         <div style="background:#0C2340;padding:28px;text-align:center">
-          <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+          <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:46px">
         </div>
         <div style="height:4px;background:#B8963E"></div>
         <div style="padding:36px;background:#f9f9f9">
@@ -1787,18 +1787,18 @@ async function sendContractAndInvoiceEmail(client, contractUrl, contractNumber, 
             </div>
           </div>
           <p style="font-size:14px;color:#555;line-height:1.8">Za vsa vprašanja sem vam na voljo.</p>
-          <p style="font-size:14px;color:#333;margin-top:24px">S spoštovanjem,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetreuung@allodo.de · +49 15510 591674</span></p>
+          <p style="font-size:14px;color:#333;margin-top:24px">S spoštovanjem,<br><strong>${director || 'Keloer GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Keloer GmbH · kundenbetreuung@keloer.com · +49 15510 591674</span></p>
         </div>
         <div style="padding:16px;text-align:center;color:#999;font-size:11px;border-top:1px solid #E5E7EB">
-          Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin · www.allodo.de
+          Keloer GmbH · Friedrichstrasse 100 · 10117 Berlin · www.keloer.com
         </div>
       </div>`;
   } else {
-    subject = 'Allodo — Ihre Vertragsunterlagen: Darlehensvertrag & Rechnung';
+    subject = 'Keloer — Ihre Vertragsunterlagen: Darlehensvertrag & Rechnung';
     html = `
       <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;color:#1F2937">
         <div style="background:#0C2340;padding:28px;text-align:center">
-          <img src="https://www.allodo.de/logo.svg" alt="Allodo" style="height:46px">
+          <img src="https://www.keloer.com/logo.svg" alt="keloer" style="height:46px">
         </div>
         <div style="height:4px;background:#B8963E"></div>
         <div style="padding:36px;background:#f9f9f9">
@@ -1830,10 +1830,10 @@ async function sendContractAndInvoiceEmail(client, contractUrl, contractNumber, 
             </div>
           </div>
           <p style="font-size:14px;color:#555;line-height:1.8">Bei Fragen stehe ich Ihnen gerne zur Verfügung.</p>
-          <p style="font-size:14px;color:#333;margin-top:24px">Mit freundlichen Grüßen,<br><strong>${director || 'Allodo GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Allodo GmbH · kundenbetreuung@allodo.de · +49 15510 591674</span></p>
+          <p style="font-size:14px;color:#333;margin-top:24px">Mit freundlichen Grüßen,<br><strong>${director || 'Keloer GmbH'}</strong><br><span style="color:#6B7280;font-size:12px">Keloer GmbH · kundenbetreuung@keloer.com · +49 15510 591674</span></p>
         </div>
         <div style="padding:16px;text-align:center;color:#999;font-size:11px;border-top:1px solid #E5E7EB">
-          Allodo GmbH · Friedrichstrasse 100 · 10117 Berlin · www.allodo.de
+          Keloer GmbH · Friedrichstrasse 100 · 10117 Berlin · www.keloer.com
         </div>
       </div>`;
   }
