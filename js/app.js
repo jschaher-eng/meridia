@@ -671,9 +671,9 @@ var loans = [
 
 if (!loans || loans.length === 0) return;
 var loan = loans[0];
- window._advisorName = (loan && loan.advisor_name) ? loan.advisor_name : 'Allodo Finanz';
+ window._advisorName = (loan && loan.advisor_name) ? loan.advisor_name : 'Keloer Finanz';
  console.log('advisor:', loan.advisor_name, 'window:', window._advisorName);
-  var advisorName   = loan.advisor_name   || 'Allodo Finanz';
+  var advisorName   = loan.advisor_name   || 'Keloer Finanz';
   var advisorAvatar = loan.advisor_avatar || 'AF';
 
   var advName = document.querySelector('#dp-vue .ln');
