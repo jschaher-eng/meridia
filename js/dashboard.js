@@ -305,7 +305,7 @@ async function loadNotifications() {
 if (msg.startsWith('doc_request:')) {
   var docType = msg.replace('doc_request:', '');
   msg = (I18N.t('dash.doc_request_notif') || 'Dokument angefordert:') + ' ' + (docTypeLabels[docType] || docType);
-} else if (msg.includes('Allodo bittet Sie')) {
+} else if (msg.includes('Keloer bittet Sie')) {
   var oldTypeMap = {
     'Personalausweis':    'identite',
     'Einkommensnachweis': 'revenus',
