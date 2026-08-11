@@ -1,5 +1,5 @@
 /* =========================================
-   Allodo — simulator.js
+   Keloer — simulator.js
    Calcul de prêt · Mise à jour UI
    ========================================= */
 
