@@ -7,7 +7,7 @@
 
 /* Hero */
 .hero {
-  background: linear-gradient(135deg, #0B1F3A, #1E3A5F);
+  background: linear-gradient(135deg, #0F1F3D, #1A3A6B);
   padding: 5rem 2rem 4.5rem;
   position: relative;
   overflow: hidden;
@@ -113,7 +113,7 @@
   font-family: var(--font-serif);
   font-size: 36px;
   font-weight: 700;
-  color: #0B1F3A;
+  color: #0F1F3D;
   line-height: 1;
 }
 .figure-label {
@@ -138,10 +138,10 @@
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
-.prod-card.navy-top  { border-top: 3px solid #0B1F3A; }
+.prod-card.navy-top  { border-top: 3px solid #0F1F3D; }
 .prod-card.gold-top  { border-top: 3px solid #F59E0B; }
 .prod-card.selected  {
-  border-top-color: #0B1F3A;
+  border-top-color: #0F1F3D;
   background: #F0F4FF;
   box-shadow: 0 0 0 3px rgba(11,31,58,0.08);
 }
@@ -179,7 +179,7 @@
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #0B1F3A;
+  color: #0F1F3D;
 }
 .prod-card.large h3 {
   font-family: var(--font-serif);
@@ -218,11 +218,11 @@
   font-family: var(--font-sans);
   transition: all 0.2s ease;
 }
-.ptab:hover { border-color: #0B1F3A; color: #0B1F3A; }
+.ptab:hover { border-color: #0F1F3D; color: #0F1F3D; }
 .ptab.act {
-  background: #0B1F3A;
+  background: #0F1F3D;
   color: #fff;
-  border-color: #0B1F3A;
+  border-color: #0F1F3D;
 }
 
 /* ====== SIMULATOR ====== */
@@ -253,18 +253,18 @@
   font-size: 22px;
   font-weight: 700;
   font-family: var(--font-serif);
-  color: #0B1F3A;
+  color: #0F1F3D;
   margin-bottom: 8px;
 }
 .rg input[type="range"] {
   width: 100%;
-  accent-color: #0B1F3A;
+  accent-color: #0F1F3D;
   height: 6px;
 }
 
 /* Result card */
 .res-card {
-  background: linear-gradient(135deg, #0B1F3A, #1E3A5F);
+  background: linear-gradient(135deg, #0F1F3D, #1A3A6B);
   border-radius: 12px;
   padding: 1.75rem;
   color: #ffffff;
@@ -323,7 +323,7 @@
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 0.4rem;
-  color: #0B1F3A;
+  color: #0F1F3D;
 }
 .apply-card .form-sub {
   font-size: 13px;
@@ -343,9 +343,9 @@
   transition: all 0.2s ease;
 }
 .upload-zone:hover {
-  border-color: #0B1F3A;
+  border-color: #0F1F3D;
   background: #F0F4FF;
-  color: #0B1F3A;
+  color: #0F1F3D;
 }
 .cgu-note {
   font-size: 12px;
@@ -420,7 +420,7 @@
 
 /* ====== FOOTER ====== */
 .footer {
-  background: #0B1F3A;
+  background: #0F1F3D;
   color: rgba(255,255,255,0.5);
   padding: 3rem 2rem 2rem;
   margin-top: 4rem;
