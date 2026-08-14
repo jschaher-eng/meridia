@@ -15,7 +15,7 @@
 /* --- Sidebar --- */
 .sidebar,
 .dash-sidebar {
-  background: #0F1F3D;
+  background: #222222;
   padding: 1.5rem 0;
   position: sticky;
   top: 62px;
@@ -87,7 +87,7 @@
 
 .sb-badge {
   background: #F59E0B;
-  color: #0F1F3D;
+  color: #222222;
   border-radius: 10px;
   padding: 2px 8px;
   font-size: 11px;
@@ -114,7 +114,7 @@
   font-family: var(--font-serif);
   font-size: 28px;
   font-weight: 700;
-  color: #0F1F3D;
+  color: #222222;
 }
 .dash-header p {
   font-size: 14px;
@@ -154,7 +154,7 @@
   font-size: 26px;
   font-weight: 700;
   font-family: var(--font-serif);
-  color: #0F1F3D;
+  color: #222222;
   line-height: 1.1;
 }
 .met .ms {
@@ -196,7 +196,7 @@
   position: absolute;
   left: 7px; top: 6px; bottom: 0;
   width: 2px;
-  background: linear-gradient(180deg, #0F1F3D, #E5E7EB);
+  background: linear-gradient(180deg, #222222, #E5E7EB);
   border-radius: 1px;
 }
 
@@ -213,8 +213,8 @@
   justify-content: center;
 }
 .tl-dot.done {
-  background: #0F1F3D;
-  border: 2px solid #0F1F3D;
+  background: #222222;
+  border: 2px solid #222222;
   box-shadow: 0 0 0 3px rgba(11,31,58,0.1);
 }
 .tl-dot.now {
@@ -246,7 +246,7 @@
 
 /* --- Summary card --- */
 .sum-card {
-  background: linear-gradient(135deg, #0F1F3D, #1A3A6B);
+  background: linear-gradient(135deg, #222222, #333333);
   border-radius: 12px;
   padding: 1.25rem;
   color: var(--white);
@@ -326,11 +326,11 @@
   transition: all 0.2s ease;
   font-weight: 500;
 }
-.doc-tab:hover { border-color: #0F1F3D; color: #0F1F3D; }
+.doc-tab:hover { border-color: #222222; color: #222222; }
 .doc-tab.act {
-  background: #0F1F3D;
+  background: #222222;
   color: #fff;
-  border-color: #0F1F3D;
+  border-color: #222222;
 }
 
 .doc-grid {
@@ -370,7 +370,7 @@
   border-radius: 8px;
   font-size: 13px;
   cursor: pointer;
-  color: #0F1F3D;
+  color: #222222;
   font-family: var(--font-sans);
   margin-top: 4px;
   transition: all 0.2s ease;
@@ -378,9 +378,9 @@
   font-weight: 500;
 }
 .doc-dl:hover {
-  background: #0F1F3D;
+  background: #222222;
   color: #fff;
-  border-color: #0F1F3D;
+  border-color: #222222;
 }
 
 /* --- Alert items --- */
@@ -468,7 +468,7 @@
 .score-ring {
   width: 64px; height: 64px;
   border-radius: 50%;
-  border: 3px solid #0F1F3D;
+  border: 3px solid #222222;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -480,7 +480,7 @@
 .score-n {
   font-size: 18px;
   font-weight: 700;
-  color: #0F1F3D;
+  color: #222222;
   font-family: var(--font-serif);
 }
 .score-l { font-size: 9px; color: var(--text-light); }
@@ -494,7 +494,7 @@
 }
 .prog-fill {
   height: 100%;
-  background: linear-gradient(90deg, #0F1F3D, #3B82F6);
+  background: linear-gradient(90deg, #222222, #3B82F6);
   border-radius: 3px;
   transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -540,7 +540,7 @@
 
   .dash-mobile-nav {
     display: block;
-    background: #0F1F3D;
+    background: #222222;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding: 8px 12px;
   }
