@@ -5,7 +5,7 @@
 
 /* --- Topbar --- */
 .topbar {
-  background: #0B1F3A;
+  background: #0F1F3D;
   color: rgba(255,255,255,0.5);
   font-size: 12px;
   padding: 6px 1.5rem;
@@ -51,7 +51,7 @@
   font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 700;
-  color: #0B1F3A;
+  color: #0F1F3D;
   letter-spacing: -0.5px;
 }
 .logo-tag {
@@ -85,10 +85,10 @@
 }
 .nav-link:hover {
   background: #F5F7FA;
-  color: #0B1F3A;
+  color: #0F1F3D;
 }
 .nav-link.act {
-  color: #0B1F3A;
+  color: #0F1F3D;
   font-weight: 600;
 }
 .nav-link.act::after {
@@ -167,7 +167,7 @@
   align-items: center;
   font-size: 13px;
   font-weight: 600;
-  color: #0B1F3A;
+  color: #0F1F3D;
   background: #F8FAFC;
 }
 .notif-panel-header span.mark-read {
@@ -193,7 +193,7 @@
 .notif-item .n-sub   { font-size: 12px; color: #6B7280; }
 .notif-item .n-time  { font-size: 11px; color: #9CA3AF; margin-top: 4px; }
 .notif-item.danger .n-title { color: #EF4444; }
-.notif-item.new .n-title    { color: #0B1F3A; }
+.notif-item.new .n-title    { color: #0F1F3D; }
 
 /* Segment switcher */
 .seg-bar {
@@ -221,7 +221,7 @@
   transition: all 0.2s ease;
 }
 .seg-btn.act {
-  color: #0B1F3A;
+  color: #0F1F3D;
   border-bottom-color: #F59E0B;
   font-weight: 600;
 }
@@ -248,7 +248,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background: #0B1F3A;
+  background: #0F1F3D;
   border-radius: 2px;
   transition: all 0.3s;
 }
