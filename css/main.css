@@ -9,10 +9,10 @@
 /* --- Variables --- */
 :root {
   /* Couleurs principales */
-  --navy:        #0B1F3A;
-  --navy-mid:    #1E3A5F;
+  --navy:        #0F1F3D;
+  --navy-mid:    #1A3A6B;
   --navy-light:  #2a5280;
-  --navy-grad:   linear-gradient(135deg, #0B1F3A, #1E3A5F);
+  --navy-grad:   linear-gradient(135deg, #0F1F3D, #1A3A6B);
 
   /* Accent / CTA */
   --gold:        #F59E0B;
